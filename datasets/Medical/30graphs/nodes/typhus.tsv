@@ -1,0 +1,59 @@
+typhus	characterize by	fever
+typhus	follow	fever
+fever	turn to	typhus
+fever	develop to	typhus
+louse	infect with	typhus
+typhus	spread by	louse
+louse	transmit	typhus
+louse	bear	typhus
+louse	carry	typhus
+louse	spread	typhus
+typhus	transmit by	louse
+louse	convey	typhus
+typhus	carry by	louse
+person	attack with	typhus
+person	die of	typhus
+person	contract	typhus
+typhus	transmit from	person
+person	recover from	typhus
+person	have	typhus
+person	suffer from	typhus
+person	get	typhus
+people	contract	typhus
+people	die of	typhus
+typhus	kill	people
+people	die from	typhus
+people	crowd with	typhus
+typhus	spread among	people
+people	have	typhus
+people	get	typhus
+typhus	spread by	flea
+typhus	transmit by	flea
+flea	transmit	typhus
+flea	carry	typhus
+typhus	carry by	flea
+flea	spread	typhus
+typhus	cause	death
+typhus	transmit by	bite
+typhus	spread by	bite
+typhus	break in	village
+village	infest with	typhus
+typhus	rag in	village
+typhus	kill	thousand
+thousand	die of	typhus
+typhus	claim	thousand
+thousand	die from	typhus
+typhus	carry by	tick
+typhus	spread by	tick
+salivation	occur as	typhus
+typhus	cause by	rickettsia
+typhus	have	rash
+rash	begin in	typhus
+typhus	confound with	inflammation
+inflammation	occur in	typhus
+smallpox	resemble	typhus
+catarrh	indicate	typhus
+catarrh	occur in	typhus
+temperature	rise in	typhus
+ricketts	contract	typhus
+typhus	treat with	antibiotic

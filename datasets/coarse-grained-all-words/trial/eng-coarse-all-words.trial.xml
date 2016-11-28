@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE corpus SYSTEM "coarse-all-words.dtd">
+<corpus lang="en">
+<text id="d000">
+<sentence id="d000.s001">
+There
+<instance id="d000.s001.t001" lemma="be" pos="v">was</instance>
+a
+<instance id="d000.s001.t002" lemma="steaming" pos="a">steaming</instance>
+<instance id="d000.s001.t003" lemma="mist" pos="n">mist</instance>
+in
+all
+the
+<instance id="d000.s001.t004" lemma="hollow" pos="n">hollows</instance>
+,
+and
+it
+had
+<instance id="d000.s001.t005" lemma="roam" pos="v">roamed</instance>
+in
+its
+<instance id="d000.s001.t006" lemma="forlornness" pos="n">forlornness</instance>
+up
+the
+<instance id="d000.s001.t007" lemma="hill" pos="n">hill</instance>
+,
+like
+an
+<instance id="d000.s001.t008" lemma="evil" pos="a">evil</instance>
+<instance id="d000.s001.t009" lemma="spirit" pos="n">spirit</instance>
+,
+<instance id="d000.s001.t010" lemma="seek" pos="v">seeking</instance>
+<instance id="d000.s001.t011" lemma="rest" pos="n">rest</instance>
+and
+<instance id="d000.s001.t012" lemma="find" pos="v">finding</instance>
+none
+.
+</sentence>
+<sentence id="d000.s018">
+"
+Halloa
+!
+"
+the
+<instance id="d000.s018.t001" lemma="guard" pos="n">guard</instance>
+<instance id="d000.s018.t002" lemma="reply" pos="v">replied</instance>
+.
+</sentence>
+</text>
+</corpus>

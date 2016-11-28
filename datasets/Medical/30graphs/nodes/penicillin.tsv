@@ -1,0 +1,240 @@
+penicillinase	destroy	penicillin
+penicillinase	inactivate	penicillin
+penicillin	inactivate by	penicillinase
+penicillin	resist by	penicillinase
+penicillin	give for	infection
+infection	treat with	penicillin
+penicillin	prevent	infection
+penicillin	use in	infection
+infection	control by	penicillin
+infection	respond to	penicillin
+penicillin	be for	infection
+infection	control with	penicillin
+penicillin	control	infection
+penicillin	use for	infection
+infection	treat by	penicillin
+infection	improve by	penicillin
+penicillin	administer for	infection
+penicillin	eradicate	infection
+penicillin	cure	infection
+infection	treat	penicillin
+infection	cure with	penicillin
+fleming	call	penicillin
+penicillin	observe by	fleming
+fleming	name	penicillin
+fleming	discover	penicillin
+fleming	give	penicillin
+fleming	invent	penicillin
+fleming	find	penicillin
+penicillin	discover by	fleming
+fleming	apply	penicillin
+fleming	look for	penicillin
+drug	include	penicillin
+penicillin	use as	drug
+penicillin	be among	drug
+penicillin	interact with	drug
+penicillin	hail as	drug
+penicillin	consider	drug
+penicillin	regard as	drug
+drug	differ from	penicillin
+penicillin	remain	drug
+penicillin	establish as	drug
+syphilis	treat with	penicillin
+syphilis	treat by	penicillin
+penicillin	administer with	syphilis
+penicillin	cure	syphilis
+penicillin	prevent	syphilis
+penicillin	give for	syphilis
+syphilis	cure with	penicillin
+penicillin	give as	injection
+penicillin	administer as	injection
+penicillin	be for	injection
+penicillin	administer by	injection
+penicillin	absorb after	injection
+penicillin	give by	injection
+penicillin	be for	bacteria
+penicillin	kill	bacteria
+penicillin	destroy	bacteria
+bacteria	resist	penicillin
+penicillin	be against	bacteria
+penicillin	prevent	bacteria
+penicillin	act on	bacteria
+penicillin	destroy by	bacteria
+bacteria	affect by	penicillin
+penicillin	inhibit	bacteria
+bacteria	kill by	penicillin
+penicillin	be of	toxicity
+penicillin	become of	toxicity
+penicillin	possess	toxicity
+penicillin	eliminate	toxicity
+penicillin	cause	toxicity
+penicillin	be without	toxicity
+penicillin	have	toxicity
+probenecid	use with	penicillin
+probenecid	administer with	penicillin
+probenecid	compete with	penicillin
+probenecid	give with	penicillin
+antibiotic	use as	penicillin
+penicillin	regard as	antibiotic
+penicillin	be among	antibiotic
+penicillin	use as	antibiotic
+antibiotic	substitute for	penicillin
+antibiotic	include	penicillin
+antibiotic	replace	penicillin
+penicillin	know as	antibiotic
+penicillin	make from	mold
+penicillin	obtain from	mold
+mold	produce	penicillin
+penicillin	come from	mold
+penicillin	extract from	mold
+penicillin	derive from	mold
+penicillin	produce by	mold
+mold	suggest	penicillin
+streptomycin	use with	penicillin
+penicillin	combine with	streptomycin
+penicillin	use with	streptomycin
+streptomycin	combine with	penicillin
+penicillin	follow by	streptomycin
+streptomycin	administer with	penicillin
+cephalosporin	substitute for	penicillin
+cephalosporin	differ from	penicillin
+cephalosporin	resemble	penicillin
+cephalosporin	use to	penicillin
+cephalosporin	relate to	penicillin
+cephalosporin	have to	penicillin
+penicillin	excrete in	urine
+penicillin	eliminate in	urine
+penicillin	excrete into	urine
+penicillin	detect in	urine
+ampicillin	substitute for	penicillin
+ampicillin	differ from	penicillin
+penicillin	include	ampicillin
+penicillin	inject into	wound
+penicillin	use for	wound
+wound	irrigate with	penicillin
+wound	dust with	penicillin
+penicillin	add for	wound
+penicillin	cure	pneumonia
+pneumonia	respond to	penicillin
+pneumonia	treat with	penicillin
+penicillin	kill	streptococci
+streptococci	treat with	penicillin
+streptococci	respond to	penicillin
+penicillin	eliminate	streptococci
+penicillin	isolate from	notatum
+notatum	produce	penicillin
+penicillin	obtain from	notatum
+penicillin	derive from	notatum
+penicillin	produce by	notatum
+erythromycin	substitute for	penicillin
+erythromycin	resemble	penicillin
+endocarditis	cure by	penicillin
+endocarditis	treat with	penicillin
+penicillin	use with	aminoglycoside
+aminoglycoside	give with	penicillin
+penicillin	combine with	aminoglycoside
+aminoglycoside	combine with	penicillin
+penicillin	use with	tetracycline
+tetracycline	behave like	penicillin
+penicillin	give as	prophylaxis
+penicillin	use for	prophylaxis
+penicillin	use as	prophylaxis
+penicillin	prescribe as	prophylaxis
+penicillin	use for	meningitis
+meningitis	treat with	penicillin
+gonorrhea	treat by	penicillin
+penicillin	cure	gonorrhea
+gonorrhea	cure with	penicillin
+gonorrhea	treat with	penicillin
+penicillin	isolate by	florey
+florey	use	penicillin
+florey	develop	penicillin
+allergy	exist with	penicillin
+penicillin	be against	staphylococci
+penicillin	give before	operation
+penicillin	start before	operation
+penicillin	administer after	operation
+penicillin	give by	mouth
+penicillin	administer by	mouth
+penicillin	be against	microorganism
+microorganism	treat with	penicillin
+penicillin	include	methicillin
+methicillin	substitute for	penicillin
+lactamases	inactivate	penicillin
+penicillin	inactivate by	lactamases
+gentamicin	use with	penicillin
+penicillin	inactivate	gentamicin
+gentamicin	combine with	penicillin
+clindamycin	substitute for	penicillin
+clindamycin	compare with	penicillin
+chloramphenicol	combine with	penicillin
+chloramphenicol	administer with	penicillin
+cellulitis	treat with	penicillin
+aminoglycosides	inactivate by	penicillin
+aminoglycosides	use with	penicillin
+penicillin	inactivate	aminoglycosides
+penicillin	introduce in	1940s
+penicillin	discover in	1940s
+penicillin	become in	1940s
+yaw	respond with	penicillin
+yaw	treat with	penicillin
+vancomycin	substitute for	penicillin
+penicillin	cause	urticaria
+penicillin	replace	sulfonamide
+sulfonamide	reduce	penicillin
+penicillin	require in	sepsis
+penicillin	cause	rash
+penicillin	give as	procaine
+penicillin	combine with	procaine
+pneumococcus	respond to	penicillin
+pharyngitis	treat with	penicillin
+penicillin	include	oxacillin
+penicillin	resemble	oxacillin
+penicillin	produce	nephritis
+penicillin	give after	meal
+penicillin	save	life
+penicillin	eliminate by	kidney
+penicillin	excrete by	kidney
+penicillin	produce by	fungus
+penicillin	derive from	fungus
+diphtheria	treat with	penicillin
+penicillin	cause	diarrhea
+chemotherapy	be with	penicillin
+penicillin	use in	chemotherapy
+penicillin	include	carbenicillin
+penicillin	circulate in	blood
+penicillin	pass from	blood
+bite	treat with	penicillin
+anemia	cause by	penicillin
+penicillin	discover by	accident
+vaccine	contain	penicillin
+penicillin	be against	treponema
+penicillin	inhibit	transpeptidase
+penicillin	include	ticarcillin
+penicillin	save	thousand
+penicillin	protect against	tetanus
+pyrexia	respond to	penicillin
+penicillium	produce	penicillin
+penicillin	inhibit by	paromomycin
+neurosyphilis	treat with	penicillin
+nephrosis	treat with	penicillin
+nephropathy	associate with	penicillin
+penicillin	save	million
+medication	include	penicillin
+penicillin	metabolize in	liver
+penicillin	give by	infusion
+impetigo	treat with	penicillin
+penicillin	be in	gangrene
+penicillin	discover by	flemming
+dermatitis	cause by	penicillin
+penicillin	associate with	depression
+penicillin	be against	cocci
+penicillin	include	cloxacillin
+cervicitis	treat with	penicillin
+bleeding	cause by	penicillin
+penicillin	promote	anticoagulant
+anthrax	treat with	penicillin
+angina	treat with	penicillin
+penicillin	include	amoxicillin
+actinomycosis	treat with	penicillin
+abscess	treat with	penicillin

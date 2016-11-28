@@ -1,0 +1,1427 @@
+measles	paint	spot	>	measles	identify by	spot
+measles	identify by	spot	>	measles	paint	spot
+child	die with	measles	>	child	expose to	measles
+child	expose to	measles	>	child	bring	measles
+child	come with	measles	>	child	take	measles
+child	acquire	measles	>	measles	be among	child
+child	stricken by	measles	>	child	suffer from	measles
+measles	see in	child	>	child	bring	measles
+measles	associate with	spot	>	rash	suggest	measles
+measles	occur to	child	>	child	attack with	measles
+child	die from	measles	>	child	be with	measles
+measles	observe in	child	>	child	catch	measles
+roseola	mistake for	measles	>	roseola	distinguish from	measles
+child	die from	measles	>	measles	be in	child
+measles	occur to	child	>	measles	break among	child
+child	bring	measles	>	child	expose to	measles
+child	receive	measles	>	child	take	measles
+measles	cause	pneumonia	>	pneumonia	associate with	measles
+child	be with	measles	>	measles	break among	child
+vaccine	reduce	measles	>	immunization	eliminate	measles
+child	contract	measles	>	child	bring	measles
+vaccine	protect against	measles	>	immunization	eliminate	measles
+child	die with	measles	X	child	protect from	measles
+child	attack with	measles	>	measles	observe in	child
+child	develop	measles	>	measles	be among	child
+child	suffer from	measles	>	measles	give to	child
+measles	occur in	child	>	child	acquire	measles
+child	receive	measles	>	child	attack by	measles
+rash	appear in	measles	>	measles	associate with	spot
+child	receive	measles	>	child	contract	measles
+child	seize with	measles	>	measles	occur in	child
+child	recover from	measles	>	child	give	measles
+measles	be among	child	>	child	have	measles
+pneumonia	follow	measles	>	measles	follow by	pneumonia
+measles	break among	child	>	child	receive	measles
+child	acquire	measles	>	child	develop	measles
+child	immunize against	measles	X	child	die from	measles
+measles	affect	child	>	child	give	measles
+measles	affect	child	>	measles	occur in	child
+child	get over	measles	X	child	take with	measles
+measles	kill	child	>	child	bring	measles
+measles	attack	child	>	child	develop	measles
+child	acquire	measles	>	measles	break among	child
+measles	attack	child	>	child	contract	measles
+measles	break among	child	>	measles	see in	child
+child	seize with	measles	>	measles	kill	child
+child	protect against	measles	X	measles	kill	child
+measles	paint	spot	>	measles	associate with	spot
+child	receive	measles	>	measles	occur in	child
+child	protect against	measles	X	child	take with	measles
+child	receive	measles	>	child	give	measles
+child	seize with	measles	>	child	stricken by	measles
+child	be with	measles	>	child	come with	measles
+child	develop	measles	>	child	have	measles
+measles	be in	child	>	child	have	measles
+child	take	measles	>	child	stricken by	measles
+child	receive	measles	>	measles	observe in	child
+measles	give to	child	>	measles	attack	child
+thousand	die from	measles	>	thousand	die of	measles
+child	die from	measles	>	child	take with	measles
+child	die of	measles	>	child	die from	measles
+child	come with	measles	>	child	catch	measles
+child	bring	measles	>	child	take	measles
+measles	associate with	spot	>	rash	appear in	measles
+measles	be in	child	>	child	bring	measles
+child	bring	measles	>	child	get	measles
+rash	suggest	measles	>	measles	accompany by	spot
+child	come with	measles	>	measles	be among	child
+child	attack by	measles	>	child	be with	measles
+child	be with	measles	>	child	take	measles
+child	pass through	measles	>	child	catch	measles
+child	seize with	measles	>	measles	observe in	child
+rash	appear in	measles	>	measles	characterize by	rash
+child	take with	measles	>	measles	be among	child
+measles	complicate with	pneumonia	>	measles	follow by	pneumonia
+child	be with	measles	>	measles	affect	child
+child	get	measles	>	child	come with	measles
+measles	kill	child	>	measles	be in	child
+measles	be among	child	>	measles	occur in	child
+child	seize with	measles	>	child	expose to	measles
+child	come with	measles	>	measles	see in	child
+child	die of	measles	>	child	suffer from	measles
+child	acquire	measles	>	child	expose to	measles
+child	die of	measles	>	measles	kill	child
+rash	mistake for	measles	>	rash	distinguish from	measles
+measles	kill	child	>	measles	affect	child
+measles	be in	child	>	child	develop	measles
+child	seize with	measles	X	child	recover from	measles
+child	stricken by	measles	>	child	receive	measles
+child	catch	measles	>	measles	give to	child
+measles	distinguish from	fever	>	fever	distinguish from	measles
+measles	break among	child	>	measles	affect	child
+measles	associate with	spot	>	measles	have	rash
+child	suffer from	measles	>	measles	see in	child
+child	catch	measles	>	child	attack with	measles
+measles	affect	child	>	child	catch	measles
+child	pass through	measles	>	measles	see in	child
+child	die with	measles	>	child	attack with	measles
+measles	prevent by	immunization	>	measles	immunize with	vaccine
+child	contract	measles	>	child	have	measles
+child	take with	measles	>	child	die of	measles
+vaccine	develop for	measles	>	measles	prevent by	vaccine
+measles	occur in	child	>	measles	see in	child
+measles	immunize with	vaccine	>	measles	prevent by	vaccine
+measles	occur to	child	>	child	expose to	measles
+child	die with	measles	>	child	suffer from	measles
+measles	follow by	cough	>	cough	follow	measles
+child	take with	measles	>	child	receive	measles
+child	recover from	measles	>	child	catch	measles
+child	die of	measles	>	child	acquire	measles
+rash	suggest	measles	>	rash	appear in	measles
+measles	attack	child	>	measles	occur to	child
+child	take	measles	>	measles	affect	child
+measles	characterize by	rash	>	rash	appear in	measles
+child	bring	measles	>	child	develop	measles
+measles	give to	child	>	measles	be in	child
+measles	be in	child	>	measles	affect	child
+child	die from	measles	>	measles	occur in	child
+child	take with	measles	>	measles	see in	child
+child	get	measles	>	measles	break among	child
+measles	kill	child	>	measles	see in	child
+child	expose to	measles	>	child	have	measles
+thousand	die from	measles	>	measles	claim	life
+child	catch	measles	>	child	attack by	measles
+child	stricken by	measles	>	measles	occur in	child
+tuberculosis	exacerbate by	measles	>	measles	predispose to	tuberculosis
+spot	appear in	measles	>	measles	paint	spot
+child	die with	measles	>	child	acquire	measles
+child	pass through	measles	>	child	have	measles
+measles	prevent by	immunization	>	vaccine	reduce	measles
+child	come with	measles	>	child	bring	measles
+measles	act like	plague	>	measles	produce	epidemic
+child	die from	measles	>	child	stricken by	measles
+cough	associate with	measles	>	cough	follow	measles
+child	seize with	measles	>	child	take	measles
+measles	be in	child	>	measles	be among	child
+child	acquire	measles	>	child	catch	measles
+vaccine	prevent	measles	>	vaccine	reduce	measles
+child	give	measles	>	child	take	measles
+measles	kill	child	X	child	protect against	measles
+child	pass through	measles	>	child	suffer from	measles
+child	be with	measles	>	child	suffer from	measles
+child	take with	measles	>	child	come with	measles
+vaccine	protect against	measles	>	measles	prevent by	vaccine
+child	die of	measles	>	child	give	measles
+child	be with	measles	>	measles	attack	child
+measles	attack	child	>	child	catch	measles
+measles	give to	child	>	child	expose to	measles
+child	take	measles	>	measles	occur in	child
+measles	complicate with	pneumonia	>	measles	cause	pneumonia
+measles	be in	child	>	child	come with	measles
+child	seize with	measles	>	measles	attack	child
+measles	attack	child	>	child	stricken by	measles
+child	recover from	measles	>	child	expose to	measles
+conjunctivitis	accompany as	measles	>	measles	accompany by	conjunctivitis
+child	die of	measles	>	child	have	measles
+fever	occur with	measles	>	measles	characterize by	fever
+measles	be among	child	>	child	give	measles
+child	be with	measles	>	child	stricken by	measles
+child	take with	measles	>	child	have	measles
+fever	occur during	measles	>	measles	develop during	fever
+spot	see in	measles	>	measles	associate with	spot
+child	die of	measles	>	measles	attack	child
+child	pass through	measles	>	child	bring	measles
+measles	confuse with	fever	>	fever	differ from	measles
+measles	see in	child	>	measles	be in	child
+child	die with	measles	X	child	recover from	measles
+child	suffer from	measles	>	measles	occur to	child
+measles	be in	child	>	measles	see in	child
+child	attack by	measles	>	measles	give to	child
+pneumonia	associate with	measles	>	measles	complicate by	pneumonia
+child	seize with	measles	>	child	take with	measles
+child	take with	measles	>	measles	affect	child
+child	pass through	measles	>	child	come with	measles
+measles	complicate by	diphtheria	>	diphtheria	complicate	measles
+child	catch	measles	>	measles	be among	child
+child	recover from	measles	>	measles	give to	child
+measles	cause	cough	>	cough	follow	measles
+child	die with	measles	>	child	attack by	measles
+measles	occur in	child	>	measles	affect	child
+child	expose to	measles	>	child	attack by	measles
+measles	occur to	child	>	measles	occur in	child
+measles	break among	child	>	measles	occur to	child
+child	protect from	measles	X	child	seize with	measles
+measles	affect	child	>	child	suffer from	measles
+measles	kill	child	>	measles	occur to	child
+child	attack by	measles	>	child	catch	measles
+pneumonia	follow	measles	>	measles	complicate by	pneumonia
+child	die with	measles	>	child	stricken by	measles
+child	bring	measles	>	child	suffer from	measles
+child	catch	measles	>	child	suffer from	measles
+measles	be among	child	>	child	stricken by	measles
+child	die with	measles	>	measles	affect	child
+child	receive	measles	>	measles	give to	child
+pneumonia	follow	measles	>	pneumonia	complicate	measles
+rash	suggest	measles	>	measles	paint	spot
+measles	give to	child	>	child	acquire	measles
+measles	affect	child	>	child	have	measles
+child	attack by	measles	>	child	stricken by	measles
+measles	identify by	spot	>	rash	appear in	measles
+vaccine	prevent	measles	>	vaccine	develop for	measles
+fever	occur with	measles	>	fever	occur during	measles
+immunization	eliminate	measles	>	measles	prevent by	vaccine
+vaccine	protect against	measles	>	vaccine	reduce	measles
+child	immunize against	measles	X	child	die of	measles
+child	get	measles	>	child	stricken by	measles
+child	contract	measles	>	child	give	measles
+child	seize with	measles	>	child	die with	measles
+thousand	die of	measles	>	measles	occur in	epidemic
+child	pass through	measles	X	child	die of	measles
+measles	prevent by	immunization	>	measles	prevent by	vaccine
+child	seize with	measles	>	child	have	measles
+encephalitis	follow	measles	>	measles	cause	encephalitis
+child	attack by	measles	>	measles	see in	child
+child	die with	measles	>	measles	kill	child
+rash	suggest	measles	>	measles	associate with	spot
+child	give	measles	>	child	acquire	measles
+measles	attack	child	>	measles	give to	child
+measles	occur to	child	>	child	attack by	measles
+child	take with	measles	>	child	bring	measles
+measles	confound with	fever	>	fever	differ from	measles
+pneumonia	complicate	measles	>	pneumonia	associate with	measles
+measles	occur in	child	>	child	attack with	measles
+thousand	die from	measles	>	measles	occur in	epidemic
+spot	see in	measles	>	measles	accompany by	spot
+vaccine	reduce	measles	>	measles	prevent by	vaccination
+measles	produce	epidemic	>	measles	act like	plague
+child	get over	measles	>	child	have	measles
+measles	observe in	child	>	child	be with	measles
+child	suffer from	measles	>	child	come with	measles
+child	receive	measles	>	child	come with	measles
+measles	affect	child	>	child	develop	measles
+child	acquire	measles	>	child	come with	measles
+child	attack by	measles	>	measles	observe in	child
+measles	prevent by	vaccination	>	immunization	eliminate	measles
+child	attack by	measles	>	child	expose to	measles
+child	suffer from	measles	>	child	be with	measles
+child	attack with	measles	>	child	stricken by	measles
+measles	attack	child	>	measles	break among	child
+measles	observe in	child	>	child	suffer from	measles
+pneumonia	complicate	measles	>	measles	complicate with	pneumonia
+child	stricken by	measles	>	measles	give to	child
+child	expose to	measles	>	measles	be in	child
+child	develop	measles	>	child	give	measles
+measles	occur to	child	>	measles	observe in	child
+child	get over	measles	X	child	die from	measles
+measles	attack	child	>	measles	affect	child
+child	come with	measles	>	measles	occur in	child
+virus	include	measles	>	measles	produce by	virus
+child	recover from	measles	>	measles	be among	child
+measles	identify by	spot	>	spot	appear in	measles
+child	stricken by	measles	>	child	get	measles
+child	give	measles	>	child	get	measles
+child	bring	measles	>	child	attack by	measles
+child	suffer from	measles	>	child	contract	measles
+measles	occur to	child	>	child	acquire	measles
+fever	differ from	measles	>	measles	distinguish from	fever
+child	suffer from	measles	>	measles	be in	child
+vaccine	protect against	measles	>	vaccine	develop for	measles
+child	come with	measles	>	child	contract	measles
+measles	follow by	pneumonia	>	measles	associate with	pneumonia
+child	bring	measles	>	measles	see in	child
+measles	occur in	child	>	measles	give to	child
+child	seize with	measles	X	child	protect against	measles
+child	contract	measles	>	child	attack by	measles
+child	contract	measles	>	measles	occur in	child
+measles	occur to	child	>	child	bring	measles
+measles	attack	child	>	child	expose to	measles
+rash	appear in	measles	>	spot	see in	measles
+child	take with	measles	>	child	catch	measles
+child	get	measles	>	measles	affect	child
+child	take	measles	>	child	attack with	measles
+child	die of	measles	>	child	die with	measles
+child	catch	measles	>	child	develop	measles
+measles	prevent by	vaccine	>	vaccine	prevent	measles
+measles	see in	child	>	measles	observe in	child
+child	get	measles	>	child	take	measles
+measles	break among	child	>	child	bring	measles
+measles	observe in	child	>	measles	break among	child
+spot	see in	measles	>	measles	identify by	spot
+child	come with	measles	>	measles	give to	child
+child	attack with	measles	>	child	come with	measles
+measles	occur to	child	>	measles	give to	child
+measles	mistake for	fever	>	fever	differ from	measles
+measles	affect	child	>	child	bring	measles
+child	be with	measles	>	child	attack with	measles
+measles	confound with	fever	>	measles	resemble	fever
+child	die with	measles	>	child	develop	measles
+child	die from	measles	X	child	get over	measles
+child	give	measles	>	child	suffer from	measles
+child	stricken by	measles	>	child	come with	measles
+child	expose to	measles	>	child	give	measles
+child	pass through	measles	>	measles	occur to	child
+child	develop	measles	>	child	receive	measles
+child	contract	measles	>	child	receive	measles
+immunization	eliminate	measles	>	measles	prevent by	immunization
+measles	attack	child	>	child	have	measles
+child	acquire	measles	>	measles	occur to	child
+measles	occur to	child	>	child	get	measles
+child	attack by	measles	>	child	give	measles
+pneumonia	complicate	measles	>	measles	complicate by	pneumonia
+child	die of	measles	>	child	stricken by	measles
+measles	accompany by	spot	>	spot	see in	measles
+child	have	measles	>	child	be with	measles
+child	take with	measles	X	child	immunize against	measles
+child	come with	measles	>	child	stricken by	measles
+pneumonia	associate with	measles	>	measles	associate with	pneumonia
+measles	mistake for	fever	>	measles	resemble	fever
+child	get	measles	>	measles	be in	child
+measles	be in	child	>	measles	occur in	child
+child	bring	measles	>	child	acquire	measles
+child	expose to	measles	>	child	attack with	measles
+spot	appear in	measles	>	measles	identify by	spot
+child	develop	measles	>	child	be with	measles
+measles	break among	child	>	measles	give to	child
+child	take with	measles	>	child	attack by	measles
+child	recover from	measles	>	child	bring	measles
+child	take	measles	>	measles	be in	child
+child	attack by	measles	>	child	attack with	measles
+measles	kill	child	>	child	die with	measles
+child	take	measles	>	child	catch	measles
+measles	be among	child	>	child	catch	measles
+child	have	measles	>	child	bring	measles
+measles	distinguish from	fever	>	fever	differ from	measles
+child	give	measles	>	measles	see in	child
+child	take	measles	>	child	contract	measles
+measles	be among	child	>	child	bring	measles
+child	get over	measles	>	child	expose to	measles
+measles	be in	child	>	child	contract	measles
+child	die with	measles	>	child	have	measles
+child	catch	measles	>	child	come with	measles
+measles	break among	child	>	child	expose to	measles
+measles	kill	child	X	child	immunize against	measles
+measles	mistake for	fever	>	fever	distinguish from	measles
+virus	include	measles	>	measles	cause by	virus
+child	seize with	measles	X	child	pass through	measles
+child	die from	measles	>	measles	be among	child
+measles	affect	child	>	child	stricken by	measles
+child	attack by	measles	>	child	have	measles
+measles	attack	child	>	child	give	measles
+child	give	measles	>	child	stricken by	measles
+measles	attack	child	>	child	bring	measles
+child	give	measles	>	child	attack with	measles
+child	die with	measles	>	child	get	measles
+measles	cause	encephalitis	>	encephalitis	follow	measles
+child	expose to	measles	>	child	get	measles
+child	take	measles	>	child	be with	measles
+child	seize with	measles	>	measles	see in	child
+measles	break among	child	>	child	be with	measles
+child	take with	measles	>	child	seize with	measles
+child	catch	measles	>	child	get	measles
+fever	confound with	measles	>	measles	confound with	fever
+child	be with	measles	>	child	catch	measles
+measles	occur to	child	>	measles	be among	child
+child	die with	measles	>	measles	occur to	child
+child	be with	measles	>	child	get	measles
+child	take	measles	>	child	come with	measles
+measles	occur in	child	>	child	develop	measles
+vaccine	protect against	measles	>	measles	prevent by	vaccination
+measles	accompany by	spot	>	measles	have	rash
+child	attack with	measles	>	measles	give to	child
+spot	see in	measles	>	measles	paint	spot
+child	protect from	measles	>	child	immunize against	measles
+measles	occur to	child	>	child	receive	measles
+measles	see in	child	>	child	give	measles
+pneumonia	associate with	measles	>	measles	complicate with	pneumonia
+measles	see in	child	>	measles	attack	child
+child	die of	measles	>	measles	claim	life
+measles	attack	child	>	child	attack with	measles
+measles	complicate by	pneumonia	>	pneumonia	follow	measles
+child	seize with	measles	>	child	attack by	measles
+child	take	measles	>	child	expose to	measles
+child	die with	measles	>	child	take with	measles
+measles	confuse with	fever	>	measles	distinguish from	fever
+measles	occur to	child	>	measles	affect	child
+measles	begin with	fever	>	fever	occur during	measles
+measles	kill	child	>	measles	observe in	child
+rash	appear in	measles	>	rash	suggest	measles
+child	die from	measles	>	child	receive	measles
+child	recover from	measles	X	child	die of	measles
+child	contract	measles	>	child	suffer from	measles
+child	develop	measles	>	child	attack by	measles
+child	die with	measles	>	child	catch	measles
+measles	attack	child	>	child	be with	measles
+spot	appear in	measles	>	measles	accompany by	spot
+measles	affect	child	>	child	attack with	measles
+measles	break among	child	>	child	attack by	measles
+spot	see in	measles	>	measles	have	rash
+child	die of	measles	>	child	receive	measles
+child	seize with	measles	>	measles	affect	child
+child	receive	measles	>	measles	be among	child
+measles	have	rash	>	rash	suggest	measles
+measles	observe in	child	>	measles	occur to	child
+measles	kill	child	X	child	pass through	measles
+child	get over	measles	>	child	receive	measles
+child	die with	measles	X	child	protect against	measles
+child	seize with	measles	>	child	attack with	measles
+measles	affect	child	>	measles	give to	child
+child	have	measles	>	measles	attack	child
+measles	kill	thousand	>	measles	act like	plague
+scarlatina	confound with	measles	>	scarlatina	differentiate from	measles
+child	take with	measles	>	child	expose to	measles
+child	pass through	measles	>	child	give	measles
+child	receive	measles	>	measles	affect	child
+measles	occur in	child	>	child	be with	measles
+child	pass through	measles	>	measles	break among	child
+immunization	eliminate	measles	>	measles	immunize with	vaccine
+child	come with	measles	>	child	give	measles
+child	die of	measles	>	child	be with	measles
+child	take	measles	>	child	develop	measles
+child	stricken by	measles	>	measles	be in	child
+child	stricken by	measles	>	child	acquire	measles
+child	have	measles	>	child	expose to	measles
+child	take with	measles	>	child	be with	measles
+child	die with	measles	>	child	be with	measles
+child	give	measles	>	child	attack by	measles
+child	get over	measles	>	measles	break among	child
+child	receive	measles	>	child	expose to	measles
+child	pass through	measles	>	child	take	measles
+child	get over	measles	>	child	attack with	measles
+measles	break among	child	>	child	attack with	measles
+measles	cause	cough	>	cough	complicate with	measles
+child	acquire	measles	>	child	suffer from	measles
+measles	break among	child	>	child	develop	measles
+measles	prevent by	vaccine	>	vaccine	develop for	measles
+child	get	measles	>	measles	attack	child
+child	catch	measles	>	child	take	measles
+child	get	measles	>	child	suffer from	measles
+measles	confuse with	fever	>	measles	resemble	fever
+measles	mistake for	fever	>	measles	distinguish from	fever
+child	come with	measles	>	child	attack with	measles
+measles	kill	child	>	measles	claim	life
+child	attack with	measles	>	measles	be in	child
+child	take with	measles	X	child	protect from	measles
+child	give	measles	>	child	expose to	measles
+child	give	measles	>	measles	observe in	child
+measles	break among	child	>	child	have	measles
+child	stricken by	measles	>	child	be with	measles
+child	bring	measles	>	measles	observe in	child
+child	come with	measles	>	measles	break among	child
+fever	occur during	measles	>	fever	occur with	measles
+child	have	measles	>	child	receive	measles
+cough	follow	measles	>	cough	associate with	measles
+child	expose to	measles	>	measles	observe in	child
+pneumonia	associate with	measles	>	pneumonia	complicate	measles
+child	recover from	measles	X	measles	kill	child
+rash	appear in	measles	>	measles	paint	spot
+child	acquire	measles	>	child	take	measles
+vaccine	develop for	measles	>	vaccine	prevent	measles
+measles	have	rash	>	rash	appear in	measles
+child	take with	measles	>	measles	kill	child
+child	catch	measles	>	child	stricken by	measles
+measles	be among	child	>	child	develop	measles
+child	attack with	measles	>	measles	occur in	child
+child	get over	measles	>	child	give	measles
+measles	be among	child	>	child	attack with	measles
+measles	break among	child	>	child	give	measles
+measles	affect	child	>	child	be with	measles
+measles	prevent by	vaccination	>	vaccine	prevent	measles
+child	give	measles	>	measles	be in	child
+measles	be among	child	>	measles	break among	child
+child	give	measles	>	child	be with	measles
+child	protect against	measles	X	child	die from	measles
+child	attack by	measles	>	child	acquire	measles
+measles	observe in	child	>	child	develop	measles
+child	seize with	measles	X	child	immunize against	measles
+child	bring	measles	>	measles	give to	child
+child	take with	measles	>	measles	occur to	child
+child	have	measles	>	measles	break among	child
+pneumonia	associate with	measles	>	measles	follow by	pneumonia
+fever	occur during	measles	>	measles	characterize by	fever
+cough	complicate with	measles	>	cough	follow	measles
+child	suffer from	measles	>	measles	affect	child
+child	receive	measles	>	measles	break among	child
+child	immunize against	measles	X	measles	kill	child
+child	bring	measles	>	measles	attack	child
+child	die with	measles	>	measles	occur in	child
+child	stricken by	measles	>	child	attack with	measles
+child	come with	measles	>	child	get	measles
+child	attack by	measles	>	measles	affect	child
+measles	have	rash	>	measles	characterize by	rash
+child	get	measles	>	measles	see in	child
+vaccine	develop for	measles	>	vaccine	reduce	measles
+measles	cause	pneumonia	>	pneumonia	complicate	measles
+child	stricken by	measles	>	child	attack by	measles
+child	suffer from	measles	>	child	acquire	measles
+measles	act like	plague	>	measles	occur in	epidemic
+child	be with	measles	>	child	develop	measles
+child	take	measles	>	measles	see in	child
+child	come with	measles	>	measles	attack	child
+measles	prevent by	vaccination	>	measles	prevent by	immunization
+measles	occur in	child	>	child	catch	measles
+measles	affect	child	>	child	receive	measles
+child	get over	measles	>	child	be with	measles
+child	give	measles	>	child	catch	measles
+measles	see in	child	>	child	receive	measles
+pneumonia	complicate	measles	>	pneumonia	follow	measles
+child	stricken by	measles	>	child	develop	measles
+child	develop	measles	>	measles	observe in	child
+virus	cause	measles	>	measles	cause by	virus
+measles	complicate with	pneumonia	>	measles	complicate by	pneumonia
+measles	give to	child	>	measles	occur in	child
+child	contract	measles	>	child	get	measles
+child	contract	measles	>	child	take	measles
+child	catch	measles	>	child	contract	measles
+child	attack with	measles	>	child	contract	measles
+measles	break among	child	>	child	come with	measles
+measles	give to	child	>	child	contract	measles
+measles	spread through	contact	>	measles	spread by	contact
+child	seize with	measles	>	child	die from	measles
+child	die of	measles	>	child	take	measles
+child	expose to	measles	>	child	develop	measles
+measles	be among	child	>	child	attack by	measles
+child	get over	measles	>	child	acquire	measles
+child	catch	measles	>	child	acquire	measles
+child	acquire	measles	>	measles	see in	child
+child	die of	measles	>	measles	affect	child
+child	die with	measles	>	child	give	measles
+measles	cause	pneumonia	>	measles	complicate by	pneumonia
+measles	complicate by	pneumonia	>	pneumonia	complicate	measles
+measles	see in	child	>	child	catch	measles
+measles	attack	child	>	measles	see in	child
+child	die from	measles	>	measles	occur to	child
+measles	complicate by	pneumonia	>	measles	complicate with	pneumonia
+child	acquire	measles	>	child	receive	measles
+vaccine	develop for	measles	>	measles	prevent by	vaccination
+measles	observe in	child	>	measles	see in	child
+child	get over	measles	>	measles	observe in	child
+measles	occur in	child	>	child	expose to	measles
+child	receive	measles	>	child	get	measles
+child	attack by	measles	>	child	take	measles
+fever	confound with	measles	>	measles	resemble	fever
+measles	associate with	pneumonia	>	pneumonia	associate with	measles
+child	expose to	measles	>	child	take	measles
+measles	associate with	pneumonia	>	pneumonia	complicate	measles
+child	stricken by	measles	>	measles	affect	child
+measles	be in	child	>	child	catch	measles
+child	contract	measles	>	measles	be among	child
+child	take with	measles	>	measles	attack	child
+child	recover from	measles	>	measles	attack	child
+measles	have	rash	>	spot	see in	measles
+measles	be in	child	>	child	get	measles
+child	be with	measles	>	measles	occur to	child
+child	pass through	measles	>	child	contract	measles
+measles	be among	child	>	child	expose to	measles
+thousand	die of	measles	>	thousand	die from	measles
+spot	see in	measles	>	rash	appear in	measles
+child	protect against	measles	>	child	protect from	measles
+child	take with	measles	>	child	get	measles
+fever	confound with	measles	>	measles	confuse with	fever
+child	suffer from	measles	>	measles	be among	child
+measles	affect	child	>	measles	observe in	child
+measles	transmit by	contact	>	measles	spread by	contact
+child	recover from	measles	>	child	develop	measles
+measles	be in	child	>	measles	attack	child
+child	have	measles	>	child	acquire	measles
+measles	break among	child	>	child	catch	measles
+child	get over	measles	X	child	die with	measles
+measles	begin with	fever	>	measles	characterize by	fever
+child	get over	measles	>	measles	be in	child
+child	bring	measles	>	child	be with	measles
+child	attack with	measles	>	measles	be among	child
+child	pass through	measles	>	child	be with	measles
+child	have	measles	>	measles	occur in	child
+child	take	measles	>	child	give	measles
+child	develop	measles	>	child	acquire	measles
+child	expose to	measles	>	measles	occur to	child
+child	die of	measles	X	child	protect against	measles
+measles	affect	child	>	measles	be among	child
+measles	be among	child	>	measles	attack	child
+child	come with	measles	>	child	acquire	measles
+measles	mistake for	fever	>	measles	confuse with	fever
+child	get	measles	>	child	give	measles
+child	take with	measles	>	measles	break among	child
+child	recover from	measles	>	child	acquire	measles
+child	give	measles	>	child	come with	measles
+measles	occur to	child	>	measles	be in	child
+child	attack with	measles	>	measles	affect	child
+child	get over	measles	>	measles	occur in	child
+child	take with	measles	>	measles	observe in	child
+measles	see in	child	>	child	attack by	measles
+child	come with	measles	>	measles	affect	child
+child	bring	measles	>	child	receive	measles
+measles	give to	child	>	child	suffer from	measles
+child	die of	measles	X	child	protect from	measles
+measles	characterize by	rash	>	measles	associate with	spot
+measles	occur in	epidemic	>	measles	produce	epidemic
+vaccine	protect against	measles	>	vaccine	prevent	measles
+child	suffer from	measles	>	child	get	measles
+measles	affect	child	>	measles	break among	child
+child	acquire	measles	>	child	get	measles
+child	attack by	measles	>	measles	attack	child
+measles	cause	cough	>	cough	associate with	measles
+child	catch	measles	>	child	have	measles
+child	come with	measles	>	child	be with	measles
+child	seize with	measles	>	measles	be in	child
+child	receive	measles	>	child	stricken by	measles
+child	pass through	measles	>	child	attack by	measles
+child	immunize against	measles	X	child	die with	measles
+child	take with	measles	>	measles	give to	child
+measles	give to	child	>	measles	be among	child
+measles	see in	child	>	measles	occur in	child
+vaccine	protect against	measles	>	measles	immunize with	vaccine
+measles	break among	child	>	measles	attack	child
+child	immunize against	measles	X	child	seize with	measles
+child	develop	measles	>	child	stricken by	measles
+child	die from	measles	>	measles	kill	child
+child	be with	measles	>	measles	observe in	child
+child	give	measles	>	measles	break among	child
+child	take	measles	>	child	have	measles
+child	catch	measles	>	measles	occur to	child
+child	pass through	measles	X	child	take with	measles
+child	protect from	measles	X	child	die from	measles
+child	take with	measles	>	child	die with	measles
+measles	break among	child	>	child	get	measles
+child	attack with	measles	>	measles	occur to	child
+measles	see in	child	>	child	be with	measles
+vaccine	give with	measles	>	vaccine	combine with	measles
+cough	complicate with	measles	>	cough	associate with	measles
+measles	kill	child	>	child	attack by	measles
+pneumonia	follow	measles	>	measles	complicate with	pneumonia
+child	have	measles	>	child	attack by	measles
+child	stricken by	measles	>	measles	be among	child
+child	recover from	measles	X	child	seize with	measles
+child	contract	measles	>	measles	affect	child
+measles	prevent by	vaccination	>	measles	prevent by	vaccine
+measles	affect	child	>	child	get	measles
+measles	have	rash	>	measles	associate with	spot
+fever	confound with	measles	>	measles	mistake for	fever
+measles	complicate with	pneumonia	>	pneumonia	follow	measles
+measles	prevent by	vaccination	>	vaccine	develop for	measles
+immunization	eliminate	measles	>	vaccine	protect against	measles
+child	seize with	measles	>	child	come with	measles
+child	acquire	measles	>	child	be with	measles
+child	attack with	measles	>	child	receive	measles
+spot	appear in	measles	>	measles	characterize by	rash
+measles	paint	spot	>	rash	suggest	measles
+child	come with	measles	>	child	receive	measles
+child	be with	measles	>	child	acquire	measles
+spot	appear in	measles	>	measles	have	rash
+child	develop	measles	>	child	catch	measles
+spot	appear in	measles	>	rash	appear in	measles
+cough	follow	measles	>	cough	complicate with	measles
+measles	observe in	child	>	child	attack with	measles
+measles	occur in	child	>	child	stricken by	measles
+child	attack by	measles	>	child	bring	measles
+child	suffer from	measles	>	child	receive	measles
+measles	break among	child	>	measles	observe in	child
+child	get	measles	>	child	contract	measles
+child	be with	measles	>	measles	occur in	child
+vaccine	prevent	measles	>	measles	immunize with	vaccine
+child	acquire	measles	>	child	contract	measles
+child	die with	measles	>	measles	observe in	child
+measles	cause	pneumonia	>	measles	follow by	pneumonia
+child	get over	measles	>	child	recover from	measles
+measles	give to	child	>	child	come with	measles
+measles	occur in	child	>	measles	break among	child
+measles	identify by	spot	>	measles	have	rash
+measles	kill	thousand	>	thousand	die of	measles
+measles	be among	child	>	measles	be in	child
+child	attack with	measles	>	child	catch	measles
+conjunctivitis	persist after	measles	>	conjunctivitis	accompany as	measles
+measles	be in	child	>	child	be with	measles
+measles	associate with	pneumonia	>	measles	complicate by	pneumonia
+measles	prevent by	immunization	>	vaccine	develop for	measles
+child	be with	measles	>	child	contract	measles
+child	expose to	measles	>	measles	occur in	child
+child	suffer from	measles	>	child	attack by	measles
+measles	kill	child	>	child	seize with	measles
+child	pass through	measles	>	child	stricken by	measles
+measles	attack	child	>	child	get	measles
+child	die of	measles	>	measles	be in	child
+measles	accompany by	spot	>	rash	appear in	measles
+vaccine	prevent	measles	>	measles	prevent by	vaccination
+child	come with	measles	>	measles	occur to	child
+child	develop	measles	>	measles	break among	child
+measles	occur to	child	>	measles	attack	child
+child	get over	measles	>	child	bring	measles
+child	seize with	measles	>	child	give	measles
+measles	see in	child	>	child	have	measles
+spot	appear in	measles	>	spot	see in	measles
+child	have	measles	>	measles	affect	child
+measles	be among	child	>	measles	see in	child
+measles	be in	child	>	child	receive	measles
+measles	be among	child	>	measles	occur to	child
+cough	complicate with	measles	>	measles	follow by	cough
+child	die of	measles	X	child	immunize against	measles
+rash	appear in	measles	>	measles	accompany by	spot
+child	die with	measles	>	child	contract	measles
+child	get	measles	>	measles	give to	child
+child	die from	measles	>	child	bring	measles
+child	take with	measles	>	child	stricken by	measles
+measles	observe in	child	>	child	get	measles
+child	die with	measles	>	child	die of	measles
+child	take with	measles	>	child	attack with	measles
+child	recover from	measles	>	child	stricken by	measles
+measles	characterize by	rash	>	rash	suggest	measles
+child	take with	measles	>	child	develop	measles
+child	die from	measles	>	child	acquire	measles
+child	pass through	measles	>	child	expose to	measles
+child	die of	measles	>	measles	see in	child
+child	stricken by	measles	>	child	bring	measles
+measles	identify by	spot	>	spot	see in	measles
+child	give	measles	>	child	bring	measles
+child	contract	measles	>	child	be with	measles
+fever	occur with	measles	>	measles	begin with	fever
+rubella	mistake for	measles	>	rubella	resemble	measles
+measles	give to	child	>	measles	occur to	child
+child	attack with	measles	>	child	suffer from	measles
+child	suffer from	measles	>	child	take	measles
+measles	affect	child	>	child	take	measles
+child	have	measles	>	child	attack with	measles
+child	expose to	measles	>	child	catch	measles
+measles	see in	child	>	child	expose to	measles
+child	receive	measles	>	child	attack with	measles
+measles	give to	child	>	child	bring	measles
+measles	see in	child	>	measles	affect	child
+child	die with	measles	>	child	die from	measles
+child	take with	measles	>	child	give	measles
+measles	attack	child	>	measles	be in	child
+child	die of	measles	>	child	catch	measles
+child	stricken by	measles	>	measles	occur to	child
+measles	characterize by	rash	>	measles	paint	spot
+measles	cause by	virus	>	virus	include	measles
+child	contract	measles	>	child	acquire	measles
+measles	accompany by	spot	>	measles	characterize by	rash
+thousand	die of	measles	>	measles	produce	epidemic
+child	come with	measles	>	child	expose to	measles
+child	receive	measles	>	child	have	measles
+immunization	eliminate	measles	>	vaccine	prevent	measles
+thousand	die of	measles	>	measles	kill	thousand
+child	develop	measles	>	child	attack with	measles
+measles	follow by	cough	>	measles	cause	cough
+child	get	measles	>	child	have	measles
+child	expose to	measles	>	measles	see in	child
+thousand	die from	measles	>	measles	kill	thousand
+child	suffer from	measles	>	child	give	measles
+child	attack by	measles	>	child	receive	measles
+child	take with	measles	>	child	contract	measles
+fever	distinguish from	measles	>	measles	distinguish from	fever
+child	attack by	measles	>	measles	occur in	child
+child	expose to	measles	>	child	receive	measles
+measles	develop during	fever	>	fever	occur during	measles
+measles	occur in	child	>	child	bring	measles
+child	be with	measles	>	child	bring	measles
+measles	complicate with	pneumonia	>	measles	associate with	pneumonia
+measles	attack	child	>	child	acquire	measles
+child	bring	measles	>	measles	affect	child
+child	give	measles	>	measles	affect	child
+measles	immunize with	vaccine	>	vaccine	develop for	measles
+child	die from	measles	>	child	develop	measles
+measles	characterize by	fever	>	fever	occur with	measles
+child	die from	measles	>	measles	claim	life
+measles	prevent by	vaccination	>	vaccine	protect against	measles
+measles	attack	child	>	child	attack by	measles
+child	have	measles	>	measles	see in	child
+child	get over	measles	>	child	stricken by	measles
+measles	be among	child	>	measles	observe in	child
+measles	observe in	child	>	child	come with	measles
+measles	be in	child	>	child	attack by	measles
+vaccine	give with	measles	>	vaccine	administer with	measles
+measles	see in	child	>	measles	break among	child
+measles	occur to	child	>	child	come with	measles
+measles	affect	child	>	measles	be in	child
+rash	confuse with	measles	>	rash	resemble	measles
+measles	associate with	pneumonia	>	pneumonia	follow	measles
+child	develop	measles	>	measles	be in	child
+child	attack by	measles	>	measles	be in	child
+child	receive	measles	>	child	suffer from	measles
+child	recover from	measles	>	measles	occur in	child
+child	get	measles	>	measles	be among	child
+child	attack with	measles	>	child	have	measles
+measles	kill	child	>	child	have	measles
+child	get over	measles	>	measles	be among	child
+measles	immunize with	vaccine	>	immunization	eliminate	measles
+fever	differ from	measles	>	fever	distinguish from	measles
+child	die from	measles	>	child	die of	measles
+child	have	measles	>	measles	be in	child
+child	give	measles	>	child	contract	measles
+child	have	measles	>	child	get	measles
+child	seize with	measles	>	child	contract	measles
+pneumonia	associate with	measles	>	pneumonia	follow	measles
+rash	confuse with	measles	>	rash	mistake for	measles
+rash	suggest	measles	>	spot	see in	measles
+measles	kill	child	>	child	die from	measles
+measles	be among	child	>	child	acquire	measles
+measles	attack	child	>	measles	occur in	child
+measles	immunize with	vaccine	>	vaccine	protect against	measles
+child	take	measles	>	child	receive	measles
+child	die of	measles	X	child	recover from	measles
+measles	confuse with	fever	>	measles	confound with	fever
+measles	break among	child	>	child	take	measles
+diphtheria	complicate	measles	>	measles	complicate by	diphtheria
+child	die with	measles	X	child	get over	measles
+measles	cause	cough	>	measles	follow by	cough
+child	recover from	measles	>	child	receive	measles
+child	pass through	measles	>	child	attack with	measles
+rash	confuse with	measles	>	rash	distinguish from	measles
+measles	be in	child	>	child	take	measles
+child	develop	measles	>	child	take	measles
+child	die of	measles	>	measles	give to	child
+child	die from	measles	X	child	protect from	measles
+measles	occur to	child	>	child	take	measles
+child	expose to	measles	>	measles	be among	child
+child	seize with	measles	>	child	be with	measles
+child	die from	measles	>	child	attack by	measles
+child	develop	measles	>	measles	affect	child
+child	get over	measles	>	child	contract	measles
+child	suffer from	measles	>	measles	occur in	child
+child	take with	measles	>	measles	claim	life
+measles	prevent by	vaccination	>	measles	immunize with	vaccine
+measles	kill	thousand	>	measles	claim	life
+measles	kill	thousand	>	thousand	die from	measles
+measles	kill	child	>	child	come with	measles
+child	recover from	measles	X	child	take with	measles
+child	acquire	measles	>	measles	occur in	child
+child	catch	measles	>	child	bring	measles
+child	catch	measles	>	child	give	measles
+measles	spread by	contact	>	measles	transmit by	contact
+measles	accompany by	spot	>	rash	suggest	measles
+measles	prevent by	vaccine	>	measles	immunize with	vaccine
+measles	be among	child	>	child	be with	measles
+child	seize with	measles	>	measles	give to	child
+child	come with	measles	>	child	suffer from	measles
+child	pass through	measles	X	measles	kill	child
+vaccine	reduce	measles	>	measles	immunize with	vaccine
+measles	have	rash	>	measles	identify by	spot
+measles	be among	child	>	measles	give to	child
+measles	observe in	child	>	child	have	measles
+child	attack with	measles	>	child	attack by	measles
+measles	immunize with	vaccine	>	vaccine	prevent	measles
+measles	identify by	spot	>	measles	accompany by	spot
+measles	attack	child	>	child	take	measles
+child	receive	measles	>	child	catch	measles
+measles	follow by	pneumonia	>	pneumonia	associate with	measles
+measles	have	rash	>	measles	accompany by	spot
+child	pass through	measles	>	child	get over	measles
+child	suffer from	measles	>	child	have	measles
+measles	characterize by	fever	>	measles	develop during	fever
+conjunctivitis	persist after	measles	>	measles	accompany by	conjunctivitis
+child	contract	measles	>	measles	see in	child
+child	attack with	measles	>	measles	attack	child
+measles	observe in	child	>	child	receive	measles
+rash	appear in	measles	>	spot	appear in	measles
+child	take with	measles	X	child	protect against	measles
+measles	associate with	spot	>	measles	paint	spot
+measles	associate with	spot	>	measles	characterize by	rash
+child	die of	measles	>	child	get	measles
+measles	complicate by	pneumonia	>	measles	cause	pneumonia
+measles	spread through	contact	>	measles	transmit by	contact
+child	seize with	measles	>	child	catch	measles
+measles	kill	child	>	child	die of	measles
+child	be with	measles	>	measles	see in	child
+child	seize with	measles	>	child	get	measles
+child	give	measles	>	measles	occur to	child
+child	receive	measles	>	child	acquire	measles
+child	bring	measles	>	measles	occur to	child
+child	come with	measles	>	child	have	measles
+measles	cause	pneumonia	>	measles	complicate with	pneumonia
+child	die from	measles	>	measles	give to	child
+measles	associate with	pneumonia	>	measles	cause	pneumonia
+child	recover from	measles	>	child	have	measles
+child	die of	measles	>	child	develop	measles
+child	develop	measles	>	child	expose to	measles
+child	receive	measles	>	child	bring	measles
+child	contract	measles	>	child	come with	measles
+pneumonia	follow	measles	>	pneumonia	associate with	measles
+fever	distinguish from	measles	>	fever	differ from	measles
+measles	affect	child	>	child	expose to	measles
+child	seize with	measles	>	measles	claim	life
+child	expose to	measles	>	measles	break among	child
+child	attack with	measles	>	child	be with	measles
+child	die from	measles	X	child	recover from	measles
+measles	produce	epidemic	>	measles	occur in	epidemic
+child	take with	measles	>	child	take	measles
+measles	paint	spot	>	measles	have	rash
+measles	immunize with	vaccine	>	measles	prevent by	vaccination
+measles	occur to	child	>	child	catch	measles
+measles	observe in	child	>	child	give	measles
+measles	confuse with	fever	>	measles	mistake for	fever
+measles	be in	child	>	child	give	measles
+vaccine	reduce	measles	>	vaccine	protect against	measles
+measles	kill	thousand	>	measles	produce	epidemic
+child	develop	measles	>	measles	see in	child
+measles	be in	child	>	child	suffer from	measles
+measles	observe in	child	>	child	attack by	measles
+child	die with	measles	>	measles	see in	child
+child	attack with	measles	>	child	expose to	measles
+child	take	measles	>	child	suffer from	measles
+measles	begin with	fever	>	measles	develop during	fever
+child	acquire	measles	>	child	give	measles
+child	die from	measles	>	child	catch	measles
+child	recover from	measles	>	measles	occur to	child
+measles	confuse with	fever	>	fever	confound with	measles
+measles	be among	child	>	child	come with	measles
+child	die with	measles	>	child	receive	measles
+child	give	measles	>	child	have	measles
+child	bring	measles	>	measles	occur in	child
+child	recover from	measles	>	child	get over	measles
+measles	occur to	child	>	measles	see in	child
+child	suffer from	measles	>	measles	attack	child
+child	seize with	measles	>	measles	be among	child
+child	bring	measles	>	child	contract	measles
+virus	cause	measles	>	virus	include	measles
+measles	mistake for	smallpox	>	measles	resemble	smallpox
+measles	give to	child	>	measles	affect	child
+child	take	measles	>	measles	be among	child
+measles	affect	child	>	child	contract	measles
+measles	be in	child	>	child	attack with	measles
+child	suffer from	measles	>	child	develop	measles
+measles	be in	child	>	child	stricken by	measles
+child	take with	measles	>	child	suffer from	measles
+measles	see in	child	>	child	stricken by	measles
+child	develop	measles	>	measles	give to	child
+measles	characterize by	fever	>	fever	occur during	measles
+measles	associate with	pneumonia	>	measles	complicate with	pneumonia
+rash	appear in	measles	>	measles	have	rash
+measles	confound with	fever	>	fever	distinguish from	measles
+measles	follow by	pneumonia	>	pneumonia	follow	measles
+child	die of	measles	>	child	come with	measles
+child	die from	measles	>	measles	see in	child
+child	pass through	measles	X	child	die from	measles
+child	get	measles	>	child	attack by	measles
+measles	accompany by	conjunctivitis	>	conjunctivitis	accompany as	measles
+child	have	measles	>	child	develop	measles
+child	take	measles	>	child	bring	measles
+measles	associate with	spot	>	spot	see in	measles
+child	expose to	measles	>	child	contract	measles
+child	attack with	measles	>	child	get	measles
+child	give	measles	>	child	develop	measles
+measles	occur to	child	>	child	have	measles
+child	stricken by	measles	>	child	expose to	measles
+child	stricken by	measles	>	child	catch	measles
+measles	kill	child	>	child	give	measles
+measles	occur in	child	>	measles	attack	child
+measles	produce by	virus	>	virus	include	measles
+child	contract	measles	>	measles	give to	child
+rash	suggest	measles	>	spot	appear in	measles
+child	attack with	measles	>	measles	break among	child
+measles	paint	spot	>	spot	see in	measles
+child	suffer from	measles	>	child	bring	measles
+child	have	measles	>	measles	be among	child
+child	get over	measles	>	child	attack by	measles
+child	catch	measles	>	measles	occur in	child
+child	get	measles	>	measles	observe in	child
+child	die of	measles	>	child	attack with	measles
+rash	mistake for	measles	>	rash	resemble	measles
+measles	occur in	child	>	child	give	measles
+child	have	measles	>	child	contract	measles
+measles	observe in	child	>	measles	occur in	child
+child	get over	measles	>	measles	occur to	child
+fever	confound with	measles	>	fever	distinguish from	measles
+measles	prevent by	vaccine	>	measles	prevent by	immunization
+child	attack by	measles	>	child	suffer from	measles
+child	develop	measles	>	child	get	measles
+child	have	measles	>	child	stricken by	measles
+child	get over	measles	>	measles	see in	child
+child	seize with	measles	>	child	develop	measles
+child	stricken by	measles	>	measles	see in	child
+child	die from	measles	>	child	suffer from	measles
+child	bring through	measles	>	child	be through	measles
+measles	kill	child	X	child	get over	measles
+measles	see in	child	>	child	develop	measles
+child	suffer from	measles	>	child	expose to	measles
+child	stricken by	measles	>	measles	attack	child
+child	stricken by	measles	>	child	give	measles
+child	attack with	measles	>	child	take	measles
+measles	follow by	pneumonia	>	measles	cause	pneumonia
+child	get over	measles	>	child	pass through	measles
+measles	occur in	child	>	child	receive	measles
+thousand	die from	measles	>	measles	act like	plague
+vaccine	develop for	measles	>	immunization	eliminate	measles
+child	acquire	measles	>	measles	observe in	child
+thousand	die from	measles	>	measles	produce	epidemic
+thousand	die of	measles	>	measles	act like	plague
+measles	occur to	child	>	child	develop	measles
+child	die with	measles	>	child	take	measles
+child	get over	measles	>	child	catch	measles
+child	pass through	measles	>	child	receive	measles
+child	pass through	measles	>	measles	occur in	child
+measles	follow by	cough	>	cough	associate with	measles
+fever	confound with	measles	>	measles	distinguish from	fever
+child	seize with	measles	>	child	acquire	measles
+child	get	measles	>	child	catch	measles
+child	pass through	measles	X	child	die with	measles
+vaccine	combine with	measles	>	vaccine	administer with	measles
+measles	follow by	pneumonia	>	pneumonia	complicate	measles
+child	have	measles	>	measles	occur to	child
+child	receive	measles	>	child	be with	measles
+child	die from	measles	>	child	have	measles
+measles	observe in	child	>	child	stricken by	measles
+measles	begin with	fever	>	fever	occur with	measles
+measles	give to	child	>	child	attack by	measles
+spot	appear in	measles	>	measles	associate with	spot
+child	die from	measles	>	measles	observe in	child
+child	contract	measles	>	measles	observe in	child
+measles	observe in	child	>	child	contract	measles
+child	attack by	measles	>	child	get	measles
+measles	give to	child	>	child	receive	measles
+measles	kill	child	>	measles	occur in	child
+measles	have	rash	>	spot	appear in	measles
+measles	break among	child	>	child	stricken by	measles
+child	die from	measles	>	child	give	measles
+measles	see in	child	>	child	suffer from	measles
+measles	characterize by	rash	>	measles	accompany by	spot
+child	suffer from	measles	>	child	catch	measles
+measles	prevent by	vaccine	>	immunization	eliminate	measles
+measles	give to	child	>	measles	see in	child
+child	contract	measles	>	child	expose to	measles
+child	die of	measles	>	measles	break among	child
+child	get	measles	>	measles	occur to	child
+child	have	measles	>	measles	give to	child
+measles	confound with	fever	>	measles	mistake for	fever
+child	take with	measles	X	child	get over	measles
+child	develop	measles	>	child	come with	measles
+measles	associate with	pneumonia	>	measles	follow by	pneumonia
+child	be with	measles	>	child	have	measles
+child	protect against	measles	X	child	seize with	measles
+child	recover from	measles	>	measles	break among	child
+measles	observe in	child	>	measles	give to	child
+measles	occur to	child	>	child	give	measles
+measles	accompany by	spot	>	measles	identify by	spot
+measles	be among	child	>	child	contract	measles
+measles	kill	child	>	child	suffer from	measles
+cough	associate with	measles	>	measles	cause	cough
+vaccine	reduce	measles	>	vaccine	develop for	measles
+child	take	measles	>	measles	break among	child
+measles	immunize with	vaccine	>	measles	prevent by	immunization
+child	expose to	measles	>	measles	give to	child
+child	get over	measles	X	measles	kill	child
+child	acquire	measles	>	measles	give to	child
+child	recover from	measles	>	child	attack by	measles
+child	die of	measles	>	child	seize with	measles
+spot	see in	measles	>	spot	appear in	measles
+measles	prevent by	vaccine	>	vaccine	protect against	measles
+child	get over	measles	>	child	take	measles
+vaccine	reduce	measles	>	measles	prevent by	vaccine
+child	come with	measles	>	child	develop	measles
+child	attack with	measles	>	child	acquire	measles
+cough	associate with	measles	>	cough	complicate with	measles
+child	pass through	measles	>	measles	observe in	child
+child	develop	measles	>	child	contract	measles
+measles	paint	spot	>	rash	appear in	measles
+measles	be in	child	>	measles	observe in	child
+measles	give to	child	>	child	have	measles
+child	die from	measles	>	measles	attack	child
+measles	confuse with	fever	>	fever	distinguish from	measles
+measles	see in	child	>	measles	give to	child
+measles	break among	child	>	child	contract	measles
+measles	be in	child	>	measles	break among	child
+measles	see in	child	>	child	attack with	measles
+measles	break among	child	>	child	suffer from	measles
+child	catch	measles	>	measles	attack	child
+child	suffer from	measles	>	measles	break among	child
+measles	paint	spot	>	measles	accompany by	spot
+measles	be among	child	>	child	take	measles
+vaccine	prevent	measles	>	measles	prevent by	immunization
+child	die from	measles	>	child	get	measles
+child	suffer from	measles	>	child	attack with	measles
+measles	observe in	child	>	child	bring	measles
+rubella	mistake for	measles	>	rubella	distinguish from	measles
+measles	break among	child	>	child	acquire	measles
+measles	confound with	fever	>	measles	confuse with	fever
+child	contract	measles	>	measles	occur to	child
+child	die from	measles	X	child	pass through	measles
+measles	complicate with	pneumonia	>	pneumonia	associate with	measles
+child	be with	measles	>	child	attack by	measles
+measles	kill	child	>	measles	give to	child
+measles	characterize by	rash	>	measles	identify by	spot
+measles	attack	child	>	child	receive	measles
+child	catch	measles	>	measles	affect	child
+child	bring	measles	>	child	come with	measles
+child	acquire	measles	>	child	bring	measles
+measles	kill	child	>	measles	break among	child
+child	get	measles	>	child	develop	measles
+child	die of	measles	>	child	take with	measles
+measles	kill	child	X	child	recover from	measles
+child	immunize against	measles	>	child	protect from	measles
+measles	occur in	epidemic	>	measles	act like	plague
+measles	occur to	child	>	child	stricken by	measles
+measles	give to	child	>	child	get	measles
+measles	prevent by	vaccine	>	vaccine	reduce	measles
+child	die with	measles	>	measles	claim	life
+child	catch	measles	>	child	receive	measles
+child	stricken by	measles	>	child	contract	measles
+measles	see in	child	>	child	get	measles
+child	pass through	measles	>	measles	give to	child
+child	die of	measles	>	measles	occur in	child
+child	protect from	measles	X	measles	kill	child
+child	die of	measles	>	child	attack by	measles
+child	protect against	measles	X	child	die of	measles
+child	catch	measles	>	measles	see in	child
+child	take	measles	>	measles	attack	child
+child	die with	measles	>	child	seize with	measles
+child	pass through	measles	>	measles	attack	child
+child	recover from	measles	>	child	pass through	measles
+fever	occur with	measles	>	measles	develop during	fever
+child	attack with	measles	>	child	give	measles
+child	acquire	measles	>	child	attack by	measles
+vaccine	administer with	measles	>	vaccine	give with	measles
+child	get over	measles	>	measles	affect	child
+child	pass through	measles	>	child	recover from	measles
+child	catch	measles	>	measles	observe in	child
+measles	break among	child	>	measles	occur in	child
+measles	prevent by	immunization	>	vaccine	prevent	measles
+child	contract	measles	>	measles	be in	child
+child	pass through	measles	>	child	get	measles
+child	protect against	measles	>	child	immunize against	measles
+child	expose to	measles	>	child	acquire	measles
+child	recover from	measles	>	child	be with	measles
+measles	occur in	child	>	measles	occur to	child
+measles	kill	child	>	measles	attack	child
+measles	cause	pneumonia	>	measles	associate with	pneumonia
+child	catch	measles	>	measles	be in	child
+measles	observe in	child	>	measles	attack	child
+child	die from	measles	X	child	protect against	measles
+measles	give to	child	>	measles	observe in	child
+child	come with	measles	>	measles	observe in	child
+child	attack with	measles	>	child	develop	measles
+child	immunize against	measles	X	child	take with	measles
+vaccine	administer with	measles	>	vaccine	combine with	measles
+child	expose to	measles	>	measles	affect	child
+child	die of	measles	X	child	get over	measles
+child	bring	measles	>	child	attack with	measles
+measles	kill	child	>	child	get	measles
+fever	confound with	measles	>	fever	differ from	measles
+measles	see in	child	>	child	take	measles
+thousand	die of	measles	>	measles	claim	life
+child	die of	measles	>	measles	occur to	child
+measles	follow by	pneumonia	>	measles	complicate by	pneumonia
+child	get	measles	>	child	acquire	measles
+measles	complicate by	pneumonia	>	measles	follow by	pneumonia
+measles	produce by	virus	>	measles	cause by	virus
+child	recover from	measles	>	child	suffer from	measles
+child	take with	measles	>	child	acquire	measles
+child	acquire	measles	>	measles	be in	child
+measles	affect	child	>	child	attack by	measles
+measles	develop during	fever	>	fever	occur with	measles
+immunization	eliminate	measles	>	vaccine	reduce	measles
+measles	prevent by	immunization	>	immunization	eliminate	measles
+child	die of	measles	>	child	contract	measles
+child	come with	measles	>	measles	be in	child
+child	die from	measles	X	child	immunize against	measles
+child	protect from	measles	X	child	take with	measles
+child	bring	measles	>	child	give	measles
+child	have	measles	>	child	give	measles
+child	die from	measles	>	child	contract	measles
+child	recover from	measles	>	measles	affect	child
+measles	occur in	child	>	measles	be in	child
+measles	kill	child	>	child	take with	measles
+child	attack by	measles	>	child	contract	measles
+child	recover from	measles	>	child	take	measles
+child	get over	measles	X	child	seize with	measles
+pneumonia	associate with	measles	>	measles	cause	pneumonia
+child	have	measles	>	child	catch	measles
+child	attack by	measles	>	child	develop	measles
+child	recover from	measles	>	child	attack with	measles
+vaccine	prevent	measles	>	immunization	eliminate	measles
+measles	occur in	child	>	child	attack by	measles
+measles	occur to	child	>	child	suffer from	measles
+child	pass through	measles	>	measles	be among	child
+measles	give to	child	>	child	catch	measles
+child	get over	measles	>	measles	attack	child
+measles	identify by	spot	>	measles	associate with	spot
+measles	associate with	spot	>	spot	appear in	measles
+child	stricken by	measles	>	measles	observe in	child
+measles	be in	child	>	measles	occur to	child
+child	take with	measles	>	child	die from	measles
+child	recover from	measles	X	child	die from	measles
+child	take	measles	>	measles	occur to	child
+measles	develop during	fever	>	measles	characterize by	fever
+child	get over	measles	>	child	get	measles
+child	die with	measles	X	child	pass through	measles
+child	expose to	measles	>	child	suffer from	measles
+child	die with	measles	>	measles	be among	child
+child	die from	measles	>	measles	affect	child
+child	be through	measles	>	child	bring through	measles
+measles	observe in	child	>	child	take	measles
+measles	characterize by	rash	>	measles	have	rash
+vaccine	reduce	measles	>	measles	prevent by	immunization
+measles	kill	child	>	child	take	measles
+measles	occur in	child	>	child	come with	measles
+child	protect from	measles	X	child	die with	measles
+child	develop	measles	>	measles	occur in	child
+pneumonia	follow	measles	>	measles	cause	pneumonia
+measles	prevent by	vaccine	>	measles	prevent by	vaccination
+child	bring	measles	>	child	have	measles
+child	get over	measles	>	measles	give to	child
+child	give	measles	>	measles	occur in	child
+child	give	measles	>	child	receive	measles
+child	die with	measles	X	child	immunize against	measles
+child	develop	measles	>	child	suffer from	measles
+child	die of	measles	>	measles	observe in	child
+child	acquire	measles	>	child	attack with	measles
+measles	see in	child	>	child	acquire	measles
+measles	give to	child	>	child	stricken by	measles
+measles	occur in	child	>	child	take	measles
+child	contract	measles	>	measles	attack	child
+measles	complicate by	pneumonia	>	pneumonia	associate with	measles
+child	die of	measles	>	child	bring	measles
+measles	paint	spot	>	spot	appear in	measles
+child	recover from	measles	>	child	contract	measles
+child	catch	measles	>	child	expose to	measles
+child	be with	measles	>	measles	be among	child
+virus	cause	measles	>	measles	produce by	virus
+child	seize with	measles	>	child	die of	measles
+measles	kill	child	X	child	protect from	measles
+child	get over	measles	>	child	develop	measles
+child	die from	measles	>	child	die with	measles
+vaccine	combine with	measles	>	vaccine	give with	measles
+vaccine	prevent	measles	>	vaccine	protect against	measles
+vaccine	reduce	measles	>	vaccine	prevent	measles
+measles	occur in	child	>	child	have	measles
+measles	kill	child	>	child	contract	measles
+measles	break among	child	>	measles	be among	child
+measles	accompany by	spot	>	measles	paint	spot
+child	give	measles	>	measles	give to	child
+measles	be in	child	>	measles	give to	child
+child	die with	measles	>	measles	be in	child
+measles	identify by	spot	>	rash	suggest	measles
+child	seize with	measles	>	child	receive	measles
+measles	follow by	cough	>	cough	complicate with	measles
+measles	prevent by	immunization	>	vaccine	protect against	measles
+child	protect from	measles	>	child	protect against	measles
+child	die of	measles	X	child	pass through	measles
+measles	characterize by	fever	>	measles	begin with	fever
+child	recover from	measles	X	child	die with	measles
+child	attack by	measles	>	measles	occur to	child
+child	develop	measles	>	measles	occur to	child
+child	get	measles	>	child	bring	measles
+child	catch	measles	>	child	be with	measles
+measles	prevent by	immunization	>	measles	prevent by	vaccination
+measles	observe in	child	>	measles	be among	child
+measles	be in	child	>	child	expose to	measles
+child	receive	measles	>	measles	attack	child
+child	contract	measles	>	child	catch	measles
+measles	paint	spot	>	measles	characterize by	rash
+measles	see in	child	>	child	contract	measles
+measles	kill	child	>	child	be with	measles
+spot	appear in	measles	>	rash	suggest	measles
+measles	characterize by	rash	>	spot	see in	measles
+measles	have	rash	>	measles	paint	spot
+child	recover from	measles	>	child	come with	measles
+measles	observe in	child	>	measles	affect	child
+measles	accompany by	spot	>	spot	appear in	measles
+child	be with	measles	>	measles	be in	child
+vaccine	develop for	measles	>	measles	prevent by	immunization
+measles	develop during	fever	>	measles	begin with	fever
+measles	transmit by	contact	>	measles	spread through	contact
+virus	include	measles	>	virus	cause	measles
+measles	occur in	child	>	child	get	measles
+pneumonia	complicate	measles	>	measles	cause	pneumonia
+measles	give to	child	>	child	attack with	measles
+measles	kill	child	>	child	receive	measles
+child	die from	measles	>	child	take	measles
+child	die with	measles	>	measles	give to	child
+child	die with	measles	>	measles	break among	child
+child	receive	measles	>	measles	be in	child
+measles	kill	child	>	child	expose to	measles
+measles	give to	child	>	measles	break among	child
+measles	observe in	child	>	child	acquire	measles
+rash	suggest	measles	>	measles	characterize by	rash
+measles	see in	child	>	measles	be among	child
+measles	associate with	spot	>	measles	accompany by	spot
+measles	kill	child	>	child	acquire	measles
+measles	kill	child	>	child	develop	measles
+child	take with	measles	X	child	pass through	measles
+measles	be among	child	>	child	receive	measles
+child	die of	measles	>	child	expose to	measles
+child	acquire	measles	>	child	have	measles
+measles	attack	child	>	child	suffer from	measles
+immunization	eliminate	measles	>	measles	prevent by	vaccination
+measles	complicate with	pneumonia	>	pneumonia	complicate	measles
+child	develop	measles	>	measles	attack	child
+child	recover from	measles	>	child	get	measles
+child	get	measles	>	child	attack with	measles
+child	recover from	measles	>	measles	be in	child
+spot	see in	measles	>	rash	suggest	measles
+child	stricken by	measles	>	measles	break among	child
+child	take with	measles	>	measles	be in	child
+measles	give to	child	>	child	give	measles
+measles	occur in	child	>	child	suffer from	measles
+child	expose to	measles	>	child	be with	measles
+child	attack with	measles	>	child	bring	measles
+measles	be among	child	>	child	get	measles
+measles	kill	child	>	measles	be among	child
+child	pass through	measles	>	child	acquire	measles
+child	die from	measles	>	measles	break among	child
+vaccine	protect against	measles	>	measles	prevent by	immunization
+child	be with	measles	>	measles	give to	child
+child	receive	measles	>	measles	occur to	child
+spot	see in	measles	>	measles	characterize by	rash
+child	die with	measles	>	child	come with	measles
+child	take with	measles	X	child	recover from	measles
+child	give	measles	>	measles	be among	child
+measles	occur in	child	>	measles	be among	child
+child	have	measles	>	child	suffer from	measles
+child	die with	measles	>	child	bring	measles
+rash	suggest	measles	>	measles	identify by	spot
+child	receive	measles	>	child	develop	measles
+measles	confound with	fever	>	fever	confound with	measles
+measles	affect	child	>	child	come with	measles
+child	develop	measles	>	child	bring	measles
+child	protect against	measles	X	child	die with	measles
+measles	be among	child	>	measles	affect	child
+measles	affect	child	>	measles	occur to	child
+child	seize with	measles	>	measles	occur to	child
+child	seize with	measles	>	child	suffer from	measles
+measles	affect	child	>	child	acquire	measles
+child	seize with	measles	X	child	get over	measles
+child	bring	measles	>	child	catch	measles
+measles	prevent by	vaccination	>	vaccine	reduce	measles
+measles	see in	child	>	measles	occur to	child
+child	take	measles	>	measles	give to	child
+rash	appear in	measles	>	measles	identify by	spot
+measles	occur in	child	>	measles	observe in	child
+rash	mistake for	measles	>	rash	confuse with	measles
+child	stricken by	measles	>	child	take	measles
+measles	give to	child	>	child	be with	measles
+child	take	measles	>	child	attack by	measles
+child	contract	measles	>	measles	break among	child
+child	acquire	measles	>	measles	attack	child
+child	die from	measles	>	child	expose to	measles
+child	pass through	measles	X	child	seize with	measles
+child	contract	measles	>	child	attack with	measles
+child	contract	measles	>	child	develop	measles
+measles	produce by	virus	>	virus	cause	measles
+pneumonia	follow	measles	>	measles	associate with	pneumonia
+measles	cause by	virus	>	virus	cause	measles
+measles	accompany by	spot	>	measles	associate with	spot
+cough	follow	measles	>	measles	follow by	cough
+measles	mistake for	fever	>	fever	confound with	measles
+child	get	measles	>	measles	occur in	child
+measles	attack	child	>	measles	observe in	child
+child	get	measles	>	child	receive	measles
+cough	complicate with	measles	>	measles	cause	cough
+cough	associate with	measles	>	measles	follow by	cough
+vaccine	prevent	measles	>	measles	prevent by	vaccine
+measles	identify by	spot	>	measles	characterize by	rash
+child	attack by	measles	>	measles	break among	child
+child	bring	measles	>	child	stricken by	measles
+pneumonia	complicate	measles	>	measles	follow by	pneumonia
+measles	break among	child	>	measles	be in	child
+child	acquire	measles	>	measles	affect	child
+child	seize with	measles	>	child	bring	measles
+measles	kill	child	>	child	attack with	measles
+measles	kill	child	>	child	stricken by	measles
+child	die of	measles	>	measles	be among	child
+child	seize with	measles	X	child	protect from	measles
+measles	affect	child	>	measles	attack	child
+child	bring	measles	>	measles	be among	child
+measles	occur to	child	>	child	contract	measles
+child	give	measles	>	measles	attack	child
+child	receive	measles	>	measles	see in	child
+child	come with	measles	>	child	attack by	measles
+measles	give to	child	>	child	take	measles
+child	get	measles	>	child	expose to	measles
+vaccine	develop for	measles	>	measles	immunize with	vaccine
+measles	affect	child	>	measles	see in	child
+measles	observe in	child	>	measles	be in	child
+child	die from	measles	>	child	seize with	measles
+child	die from	measles	>	child	come with	measles
+child	get over	measles	X	child	die of	measles
+child	expose to	measles	>	child	come with	measles
+measles	spread by	contact	>	measles	spread through	contact
+child	die with	measles	>	measles	attack	child
+child	take	measles	>	measles	observe in	child
+child	expose to	measles	>	measles	attack	child
+child	pass through	measles	>	child	develop	measles
+child	attack by	measles	>	child	come with	measles
+child	contract	measles	>	child	stricken by	measles
+immunization	eliminate	measles	>	vaccine	develop for	measles
+measles	complicate by	pneumonia	>	measles	associate with	pneumonia
+child	recover from	measles	>	measles	see in	child
+measles	occur in	child	>	child	contract	measles
+measles	occur to	child	>	child	be with	measles
+measles	kill	thousand	>	measles	occur in	epidemic
+child	attack by	measles	>	measles	be among	child
+vaccine	develop for	measles	>	vaccine	protect against	measles
+child	catch	measles	>	measles	break among	child
+child	get	measles	>	child	be with	measles
+measles	cause by	virus	>	measles	produce by	virus
+measles	kill	child	>	child	catch	measles
+child	suffer from	measles	>	measles	observe in	child
+child	have	measles	>	child	come with	measles
+pneumonia	complicate	measles	>	measles	associate with	pneumonia
+child	take with	measles	>	measles	occur in	child
+child	take	measles	>	child	acquire	measles
+child	expose to	measles	>	child	stricken by	measles
+measles	be in	child	>	child	acquire	measles
+child	pass through	measles	>	measles	be in	child
+child	attack with	measles	>	measles	see in	child
+measles	observe in	child	>	child	expose to	measles
+measles	cause	pneumonia	>	pneumonia	follow	measles
+measles	give to	child	>	child	develop	measles
+rash	suggest	measles	>	measles	have	rash
+measles	be among	child	>	child	suffer from	measles
+child	bring	measles	>	measles	break among	child
+measles	follow by	pneumonia	>	measles	complicate with	pneumonia
+child	be with	measles	>	child	expose to	measles
+child	pass through	measles	>	measles	affect	child
+fever	occur during	measles	>	measles	begin with	fever
+child	get over	measles	>	child	come with	measles
+child	take	measles	>	child	get	measles
+child	recover from	measles	>	measles	observe in	child
+child	have	measles	>	child	take	measles
+child	suffer from	measles	>	child	stricken by	measles
+measles	confound with	fever	>	measles	distinguish from	fever
+child	get over	measles	>	child	suffer from	measles
+child	acquire	measles	>	child	stricken by	measles
+child	be with	measles	>	child	give	measles
+cough	follow	measles	>	measles	cause	cough
+child	bring	measles	>	measles	be in	child
+child	have	measles	>	measles	observe in	child
+child	immunize against	measles	>	child	protect against	measles
+child	die from	measles	>	child	attack with	measles
+measles	attack	child	>	child	come with	measles
+measles	associate with	spot	>	measles	identify by	spot
+child	seize with	measles	>	measles	break among	child
+measles	characterize by	rash	>	spot	appear in	measles
+child	stricken by	measles	>	child	have	measles
+measles	mistake for	fever	>	measles	confound with	fever
+measles	immunize with	vaccine	>	vaccine	reduce	measles
+measles	attack	child	>	measles	be among	child
+child	protect from	measles	X	child	die of	measles
+measles	see in	child	>	child	come with	measles
+child	be with	measles	>	child	receive	measles

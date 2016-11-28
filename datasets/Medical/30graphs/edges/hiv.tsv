@@ -1,0 +1,1021 @@
+hiv	enter	brain	>	hiv	infect	brain
+blood	screen for	hiv	>	hiv	transmit via	blood
+hiv	transmit	blood	>	hiv	carry in	blood
+hiv	enter	cns	>	hiv	infect	brain
+hiv	be in	blood	>	hiv	find in	blood
+hiv	spread through	sex	>	hiv	transmit by	intercourse
+blood	screen for	hiv	>	blood	test for	hiv
+thousand	infect with	hiv	>	million	have	hiv
+hiv	transmit by	transfusion	>	hiv	transmit through	blood
+hiv	destroy	lymphocyte	>	macrophage	infect by	hiv
+hiv	carry in	blood	>	hiv	find in	blood
+mosquito	transmit	hiv	>	insect	transmit	hiv
+hiv	transmit by	sex	>	hiv	spread through	intercourse
+virus	include	hiv	>	hiv	relate to	virus
+blood	transmit	hiv	>	hiv	enter	bloodstream
+hiv	carry by	monocyte	>	lymphocyte	infect with	hiv
+hiv	transmit via	blood	>	blood	transmit	hiv
+hiv	transmit through	placenta	>	hiv	transmit to	fetus
+retrovirus	include	hiv	>	hiv	classify as	retrovirus
+hiv	transmit by	blood	>	blood	infect with	hiv
+hiv	isolate from	blood	>	hiv	spread with	blood
+blood	test for	hiv	>	hiv	transmit through	transfusion
+hiv	transmit by	blood	>	hiv	isolate from	blood
+macrophage	infect with	hiv	>	hiv	culture from	lymphocyte
+hiv	refer to	virus	>	virus	know as	hiv
+hiv	cause	aid	>	hiv	turn to	aid
+aid	cause by	hiv	>	hiv	associate with	aid
+hiv	transmit	blood	>	hiv	transmit by	transfusion
+hiv	transmit via	intercourse	>	hiv	spread through	intercourse
+hiv	transmit by	mosquito	>	hiv	isolate from	blood
+hiv	spread with	blood	>	hiv	transmit by	transfusion
+hiv	classify as	retrovirus	>	hiv	mean	virus
+hiv	find in	semen	>	sperm	test for	hiv
+hiv	isolate from	blood	>	hiv	transmit via	blood
+hiv	find in	semen	>	sex	transmit	hiv
+hiv	infect	monocyte	>	monocyte	infect by	hiv
+hiv	infect	macrophage	>	hiv	attack	lymphocyte
+hiv	relate to	virus	>	hiv	contain	rna
+blood	infect with	hiv	>	hiv	transmit via	blood
+hiv	transmit via	intercourse	>	hiv	spread through	sex
+blood	transmit	hiv	>	hiv	transmit through	transfusion
+hiv	lead to	aid	>	hiv	cause	meningitis
+hiv	find in	semen	>	hiv	shed in	semen
+hiv	refer to	virus	>	hiv	indicate	virus
+aid	cause by	hiv	>	sarcoma	cause by	hiv
+hiv	transmit through	blood	>	hiv	transmit by	transfusion
+blood	transmit	hiv	>	hiv	carry in	blood
+hiv	culture from	lymphocyte	>	macrophage	infect by	hiv
+hiv	transmit through	sex	>	hiv	transmit through	intercourse
+hiv	isolate from	blood	>	hiv	find in	blood
+hiv	transmit across	placenta	>	hiv	transmit to	fetus
+hiv	classify as	retrovirus	>	hiv	contain	rna
+hiv	be in	blood	>	hiv	isolate from	blood
+hiv	cause	immunodeficiency	>	hiv	cause	aid
+hiv	enter	bloodstream	>	hiv	transmit through	transfusion
+mosquito	transmit	hiv	>	hiv	find in	blood
+hiv	enter	bloodstream	>	hiv	isolate from	blood
+hiv	associate with	aid	>	hiv	turn to	aid
+hiv	enter	cns	>	hiv	enter	brain
+hiv	transmit via	blood	>	blood	carry	hiv
+hiv	attach to	cd4	>	hiv	infect	cd4
+hiv	carry into	brain	>	hiv	infect	brain
+hiv	infect	cd4	>	hiv	attach to	cd4
+blood	infect with	hiv	>	hiv	transmit in	blood
+hiv	carry in	blood	>	blood	carry	hiv
+hiv	associate with	aid	>	hiv	progress to	aid
+hiv	spread with	blood	>	blood	test for	hiv
+hiv	attack	lymphocyte	>	hiv	infect	lymphocyte
+hiv	relate to	virus	>	hiv	classify as	retrovirus
+hiv	relate to	virus	>	hiv	stand for	virus
+hiv	find in	blood	>	hiv	carry in	blood
+hiv	shed in	semen	>	hiv	spread by	intercourse
+hiv	transmit through	sex	>	hiv	spread through	intercourse
+sex	transmit	hiv	>	hiv	transmit via	intercourse
+mosquito	transmit	hiv	>	hiv	transmit by	mosquito
+hiv	carry by	monocyte	>	macrophage	infect with	hiv
+hiv	attack	neuron	>	hiv	infect	brain
+hiv	carry in	blood	>	hiv	infect	blood
+aid	cause by	hiv	>	hiv	cause	immunodeficiency
+hiv	associate with	aid	>	hiv	cause	immunodeficiency
+hundred	infect with	hiv	>	million	infect with	hiv
+hiv	shed in	semen	>	hiv	transmit through	sex
+hiv	spread through	sex	>	hiv	spread by	intercourse
+hiv	transmit in	blood	>	hiv	transmit through	blood
+insect	transmit	hiv	>	hiv	transmit by	transfusion
+hiv	mean	virus	>	hiv	stand for	virus
+hiv	destroy	lymphocyte	>	hiv	associate with	aid
+hiv	spread with	blood	>	hiv	enter	bloodstream
+hiv	transmit to	fetus	>	hiv	transmit across	placenta
+hiv	carry in	blood	>	blood	infect with	hiv
+blood	test for	hiv	>	blood	infect with	hiv
+hiv	transmit by	insect	>	hiv	transmit via	blood
+hiv	progress to	aid	>	hiv	cause	aid
+blood	test for	hiv	>	hiv	transmit by	transfusion
+hiv	be in	blood	>	blood	infect with	hiv
+hiv	transmit through	sex	>	hiv	transmit by	intercourse
+hiv	develop into	aid	>	hiv	cause	immunodeficiency
+hiv	enter	bloodstream	>	hiv	transmit in	blood
+hiv	spread through	sex	>	hiv	transmit through	sex
+hiv	transmit in	blood	>	hiv	find in	blood
+hiv	spread by	mosquito	>	hiv	transmit by	insect
+hiv	find in	semen	>	hiv	transmit in	semen
+hiv	lead to	aid	>	sarcoma	cause by	hiv
+aid	cause by	hiv	>	hiv	develop into	aid
+virus	relate to	hiv	>	retrovirus	include	hiv
+hiv	culture from	lymphocyte	>	hiv	carry by	monocyte
+blood	transmit	hiv	>	hiv	transmit by	transfusion
+hiv	carry in	blood	>	hiv	transmit by	blood
+hiv	deplete	lymphocyte	>	macrophage	infect with	hiv
+hiv	spread by	intercourse	>	hiv	transmit by	intercourse
+aid	cause by	hiv	>	hiv	lead to	aid
+lymphocyte	infect with	hiv	>	monocyte	infect with	hiv
+hiv	carry into	brain	>	hiv	attack	neuron
+hiv	transmit by	blood	>	hiv	transmit in	blood
+hiv	deplete	lymphocyte	>	sarcoma	cause by	hiv
+hiv	find in	blood	>	hiv	transmit by	transfusion
+hiv	infect	blood	>	hiv	carry in	blood
+hiv	transmit via	intercourse	>	sex	transmit	hiv
+hiv	enter	bloodstream	>	blood	transmit	hiv
+hiv	transmit by	mosquito	>	hiv	transmit by	blood
+hiv	turn to	aid	>	hiv	cause	aid
+hiv	culture from	lymphocyte	>	monocyte	infect with	hiv
+retrovirus	include	hiv	>	hiv	refer to	virus
+mosquito	transmit	hiv	>	hiv	enter	bloodstream
+virus	relate to	hiv	>	hiv	classify as	retrovirus
+hiv	transmit by	sex	>	hiv	transmit via	intercourse
+hiv	spread by	intercourse	>	sex	transmit	hiv
+hiv	enter	bloodstream	>	hiv	carry in	blood
+hiv	transmit via	blood	>	hiv	infect	blood
+blood	carry	hiv	>	hiv	enter	bloodstream
+hiv	transmit by	mosquito	>	hiv	transmit via	blood
+hiv	transmit by	mosquito	>	hiv	transmit through	blood
+mosquito	transmit	hiv	>	hiv	infect	blood
+hiv	carry by	monocyte	>	monocyte	infect by	hiv
+hiv	relate to	virus	>	hiv	indicate	virus
+hiv	transmit by	insect	>	hiv	spread by	mosquito
+hiv	transmit through	blood	>	hiv	carry in	blood
+hiv	transmit via	blood	>	hiv	transmit by	blood
+blood	test for	hiv	>	hiv	transmit in	blood
+hiv	transmit via	blood	>	blood	screen for	hiv
+hiv	transmit by	intercourse	>	sex	transmit	hiv
+virus	know as	hiv	>	hiv	refer to	virus
+monocyte	infect by	hiv	>	macrophage	infect by	hiv
+hiv	transmit by	blood	>	blood	carry	hiv
+hiv	transmit	blood	>	hiv	enter	bloodstream
+hiv	find in	semen	>	hiv	transmit through	sex
+hiv	carry by	monocyte	>	hiv	infect	macrophage
+hiv	associate with	aid	>	aid	cause by	hiv
+hiv	transmit via	blood	>	hiv	enter	bloodstream
+hiv	deplete	lymphocyte	>	monocyte	infect with	hiv
+retrovirus	include	hiv	>	virus	include	hiv
+hiv	isolate from	semen	>	sperm	test for	hiv
+hiv	mean	virus	>	hiv	indicate	virus
+hiv	associate with	aid	>	hiv	develop	aid
+hiv	infect	cd4	>	hiv	bind to	cd4
+sperm	test for	hiv	>	hiv	transmit through	sex
+hiv	transmit in	blood	>	hiv	transmit via	blood
+hiv	transmit by	mosquito	>	hiv	transmit by	insect
+hiv	transmit by	insect	>	hiv	transmit by	transfusion
+blood	carry	hiv	>	hiv	transmit by	blood
+hiv	develop into	aid	>	hiv	cause	aid
+hiv	cause	aid	>	hiv	cause	immunodeficiency
+hiv	transmit by	mosquito	>	hiv	transmit in	blood
+hiv	transmit in	semen	>	sex	transmit	hiv
+hiv	deplete	lymphocyte	>	hiv	develop into	aid
+hiv	enter	brain	>	hiv	attack	neuron
+thousand	infect with	hiv	>	million	infect with	hiv
+hiv	isolate from	semen	>	sex	transmit	hiv
+sex	transmit	hiv	>	hiv	spread by	intercourse
+hiv	transmit in	semen	>	hiv	spread through	sex
+hiv	progress to	aid	>	hiv	associate with	aid
+hiv	relate to	virus	>	hiv	mean	virus
+hiv	carry in	blood	>	blood	screen for	hiv
+hiv	transmit in	blood	>	hiv	infect	blood
+hiv	be in	blood	>	hiv	infect	blood
+hiv	carry by	monocyte	>	hiv	infect	monocyte
+hiv	contain	rna	>	hiv	indicate	virus
+hiv	develop into	aid	>	aid	cause by	hiv
+hiv	carry in	blood	>	hiv	transmit through	blood
+hiv	spread by	mosquito	>	hiv	be in	blood
+hiv	transmit by	blood	>	hiv	transmit via	blood
+hiv	spread through	intercourse	>	hiv	spread through	sex
+hiv	transmit to	fetus	>	hiv	transmit through	placenta
+hiv	cause	aid	>	aid	cause by	hiv
+hiv	cause	immunodeficiency	>	hiv	develop	aid
+hiv	transmit by	sex	>	sex	transmit	hiv
+hiv	transmit	blood	>	hiv	be in	blood
+hiv	isolate from	blood	>	hiv	transmit	blood
+hiv	attack	lymphocyte	>	macrophage	infect with	hiv
+blood	transmit	hiv	>	blood	infect with	hiv
+hiv	spread by	mosquito	>	hiv	transmit by	blood
+hiv	transmit by	mosquito	>	blood	carry	hiv
+macrophage	infect by	hiv	>	hiv	carry by	monocyte
+hiv	isolate from	blood	>	blood	infect with	hiv
+hiv	carry in	blood	>	hiv	enter	bloodstream
+hiv	destroy	lymphocyte	>	hiv	carry by	monocyte
+hiv	isolate from	semen	>	hiv	transmit by	intercourse
+hiv	spread by	mosquito	>	hiv	infect	blood
+blood	screen for	hiv	>	hiv	be in	blood
+hiv	culture from	lymphocyte	>	hiv	infect	lymphocyte
+hiv	transmit by	transfusion	>	hiv	carry in	blood
+hiv	spread with	blood	>	blood	screen for	hiv
+hiv	develop	aid	>	hiv	progress to	aid
+hiv	associate with	aid	>	hiv	develop into	aid
+hiv	infect	blood	>	hiv	transmit by	transfusion
+monocyte	infect with	hiv	>	hiv	culture from	lymphocyte
+insect	transmit	hiv	>	hiv	transmit	blood
+hiv	indicate	virus	>	hiv	refer to	virus
+hiv	spread by	intercourse	>	hiv	transmit through	sex
+monocyte	infect by	hiv	>	hiv	carry by	monocyte
+hiv	isolate from	blood	>	hiv	transmit through	blood
+hiv	classify as	retrovirus	>	hiv	stand for	virus
+retrovirus	include	hiv	>	hiv	mean	virus
+hiv	turn to	aid	>	hiv	progress to	aid
+hiv	refer to	virus	>	hiv	relate to	virus
+hiv	transmit	blood	>	hiv	transmit in	blood
+hiv	contain	rna	>	virus	relate to	hiv
+blood	infect with	hiv	>	blood	screen for	hiv
+lymphocyte	infect with	hiv	>	hiv	infect	monocyte
+hiv	destroy	lymphocyte	>	hiv	develop	aid
+hiv	stand for	virus	>	virus	know as	hiv
+blood	test for	hiv	>	hiv	infect	blood
+insect	transmit	hiv	>	hiv	transmit through	blood
+hiv	transmit through	transfusion	>	hiv	spread with	blood
+hiv	infect	blood	>	hiv	transmit by	blood
+blood	screen for	hiv	>	hiv	carry in	blood
+insect	transmit	hiv	>	blood	carry	hiv
+hiv	transmit by	insect	>	hiv	transmit	blood
+blood	carry	hiv	>	blood	transmit	hiv
+blood	infect with	hiv	>	blood	test for	hiv
+blood	screen for	hiv	>	blood	transmit	hiv
+sex	transmit	hiv	>	hiv	transmit through	intercourse
+lymphocyte	infect with	hiv	>	hiv	attack	lymphocyte
+blood	screen for	hiv	>	hiv	transmit through	blood
+hiv	be in	blood	>	blood	transmit	hiv
+hiv	spread with	blood	>	hiv	transmit in	blood
+hiv	culture from	csf	>	hiv	isolate from	csf
+sperm	test for	hiv	>	hiv	spread through	intercourse
+hiv	transmit via	intercourse	>	hiv	transmit through	intercourse
+hiv	transmit via	intercourse	>	hiv	transmit through	sex
+hiv	transmit	blood	>	blood	transmit	hiv
+hiv	transmit through	transfusion	>	blood	infect with	hiv
+hiv	shed in	semen	>	hiv	transmit through	intercourse
+hiv	transmit by	transfusion	>	hiv	infect	blood
+hiv	isolate from	blood	>	hiv	be in	blood
+hiv	destroy	lymphocyte	>	hiv	attack	lymphocyte
+hiv	isolate from	blood	>	blood	screen for	hiv
+hiv	transmit by	insect	>	blood	infect with	hiv
+hiv	spread through	sex	>	hiv	transmit by	sex
+hiv	transmit through	placenta	>	hiv	pass to	fetus
+hiv	deplete	lymphocyte	>	hiv	associate with	aid
+hiv	infect	monocyte	>	lymphocyte	infect with	hiv
+hiv	associate with	aid	>	hiv	lead to	aid
+hiv	turn to	aid	>	hiv	cause	immunodeficiency
+blood	infect with	hiv	>	hiv	transmit through	transfusion
+hiv	deplete	lymphocyte	>	monocyte	infect by	hiv
+blood	infect with	hiv	>	hiv	carry in	blood
+hiv	transmit by	insect	>	mosquito	transmit	hiv
+hiv	infect	blood	>	hiv	transmit through	transfusion
+virus	know as	hiv	>	hiv	mean	virus
+hiv	transmit by	intercourse	>	hiv	spread by	intercourse
+insect	transmit	hiv	>	hiv	infect	blood
+hiv	shed in	semen	>	sperm	test for	hiv
+hiv	infect	neuron	>	hiv	infect	brain
+hiv	transmit by	mosquito	>	hiv	transmit through	transfusion
+hiv	enter	brain	>	hiv	infect	neuron
+hiv	infect	neuron	>	hiv	carry into	brain
+macrophage	infect with	hiv	>	hiv	infect	macrophage
+sperm	test for	hiv	>	hiv	transmit via	intercourse
+hiv	refer to	virus	>	hiv	stand for	virus
+hiv	spread by	intercourse	>	hiv	spread through	intercourse
+blood	transmit	hiv	>	blood	screen for	hiv
+hiv	lead to	aid	>	hiv	progress to	aid
+hiv	infect	lymphocyte	>	hiv	attack	lymphocyte
+hiv	develop	aid	>	sarcoma	cause by	hiv
+hiv	isolate from	semen	>	hiv	spread through	sex
+sex	transmit	hiv	>	hiv	transmit through	sex
+hiv	transmit by	blood	>	hiv	transmit by	transfusion
+hiv	isolate from	semen	>	hiv	transmit by	sex
+hiv	destroy	lymphocyte	>	hiv	infect	macrophage
+sperm	test for	hiv	>	hiv	transmit by	sex
+hiv	turn to	aid	>	sarcoma	cause by	hiv
+hiv	transmit by	sex	>	hiv	spread by	intercourse
+hiv	transmit in	semen	>	hiv	find in	semen
+hiv	transmit through	blood	>	hiv	be in	blood
+blood	screen for	hiv	>	hiv	transmit through	transfusion
+hiv	cause	aid	>	hiv	lead to	aid
+hiv	transmit in	semen	>	hiv	shed in	semen
+hiv	transmit through	transfusion	>	hiv	transmit in	blood
+hiv	find in	semen	>	hiv	isolate from	semen
+virus	know as	hiv	>	hiv	classify as	retrovirus
+hiv	transmit	blood	>	blood	carry	hiv
+mosquito	transmit	hiv	>	blood	transmit	hiv
+hiv	transmit by	intercourse	>	hiv	transmit through	intercourse
+hiv	transmit via	blood	>	hiv	find in	blood
+hiv	find in	blood	>	hiv	isolate from	blood
+sex	transmit	hiv	>	hiv	transmit by	sex
+aid	cause by	hiv	>	hiv	cause	meningitis
+hiv	spread by	mosquito	>	hiv	transmit by	mosquito
+hiv	cause	immunodeficiency	>	hiv	develop into	aid
+mosquito	transmit	hiv	>	hiv	transmit via	blood
+hiv	progress to	aid	>	aid	cause by	hiv
+monocyte	infect with	hiv	>	macrophage	infect by	hiv
+virus	relate to	hiv	>	hiv	stand for	virus
+hiv	enter	cns	>	hiv	attack	neuron
+hiv	transmit via	intercourse	>	hiv	transmit by	intercourse
+hiv	spread by	mosquito	>	blood	transmit	hiv
+hiv	isolate from	semen	>	hiv	transmit through	sex
+hiv	find in	blood	>	blood	transmit	hiv
+hiv	infect	lymphocyte	>	hiv	carry by	monocyte
+hiv	attack	lymphocyte	>	macrophage	infect by	hiv
+hiv	transmit by	transfusion	>	hiv	find in	blood
+hiv	transmit through	transfusion	>	blood	transmit	hiv
+hiv	transmit in	blood	>	blood	test for	hiv
+hiv	transmit by	transfusion	>	hiv	transmit by	blood
+hiv	find in	semen	>	hiv	transmit through	intercourse
+hiv	infect	monocyte	>	monocyte	infect with	hiv
+monocyte	infect with	hiv	>	hiv	infect	lymphocyte
+hiv	destroy	lymphocyte	>	sarcoma	cause by	hiv
+hiv	pass to	fetus	>	hiv	transmit across	placenta
+hiv	transmit by	mosquito	>	hiv	transmit by	transfusion
+hiv	transmit through	transfusion	>	blood	screen for	hiv
+hiv	transmit via	blood	>	hiv	transmit in	blood
+sperm	test for	hiv	>	hiv	transmit in	semen
+hiv	transmit	blood	>	hiv	isolate from	blood
+hiv	shed in	semen	>	hiv	find in	semen
+hiv	enter	bloodstream	>	blood	carry	hiv
+hiv	infect	brain	>	hiv	enter	cns
+blood	transmit	hiv	>	hiv	transmit in	blood
+hiv	find in	blood	>	hiv	transmit through	blood
+macrophage	infect with	hiv	>	lymphocyte	infect with	hiv
+hiv	transmit through	transfusion	>	hiv	enter	bloodstream
+hiv	transmit in	blood	>	blood	transmit	hiv
+hiv	infect	blood	>	blood	carry	hiv
+hiv	indicate	virus	>	hiv	relate to	virus
+blood	test for	hiv	>	blood	transmit	hiv
+hiv	transmit through	intercourse	>	hiv	transmit by	sex
+blood	carry	hiv	>	blood	test for	hiv
+hiv	be in	blood	>	hiv	enter	bloodstream
+hiv	isolate from	semen	>	hiv	find in	semen
+hiv	attack	neuron	>	hiv	enter	cns
+hiv	find in	semen	>	hiv	transmit via	intercourse
+hiv	enter	bloodstream	>	blood	test for	hiv
+hiv	classify as	retrovirus	>	virus	know as	hiv
+hiv	progress to	aid	>	hiv	cause	immunodeficiency
+blood	test for	hiv	>	hiv	carry in	blood
+blood	carry	hiv	>	hiv	transmit in	blood
+blood	transmit	hiv	>	hiv	transmit via	blood
+hiv	isolate from	semen	>	hiv	transmit through	intercourse
+mosquito	transmit	hiv	>	hiv	transmit by	transfusion
+hiv	enter	bloodstream	>	hiv	spread with	blood
+hiv	transmit by	sex	>	hiv	transmit through	intercourse
+hiv	transmit in	blood	>	blood	carry	hiv
+blood	carry	hiv	>	blood	screen for	hiv
+hiv	transmit by	insect	>	hiv	find in	blood
+hiv	culture from	lymphocyte	>	hiv	attack	lymphocyte
+hiv	be in	blood	>	blood	test for	hiv
+hiv	carry by	monocyte	>	monocyte	infect with	hiv
+hiv	be in	blood	>	hiv	transmit by	transfusion
+hiv	be in	blood	>	hiv	transmit by	blood
+hiv	deplete	lymphocyte	>	lymphocyte	infect with	hiv
+hiv	transmit in	blood	>	hiv	be in	blood
+blood	transmit	hiv	>	hiv	spread with	blood
+blood	transmit	hiv	>	hiv	infect	blood
+hiv	transmit through	blood	>	hiv	transmit in	blood
+hiv	infect	monocyte	>	macrophage	infect by	hiv
+hiv	deplete	lymphocyte	>	hiv	induce	apoptosis
+hiv	deplete	lymphocyte	>	hiv	cause	meningitis
+hiv	infect	blood	>	hiv	transmit in	blood
+virus	know as	hiv	>	hiv	stand for	virus
+blood	transmit	hiv	>	hiv	transmit by	blood
+virus	relate to	hiv	>	hiv	indicate	virus
+macrophage	infect with	hiv	>	hiv	infect	lymphocyte
+insect	transmit	hiv	>	blood	test for	hiv
+hiv	spread with	blood	>	hiv	transmit through	transfusion
+monocyte	infect by	hiv	>	lymphocyte	infect with	hiv
+macrophage	infect by	hiv	>	lymphocyte	infect with	hiv
+hiv	transmit by	insect	>	hiv	enter	bloodstream
+hiv	infect	macrophage	>	macrophage	infect by	hiv
+hiv	find in	blood	>	blood	carry	hiv
+monocyte	infect with	hiv	>	hiv	carry by	monocyte
+macrophage	infect with	hiv	>	hiv	attack	lymphocyte
+hiv	transmit by	insect	>	insect	transmit	hiv
+hiv	culture from	lymphocyte	>	macrophage	infect with	hiv
+hiv	develop into	aid	>	hiv	lead to	aid
+hiv	infect	macrophage	>	hiv	culture from	lymphocyte
+hiv	destroy	lymphocyte	>	hiv	turn to	aid
+blood	test for	hiv	>	hiv	spread with	blood
+hiv	infect	lymphocyte	>	macrophage	infect by	hiv
+hiv	shed in	semen	>	sex	transmit	hiv
+hiv	spread by	mosquito	>	mosquito	transmit	hiv
+hiv	transmit by	blood	>	hiv	enter	bloodstream
+hiv	transmit by	sex	>	hiv	transmit through	sex
+mosquito	transmit	hiv	>	hiv	isolate from	blood
+hiv	infect	blood	>	hiv	find in	blood
+hiv	transmit to	fetus	>	hiv	pass to	fetus
+hiv	spread by	intercourse	>	hiv	transmit through	intercourse
+hiv	stand for	virus	>	virus	include	hiv
+hiv	transmit by	blood	>	hiv	spread with	blood
+hiv	transmit through	blood	>	hiv	isolate from	blood
+hiv	transmit through	blood	>	blood	infect with	hiv
+hiv	transmit through	transfusion	>	hiv	infect	blood
+hiv	infect	lymphocyte	>	hiv	infect	macrophage
+hiv	transmit by	insect	>	hiv	transmit through	blood
+hiv	spread by	intercourse	>	hiv	transmit via	intercourse
+insect	transmit	hiv	>	hiv	spread with	blood
+hiv	spread by	mosquito	>	blood	carry	hiv
+hiv	attack	neuron	>	hiv	infect	neuron
+hiv	transmit by	blood	>	hiv	transmit through	transfusion
+hiv	transmit	blood	>	hiv	spread with	blood
+hiv	spread by	mosquito	>	hiv	enter	bloodstream
+hiv	stand for	virus	>	hiv	mean	virus
+blood	infect with	hiv	>	hiv	spread with	blood
+blood	screen for	hiv	>	hiv	transmit	blood
+hiv	find in	blood	>	blood	test for	hiv
+hiv	transmit by	blood	>	blood	screen for	hiv
+hiv	spread through	intercourse	>	sex	transmit	hiv
+hiv	be in	blood	>	hiv	transmit	blood
+hiv	spread with	blood	>	hiv	transmit via	blood
+hiv	spread with	blood	>	hiv	be in	blood
+hiv	isolate from	semen	>	hiv	spread through	intercourse
+hiv	develop	aid	>	hiv	develop into	aid
+macrophage	infect with	hiv	>	hiv	infect	monocyte
+hiv	attack	lymphocyte	>	monocyte	infect by	hiv
+hiv	indicate	virus	>	virus	include	hiv
+hiv	transmit	blood	>	hiv	transmit via	blood
+hiv	carry by	monocyte	>	hiv	culture from	lymphocyte
+hiv	classify as	retrovirus	>	virus	relate to	hiv
+hiv	transmit through	transfusion	>	hiv	transmit through	blood
+hiv	be in	blood	>	blood	screen for	hiv
+blood	transmit	hiv	>	hiv	transmit	blood
+blood	transmit	hiv	>	hiv	find in	blood
+hiv	mean	virus	>	hiv	refer to	virus
+hiv	transmit via	blood	>	hiv	transmit through	transfusion
+hiv	transmit by	blood	>	hiv	be in	blood
+hiv	transmit by	intercourse	>	hiv	spread through	intercourse
+hiv	infect	lymphocyte	>	macrophage	infect with	hiv
+hiv	transmit in	blood	>	hiv	transmit through	transfusion
+macrophage	infect by	hiv	>	monocyte	infect with	hiv
+hiv	develop	aid	>	hiv	cause	aid
+hiv	mean	virus	>	hiv	classify as	retrovirus
+hiv	spread by	mosquito	>	hiv	transmit through	blood
+hiv	turn to	aid	>	hiv	develop	aid
+hiv	cause	immunodeficiency	>	hiv	associate with	aid
+hiv	attack	neuron	>	hiv	enter	brain
+million	infect with	hiv	>	hundred	infect with	hiv
+hiv	enter	brain	>	hiv	carry into	brain
+hiv	transmit by	mosquito	>	blood	screen for	hiv
+insect	transmit	hiv	>	hiv	spread by	mosquito
+virus	relate to	hiv	>	virus	know as	hiv
+lymphocyte	infect with	hiv	>	hiv	carry by	monocyte
+insect	transmit	hiv	>	blood	infect with	hiv
+hiv	stand for	virus	>	hiv	classify as	retrovirus
+hiv	spread through	intercourse	>	hiv	transmit through	sex
+hiv	spread through	intercourse	>	hiv	transmit via	intercourse
+hiv	transmit through	sex	>	hiv	spread through	sex
+hiv	infect	macrophage	>	hiv	infect	monocyte
+hiv	carry in	blood	>	hiv	be in	blood
+hiv	transmit through	transfusion	>	hiv	be in	blood
+monocyte	infect by	hiv	>	hiv	infect	macrophage
+hiv	shed in	semen	>	hiv	spread through	intercourse
+hiv	destroy	lymphocyte	>	hiv	cause	immunodeficiency
+hiv	refer to	virus	>	hiv	classify as	retrovirus
+hiv	isolate from	blood	>	hiv	carry in	blood
+hiv	transmit by	transfusion	>	hiv	be in	blood
+hiv	transmit	blood	>	hiv	transmit through	blood
+hundred	infect with	hiv	>	million	have	hiv
+monocyte	infect by	hiv	>	monocyte	infect with	hiv
+aid	cause by	hiv	>	hiv	turn to	aid
+hiv	progress to	aid	>	hiv	develop	aid
+hiv	spread with	blood	>	hiv	transmit through	blood
+hiv	cause	death	>	hiv	claim	life
+hiv	transmit by	transfusion	>	hiv	enter	bloodstream
+hiv	transmit	blood	>	blood	test for	hiv
+hiv	spread by	intercourse	>	hiv	spread through	sex
+virus	relate to	hiv	>	hiv	relate to	virus
+hiv	deplete	lymphocyte	>	hiv	cause	lysis
+hiv	refer to	virus	>	retrovirus	include	hiv
+breastfeeding	transmit	hiv	>	hiv	transmit through	breastfeeding
+retrovirus	include	hiv	>	virus	relate to	hiv
+hiv	infect	neuron	>	hiv	enter	cns
+hiv	transmit by	transfusion	>	hiv	spread with	blood
+hiv	be in	blood	>	hiv	carry in	blood
+hiv	attack	lymphocyte	>	lymphocyte	infect with	hiv
+hiv	transmit by	mosquito	>	hiv	be in	blood
+hiv	shed in	semen	>	hiv	isolate from	semen
+hiv	carry into	brain	>	hiv	enter	brain
+hiv	transmit by	intercourse	>	hiv	transmit by	sex
+blood	infect with	hiv	>	hiv	transmit	blood
+hiv	relate to	virus	>	hiv	refer to	virus
+hiv	refer to	virus	>	hiv	mean	virus
+hiv	transmit in	semen	>	hiv	transmit by	sex
+hiv	transmit by	transfusion	>	blood	test for	hiv
+virus	relate to	hiv	>	hiv	refer to	virus
+million	infect with	hiv	>	thousand	infect with	hiv
+hiv	infect	brain	>	hiv	infect	neuron
+hiv	infect	macrophage	>	lymphocyte	infect with	hiv
+hiv	infect	brain	>	hiv	attack	neuron
+hiv	transmit via	blood	>	hiv	transmit by	transfusion
+hiv	classify as	retrovirus	>	virus	include	hiv
+lymphocyte	infect with	hiv	>	macrophage	infect by	hiv
+hiv	destroy	lymphocyte	>	lymphocyte	infect with	hiv
+hiv	transmit through	sex	>	hiv	transmit via	intercourse
+hiv	spread by	mosquito	>	hiv	transmit in	blood
+hiv	isolate from	semen	>	hiv	transmit in	semen
+hiv	transmit by	transfusion	>	hiv	transmit through	transfusion
+insect	transmit	hiv	>	hiv	be in	blood
+hiv	infect	lymphocyte	>	lymphocyte	infect with	hiv
+hiv	spread by	mosquito	>	blood	test for	hiv
+hiv	cause	aid	>	hiv	progress to	aid
+mosquito	transmit	hiv	>	hiv	transmit by	insect
+hiv	transmit through	blood	>	hiv	transmit	blood
+hiv	transmit through	intercourse	>	hiv	spread by	intercourse
+hiv	develop	aid	>	hiv	associate with	aid
+virus	know as	hiv	>	virus	include	hiv
+hiv	transmit through	transfusion	>	hiv	carry in	blood
+blood	carry	hiv	>	hiv	transmit by	transfusion
+blood	carry	hiv	>	hiv	find in	blood
+hiv	carry in	blood	>	hiv	transmit	blood
+hiv	contain	rna	>	hiv	relate to	virus
+hiv	spread with	blood	>	hiv	carry in	blood
+hiv	enter	bloodstream	>	hiv	transmit	blood
+hiv	transmit by	insect	>	hiv	carry in	blood
+macrophage	infect with	hiv	>	hiv	carry by	monocyte
+sperm	test for	hiv	>	hiv	spread through	sex
+mosquito	transmit	hiv	>	hiv	transmit through	blood
+hiv	be in	blood	>	hiv	transmit in	blood
+hiv	infect	macrophage	>	hiv	infect	lymphocyte
+hiv	transmit by	mosquito	>	blood	test for	hiv
+hiv	turn to	aid	>	hiv	cause	meningitis
+hiv	associate with	aid	>	hiv	cause	aid
+hiv	contain	rna	>	virus	know as	hiv
+million	have	hiv	>	million	infect with	hiv
+hiv	transmit by	mosquito	>	hiv	infect	blood
+hiv	culture from	lymphocyte	>	monocyte	infect by	hiv
+hiv	destroy	lymphocyte	>	hiv	cause	lysis
+hiv	develop	aid	>	hiv	cause	immunodeficiency
+insect	transmit	hiv	>	blood	screen for	hiv
+hiv	enter	bloodstream	>	hiv	transmit through	blood
+hiv	bind to	cd4	>	hiv	infect	cd4
+hiv	turn to	aid	>	hiv	lead to	aid
+hiv	spread through	intercourse	>	hiv	transmit by	intercourse
+hiv	infect	blood	>	hiv	enter	bloodstream
+hiv	transmit by	transfusion	>	hiv	transmit	blood
+hiv	turn to	aid	>	hiv	develop into	aid
+million	have	hiv	>	hundred	infect with	hiv
+hiv	transmit via	intercourse	>	hiv	spread by	intercourse
+hiv	develop into	aid	>	hiv	turn to	aid
+hiv	infect	blood	>	blood	screen for	hiv
+hiv	transmit by	mosquito	>	insect	transmit	hiv
+blood	carry	hiv	>	hiv	carry in	blood
+blood	test for	hiv	>	hiv	transmit	blood
+hiv	indicate	virus	>	virus	relate to	hiv
+monocyte	infect by	hiv	>	hiv	attack	lymphocyte
+hiv	transmit by	intercourse	>	hiv	spread through	sex
+hiv	spread through	intercourse	>	hiv	spread by	intercourse
+hiv	transmit by	transfusion	>	blood	transmit	hiv
+hiv	transmit through	blood	>	hiv	transmit via	blood
+hiv	infect	blood	>	hiv	transmit	blood
+hiv	transmit across	placenta	>	hiv	pass to	fetus
+hiv	associate with	aid	>	hiv	cause	meningitis
+hiv	infect	monocyte	>	hiv	culture from	lymphocyte
+hiv	infect	monocyte	>	hiv	carry by	monocyte
+hiv	transmit	blood	>	hiv	transmit through	transfusion
+hiv	transmit through	blood	>	blood	test for	hiv
+hiv	infect	blood	>	blood	test for	hiv
+hiv	transmit through	transfusion	>	hiv	find in	blood
+macrophage	infect with	hiv	>	monocyte	infect by	hiv
+blood	test for	hiv	>	hiv	transmit via	blood
+hiv	progress to	aid	>	hiv	develop into	aid
+hiv	transmit by	insect	>	hiv	spread with	blood
+hiv	indicate	virus	>	virus	know as	hiv
+hiv	spread by	mosquito	>	insect	transmit	hiv
+hiv	be in	blood	>	hiv	transmit via	blood
+hiv	transmit by	insect	>	hiv	isolate from	blood
+hiv	transmit by	blood	>	blood	test for	hiv
+hiv	transmit via	blood	>	hiv	carry in	blood
+hiv	culture from	lymphocyte	>	hiv	infect	monocyte
+blood	test for	hiv	>	hiv	transmit through	blood
+hiv	pass to	fetus	>	hiv	transmit to	fetus
+hiv	transmit through	blood	>	blood	screen for	hiv
+monocyte	infect with	hiv	>	macrophage	infect with	hiv
+hiv	transmit in	blood	>	hiv	carry in	blood
+hiv	enter	bloodstream	>	hiv	be in	blood
+retrovirus	include	hiv	>	hiv	relate to	virus
+hiv	transmit by	blood	>	hiv	infect	blood
+blood	screen for	hiv	>	hiv	spread with	blood
+hiv	carry in	blood	>	hiv	spread with	blood
+hiv	attack	neuron	>	hiv	carry into	brain
+hiv	infect	lymphocyte	>	monocyte	infect by	hiv
+hiv	deplete	lymphocyte	>	aid	cause by	hiv
+hiv	transmit through	blood	>	hiv	enter	bloodstream
+hiv	be in	blood	>	hiv	spread with	blood
+hiv	cause	immunodeficiency	>	hiv	progress to	aid
+hiv	develop into	aid	>	hiv	cause	meningitis
+hiv	spread through	intercourse	>	hiv	transmit through	intercourse
+sperm	test for	hiv	>	sex	transmit	hiv
+hiv	infect	monocyte	>	hiv	attack	lymphocyte
+hiv	cause	immunodeficiency	>	aid	cause by	hiv
+monocyte	infect with	hiv	>	lymphocyte	infect with	hiv
+hiv	enter	bloodstream	>	hiv	infect	blood
+blood	screen for	hiv	>	hiv	enter	bloodstream
+hiv	infect	neuron	>	hiv	enter	brain
+hiv	isolate from	semen	>	hiv	shed in	semen
+hiv	spread with	blood	>	hiv	transmit by	blood
+hiv	isolate from	semen	>	hiv	transmit via	intercourse
+hiv	spread by	mosquito	>	hiv	transmit via	blood
+blood	test for	hiv	>	hiv	be in	blood
+hiv	carry by	monocyte	>	hiv	infect	lymphocyte
+hiv	contain	rna	>	retrovirus	include	hiv
+hiv	contain	rna	>	hiv	mean	virus
+hiv	transmit by	mosquito	>	hiv	find in	blood
+hiv	transmit through	intercourse	>	hiv	transmit through	sex
+hiv	transmit by	transfusion	>	hiv	transmit in	blood
+sperm	test for	hiv	>	hiv	isolate from	semen
+hiv	spread by	mosquito	>	blood	infect with	hiv
+virus	know as	hiv	>	retrovirus	include	hiv
+hiv	find in	blood	>	hiv	be in	blood
+hiv	destroy	lymphocyte	>	hiv	culture from	lymphocyte
+hiv	deplete	lymphocyte	>	hiv	lead to	aid
+hiv	be in	blood	>	blood	carry	hiv
+mosquito	transmit	hiv	>	hiv	carry in	blood
+blood	screen for	hiv	>	hiv	transmit by	transfusion
+hiv	transmit through	blood	>	blood	transmit	hiv
+hiv	progress to	aid	>	hiv	turn to	aid
+hiv	carry in	blood	>	hiv	transmit in	blood
+mosquito	transmit	hiv	>	blood	test for	hiv
+hiv	associate with	aid	>	sarcoma	cause by	hiv
+hiv	transmit in	blood	>	hiv	transmit by	transfusion
+hiv	spread through	sex	>	hiv	spread through	intercourse
+monocyte	infect by	hiv	>	hiv	infect	monocyte
+hiv	develop	aid	>	hiv	cause	meningitis
+hiv	transmit by	insect	>	blood	transmit	hiv
+virus	include	hiv	>	hiv	mean	virus
+hiv	claim	life	>	hiv	cause	death
+hiv	infect	lymphocyte	>	hiv	infect	monocyte
+blood	infect with	hiv	>	hiv	infect	blood
+virus	relate to	hiv	>	virus	include	hiv
+hiv	transmit by	intercourse	>	hiv	transmit via	intercourse
+sex	transmit	hiv	>	hiv	spread through	sex
+hiv	transmit through	transfusion	>	hiv	transmit by	blood
+hiv	bind to	cd4	>	hiv	attach to	cd4
+hiv	carry into	brain	>	hiv	infect	neuron
+monocyte	infect with	hiv	>	hiv	infect	monocyte
+hiv	pass to	fetus	>	hiv	transmit through	placenta
+hiv	attack	lymphocyte	>	hiv	culture from	lymphocyte
+hiv	transmit through	sex	>	sex	transmit	hiv
+hiv	deplete	lymphocyte	>	hiv	cause	immunodeficiency
+hiv	transmit	blood	>	hiv	transmit by	blood
+hiv	isolate from	csf	>	hiv	culture from	csf
+hiv	transmit in	semen	>	hiv	transmit by	intercourse
+hiv	transmit through	intercourse	>	sex	transmit	hiv
+hiv	develop into	aid	>	sarcoma	cause by	hiv
+million	infect with	hiv	>	million	have	hiv
+blood	carry	hiv	>	hiv	transmit through	transfusion
+hiv	isolate from	blood	>	hiv	enter	bloodstream
+hiv	indicate	virus	>	hiv	classify as	retrovirus
+hiv	lead to	aid	>	hiv	cause	immunodeficiency
+virus	relate to	hiv	>	hiv	contain	rna
+insect	transmit	hiv	>	hiv	transmit by	mosquito
+hiv	cause	aid	>	sarcoma	cause by	hiv
+blood	transmit	hiv	>	hiv	be in	blood
+virus	include	hiv	>	hiv	stand for	virus
+hiv	find in	semen	>	hiv	transmit by	intercourse
+hiv	refer to	virus	>	hiv	contain	rna
+hiv	deplete	lymphocyte	>	hiv	turn to	aid
+hiv	attack	lymphocyte	>	monocyte	infect with	hiv
+hiv	transmit in	blood	>	blood	screen for	hiv
+hiv	transmit through	intercourse	>	hiv	transmit by	intercourse
+hiv	indicate	virus	>	hiv	stand for	virus
+hiv	classify as	retrovirus	>	hiv	indicate	virus
+hiv	infect	brain	>	hiv	carry into	brain
+blood	infect with	hiv	>	hiv	transmit through	blood
+hiv	develop	aid	>	hiv	lead to	aid
+hiv	deplete	lymphocyte	>	hiv	progress to	aid
+hiv	contain	rna	>	hiv	classify as	retrovirus
+hiv	transmit by	transfusion	>	blood	carry	hiv
+blood	carry	hiv	>	hiv	be in	blood
+blood	test for	hiv	>	hiv	isolate from	blood
+hiv	stand for	virus	>	hiv	indicate	virus
+hiv	lead to	aid	>	aid	cause by	hiv
+hiv	transmit in	blood	>	hiv	isolate from	blood
+hiv	find in	blood	>	hiv	enter	bloodstream
+blood	infect with	hiv	>	blood	carry	hiv
+hiv	infect	blood	>	blood	transmit	hiv
+hiv	destroy	lymphocyte	>	hiv	cause	aid
+hiv	relate to	virus	>	virus	know as	hiv
+hiv	destroy	lymphocyte	>	hiv	induce	apoptosis
+hiv	stand for	virus	>	virus	relate to	hiv
+monocyte	infect with	hiv	>	hiv	infect	macrophage
+hiv	transmit through	blood	>	hiv	infect	blood
+hiv	find in	semen	>	hiv	transmit by	sex
+macrophage	infect by	hiv	>	hiv	infect	macrophage
+sperm	test for	hiv	>	hiv	spread by	intercourse
+hiv	stand for	virus	>	hiv	relate to	virus
+virus	include	hiv	>	virus	know as	hiv
+hiv	shed in	semen	>	hiv	transmit in	semen
+blood	infect with	hiv	>	hiv	find in	blood
+hiv	classify as	retrovirus	>	hiv	relate to	virus
+hiv	spread by	mosquito	>	hiv	isolate from	blood
+insect	transmit	hiv	>	hiv	carry in	blood
+hiv	deplete	lymphocyte	>	hiv	cause	aid
+hiv	transmit by	intercourse	>	hiv	transmit through	sex
+hiv	attack	lymphocyte	>	hiv	infect	monocyte
+hiv	destroy	lymphocyte	>	macrophage	infect with	hiv
+insect	transmit	hiv	>	hiv	transmit through	transfusion
+blood	infect with	hiv	>	hiv	be in	blood
+hiv	transmit through	intercourse	>	hiv	spread through	intercourse
+hiv	turn to	aid	>	hiv	associate with	aid
+hiv	attack	lymphocyte	>	hiv	carry by	monocyte
+hiv	carry in	blood	>	hiv	isolate from	blood
+hiv	transmit by	mosquito	>	hiv	spread with	blood
+mosquito	transmit	hiv	>	hiv	transmit through	transfusion
+hiv	stand for	virus	>	retrovirus	include	hiv
+hiv	lead to	aid	>	hiv	associate with	aid
+hiv	transmit in	blood	>	blood	infect with	hiv
+virus	include	hiv	>	hiv	indicate	virus
+hiv	infect	blood	>	hiv	spread with	blood
+hiv	culture from	lymphocyte	>	lymphocyte	infect with	hiv
+hiv	transmit by	mosquito	>	blood	transmit	hiv
+hiv	transmit by	insect	>	blood	screen for	hiv
+blood	test for	hiv	>	hiv	find in	blood
+hiv	transmit by	insect	>	hiv	transmit by	blood
+hiv	shed in	semen	>	hiv	transmit by	intercourse
+hiv	transmit by	insect	>	hiv	infect	blood
+monocyte	infect with	hiv	>	monocyte	infect by	hiv
+blood	screen for	hiv	>	hiv	find in	blood
+macrophage	infect with	hiv	>	monocyte	infect with	hiv
+hiv	infect	blood	>	hiv	transmit via	blood
+hiv	transmit by	blood	>	hiv	transmit	blood
+hiv	infect	blood	>	hiv	isolate from	blood
+hiv	carry in	blood	>	blood	test for	hiv
+hiv	transmit by	insect	>	blood	test for	hiv
+mosquito	transmit	hiv	>	hiv	spread with	blood
+hiv	transmit through	blood	>	hiv	transmit by	blood
+hiv	transmit in	semen	>	hiv	spread by	intercourse
+hiv	transmit through	blood	>	hiv	find in	blood
+hiv	transmit in	semen	>	hiv	isolate from	semen
+insect	transmit	hiv	>	hiv	enter	bloodstream
+hiv	enter	bloodstream	>	hiv	transmit via	blood
+hiv	carry into	brain	>	hiv	enter	cns
+mosquito	transmit	hiv	>	hiv	transmit by	blood
+hiv	transmit by	mosquito	>	hiv	carry in	blood
+blood	test for	hiv	>	blood	carry	hiv
+virus	include	hiv	>	hiv	contain	rna
+blood	transmit	hiv	>	blood	test for	hiv
+hiv	transmit by	blood	>	hiv	find in	blood
+hiv	transmit through	breastfeeding	>	breastfeeding	transmit	hiv
+hiv	transmit by	sex	>	hiv	spread through	sex
+hiv	deplete	lymphocyte	>	hiv	destroy	lymphocyte
+hiv	transmit through	transfusion	>	blood	test for	hiv
+hiv	enter	cns	>	hiv	infect	neuron
+macrophage	infect by	hiv	>	hiv	infect	lymphocyte
+hiv	cause	aid	>	hiv	develop	aid
+hiv	transmit via	blood	>	blood	test for	hiv
+mosquito	transmit	hiv	>	blood	infect with	hiv
+hiv	spread by	mosquito	>	hiv	find in	blood
+hiv	spread with	blood	>	hiv	find in	blood
+hiv	enter	bloodstream	>	hiv	transmit by	blood
+hiv	enter	bloodstream	>	hiv	find in	blood
+hiv	find in	semen	>	hiv	spread through	sex
+blood	transmit	hiv	>	hiv	isolate from	blood
+hiv	deplete	lymphocyte	>	hiv	culture from	lymphocyte
+hiv	infect	lymphocyte	>	monocyte	infect with	hiv
+hiv	stand for	virus	>	hiv	refer to	virus
+hiv	infect	macrophage	>	hiv	carry by	monocyte
+hiv	progress to	aid	>	sarcoma	cause by	hiv
+hiv	deplete	lymphocyte	>	macrophage	infect by	hiv
+hiv	transmit in	semen	>	hiv	transmit via	intercourse
+hiv	transmit by	mosquito	>	hiv	transmit	blood
+hiv	enter	cns	>	hiv	carry into	brain
+blood	screen for	hiv	>	hiv	isolate from	blood
+hiv	spread through	intercourse	>	hiv	transmit by	sex
+hiv	transmit in	blood	>	hiv	transmit by	blood
+hiv	classify as	retrovirus	>	hiv	refer to	virus
+lymphocyte	infect with	hiv	>	macrophage	infect with	hiv
+hiv	lead to	aid	>	hiv	cause	aid
+blood	test for	hiv	>	hiv	transmit by	blood
+hiv	infect	monocyte	>	hiv	infect	macrophage
+hiv	destroy	lymphocyte	>	monocyte	infect by	hiv
+hiv	transmit by	blood	>	hiv	carry in	blood
+hiv	deplete	lymphocyte	>	hiv	infect	lymphocyte
+hiv	destroy	lymphocyte	>	aid	cause by	hiv
+hiv	transmit by	transfusion	>	blood	screen for	hiv
+hiv	find in	blood	>	blood	screen for	hiv
+virus	include	hiv	>	retrovirus	include	hiv
+hiv	deplete	lymphocyte	>	hiv	attack	lymphocyte
+blood	carry	hiv	>	hiv	spread with	blood
+hiv	find in	blood	>	hiv	infect	blood
+hiv	cause	aid	>	hiv	develop into	aid
+hiv	develop into	aid	>	hiv	develop	aid
+hiv	transmit by	transfusion	>	hiv	isolate from	blood
+hiv	isolate from	blood	>	hiv	transmit in	blood
+hiv	infect	blood	>	hiv	transmit through	blood
+hiv	transmit through	transfusion	>	hiv	transmit via	blood
+hiv	culture from	lymphocyte	>	hiv	infect	macrophage
+hiv	isolate from	semen	>	hiv	spread by	intercourse
+insect	transmit	hiv	>	hiv	transmit by	insect
+hiv	find in	blood	>	hiv	transmit via	blood
+hiv	spread with	blood	>	blood	carry	hiv
+monocyte	infect by	hiv	>	macrophage	infect with	hiv
+blood	infect with	hiv	>	blood	transmit	hiv
+hiv	transmit through	intercourse	>	hiv	transmit via	intercourse
+macrophage	infect by	hiv	>	hiv	infect	monocyte
+blood	carry	hiv	>	blood	infect with	hiv
+hiv	destroy	lymphocyte	>	hiv	infect	lymphocyte
+insect	transmit	hiv	>	hiv	transmit in	blood
+virus	know as	hiv	>	hiv	indicate	virus
+blood	screen for	hiv	>	hiv	transmit by	blood
+hiv	deplete	lymphocyte	>	hiv	develop	aid
+hiv	destroy	lymphocyte	>	hiv	infect	monocyte
+hiv	spread with	blood	>	hiv	infect	blood
+hiv	develop into	aid	>	hiv	associate with	aid
+hiv	refer to	virus	>	virus	include	hiv
+hiv	find in	blood	>	hiv	transmit	blood
+hiv	spread through	sex	>	sex	transmit	hiv
+hiv	transmit	blood	>	hiv	infect	blood
+hiv	destroy	lymphocyte	>	hiv	develop into	aid
+mosquito	transmit	hiv	>	blood	carry	hiv
+hiv	lead to	aid	>	hiv	turn to	aid
+hiv	destroy	lymphocyte	>	hiv	lead to	aid
+blood	screen for	hiv	>	hiv	transmit in	blood
+virus	know as	hiv	>	virus	relate to	hiv
+hiv	transmit by	sex	>	hiv	transmit by	intercourse
+hiv	transmit through	transfusion	>	hiv	transmit	blood
+hiv	carry in	blood	>	hiv	transmit by	transfusion
+hiv	mean	virus	>	hiv	contain	rna
+hiv	transmit via	blood	>	blood	infect with	hiv
+hiv	develop	aid	>	aid	cause by	hiv
+hiv	cause	immunodeficiency	>	hiv	turn to	aid
+aid	cause by	hiv	>	hiv	progress to	aid
+hiv	carry by	monocyte	>	macrophage	infect by	hiv
+hiv	transmit through	transfusion	>	hiv	transmit by	transfusion
+blood	infect with	hiv	>	hiv	enter	bloodstream
+hiv	mean	virus	>	virus	include	hiv
+hiv	infect	blood	>	hiv	be in	blood
+retrovirus	include	hiv	>	hiv	contain	rna
+hiv	classify as	retrovirus	>	retrovirus	include	hiv
+hiv	turn to	aid	>	aid	cause by	hiv
+hiv	contain	rna	>	hiv	refer to	virus
+hiv	deplete	lymphocyte	>	hiv	carry by	monocyte
+virus	know as	hiv	>	hiv	contain	rna
+hiv	transmit by	blood	>	hiv	transmit through	blood
+mosquito	transmit	hiv	>	hiv	spread by	mosquito
+blood	test for	hiv	>	hiv	enter	bloodstream
+hiv	mean	virus	>	virus	relate to	hiv
+hiv	transmit in	blood	>	hiv	enter	bloodstream
+hiv	be in	blood	>	hiv	transmit through	transfusion
+macrophage	infect by	hiv	>	monocyte	infect by	hiv
+hiv	relate to	virus	>	virus	include	hiv
+hiv	carry in	blood	>	hiv	transmit through	transfusion
+hiv	destroy	lymphocyte	>	monocyte	infect with	hiv
+hiv	cause	immunodeficiency	>	sarcoma	cause by	hiv
+blood	screen for	hiv	>	blood	carry	hiv
+blood	test for	hiv	>	blood	screen for	hiv
+hiv	transmit by	mosquito	>	hiv	spread by	mosquito
+lymphocyte	infect with	hiv	>	monocyte	infect by	hiv
+hiv	transmit through	blood	>	hiv	transmit through	transfusion
+mosquito	transmit	hiv	>	hiv	transmit in	blood
+hiv	infect	neuron	>	hiv	attack	neuron
+hiv	transmit by	transfusion	>	hiv	transmit via	blood
+retrovirus	include	hiv	>	hiv	indicate	virus
+hiv	find in	semen	>	hiv	spread by	intercourse
+blood	transmit	hiv	>	blood	carry	hiv
+blood	screen for	hiv	>	blood	infect with	hiv
+hiv	transmit by	mosquito	>	hiv	enter	bloodstream
+macrophage	infect by	hiv	>	hiv	attack	lymphocyte
+hiv	transmit via	blood	>	hiv	be in	blood
+hiv	cause	aid	>	hiv	associate with	aid
+insect	transmit	hiv	>	hiv	find in	blood
+thousand	infect with	hiv	>	hundred	infect with	hiv
+hiv	infect	blood	>	blood	infect with	hiv
+hiv	shed in	semen	>	hiv	transmit by	sex
+hiv	mean	virus	>	retrovirus	include	hiv
+blood	infect with	hiv	>	hiv	transmit by	blood
+sperm	test for	hiv	>	hiv	find in	semen
+hiv	spread through	sex	>	hiv	transmit through	intercourse
+aid	cause by	hiv	>	hiv	cause	aid
+blood	screen for	hiv	>	hiv	infect	blood
+hiv	find in	semen	>	hiv	spread through	intercourse
+hiv	isolate from	blood	>	hiv	transmit by	blood
+hiv	transmit by	insect	>	hiv	transmit through	transfusion
+hiv	enter	bloodstream	>	blood	infect with	hiv
+hiv	isolate from	blood	>	hiv	transmit by	transfusion
+sperm	test for	hiv	>	hiv	shed in	semen
+hiv	transmit	blood	>	hiv	find in	blood
+hiv	spread with	blood	>	blood	infect with	hiv
+mosquito	transmit	hiv	>	hiv	transmit	blood
+insect	transmit	hiv	>	hiv	transmit by	blood
+hiv	transmit by	mosquito	>	mosquito	transmit	hiv
+hiv	transmit through	sex	>	hiv	transmit by	sex
+hiv	transmit	blood	>	blood	infect with	hiv
+mosquito	transmit	hiv	>	hiv	be in	blood
+monocyte	infect by	hiv	>	hiv	culture from	lymphocyte
+hiv	mean	virus	>	virus	know as	hiv
+hiv	relate to	virus	>	retrovirus	include	hiv
+hiv	isolate from	blood	>	blood	test for	hiv
+hiv	spread through	sex	>	hiv	transmit via	intercourse
+virus	include	hiv	>	hiv	classify as	retrovirus
+macrophage	infect by	hiv	>	hiv	culture from	lymphocyte
+hiv	mean	virus	>	hiv	relate to	virus
+hiv	transmit across	placenta	>	hiv	transmit through	placenta
+hiv	infect	macrophage	>	macrophage	infect with	hiv
+million	have	hiv	>	thousand	infect with	hiv
+hiv	transmit by	insect	>	hiv	transmit by	mosquito
+hiv	spread by	mosquito	>	hiv	transmit	blood
+hiv	enter	bloodstream	>	blood	screen for	hiv
+hiv	develop	aid	>	hiv	turn to	aid
+hiv	infect	brain	>	hiv	enter	brain
+lymphocyte	infect with	hiv	>	hiv	infect	lymphocyte
+insect	transmit	hiv	>	hiv	transmit via	blood
+hiv	transmit via	blood	>	hiv	transmit through	blood
+hiv	isolate from	blood	>	hiv	infect	blood
+hiv	refer to	virus	>	virus	relate to	hiv
+hiv	progress to	aid	>	hiv	cause	meningitis
+blood	transmit	hiv	>	hiv	transmit through	blood
+hiv	find in	blood	>	hiv	transmit in	blood
+hiv	indicate	virus	>	hiv	contain	rna
+aid	cause by	hiv	>	hiv	develop	aid
+insect	transmit	hiv	>	mosquito	transmit	hiv
+sex	transmit	hiv	>	hiv	spread through	intercourse
+hiv	attach to	cd4	>	hiv	bind to	cd4
+hiv	transmit in	semen	>	hiv	transmit through	intercourse
+mosquito	transmit	hiv	>	blood	screen for	hiv
+hiv	relate to	virus	>	virus	relate to	hiv
+blood	infect with	hiv	>	hiv	transmit by	transfusion
+retrovirus	include	hiv	>	hiv	stand for	virus
+hiv	spread with	blood	>	hiv	isolate from	blood
+hiv	enter	brain	>	hiv	enter	cns
+hiv	indicate	virus	>	retrovirus	include	hiv
+blood	carry	hiv	>	hiv	infect	blood
+hiv	transmit in	blood	>	hiv	transmit	blood
+blood	carry	hiv	>	hiv	transmit through	blood
+hiv	transmit via	blood	>	hiv	transmit	blood
+hiv	transmit through	sex	>	hiv	spread by	intercourse
+hiv	destroy	lymphocyte	>	hiv	progress to	aid
+hiv	transmit via	intercourse	>	hiv	transmit by	sex
+hiv	spread by	mosquito	>	hiv	carry in	blood
+hiv	transmit through	placenta	>	hiv	transmit across	placenta
+retrovirus	include	hiv	>	virus	know as	hiv
+hiv	transmit through	blood	>	blood	carry	hiv
+sex	transmit	hiv	>	hiv	transmit by	intercourse
+virus	know as	hiv	>	hiv	relate to	virus
+hiv	shed in	semen	>	hiv	spread through	sex
+hiv	isolate from	blood	>	hiv	transmit through	transfusion
+hiv	stand for	virus	>	hiv	contain	rna
+hiv	attack	lymphocyte	>	hiv	infect	macrophage
+monocyte	infect with	hiv	>	hiv	attack	lymphocyte
+hiv	infect	macrophage	>	monocyte	infect with	hiv
+hiv	destroy	lymphocyte	>	hiv	deplete	lymphocyte
+hiv	be in	blood	>	hiv	transmit through	blood
+hiv	spread by	mosquito	>	hiv	transmit by	transfusion
+hiv	transmit through	transfusion	>	hiv	isolate from	blood
+blood	carry	hiv	>	hiv	transmit	blood
+hiv	transmit in	semen	>	hiv	spread through	intercourse
+hiv	contain	rna	>	virus	include	hiv
+hiv	transmit by	transfusion	>	blood	infect with	hiv
+virus	relate to	hiv	>	hiv	mean	virus
+hiv	carry in	blood	>	hiv	transmit via	blood
+hiv	lead to	aid	>	hiv	develop into	aid
+hiv	transmit by	insect	>	blood	carry	hiv
+hiv	find in	blood	>	blood	infect with	hiv
+hiv	infect	monocyte	>	macrophage	infect with	hiv
+hiv	transmit by	insect	>	hiv	be in	blood
+hiv	transmit in	semen	>	hiv	transmit through	sex
+blood	carry	hiv	>	hiv	isolate from	blood
+blood	carry	hiv	>	hiv	transmit via	blood
+hiv	transmit through	transfusion	>	blood	carry	hiv
+sperm	test for	hiv	>	hiv	transmit through	intercourse
+hiv	lead to	aid	>	hiv	develop	aid
+virus	include	hiv	>	hiv	refer to	virus
+hiv	spread by	mosquito	>	hiv	spread with	blood
+hiv	carry by	monocyte	>	hiv	attack	lymphocyte
+hiv	find in	blood	>	hiv	transmit by	blood
+hiv	transmit through	intercourse	>	hiv	spread through	sex
+hiv	deplete	lymphocyte	>	hiv	infect	macrophage
+hiv	spread with	blood	>	blood	transmit	hiv
+hiv	find in	blood	>	hiv	spread with	blood
+hiv	transmit in	semen	>	sperm	test for	hiv
+hiv	infect	monocyte	>	hiv	infect	lymphocyte
+sperm	test for	hiv	>	hiv	transmit by	intercourse
+hiv	cause	aid	>	hiv	cause	meningitis
+hiv	transmit via	blood	>	hiv	isolate from	blood
+hiv	transmit	blood	>	blood	screen for	hiv
+lymphocyte	infect with	hiv	>	hiv	culture from	lymphocyte
+hiv	transmit by	insect	>	hiv	transmit in	blood
+hiv	indicate	virus	>	hiv	mean	virus
+hiv	contain	rna	>	hiv	stand for	virus
+hiv	spread with	blood	>	hiv	transmit	blood
+hiv	cause	immunodeficiency	>	hiv	lead to	aid
+hiv	infect	lymphocyte	>	hiv	culture from	lymphocyte
+hiv	spread by	mosquito	>	blood	screen for	hiv
+hiv	transmit by	mosquito	>	blood	infect with	hiv
+hiv	cause	immunodeficiency	>	hiv	cause	meningitis
+hiv	spread by	intercourse	>	hiv	transmit by	sex
+hiv	infect	macrophage	>	monocyte	infect by	hiv
+hiv	induce	apoptosis	>	hiv	cause	lysis
+hiv	transmit in	blood	>	hiv	spread with	blood
+macrophage	infect by	hiv	>	macrophage	infect with	hiv
+hiv	destroy	lymphocyte	>	hiv	cause	meningitis
+lymphocyte	infect with	hiv	>	hiv	infect	macrophage
+hiv	transmit via	blood	>	hiv	spread with	blood
+hiv	enter	bloodstream	>	hiv	transmit by	transfusion
+hiv	isolate from	blood	>	blood	transmit	hiv
+hiv	find in	blood	>	hiv	transmit through	transfusion
+hiv	deplete	lymphocyte	>	hiv	infect	monocyte
+macrophage	infect with	hiv	>	macrophage	infect by	hiv
+virus	include	hiv	>	virus	relate to	hiv
+hundred	infect with	hiv	>	thousand	infect with	hiv
+insect	transmit	hiv	>	hiv	isolate from	blood
+hiv	shed in	semen	>	hiv	transmit via	intercourse
+hiv	carry in	blood	>	blood	transmit	hiv
+insect	transmit	hiv	>	blood	transmit	hiv
+hiv	develop into	aid	>	hiv	progress to	aid
+hiv	spread by	mosquito	>	hiv	transmit through	transfusion
+monocyte	infect by	hiv	>	hiv	infect	lymphocyte
+hiv	progress to	aid	>	hiv	lead to	aid
+blood	infect with	hiv	>	hiv	isolate from	blood
+hiv	transmit by	blood	>	blood	transmit	hiv
+hiv	transmit through	blood	>	hiv	spread with	blood
+hiv	isolate from	blood	>	blood	carry	hiv

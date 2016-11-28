@@ -1,0 +1,1233 @@
+pneumococcus	respond to	penicillin	>	penicillin	use as	antibiotic
+penicillin	destroy	bacteria	>	penicillin	be against	bacteria
+gonorrhea	cure with	penicillin	>	penicillin	be among	antibiotic
+bacteria	kill by	penicillin	>	penicillin	be for	bacteria
+penicillin	kill	bacteria	>	bacteria	affect by	penicillin
+antibiotic	use as	penicillin	>	antibiotic	substitute for	penicillin
+penicillin	use as	antibiotic	>	penicillin	act on	bacteria
+penicillin	prevent	infection	>	penicillin	control	infection
+penicillin	use as	drug	>	penicillin	establish as	drug
+penicillin	eradicate	infection	>	infection	control by	penicillin
+penicillin	inactivate	aminoglycosides	>	aminoglycoside	give with	penicillin
+pneumococcus	respond to	penicillin	>	penicillin	be against	bacteria
+syphilis	cure with	penicillin	>	penicillin	use as	antibiotic
+infection	treat with	penicillin	>	infection	treat	penicillin
+penicillin	administer with	syphilis	>	penicillin	act on	bacteria
+streptococci	treat with	penicillin	>	bacteria	kill by	penicillin
+antibiotic	replace	penicillin	>	antibiotic	use as	penicillin
+streptococci	respond to	penicillin	>	bacteria	kill by	penicillin
+neurosyphilis	treat with	penicillin	>	syphilis	cure with	penicillin
+gonorrhea	treat by	penicillin	>	penicillin	act on	bacteria
+penicillin	produce by	notatum	>	penicillin	obtain from	notatum
+fleming	name	penicillin	>	fleming	look for	penicillin
+bacteria	kill by	penicillin	>	antibiotic	include	penicillin
+penicillin	administer with	syphilis	>	penicillin	be for	bacteria
+pharyngitis	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	inactivate	aminoglycosides	>	aminoglycosides	inactivate by	penicillin
+penicillin	establish as	drug	>	penicillin	use as	drug
+penicillin	cure	syphilis	>	penicillin	kill	bacteria
+penicillin	give for	syphilis	>	penicillin	be for	bacteria
+penicillin	cure	pneumonia	>	antibiotic	include	penicillin
+infection	control with	penicillin	>	penicillin	cure	infection
+penicillin	administer by	injection	>	penicillin	give by	injection
+penicillin	give by	injection	>	penicillin	absorb after	injection
+mold	produce	penicillin	>	penicillin	come from	mold
+endocarditis	cure by	penicillin	>	penicillin	be for	bacteria
+penicillin	eliminate	streptococci	>	penicillin	regard as	antibiotic
+endocarditis	cure by	penicillin	>	penicillin	use as	antibiotic
+fleming	invent	penicillin	>	fleming	apply	penicillin
+penicillin	use with	aminoglycoside	>	aminoglycoside	give with	penicillin
+penicillin	come from	mold	>	penicillin	obtain from	mold
+syphilis	cure with	penicillin	>	penicillin	administer with	syphilis
+penicillin	prevent	syphilis	>	penicillin	use as	antibiotic
+penicillin	destroy	bacteria	>	penicillin	know as	antibiotic
+penicillin	eliminate by	kidney	>	penicillin	excrete by	kidney
+angina	treat with	penicillin	>	penicillin	be among	antibiotic
+infection	treat by	penicillin	>	penicillin	cure	infection
+infection	respond to	penicillin	>	penicillin	use for	infection
+penicillin	administer for	infection	>	penicillin	be for	infection
+penicillin	discover by	fleming	>	fleming	discover	penicillin
+wound	irrigate with	penicillin	>	penicillin	add for	wound
+penicillin	be against	bacteria	>	penicillin	use as	antibiotic
+penicillin	regard as	antibiotic	>	bacteria	kill by	penicillin
+pneumonia	treat with	penicillin	>	penicillin	cure	pneumonia
+penicillin	become of	toxicity	>	penicillin	be of	toxicity
+angina	treat with	penicillin	>	penicillin	kill	bacteria
+syphilis	treat by	penicillin	>	penicillin	administer with	syphilis
+endocarditis	cure by	penicillin	>	antibiotic	include	penicillin
+pneumonia	treat with	penicillin	>	bacteria	kill by	penicillin
+penicillin	inactivate	aminoglycosides	>	penicillin	combine with	aminoglycoside
+wound	dust with	penicillin	>	penicillin	inject into	wound
+penicillin	know as	antibiotic	>	bacteria	affect by	penicillin
+syphilis	treat by	penicillin	>	penicillin	kill	bacteria
+penicillin	destroy	bacteria	>	penicillin	use as	antibiotic
+penicillin	eliminate	streptococci	>	penicillin	know as	antibiotic
+fleming	give	penicillin	>	fleming	invent	penicillin
+fleming	look for	penicillin	>	penicillin	discover by	flemming
+pyrexia	respond to	penicillin	>	bacteria	affect by	penicillin
+endocarditis	treat with	penicillin	>	penicillin	use as	antibiotic
+endocarditis	treat with	penicillin	>	bacteria	kill by	penicillin
+streptococci	treat with	penicillin	>	penicillin	destroy	bacteria
+pneumonia	treat with	penicillin	>	pneumococcus	respond to	penicillin
+penicillin	eliminate in	urine	>	penicillin	detect in	urine
+penicillin	observe by	fleming	>	fleming	call	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	act on	bacteria
+syphilis	treat by	penicillin	>	penicillin	regard as	antibiotic
+penicillin	cure	syphilis	>	penicillin	be among	antibiotic
+pyrexia	respond to	penicillin	>	penicillin	act on	bacteria
+infection	respond to	penicillin	>	penicillin	be for	infection
+gonorrhea	cure with	penicillin	>	penicillin	destroy	bacteria
+infection	treat with	penicillin	>	infection	cure with	penicillin
+penicillin	cure	pneumonia	>	pneumonia	respond to	penicillin
+infection	control by	penicillin	>	infection	cure with	penicillin
+yaw	respond with	penicillin	>	penicillin	be among	antibiotic
+angina	treat with	penicillin	>	penicillin	know as	antibiotic
+cervicitis	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	protect against	tetanus	>	antibiotic	include	penicillin
+gonorrhea	cure with	penicillin	>	penicillin	cure	gonorrhea
+infection	cure with	penicillin	>	infection	improve by	penicillin
+aminoglycosides	inactivate by	penicillin	>	penicillin	use with	aminoglycoside
+penicillin	prevent	syphilis	>	penicillin	be for	bacteria
+penicillin	give for	syphilis	>	penicillin	destroy	bacteria
+fleming	look for	penicillin	>	fleming	invent	penicillin
+penicillin	follow by	streptomycin	>	streptomycin	use with	penicillin
+gonorrhea	cure with	penicillin	>	penicillin	be against	bacteria
+penicillin	control	infection	>	infection	control with	penicillin
+penicillin	be among	antibiotic	>	penicillin	be for	bacteria
+penicillin	prevent	syphilis	>	penicillin	be against	bacteria
+penicillin	follow by	streptomycin	>	penicillin	combine with	streptomycin
+angina	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	eliminate	streptococci	>	penicillin	be against	bacteria
+pharyngitis	treat with	penicillin	>	penicillin	regard as	antibiotic
+bacteria	affect by	penicillin	>	penicillin	inhibit	bacteria
+penicillin	be without	toxicity	X	penicillin	become of	toxicity
+penicillin	discover by	fleming	>	fleming	look for	penicillin
+fleming	discover	penicillin	>	penicillin	observe by	fleming
+aminoglycoside	give with	penicillin	>	penicillin	combine with	aminoglycoside
+penicillin	cause	toxicity	X	penicillin	eliminate	toxicity
+penicillin	be against	bacteria	>	penicillin	destroy	bacteria
+penicillin	come from	mold	>	mold	produce	penicillin
+penicillin	administer with	syphilis	>	penicillin	use as	antibiotic
+impetigo	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	eliminate	streptococci	>	penicillin	kill	bacteria
+gonorrhea	cure with	penicillin	>	penicillin	regard as	antibiotic
+syphilis	cure with	penicillin	>	penicillin	act on	bacteria
+yaw	respond with	penicillin	>	antibiotic	include	penicillin
+penicillin	prevent	syphilis	>	syphilis	treat with	penicillin
+penicillin	be against	cocci	>	penicillin	use as	antibiotic
+penicillin	eradicate	infection	>	penicillin	cure	infection
+penicillin	use for	meningitis	>	bacteria	kill by	penicillin
+penicillin	eliminate	toxicity	>	penicillin	be without	toxicity
+diphtheria	treat with	penicillin	>	bacteria	kill by	penicillin
+penicillin	give as	injection	>	penicillin	give by	infusion
+bacteria	kill by	penicillin	>	penicillin	destroy	bacteria
+penicillin	kill	streptococci	>	penicillin	destroy	bacteria
+penicillin	regard as	antibiotic	>	penicillin	kill	bacteria
+infection	control by	penicillin	>	penicillin	prevent	infection
+probenecid	give with	penicillin	>	probenecid	administer with	penicillin
+fleming	call	penicillin	>	fleming	discover	penicillin
+penicillin	kill	streptococci	>	penicillin	be against	cocci
+gonorrhea	cure with	penicillin	>	penicillin	act on	bacteria
+neurosyphilis	treat with	penicillin	>	penicillin	kill	bacteria
+infection	treat with	penicillin	>	infection	treat by	penicillin
+penicillin	discover by	fleming	>	fleming	name	penicillin
+penicillin	administer for	infection	>	penicillin	use in	infection
+pyrexia	respond to	penicillin	>	penicillin	kill	bacteria
+wound	irrigate with	penicillin	>	wound	dust with	penicillin
+penicillin	cure	syphilis	>	penicillin	prevent	syphilis
+aminoglycosides	use with	penicillin	>	aminoglycosides	inactivate by	penicillin
+penicillin	obtain from	mold	>	penicillin	derive from	mold
+bacteria	affect by	penicillin	>	penicillin	be among	antibiotic
+penicillin	establish as	drug	>	penicillin	consider	drug
+infection	treat with	penicillin	>	infection	improve by	penicillin
+bacteria	affect by	penicillin	>	penicillin	know as	antibiotic
+nephrosis	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	kill	bacteria	>	penicillin	be against	bacteria
+penicillin	give for	infection	>	infection	respond to	penicillin
+fleming	look for	penicillin	>	penicillin	observe by	fleming
+penicillin	regard as	antibiotic	>	penicillin	know as	antibiotic
+penicillin	give for	syphilis	>	penicillin	use as	antibiotic
+streptomycin	administer with	penicillin	>	penicillin	use with	streptomycin
+bacteria	affect by	penicillin	>	penicillin	prevent	bacteria
+penicillin	act on	bacteria	>	penicillin	inhibit	bacteria
+syphilis	treat by	penicillin	>	penicillin	be for	bacteria
+pneumococcus	respond to	penicillin	>	pneumonia	treat with	penicillin
+penicillin	give for	syphilis	>	penicillin	regard as	antibiotic
+infection	improve by	penicillin	>	infection	cure with	penicillin
+penicillin	be against	microorganism	>	microorganism	treat with	penicillin
+mold	produce	penicillin	>	penicillin	derive from	mold
+probenecid	use with	penicillin	>	probenecid	administer with	penicillin
+penicillin	prevent	syphilis	>	bacteria	affect by	penicillin
+penicillin	know as	antibiotic	>	penicillin	regard as	antibiotic
+antibiotic	use as	penicillin	>	antibiotic	replace	penicillin
+streptococci	respond to	penicillin	>	streptococci	treat with	penicillin
+fleming	discover	penicillin	>	fleming	invent	penicillin
+penicillin	inactivate	gentamicin	>	gentamicin	use with	penicillin
+actinomycosis	treat with	penicillin	>	antibiotic	include	penicillin
+syphilis	treat with	penicillin	>	penicillin	cure	syphilis
+penicillin	cure	syphilis	>	syphilis	cure with	penicillin
+penicillin	combine with	streptomycin	>	penicillin	follow by	streptomycin
+penicillin	discover by	fleming	>	fleming	call	penicillin
+penicillin	cure	gonorrhea	>	penicillin	be against	bacteria
+penicillin	use for	infection	>	penicillin	give for	infection
+penicillin	discover by	flemming	>	fleming	give	penicillin
+penicillin	cure	pneumonia	>	penicillin	be for	bacteria
+penicillin	become of	toxicity	>	penicillin	have	toxicity
+penicillin	cure	syphilis	>	penicillin	give for	syphilis
+penicillin	be against	cocci	>	penicillin	be against	bacteria
+penicillin	cure	infection	>	penicillin	eradicate	infection
+penicillin	give as	injection	>	penicillin	give by	injection
+syphilis	treat by	penicillin	>	penicillin	destroy	bacteria
+penicillin	consider	drug	>	penicillin	regard as	drug
+pyrexia	respond to	penicillin	>	penicillin	be against	bacteria
+penicillin	cure	infection	>	infection	control with	penicillin
+gentamicin	combine with	penicillin	>	penicillin	inactivate	gentamicin
+penicillin	administer with	syphilis	>	syphilis	treat with	penicillin
+actinomycosis	treat with	penicillin	>	penicillin	kill	bacteria
+fleming	name	penicillin	>	fleming	apply	penicillin
+gonorrhea	treat by	penicillin	>	penicillin	kill	bacteria
+pneumonia	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	discover by	fleming	>	penicillin	discover by	flemming
+impetigo	treat with	penicillin	>	bacteria	kill by	penicillin
+infection	treat	penicillin	>	penicillin	control	infection
+penicillin	use for	meningitis	>	penicillin	act on	bacteria
+pneumonia	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	act on	bacteria	>	penicillin	be among	antibiotic
+aminoglycoside	combine with	penicillin	>	aminoglycosides	use with	penicillin
+pharyngitis	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	act on	bacteria	>	antibiotic	include	penicillin
+penicillin	prevent	syphilis	>	penicillin	be among	antibiotic
+penicillin	observe by	fleming	>	fleming	name	penicillin
+syphilis	treat with	penicillin	>	bacteria	affect by	penicillin
+bacteria	affect by	penicillin	>	antibiotic	include	penicillin
+penicillin	use for	prophylaxis	>	penicillin	give as	prophylaxis
+antibiotic	substitute for	penicillin	>	antibiotic	use as	penicillin
+penicillin	inject into	wound	>	wound	dust with	penicillin
+infection	treat by	penicillin	>	infection	treat with	penicillin
+penicillin	kill	streptococci	>	penicillin	act on	bacteria
+penicillin	give as	prophylaxis	>	penicillin	prescribe as	prophylaxis
+penicillin	consider	drug	>	penicillin	use as	drug
+syphilis	treat by	penicillin	>	penicillin	cure	syphilis
+penicillin	be for	bacteria	>	antibiotic	include	penicillin
+bacteria	affect by	penicillin	>	penicillin	use as	antibiotic
+pneumonia	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	eliminate	streptococci	>	penicillin	be for	bacteria
+penicillin	extract from	mold	>	mold	produce	penicillin
+neurosyphilis	treat with	penicillin	>	bacteria	affect by	penicillin
+aminoglycoside	give with	penicillin	>	penicillin	use with	aminoglycoside
+infection	treat	penicillin	>	penicillin	cure	infection
+penicillin	cause	toxicity	>	penicillin	be of	toxicity
+penicillin	inactivate	aminoglycosides	>	aminoglycoside	combine with	penicillin
+pharyngitis	treat with	penicillin	>	penicillin	kill	bacteria
+gonorrhea	treat by	penicillin	>	gonorrhea	cure with	penicillin
+cervicitis	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	protect against	tetanus	>	bacteria	kill by	penicillin
+streptococci	treat with	penicillin	>	antibiotic	include	penicillin
+gonorrhea	cure with	penicillin	>	penicillin	kill	bacteria
+fleming	name	penicillin	>	fleming	discover	penicillin
+aminoglycoside	combine with	penicillin	>	penicillin	inactivate	aminoglycosides
+notatum	produce	penicillin	>	penicillin	derive from	notatum
+penicillin	control	infection	>	infection	treat with	penicillin
+chemotherapy	be with	penicillin	>	penicillin	use in	chemotherapy
+penicillin	cure	gonorrhea	>	gonorrhea	cure with	penicillin
+penicillin	give for	infection	>	penicillin	use in	infection
+medication	include	penicillin	>	drug	include	penicillin
+penicillin	make from	mold	>	penicillin	produce by	mold
+actinomycosis	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	come from	mold	>	penicillin	derive from	fungus
+penicillin	destroy	bacteria	>	penicillin	be among	antibiotic
+actinomycosis	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	use in	chemotherapy	>	chemotherapy	be with	penicillin
+penicillin	be against	bacteria	>	penicillin	know as	antibiotic
+pharyngitis	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	obtain from	mold	>	penicillin	come from	mold
+penicillin	have	toxicity	>	penicillin	cause	toxicity
+penicillin	kill	bacteria	>	penicillin	be among	antibiotic
+fleming	invent	penicillin	>	penicillin	discover by	flemming
+penicillin	kill	bacteria	>	penicillin	know as	antibiotic
+actinomycosis	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	give before	operation	>	penicillin	start before	operation
+pneumococcus	respond to	penicillin	>	penicillin	be among	antibiotic
+penicillin	use as	prophylaxis	>	penicillin	prescribe as	prophylaxis
+penicillin	act on	bacteria	>	bacteria	kill by	penicillin
+infection	control with	penicillin	>	infection	control by	penicillin
+pneumococcus	respond to	penicillin	>	bacteria	affect by	penicillin
+infection	treat	penicillin	>	infection	cure with	penicillin
+penicillin	give for	syphilis	>	syphilis	cure with	penicillin
+penicillin	cause	toxicity	>	penicillin	possess	toxicity
+anthrax	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	derive from	fungus	>	penicillin	obtain from	mold
+penicillin	observe by	fleming	>	fleming	give	penicillin
+streptococci	respond to	penicillin	>	penicillin	kill	streptococci
+syphilis	treat by	penicillin	>	penicillin	give for	syphilis
+penicillin	cure	gonorrhea	>	bacteria	kill by	penicillin
+fleming	invent	penicillin	>	fleming	call	penicillin
+penicillin	be against	bacteria	>	penicillin	kill	bacteria
+penicillin	use as	antibiotic	>	penicillin	know as	antibiotic
+syphilis	cure with	penicillin	>	antibiotic	include	penicillin
+penicillin	derive from	mold	>	penicillin	come from	mold
+penicillin	derive from	mold	>	mold	produce	penicillin
+streptococci	respond to	penicillin	>	penicillin	be against	cocci
+penicillin	give for	infection	>	penicillin	administer for	infection
+penicillin	kill	streptococci	>	streptococci	respond to	penicillin
+penicillin	isolate from	notatum	>	penicillin	derive from	notatum
+syphilis	cure with	penicillin	>	bacteria	affect by	penicillin
+mold	produce	penicillin	>	penicillin	extract from	mold
+penicillin	cure	syphilis	>	penicillin	regard as	antibiotic
+cervicitis	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	obtain from	mold	>	penicillin	extract from	mold
+fleming	find	penicillin	>	penicillin	observe by	fleming
+penicillin	give for	syphilis	>	penicillin	cure	syphilis
+fleming	call	penicillin	>	penicillin	observe by	fleming
+penicillin	start before	operation	>	penicillin	give before	operation
+penicillin	eliminate	streptococci	>	streptococci	treat with	penicillin
+infection	treat	penicillin	>	infection	control with	penicillin
+endocarditis	cure by	penicillin	>	penicillin	know as	antibiotic
+penicillin	regard as	drug	>	penicillin	use as	drug
+syphilis	treat with	penicillin	>	penicillin	know as	antibiotic
+infection	respond to	penicillin	>	penicillin	give for	infection
+wound	dust with	penicillin	>	penicillin	add for	wound
+penicillin	give for	syphilis	>	penicillin	be against	bacteria
+diphtheria	treat with	penicillin	>	penicillin	use as	antibiotic
+impetigo	treat with	penicillin	>	bacteria	affect by	penicillin
+anthrax	treat with	penicillin	>	bacteria	kill by	penicillin
+impetigo	treat with	penicillin	>	penicillin	know as	antibiotic
+diphtheria	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	give for	syphilis	>	penicillin	prevent	syphilis
+penicillin	use for	meningitis	>	penicillin	be among	antibiotic
+neurosyphilis	treat with	penicillin	>	penicillin	be against	bacteria
+syphilis	cure with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	be against	staphylococci	>	antibiotic	include	penicillin
+fleming	name	penicillin	>	fleming	invent	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	cure	syphilis
+fleming	name	penicillin	>	fleming	call	penicillin
+penicillin	administer as	injection	>	penicillin	give as	injection
+neurosyphilis	treat with	penicillin	>	syphilis	treat by	penicillin
+streptococci	treat with	penicillin	>	penicillin	use as	antibiotic
+infection	control by	penicillin	>	penicillin	cure	infection
+pneumonia	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	make from	mold	>	penicillin	come from	mold
+penicillin	give by	infusion	>	penicillin	absorb after	injection
+penicillin	promote	anticoagulant	>	bleeding	cause by	penicillin
+wound	irrigate with	penicillin	>	penicillin	use for	wound
+anthrax	treat with	penicillin	>	antibiotic	include	penicillin
+fleming	discover	penicillin	>	penicillin	discover by	fleming
+penicillin	protect against	tetanus	>	penicillin	kill	bacteria
+gonorrhea	treat by	penicillin	>	bacteria	affect by	penicillin
+penicillin	act on	bacteria	>	penicillin	regard as	antibiotic
+nephrosis	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	eradicate	infection	>	infection	treat	penicillin
+infection	improve by	penicillin	>	infection	control with	penicillin
+aminoglycosides	use with	penicillin	>	penicillin	use with	aminoglycoside
+penicillin	control	infection	>	infection	control by	penicillin
+penicillin	kill	streptococci	>	bacteria	kill by	penicillin
+penicillin	discover by	flemming	>	penicillin	discover by	fleming
+penicillin	be for	bacteria	>	penicillin	be against	bacteria
+penicillin	be of	toxicity	>	penicillin	become of	toxicity
+penicillin	know as	antibiotic	>	penicillin	act on	bacteria
+gonorrhea	treat with	penicillin	>	gonorrhea	treat by	penicillin
+fleming	look for	penicillin	>	fleming	find	penicillin
+pyrexia	respond to	penicillin	>	penicillin	be among	antibiotic
+impetigo	treat with	penicillin	>	penicillin	use as	antibiotic
+fleming	invent	penicillin	>	penicillin	discover by	fleming
+penicillin	be against	cocci	>	bacteria	affect by	penicillin
+gonorrhea	treat with	penicillin	>	penicillin	cure	gonorrhea
+penicillin	eliminate	streptococci	>	penicillin	destroy	bacteria
+neurosyphilis	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	cure	syphilis	>	penicillin	destroy	bacteria
+infection	improve by	penicillin	>	penicillin	prevent	infection
+penicillin	regard as	drug	>	penicillin	consider	drug
+antibiotic	include	penicillin	>	bacteria	affect by	penicillin
+penicillin	inactivate by	penicillinase	>	penicillinase	inactivate	penicillin
+fleming	call	penicillin	>	penicillin	discover by	fleming
+meningitis	treat with	penicillin	>	bacteria	kill by	penicillin
+syphilis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	be among	antibiotic	>	penicillin	act on	bacteria
+aminoglycoside	combine with	penicillin	>	penicillin	combine with	aminoglycoside
+penicillin	obtain from	notatum	>	penicillin	produce by	notatum
+penicillin	eradicate	infection	>	infection	treat by	penicillin
+aminoglycoside	combine with	penicillin	>	aminoglycosides	inactivate by	penicillin
+penicillin	regard as	antibiotic	>	penicillin	act on	bacteria
+penicillin	cure	gonorrhea	>	gonorrhea	treat with	penicillin
+gonorrhea	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	be for	bacteria	>	penicillin	use as	antibiotic
+penicillin	be against	cocci	>	penicillin	be for	bacteria
+penicillin	isolate by	florey	>	florey	use	penicillin
+penicillin	obtain from	mold	>	penicillin	make from	mold
+endocarditis	cure by	penicillin	>	bacteria	affect by	penicillin
+penicillin	eliminate	toxicity	X	penicillin	cause	toxicity
+actinomycosis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	use for	meningitis	>	penicillin	use as	antibiotic
+penicillin	use for	meningitis	>	penicillin	be for	bacteria
+penicillin	destroy	bacteria	>	bacteria	affect by	penicillin
+pneumonia	treat with	penicillin	>	penicillin	regard as	antibiotic
+pneumonia	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	inject into	wound	>	penicillin	add for	wound
+penicillin	be of	toxicity	>	penicillin	have	toxicity
+penicillin	derive from	mold	>	penicillin	obtain from	mold
+penicillin	be for	bacteria	>	penicillin	know as	antibiotic
+fleming	name	penicillin	>	penicillin	discover by	flemming
+wound	dust with	penicillin	>	wound	irrigate with	penicillin
+penicillin	administer with	syphilis	>	bacteria	affect by	penicillin
+pharyngitis	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	use as	prophylaxis	>	penicillin	use for	prophylaxis
+penicillin	regard as	antibiotic	>	penicillin	be against	bacteria
+penicillin	add for	wound	>	wound	dust with	penicillin
+yaw	respond with	penicillin	>	penicillin	be against	bacteria
+infection	improve by	penicillin	>	infection	treat	penicillin
+penicillin	use in	infection	>	infection	respond to	penicillin
+penicillin	act on	bacteria	>	penicillin	be for	bacteria
+penicillin	prevent	syphilis	>	syphilis	cure with	penicillin
+nephrosis	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	derive from	fungus	>	penicillin	make from	mold
+penicillin	absorb after	injection	>	penicillin	give by	injection
+penicillin	use in	infection	>	penicillin	administer for	infection
+penicillin	eliminate	streptococci	>	penicillin	be among	antibiotic
+penicillin	prevent	syphilis	>	penicillin	administer with	syphilis
+gonorrhea	treat by	penicillin	>	penicillin	destroy	bacteria
+penicillin	be against	staphylococci	>	penicillin	be against	cocci
+fleming	look for	penicillin	>	fleming	apply	penicillin
+fleming	discover	penicillin	>	fleming	name	penicillin
+pneumonia	respond to	penicillin	>	penicillin	cure	pneumonia
+penicillin	be among	drug	>	drug	include	penicillin
+penicillin	establish as	drug	>	penicillin	remain	drug
+penicillin	eradicate	infection	>	infection	improve by	penicillin
+penicillin	kill	streptococci	>	penicillin	kill	bacteria
+penicillin	absorb after	injection	>	penicillin	give as	injection
+probenecid	administer with	penicillin	>	probenecid	use with	penicillin
+infection	control with	penicillin	>	infection	treat	penicillin
+penicillin	be against	cocci	>	penicillin	act on	bacteria
+penicillin	administer for	infection	>	penicillin	give for	infection
+penicillin	excrete into	urine	>	penicillin	excrete in	urine
+penicillin	use with	streptomycin	>	streptomycin	use with	penicillin
+angina	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	prevent	infection	>	infection	respond to	penicillin
+penicillin	derive from	fungus	>	penicillin	derive from	mold
+meningitis	treat with	penicillin	>	penicillin	act on	bacteria
+gonorrhea	cure with	penicillin	>	gonorrhea	treat with	penicillin
+penicillin	cure	infection	>	penicillin	control	infection
+antibiotic	substitute for	penicillin	>	antibiotic	replace	penicillin
+penicillin	observe by	fleming	>	fleming	apply	penicillin
+penicillin	introduce in	1940s	>	penicillin	discover in	1940s
+endocarditis	cure by	penicillin	>	penicillin	kill	bacteria
+pyrexia	respond to	penicillin	>	penicillin	be for	bacteria
+penicillin	follow by	streptomycin	>	streptomycin	administer with	penicillin
+penicillin	combine with	streptomycin	>	penicillin	use with	streptomycin
+fleming	give	penicillin	>	fleming	apply	penicillin
+penicillin	become of	toxicity	>	penicillin	possess	toxicity
+penicillin	know as	antibiotic	>	penicillin	use as	antibiotic
+infection	treat with	penicillin	>	infection	control with	penicillin
+penicillin	kill	streptococci	>	penicillin	be among	antibiotic
+bacteria	affect by	penicillin	>	bacteria	kill by	penicillin
+infection	treat with	penicillin	>	penicillin	eradicate	infection
+neurosyphilis	treat with	penicillin	>	antibiotic	include	penicillin
+infection	control with	penicillin	>	penicillin	control	infection
+penicillin	give as	injection	>	penicillin	absorb after	injection
+penicillin	eliminate	streptococci	>	bacteria	kill by	penicillin
+infection	cure with	penicillin	>	penicillin	cure	infection
+penicillin	cure	syphilis	>	antibiotic	include	penicillin
+penicillin	prescribe as	prophylaxis	>	penicillin	give as	prophylaxis
+penicillin	derive from	notatum	>	penicillin	obtain from	notatum
+gonorrhea	treat by	penicillin	>	penicillin	regard as	antibiotic
+penicillin	control	infection	>	infection	treat by	penicillin
+penicillin	include	ampicillin	>	penicillin	include	amoxicillin
+penicillin	inhibit	bacteria	>	penicillin	act on	bacteria
+nephrosis	treat with	penicillin	>	penicillin	act on	bacteria
+probenecid	give with	penicillin	>	probenecid	use with	penicillin
+penicillin	protect against	tetanus	>	penicillin	destroy	bacteria
+fleming	give	penicillin	>	fleming	call	penicillin
+penicillin	kill	streptococci	>	antibiotic	include	penicillin
+infection	treat by	penicillin	>	infection	cure with	penicillin
+endocarditis	cure by	penicillin	>	penicillin	regard as	antibiotic
+gonorrhea	treat with	penicillin	>	penicillin	know as	antibiotic
+syphilis	treat by	penicillin	>	penicillin	prevent	syphilis
+penicillin	use with	streptomycin	>	penicillin	follow by	streptomycin
+penicillin	administer with	syphilis	>	syphilis	cure with	penicillin
+yaw	respond with	penicillin	>	penicillin	destroy	bacteria
+penicillin	be of	toxicity	>	penicillin	cause	toxicity
+streptomycin	use with	penicillin	>	penicillin	use with	streptomycin
+penicillin	discover by	fleming	>	fleming	invent	penicillin
+fleming	give	penicillin	>	fleming	discover	penicillin
+fleming	invent	penicillin	>	fleming	give	penicillin
+penicillin	give as	prophylaxis	>	penicillin	use as	prophylaxis
+penicillin	derive from	mold	>	penicillin	derive from	fungus
+diphtheria	treat with	penicillin	>	bacteria	affect by	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	administer with	syphilis
+penicillin	be among	antibiotic	>	penicillin	be against	bacteria
+endocarditis	cure by	penicillin	>	penicillin	destroy	bacteria
+penicillin	use for	meningitis	>	penicillin	regard as	antibiotic
+streptomycin	combine with	penicillin	>	penicillin	combine with	streptomycin
+penicillin	give by	infusion	>	penicillin	give as	injection
+gonorrhea	cure with	penicillin	>	penicillin	use as	antibiotic
+streptomycin	administer with	penicillin	>	streptomycin	combine with	penicillin
+syphilis	treat by	penicillin	>	antibiotic	include	penicillin
+penicillin	administer with	syphilis	>	penicillin	regard as	antibiotic
+cervicitis	treat with	penicillin	>	bacteria	affect by	penicillin
+endocarditis	treat with	penicillin	>	antibiotic	include	penicillin
+drug	include	penicillin	>	medication	include	penicillin
+penicillin	prevent	syphilis	>	syphilis	treat by	penicillin
+penicillin	remain	drug	>	penicillin	use as	drug
+streptococci	respond to	penicillin	>	penicillin	be against	bacteria
+penicillin	observe by	fleming	>	fleming	look for	penicillin
+penicillin	be against	staphylococci	>	bacteria	kill by	penicillin
+penicillin	use for	prophylaxis	>	penicillin	use as	prophylaxis
+angina	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	be for	bacteria	>	penicillin	kill	bacteria
+fleming	give	penicillin	>	fleming	look for	penicillin
+penicillin	use as	antibiotic	>	penicillin	be among	antibiotic
+syphilis	treat by	penicillin	>	bacteria	affect by	penicillin
+penicillin	control	infection	>	penicillin	eradicate	infection
+streptococci	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	administer with	syphilis	>	penicillin	know as	antibiotic
+penicillin	have	toxicity	X	penicillin	be without	toxicity
+penicillin	prevent	infection	>	infection	improve by	penicillin
+penicillin	be against	cocci	>	penicillin	destroy	bacteria
+angina	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	cure	pneumonia	>	penicillin	kill	bacteria
+penicillin	combine with	aminoglycoside	>	aminoglycosides	inactivate by	penicillin
+bacteria	kill by	penicillin	>	penicillin	be among	antibiotic
+anthrax	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	be against	bacteria	>	bacteria	affect by	penicillin
+fleming	call	penicillin	>	fleming	look for	penicillin
+infection	treat by	penicillin	>	infection	treat	penicillin
+syphilis	treat with	penicillin	>	syphilis	treat by	penicillin
+penicillin	obtain from	notatum	>	penicillin	derive from	notatum
+penicillin	be against	bacteria	>	penicillin	be among	antibiotic
+streptococci	respond to	penicillin	>	penicillin	act on	bacteria
+syphilis	treat with	penicillin	>	penicillin	prevent	syphilis
+infection	treat with	penicillin	>	penicillin	control	infection
+chloramphenicol	administer with	penicillin	>	chloramphenicol	combine with	penicillin
+penicillin	use with	streptomycin	>	streptomycin	combine with	penicillin
+penicillin	derive from	mold	>	penicillin	extract from	mold
+infection	treat	penicillin	>	penicillin	eradicate	infection
+streptococci	respond to	penicillin	>	penicillin	be for	bacteria
+penicillin	administer with	syphilis	>	penicillin	destroy	bacteria
+penicillin	use as	drug	>	penicillin	regard as	drug
+cervicitis	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	inactivate	gentamicin	>	gentamicin	combine with	penicillin
+penicillin	use for	wound	>	penicillin	add for	wound
+penicillin	cure	gonorrhea	>	penicillin	regard as	antibiotic
+penicillin	give by	infusion	>	penicillin	administer by	injection
+infection	respond to	penicillin	>	penicillin	prevent	infection
+antibiotic	include	penicillin	>	penicillin	act on	bacteria
+penicillin	use as	antibiotic	>	bacteria	affect by	penicillin
+gonorrhea	treat by	penicillin	>	bacteria	kill by	penicillin
+penicillin	kill	streptococci	>	penicillin	be against	bacteria
+penicillin	produce by	mold	>	penicillin	obtain from	mold
+penicillin	inject into	wound	>	wound	irrigate with	penicillin
+gonorrhea	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	be of	toxicity	X	penicillin	be without	toxicity
+neurosyphilis	treat with	penicillin	>	penicillin	prevent	syphilis
+actinomycosis	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	have	toxicity	>	penicillin	possess	toxicity
+penicillin	kill	bacteria	>	bacteria	kill by	penicillin
+cephalosporin	relate to	penicillin	>	cephalosporin	resemble	penicillin
+penicillin	cure	infection	>	infection	treat with	penicillin
+fleming	call	penicillin	>	fleming	invent	penicillin
+penicillin	give as	injection	>	penicillin	administer as	injection
+penicillin	give for	syphilis	>	syphilis	treat by	penicillin
+penicillin	prevent	bacteria	>	penicillin	inhibit	bacteria
+probenecid	administer with	penicillin	>	probenecid	give with	penicillin
+clindamycin	compare with	penicillin	>	clindamycin	substitute for	penicillin
+cervicitis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	protect against	tetanus	>	penicillin	regard as	antibiotic
+penicillin	use in	infection	>	penicillin	use for	infection
+penicillin	destroy	bacteria	>	penicillin	regard as	antibiotic
+fleming	discover	penicillin	>	fleming	call	penicillin
+syphilis	treat with	penicillin	>	penicillin	give for	syphilis
+penicillin	inhibit	bacteria	>	penicillin	prevent	bacteria
+anthrax	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	kill	bacteria	>	penicillin	destroy	bacteria
+anthrax	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	act on	bacteria	>	penicillin	know as	antibiotic
+infection	improve by	penicillin	>	penicillin	eradicate	infection
+penicillin	control	infection	>	infection	improve by	penicillin
+penicillin	be for	bacteria	>	penicillin	act on	bacteria
+meningitis	treat with	penicillin	>	penicillin	be among	antibiotic
+streptococci	respond to	penicillin	>	penicillin	eliminate	streptococci
+streptococci	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	be against	cocci	>	penicillin	know as	antibiotic
+penicillin	discover by	flemming	>	fleming	discover	penicillin
+fleming	call	penicillin	>	fleming	name	penicillin
+wound	dust with	penicillin	>	penicillin	use for	wound
+actinomycosis	treat with	penicillin	>	penicillin	regard as	antibiotic
+gonorrhea	treat with	penicillin	>	penicillin	kill	bacteria
+infection	treat	penicillin	>	infection	improve by	penicillin
+penicillin	prevent	syphilis	>	antibiotic	include	penicillin
+penicillin	add for	wound	>	penicillin	inject into	wound
+wound	irrigate with	penicillin	>	penicillin	inject into	wound
+penicillin	cure	syphilis	>	bacteria	affect by	penicillin
+streptococci	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	eradicate	infection	>	infection	cure with	penicillin
+penicillin	protect against	tetanus	>	penicillin	be for	bacteria
+florey	develop	penicillin	>	florey	use	penicillin
+penicillin	extract from	mold	>	penicillin	obtain from	mold
+pneumococcus	respond to	penicillin	>	penicillin	kill	bacteria
+aminoglycosides	use with	penicillin	>	aminoglycoside	give with	penicillin
+microorganism	treat with	penicillin	>	penicillin	be against	microorganism
+penicillin	use for	infection	>	penicillin	be for	infection
+gonorrhea	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	use for	meningitis	>	bacteria	affect by	penicillin
+penicillin	cure	syphilis	>	bacteria	kill by	penicillin
+penicillin	cure	pneumonia	>	penicillin	be against	bacteria
+pyrexia	respond to	penicillin	>	antibiotic	include	penicillin
+penicillin	act on	bacteria	>	penicillin	be against	bacteria
+penicillin	be for	bacteria	>	bacteria	affect by	penicillin
+anthrax	treat with	penicillin	>	penicillin	regard as	antibiotic
+gonorrhea	treat with	penicillin	>	gonorrhea	cure with	penicillin
+syphilis	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	become in	1940s	>	penicillin	discover in	1940s
+fleming	look for	penicillin	>	fleming	give	penicillin
+nephrosis	treat with	penicillin	>	bacteria	kill by	penicillin
+penicillin	control	infection	>	penicillin	cure	infection
+penicillin	regard as	antibiotic	>	penicillin	destroy	bacteria
+aminoglycosides	inactivate by	penicillin	>	penicillin	inactivate	aminoglycosides
+pneumococcus	respond to	penicillin	>	penicillin	regard as	antibiotic
+pyrexia	respond to	penicillin	>	bacteria	kill by	penicillin
+penicillin	eliminate in	urine	>	penicillin	excrete into	urine
+penicillin	observe by	fleming	>	penicillin	discover by	flemming
+gonorrhea	treat by	penicillin	>	penicillin	be for	bacteria
+penicillin	derive from	notatum	>	notatum	produce	penicillin
+meningitis	treat with	penicillin	>	antibiotic	include	penicillin
+gonorrhea	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	excrete by	kidney	>	penicillin	eliminate by	kidney
+penicillin	regard as	drug	>	penicillin	remain	drug
+angina	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	give for	syphilis	>	penicillin	act on	bacteria
+penicillin	inactivate	aminoglycosides	>	aminoglycosides	use with	penicillin
+penicillin	cure	gonorrhea	>	antibiotic	include	penicillin
+penicillin	be without	toxicity	X	penicillin	have	toxicity
+penicillin	administer as	injection	>	penicillin	absorb after	injection
+penicillin	discover by	flemming	>	fleming	invent	penicillin
+penicillinase	inactivate	penicillin	>	penicillinase	destroy	penicillin
+gonorrhea	treat with	penicillin	>	bacteria	affect by	penicillin
+yaw	respond with	penicillin	>	bacteria	affect by	penicillin
+pneumonia	treat with	penicillin	>	penicillin	kill	bacteria
+notatum	produce	penicillin	>	penicillin	obtain from	notatum
+fleming	give	penicillin	>	penicillin	discover by	fleming
+penicillin	make from	mold	>	penicillin	derive from	fungus
+fleming	invent	penicillin	>	fleming	name	penicillin
+fleming	find	penicillin	>	fleming	give	penicillin
+penicillin	act on	bacteria	>	penicillin	prevent	bacteria
+penicillin	cure	pneumonia	>	penicillin	act on	bacteria
+syphilis	cure with	penicillin	>	penicillin	kill	bacteria
+penicillin	give by	injection	>	penicillin	give as	injection
+penicillin	be against	cocci	>	penicillin	kill	bacteria
+yaw	respond with	penicillin	>	penicillin	use as	antibiotic
+syphilis	cure with	penicillin	>	penicillin	destroy	bacteria
+streptococci	treat with	penicillin	>	penicillin	be against	cocci
+penicillin	discover by	flemming	>	fleming	call	penicillin
+gonorrhea	treat by	penicillin	>	penicillin	use as	antibiotic
+penicillin	remain	drug	>	penicillin	consider	drug
+penicillin	possess	toxicity	>	penicillin	be of	toxicity
+bacteria	kill by	penicillin	>	bacteria	affect by	penicillin
+bacteria	kill by	penicillin	>	penicillin	act on	bacteria
+fleming	call	penicillin	>	fleming	apply	penicillin
+syphilis	cure with	penicillin	>	penicillin	be against	bacteria
+penicillin	know as	antibiotic	>	penicillin	be among	antibiotic
+penicillin	use as	antibiotic	>	antibiotic	include	penicillin
+infection	treat by	penicillin	>	infection	improve by	penicillin
+penicillin	control	infection	>	infection	treat	penicillin
+penicillin	administer with	syphilis	>	antibiotic	include	penicillin
+gonorrhea	treat by	penicillin	>	antibiotic	include	penicillin
+penicillin	be against	bacteria	>	bacteria	kill by	penicillin
+streptococci	respond to	penicillin	>	penicillin	be among	antibiotic
+penicillin	extract from	mold	>	penicillin	come from	mold
+penicillin	be for	bacteria	>	penicillin	destroy	bacteria
+infection	treat with	penicillin	>	infection	control by	penicillin
+infection	control with	penicillin	>	penicillin	prevent	infection
+nephrosis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	cure	gonorrhea	>	penicillin	destroy	bacteria
+meningitis	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	isolate from	notatum	>	notatum	produce	penicillin
+yaw	respond with	penicillin	>	penicillin	act on	bacteria
+penicillin	cure	pneumonia	>	penicillin	destroy	bacteria
+infection	improve by	penicillin	>	penicillin	cure	infection
+penicillin	cure	infection	>	infection	cure with	penicillin
+bacteria	affect by	penicillin	>	penicillin	destroy	bacteria
+endocarditis	cure by	penicillin	>	penicillin	be among	antibiotic
+penicillin	cure	pneumonia	>	penicillin	regard as	antibiotic
+gonorrhea	cure with	penicillin	>	bacteria	kill by	penicillin
+endocarditis	treat with	penicillin	>	penicillin	be for	bacteria
+gonorrhea	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	be for	infection	>	penicillin	use in	infection
+penicillin	remain	drug	>	penicillin	establish as	drug
+penicillin	use for	meningitis	>	penicillin	know as	antibiotic
+penicillin	combine with	streptomycin	>	streptomycin	administer with	penicillin
+diphtheria	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	use with	aminoglycoside	>	aminoglycosides	use with	penicillin
+aminoglycoside	combine with	penicillin	>	aminoglycoside	give with	penicillin
+penicillin	produce by	mold	>	penicillin	extract from	mold
+penicillin	isolate by	florey	>	florey	develop	penicillin
+syphilis	cure with	penicillin	>	penicillin	cure	syphilis
+penicillin	cure	syphilis	>	penicillin	be against	bacteria
+penicillin	kill	streptococci	>	penicillin	use as	antibiotic
+aminoglycoside	combine with	penicillin	>	penicillin	use with	aminoglycoside
+mold	produce	penicillin	>	penicillin	produce by	mold
+streptococci	treat with	penicillin	>	streptococci	respond to	penicillin
+penicillin	be against	bacteria	>	penicillin	be for	bacteria
+penicillin	act on	bacteria	>	penicillin	use as	antibiotic
+penicillin	give for	syphilis	>	antibiotic	include	penicillin
+penicillin	use for	meningitis	>	penicillin	kill	bacteria
+streptococci	respond to	penicillin	>	penicillin	know as	antibiotic
+penicillin	cure	syphilis	>	penicillin	know as	antibiotic
+penicillin	use for	meningitis	>	penicillin	be against	bacteria
+penicillin	kill	bacteria	>	penicillin	use as	antibiotic
+penicillin	know as	antibiotic	>	penicillin	kill	bacteria
+pharyngitis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	cure	pneumonia	>	penicillin	be among	antibiotic
+penicillin	become of	toxicity	X	penicillin	be without	toxicity
+penicillin	become in	1940s	>	penicillin	introduce in	1940s
+penicillin	use for	meningitis	>	antibiotic	include	penicillin
+infection	treat	penicillin	>	infection	control by	penicillin
+penicillin	cure	syphilis	>	syphilis	treat by	penicillin
+penicillin	give for	syphilis	>	penicillin	administer with	syphilis
+neurosyphilis	treat with	penicillin	>	penicillin	give for	syphilis
+syphilis	cure with	penicillin	>	bacteria	kill by	penicillin
+penicillin	be among	antibiotic	>	penicillin	kill	bacteria
+penicillin	give by	infusion	>	penicillin	administer as	injection
+streptomycin	use with	penicillin	>	penicillin	combine with	streptomycin
+penicillin	be for	infection	>	penicillin	administer for	infection
+penicillin	combine with	streptomycin	>	streptomycin	combine with	penicillin
+streptomycin	use with	penicillin	>	streptomycin	administer with	penicillin
+cervicitis	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	prevent	syphilis	>	penicillin	know as	antibiotic
+penicillin	administer by	mouth	>	penicillin	give by	mouth
+pharyngitis	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	prevent	syphilis	>	penicillin	act on	bacteria
+pneumococcus	respond to	penicillin	>	penicillin	be against	cocci
+streptococci	respond to	penicillin	>	penicillin	kill	bacteria
+endocarditis	cure by	penicillin	>	penicillin	act on	bacteria
+fleming	name	penicillin	>	penicillin	observe by	fleming
+penicillin	discover by	fleming	>	fleming	apply	penicillin
+gentamicin	use with	penicillin	>	penicillin	inactivate	gentamicin
+aminoglycoside	give with	penicillin	>	penicillin	inactivate	aminoglycosides
+penicillin	regard as	antibiotic	>	penicillin	be for	bacteria
+neurosyphilis	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	eliminate	streptococci	>	penicillin	be against	cocci
+penicillin	discover by	flemming	>	fleming	name	penicillin
+penicillin	use with	aminoglycoside	>	aminoglycosides	inactivate by	penicillin
+penicillin	administer with	syphilis	>	penicillin	prevent	syphilis
+fleming	call	penicillin	>	fleming	give	penicillin
+penicillin	be without	toxicity	X	penicillin	possess	toxicity
+bacteria	affect by	penicillin	>	penicillin	be for	bacteria
+cervicitis	treat with	penicillin	>	bacteria	kill by	penicillin
+infection	improve by	penicillin	>	infection	control by	penicillin
+penicillin	eliminate in	urine	>	penicillin	excrete in	urine
+diphtheria	treat with	penicillin	>	penicillin	be among	antibiotic
+aminoglycosides	inactivate by	penicillin	>	aminoglycoside	combine with	penicillin
+penicillin	destroy	bacteria	>	penicillin	act on	bacteria
+impetigo	treat with	penicillin	>	penicillin	be for	bacteria
+pyrexia	respond to	penicillin	>	penicillin	know as	antibiotic
+penicillin	give for	infection	>	penicillin	be for	infection
+penicillin	derive from	notatum	>	penicillin	produce by	notatum
+impetigo	treat with	penicillin	>	penicillin	destroy	bacteria
+infection	treat with	penicillin	>	penicillin	cure	infection
+penicillin	cure	gonorrhea	>	bacteria	affect by	penicillin
+bacteria	affect by	penicillin	>	penicillin	act on	bacteria
+bleeding	cause by	penicillin	>	penicillin	promote	anticoagulant
+bacteria	kill by	penicillin	>	penicillin	use as	antibiotic
+pyrexia	respond to	penicillin	>	penicillin	use as	antibiotic
+penicillin	absorb after	injection	>	penicillin	administer as	injection
+yaw	respond with	penicillin	>	yaw	treat with	penicillin
+penicillin	follow by	streptomycin	>	streptomycin	combine with	penicillin
+penicillin	be for	infection	>	infection	respond to	penicillin
+pyrexia	respond to	penicillin	>	penicillin	regard as	antibiotic
+penicillin	excrete in	urine	>	penicillin	detect in	urine
+meningitis	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	administer by	injection	>	penicillin	give by	infusion
+penicillin	destroy	bacteria	>	penicillin	be for	bacteria
+penicillin	combine with	aminoglycoside	>	penicillin	use with	aminoglycoside
+penicillin	kill	bacteria	>	penicillin	regard as	antibiotic
+penicillinase	destroy	penicillin	>	penicillin	inactivate by	penicillinase
+penicillin	protect against	tetanus	>	penicillin	act on	bacteria
+penicillin	observe by	fleming	>	fleming	invent	penicillin
+penicillin	cure	pneumonia	>	penicillin	use as	antibiotic
+penicillin	be against	staphylococci	>	bacteria	affect by	penicillin
+penicillin	be against	cocci	>	penicillin	regard as	antibiotic
+penicillin	regard as	antibiotic	>	penicillin	be among	antibiotic
+penicillin	discover by	fleming	>	fleming	give	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	prevent	infection	>	infection	control by	penicillin
+penicillin	eliminate	streptococci	>	penicillin	use as	antibiotic
+penicillin	produce by	notatum	>	penicillin	derive from	notatum
+penicillin	cure	gonorrhea	>	penicillin	kill	bacteria
+fleming	name	penicillin	>	penicillin	discover by	fleming
+penicillin	prevent	bacteria	>	penicillin	act on	bacteria
+antibiotic	include	penicillin	>	penicillin	kill	bacteria
+penicillin	destroy	bacteria	>	antibiotic	include	penicillin
+penicillin	obtain from	mold	>	mold	produce	penicillin
+penicillin	isolate from	notatum	>	penicillin	produce by	notatum
+gonorrhea	treat with	penicillin	>	bacteria	kill by	penicillin
+gonorrhea	cure with	penicillin	>	penicillin	know as	antibiotic
+endocarditis	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	administer with	syphilis	>	bacteria	kill by	penicillin
+clindamycin	substitute for	penicillin	>	clindamycin	compare with	penicillin
+endocarditis	treat with	penicillin	>	penicillin	destroy	bacteria
+infection	cure with	penicillin	>	infection	control by	penicillin
+infection	cure with	penicillin	>	infection	treat with	penicillin
+cervicitis	treat with	penicillin	>	penicillin	act on	bacteria
+antibiotic	replace	penicillin	>	antibiotic	substitute for	penicillin
+gonorrhea	treat with	penicillin	>	penicillin	be against	bacteria
+drug	include	penicillin	>	penicillin	be among	drug
+infection	cure with	penicillin	>	infection	treat	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	be among	antibiotic
+streptococci	treat with	penicillin	>	penicillin	know as	antibiotic
+actinomycosis	treat with	penicillin	>	penicillin	use as	antibiotic
+meningitis	treat with	penicillin	>	penicillin	use as	antibiotic
+actinomycosis	treat with	penicillin	>	bacteria	kill by	penicillin
+aminoglycosides	use with	penicillin	>	aminoglycoside	combine with	penicillin
+penicillin	cure	infection	>	infection	treat by	penicillin
+diphtheria	treat with	penicillin	>	antibiotic	include	penicillin
+pharyngitis	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	use with	streptomycin	>	penicillin	combine with	streptomycin
+antibiotic	include	penicillin	>	penicillin	regard as	antibiotic
+penicillin	use for	wound	>	wound	dust with	penicillin
+fleming	find	penicillin	>	fleming	invent	penicillin
+penicillin	be against	staphylococci	>	penicillin	be against	bacteria
+pneumonia	treat with	penicillin	>	penicillin	be for	bacteria
+anthrax	treat with	penicillin	>	penicillin	kill	bacteria
+syphilis	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	save	million	>	penicillin	save	life
+penicillin	produce by	notatum	>	penicillin	isolate from	notatum
+infection	control by	penicillin	>	infection	treat	penicillin
+bacteria	kill by	penicillin	>	penicillin	regard as	antibiotic
+meningitis	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	be among	antibiotic	>	penicillin	know as	antibiotic
+penicillin	use as	prophylaxis	>	penicillin	give as	prophylaxis
+actinomycosis	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillinase	inactivate	penicillin	>	penicillin	inactivate by	penicillinase
+penicillin	kill	streptococci	>	penicillin	be for	bacteria
+penicillin	be against	staphylococci	>	penicillin	kill	bacteria
+gonorrhea	treat by	penicillin	>	penicillin	know as	antibiotic
+pharyngitis	treat with	penicillin	>	penicillin	be among	antibiotic
+diphtheria	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	inactivate	aminoglycosides	>	penicillin	use with	aminoglycoside
+infection	control with	penicillin	>	infection	cure with	penicillin
+infection	improve by	penicillin	>	infection	treat by	penicillin
+infection	improve by	penicillin	>	penicillin	control	infection
+penicillin	possess	toxicity	>	penicillin	become of	toxicity
+penicillin	kill	streptococci	>	penicillin	eliminate	streptococci
+penicillin	give by	injection	>	penicillin	give by	infusion
+syphilis	cure with	penicillin	>	penicillin	give for	syphilis
+penicillin	administer by	injection	>	penicillin	absorb after	injection
+infection	respond to	penicillin	>	penicillin	use in	infection
+penicillin	know as	antibiotic	>	penicillin	destroy	bacteria
+penicillin	derive from	notatum	>	penicillin	isolate from	notatum
+syphilis	cure with	penicillin	>	penicillin	be among	antibiotic
+fleming	find	penicillin	>	fleming	look for	penicillin
+pneumonia	treat with	penicillin	>	penicillin	know as	antibiotic
+nephrosis	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	make from	mold	>	penicillin	extract from	mold
+penicillin	use with	aminoglycoside	>	penicillin	combine with	aminoglycoside
+syphilis	treat with	penicillin	>	syphilis	cure with	penicillin
+fleming	give	penicillin	>	fleming	find	penicillin
+penicillin	be among	drug	>	medication	include	penicillin
+penicillin	prevent	syphilis	>	penicillin	kill	bacteria
+pneumococcus	respond to	penicillin	>	penicillin	know as	antibiotic
+penicillin	be against	cocci	>	bacteria	kill by	penicillin
+notatum	produce	penicillin	>	penicillin	isolate from	notatum
+penicillin	administer with	syphilis	>	penicillin	give for	syphilis
+penicillin	eradicate	infection	>	infection	control with	penicillin
+penicillin	cure	pneumonia	>	penicillin	know as	antibiotic
+penicillin	regard as	drug	>	penicillin	establish as	drug
+penicillin	be among	antibiotic	>	penicillin	destroy	bacteria
+aminoglycosides	inactivate by	penicillin	>	aminoglycosides	use with	penicillin
+penicillin	come from	mold	>	penicillin	produce by	mold
+penicillin	be against	bacteria	>	penicillin	act on	bacteria
+penicillin	obtain from	mold	>	penicillin	derive from	fungus
+aminoglycosides	use with	penicillin	>	penicillin	inactivate	aminoglycosides
+neurosyphilis	treat with	penicillin	>	bacteria	kill by	penicillin
+actinomycosis	treat with	penicillin	>	penicillin	destroy	bacteria
+streptomycin	administer with	penicillin	>	penicillin	combine with	streptomycin
+syphilis	cure with	penicillin	>	penicillin	be for	bacteria
+medication	include	penicillin	>	penicillin	be among	drug
+streptomycin	administer with	penicillin	>	penicillin	follow by	streptomycin
+penicillin	establish as	drug	>	penicillin	regard as	drug
+penicillin	use as	antibiotic	>	penicillin	be against	bacteria
+infection	respond to	penicillin	>	penicillin	administer for	infection
+streptomycin	combine with	penicillin	>	streptomycin	administer with	penicillin
+penicillin	possess	toxicity	>	penicillin	have	toxicity
+penicillin	give by	mouth	>	penicillin	administer by	mouth
+probenecid	use with	penicillin	>	probenecid	give with	penicillin
+syphilis	cure with	penicillin	>	syphilis	treat by	penicillin
+penicillin	be against	staphylococci	>	penicillin	regard as	antibiotic
+penicillin	obtain from	mold	>	penicillin	produce by	mold
+penicillin	destroy	bacteria	>	bacteria	kill by	penicillin
+endocarditis	treat with	penicillin	>	penicillin	be against	bacteria
+fleming	call	penicillin	>	fleming	find	penicillin
+penicillin	use as	antibiotic	>	penicillin	be for	bacteria
+penicillin	add for	wound	>	wound	irrigate with	penicillin
+penicillin	use in	infection	>	penicillin	give for	infection
+aminoglycosides	use with	penicillin	>	penicillin	combine with	aminoglycoside
+penicillin	act on	bacteria	>	penicillin	destroy	bacteria
+impetigo	treat with	penicillin	>	penicillin	be among	antibiotic
+bacteria	kill by	penicillin	>	penicillin	be against	bacteria
+penicillin	remain	drug	>	penicillin	regard as	drug
+gonorrhea	treat with	penicillin	>	penicillin	be among	antibiotic
+streptococci	treat with	penicillin	>	penicillin	eliminate	streptococci
+penicillin	administer with	syphilis	>	syphilis	treat by	penicillin
+penicillin	excrete into	urine	>	penicillin	eliminate in	urine
+penicillin	cure	pneumonia	>	pneumococcus	respond to	penicillin
+infection	control by	penicillin	>	infection	improve by	penicillin
+penicillin	prevent	syphilis	>	penicillin	cure	syphilis
+syphilis	treat with	penicillin	>	penicillin	regard as	antibiotic
+pneumonia	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	kill	streptococci	>	streptococci	treat with	penicillin
+fleming	give	penicillin	>	fleming	name	penicillin
+infection	control by	penicillin	>	penicillin	control	infection
+pyrexia	respond to	penicillin	>	penicillin	destroy	bacteria
+syphilis	treat by	penicillin	>	bacteria	kill by	penicillin
+penicillin	excrete in	urine	>	penicillin	excrete into	urine
+infection	control by	penicillin	>	infection	treat by	penicillin
+aminoglycoside	give with	penicillin	>	aminoglycosides	use with	penicillin
+fleming	invent	penicillin	>	penicillin	observe by	fleming
+fleming	discover	penicillin	>	penicillin	discover by	flemming
+penicillin	cure	infection	>	infection	improve by	penicillin
+yaw	respond with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	regard as	antibiotic	>	penicillin	use as	antibiotic
+penicillin	control	infection	>	penicillin	prevent	infection
+penicillin	be among	antibiotic	>	bacteria	kill by	penicillin
+penicillin	administer for	infection	>	infection	respond to	penicillin
+syphilis	treat by	penicillin	>	penicillin	be against	bacteria
+penicillin	extract from	mold	>	penicillin	produce by	mold
+penicillin	use as	antibiotic	>	penicillin	regard as	antibiotic
+pneumococcus	respond to	penicillin	>	penicillin	act on	bacteria
+angina	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	produce by	mold	>	penicillin	come from	mold
+mold	produce	penicillin	>	penicillin	make from	mold
+penicillin	be without	toxicity	X	penicillin	be of	toxicity
+penicillin	give by	injection	>	penicillin	administer by	injection
+penicillin	absorb after	injection	>	penicillin	give by	infusion
+endocarditis	treat with	penicillin	>	penicillin	act on	bacteria
+fleming	discover	penicillin	>	fleming	give	penicillin
+penicillin	become of	toxicity	>	penicillin	cause	toxicity
+fleming	name	penicillin	>	fleming	find	penicillin
+syphilis	treat by	penicillin	>	syphilis	treat with	penicillin
+penicillin	be for	infection	>	penicillin	use for	infection
+fleming	invent	penicillin	>	fleming	find	penicillin
+endocarditis	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	administer by	injection	>	penicillin	administer as	injection
+penicillin	protect against	tetanus	>	bacteria	affect by	penicillin
+penicillin	discover by	flemming	>	fleming	look for	penicillin
+penicillin	extract from	mold	>	penicillin	derive from	mold
+penicillin	be of	toxicity	>	penicillin	possess	toxicity
+penicillin	be among	antibiotic	>	bacteria	affect by	penicillin
+penicillin	act on	bacteria	>	bacteria	affect by	penicillin
+penicillin	cure	pneumonia	>	bacteria	affect by	penicillin
+diphtheria	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	isolate from	notatum	>	penicillin	obtain from	notatum
+penicillin	administer as	injection	>	penicillin	give by	infusion
+penicillin	inhibit	bacteria	>	bacteria	affect by	penicillin
+infection	control by	penicillin	>	infection	treat with	penicillin
+penicillin	save	million	>	penicillin	save	thousand
+fleming	find	penicillin	>	fleming	apply	penicillin
+pneumococcus	respond to	penicillin	>	penicillin	destroy	bacteria
+streptococci	treat with	penicillin	>	penicillin	kill	streptococci
+streptococci	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	include	amoxicillin	>	penicillin	include	ampicillin
+penicillinase	destroy	penicillin	>	penicillinase	inactivate	penicillin
+penicillin	be for	infection	>	penicillin	give for	infection
+penicillin	discover in	1940s	>	penicillin	introduce in	1940s
+penicillin	absorb after	injection	>	penicillin	administer by	injection
+syphilis	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	kill	streptococci	>	penicillin	know as	antibiotic
+penicillin	derive from	fungus	>	penicillin	extract from	mold
+penicillin	cure	gonorrhea	>	gonorrhea	treat by	penicillin
+penicillin	know as	antibiotic	>	antibiotic	include	penicillin
+syphilis	cure with	penicillin	>	syphilis	treat with	penicillin
+pneumococcus	respond to	penicillin	>	penicillin	cure	pneumonia
+penicillin	extract from	mold	>	penicillin	make from	mold
+penicillin	give by	injection	>	penicillin	administer as	injection
+antibiotic	include	penicillin	>	penicillin	be for	bacteria
+penicillin	administer by	injection	>	penicillin	give as	injection
+penicillin	know as	antibiotic	>	penicillin	be for	bacteria
+streptococci	respond to	penicillin	>	penicillin	regard as	antibiotic
+penicillin	kill	bacteria	>	antibiotic	include	penicillin
+penicillin	administer with	syphilis	>	penicillin	cure	syphilis
+anthrax	treat with	penicillin	>	bacteria	affect by	penicillin
+penicillin	observe by	fleming	>	penicillin	discover by	fleming
+penicillin	possess	toxicity	>	penicillin	cause	toxicity
+penicillin	protect against	tetanus	>	penicillin	be against	bacteria
+penicillin	prevent	syphilis	>	bacteria	kill by	penicillin
+penicillin	cure	gonorrhea	>	penicillin	be among	antibiotic
+penicillin	use for	wound	>	wound	irrigate with	penicillin
+penicillin	protect against	tetanus	>	penicillin	be among	antibiotic
+fleming	find	penicillin	>	fleming	discover	penicillin
+streptomycin	combine with	penicillin	>	streptomycin	use with	penicillin
+gonorrhea	cure with	penicillin	>	gonorrhea	treat by	penicillin
+penicillin	use for	infection	>	penicillin	administer for	infection
+penicillin	prevent	infection	>	infection	control with	penicillin
+syphilis	cure with	penicillin	>	penicillin	know as	antibiotic
+penicillin	be against	bacteria	>	penicillin	regard as	antibiotic
+penicillin	derive from	fungus	>	penicillin	come from	mold
+penicillin	kill	streptococci	>	bacteria	affect by	penicillin
+nephrosis	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	cure	pneumonia	>	penicillin	be against	cocci
+penicillin	be against	cocci	>	antibiotic	include	penicillin
+penicillin	cure	syphilis	>	penicillin	administer with	syphilis
+pneumococcus	respond to	penicillin	>	antibiotic	include	penicillin
+angina	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	use as	drug	>	penicillin	consider	drug
+penicillin	administer with	syphilis	>	penicillin	kill	bacteria
+syphilis	treat by	penicillin	>	penicillin	know as	antibiotic
+infection	treat by	penicillin	>	penicillin	eradicate	infection
+syphilis	treat by	penicillin	>	penicillin	use as	antibiotic
+gonorrhea	cure with	penicillin	>	bacteria	affect by	penicillin
+neurosyphilis	treat with	penicillin	>	syphilis	treat with	penicillin
+penicillin	derive from	mold	>	penicillin	make from	mold
+gonorrhea	treat by	penicillin	>	penicillin	be among	antibiotic
+notatum	produce	penicillin	>	penicillin	produce by	notatum
+penicillin	be for	bacteria	>	penicillin	regard as	antibiotic
+penicillin	control	infection	>	infection	cure with	penicillin
+penicillin	give for	syphilis	>	penicillin	know as	antibiotic
+infection	control with	penicillin	>	infection	improve by	penicillin
+penicillin	use as	antibiotic	>	penicillin	destroy	bacteria
+bacteria	affect by	penicillin	>	penicillin	be against	bacteria
+fleming	discover	penicillin	>	fleming	apply	penicillin
+syphilis	treat by	penicillin	>	penicillin	be among	antibiotic
+nephrosis	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	possess	toxicity	X	penicillin	be without	toxicity
+meningitis	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	excrete in	urine	>	penicillin	eliminate in	urine
+infection	treat by	penicillin	>	infection	control by	penicillin
+penicillin	combine with	streptomycin	>	streptomycin	use with	penicillin
+penicillin	observe by	fleming	>	fleming	discover	penicillin
+impetigo	treat with	penicillin	>	antibiotic	include	penicillin
+penicillin	regard as	antibiotic	>	bacteria	affect by	penicillin
+penicillin	discover by	flemming	>	penicillin	observe by	fleming
+penicillin	produce by	mold	>	penicillin	derive from	mold
+meningitis	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	produce by	mold	>	penicillin	make from	mold
+penicillin	prevent	syphilis	>	penicillin	regard as	antibiotic
+streptococci	treat with	penicillin	>	penicillin	regard as	antibiotic
+penicillin	be without	toxicity	>	penicillin	eliminate	toxicity
+penicillin	cure	gonorrhea	>	penicillin	act on	bacteria
+bacteria	kill by	penicillin	>	penicillin	know as	antibiotic
+yaw	respond with	penicillin	>	penicillin	be for	bacteria
+penicillin	cure	gonorrhea	>	penicillin	know as	antibiotic
+penicillin	cure	infection	>	infection	treat	penicillin
+infection	improve by	penicillin	>	infection	treat with	penicillin
+penicillin	eliminate	streptococci	>	penicillin	act on	bacteria
+penicillin	cause	toxicity	>	penicillin	have	toxicity
+penicillin	be for	bacteria	>	bacteria	kill by	penicillin
+endocarditis	cure by	penicillin	>	penicillin	be against	bacteria
+anthrax	treat with	penicillin	>	penicillin	destroy	bacteria
+gonorrhea	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	administer with	syphilis	>	penicillin	be among	antibiotic
+endocarditis	treat with	penicillin	>	endocarditis	cure by	penicillin
+penicillin	use for	infection	>	infection	respond to	penicillin
+penicillin	make from	mold	>	mold	produce	penicillin
+penicillin	be among	antibiotic	>	antibiotic	include	penicillin
+penicillin	use in	infection	>	penicillin	be for	infection
+penicillin	give by	infusion	>	penicillin	give by	injection
+angina	treat with	penicillin	>	penicillin	use as	antibiotic
+syphilis	treat with	penicillin	>	bacteria	kill by	penicillin
+fleming	call	penicillin	>	penicillin	discover by	flemming
+fleming	name	penicillin	>	fleming	give	penicillin
+endocarditis	cure by	penicillin	>	endocarditis	treat with	penicillin
+penicillin	inactivate by	lactamases	>	lactamases	inactivate	penicillin
+penicillin	be against	staphylococci	>	penicillin	act on	bacteria
+bacteria	kill by	penicillin	>	penicillin	kill	bacteria
+penicillin	kill	bacteria	>	penicillin	act on	bacteria
+penicillin	administer as	injection	>	penicillin	give by	injection
+diphtheria	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	be for	bacteria	>	penicillin	be among	antibiotic
+penicillin	prevent	syphilis	>	penicillin	give for	syphilis
+cervicitis	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	use with	streptomycin	>	streptomycin	administer with	penicillin
+penicillin	use for	meningitis	>	penicillin	destroy	bacteria
+diphtheria	treat with	penicillin	>	penicillin	regard as	antibiotic
+pneumonia	treat with	penicillin	>	pneumonia	respond to	penicillin
+fleming	look for	penicillin	>	penicillin	discover by	fleming
+penicillin	cure	gonorrhea	>	penicillin	use as	antibiotic
+streptococci	treat with	penicillin	>	penicillin	be for	bacteria
+antibiotic	include	penicillin	>	penicillin	be among	antibiotic
+aminoglycosides	inactivate by	penicillin	>	penicillin	combine with	aminoglycoside
+fleming	discover	penicillin	>	fleming	find	penicillin
+antibiotic	include	penicillin	>	penicillin	destroy	bacteria
+penicillin	use for	prophylaxis	>	penicillin	prescribe as	prophylaxis
+penicillin	administer for	infection	>	penicillin	use for	infection
+penicillin	eradicate	infection	>	penicillin	control	infection
+penicillin	act on	bacteria	>	penicillin	kill	bacteria
+penicillin	obtain from	notatum	>	notatum	produce	penicillin
+penicillin	cure	syphilis	>	penicillin	act on	bacteria
+penicillin	use for	meningitis	>	meningitis	treat with	penicillin
+anthrax	treat with	penicillin	>	penicillin	use as	antibiotic
+penicillin	cure	syphilis	>	penicillin	use as	antibiotic
+penicillin	cure	gonorrhea	>	penicillin	be for	bacteria
+gonorrhea	cure with	penicillin	>	antibiotic	include	penicillin
+penicillin	prevent	bacteria	>	bacteria	affect by	penicillin
+penicillin	cause	toxicity	X	penicillin	be without	toxicity
+antibiotic	include	penicillin	>	penicillin	use as	antibiotic
+fleming	find	penicillin	>	fleming	call	penicillin
+gonorrhea	treat by	penicillin	>	penicillin	be against	bacteria
+penicillin	cure	syphilis	>	penicillin	be for	bacteria
+neurosyphilis	treat with	penicillin	>	penicillin	be for	bacteria
+meningitis	treat with	penicillin	>	penicillin	be for	bacteria
+penicillin	be against	staphylococci	>	penicillin	destroy	bacteria
+infection	control with	penicillin	>	infection	treat with	penicillin
+syphilis	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	know as	antibiotic	>	bacteria	kill by	penicillin
+lactamases	inactivate	penicillin	>	penicillin	inactivate by	lactamases
+penicillin	produce by	fungus	>	penicillin	derive from	fungus
+syphilis	treat with	penicillin	>	penicillin	destroy	bacteria
+gonorrhea	treat by	penicillin	>	penicillin	cure	gonorrhea
+penicillin	obtain from	notatum	>	penicillin	isolate from	notatum
+pharyngitis	treat with	penicillin	>	penicillin	know as	antibiotic
+infection	control with	penicillin	>	penicillin	eradicate	infection
+penicillin	give for	syphilis	>	bacteria	kill by	penicillin
+penicillin	eliminate	streptococci	>	antibiotic	include	penicillin
+penicillin	discover by	fleming	>	penicillin	observe by	fleming
+penicillin	eradicate	infection	>	infection	treat with	penicillin
+penicillin	prescribe as	prophylaxis	>	penicillin	use for	prophylaxis
+penicillin	derive from	fungus	>	penicillin	produce by	fungus
+cervicitis	treat with	penicillin	>	penicillin	be against	bacteria
+penicillin	kill	bacteria	>	penicillin	be for	bacteria
+penicillin	come from	mold	>	penicillin	derive from	mold
+fleming	invent	penicillin	>	fleming	look for	penicillin
+endocarditis	treat with	penicillin	>	penicillin	know as	antibiotic
+meningitis	treat with	penicillin	>	penicillin	use for	meningitis
+penicillin	use with	aminoglycoside	>	penicillin	inactivate	aminoglycosides
+infection	control with	penicillin	>	infection	treat by	penicillin
+penicillin	protect against	tetanus	>	penicillin	know as	antibiotic
+fleming	look for	penicillin	>	fleming	name	penicillin
+penicillin	be without	toxicity	X	penicillin	cause	toxicity
+penicillin	consider	drug	>	penicillin	establish as	drug
+penicillin	derive from	mold	>	penicillin	produce by	mold
+penicillin	excrete into	urine	>	penicillin	detect in	urine
+penicillin	have	toxicity	>	penicillin	be of	toxicity
+streptococci	respond to	penicillin	>	antibiotic	include	penicillin
+penicillin	add for	wound	>	penicillin	use for	wound
+penicillin	be against	staphylococci	>	penicillin	use as	antibiotic
+pneumonia	treat with	penicillin	>	penicillin	act on	bacteria
+bacteria	affect by	penicillin	>	penicillin	kill	bacteria
+penicillin	prescribe as	prophylaxis	>	penicillin	use as	prophylaxis
+penicillin	destroy	bacteria	>	penicillin	kill	bacteria
+penicillin	combine with	aminoglycoside	>	penicillin	inactivate	aminoglycosides
+yaw	respond with	penicillin	>	penicillin	know as	antibiotic
+pharyngitis	treat with	penicillin	>	bacteria	kill by	penicillin
+pneumococcus	respond to	penicillin	>	bacteria	kill by	penicillin
+streptococci	respond to	penicillin	>	penicillin	destroy	bacteria
+penicillin	use for	infection	>	penicillin	use in	infection
+penicillin	discover by	flemming	>	fleming	find	penicillin
+penicillin	be among	antibiotic	>	penicillin	regard as	antibiotic
+penicillin	come from	mold	>	penicillin	make from	mold
+penicillin	introduce in	1940s	>	penicillin	become in	1940s
+fleming	discover	penicillin	>	fleming	look for	penicillin
+streptococci	respond to	penicillin	>	bacteria	affect by	penicillin
+penicillin	cure	pneumonia	>	bacteria	kill by	penicillin
+penicillin	produce by	mold	>	mold	produce	penicillin
+bacteria	affect by	penicillin	>	penicillin	regard as	antibiotic
+penicillin	administer with	syphilis	>	penicillin	be against	bacteria
+penicillin	administer as	injection	>	penicillin	administer by	injection
+streptococci	respond to	penicillin	>	penicillin	use as	antibiotic
+penicillin	use for	wound	>	penicillin	inject into	wound
+gentamicin	combine with	penicillin	>	gentamicin	use with	penicillin
+penicillin	have	toxicity	>	penicillin	become of	toxicity
+penicillin	observe by	fleming	>	fleming	find	penicillin
+penicillin	cure	pneumonia	>	pneumonia	treat with	penicillin
+mold	produce	penicillin	>	penicillin	obtain from	mold
+penicillin	produce by	notatum	>	notatum	produce	penicillin
+penicillin	give as	injection	>	penicillin	administer by	injection
+penicillin	extract from	mold	>	penicillin	derive from	fungus
+penicillin	give as	prophylaxis	>	penicillin	use for	prophylaxis
+pneumococcus	respond to	penicillin	>	penicillin	be for	bacteria
+fleming	give	penicillin	>	penicillin	discover by	flemming
+meningitis	treat with	penicillin	>	penicillin	destroy	bacteria
+penicillin	give for	syphilis	>	penicillin	be among	antibiotic
+gonorrhea	treat by	penicillin	>	gonorrhea	treat with	penicillin
+streptomycin	combine with	penicillin	>	penicillin	follow by	streptomycin
+penicillin	eliminate	streptococci	>	penicillin	kill	streptococci
+penicillin	use as	antibiotic	>	penicillin	kill	bacteria
+penicillin	use as	drug	>	penicillin	remain	drug
+penicillin	be against	staphylococci	>	penicillin	know as	antibiotic
+syphilis	treat by	penicillin	>	penicillin	act on	bacteria
+penicillin	regard as	antibiotic	>	antibiotic	include	penicillin
+penicillin	be against	bacteria	>	antibiotic	include	penicillin
+neurosyphilis	treat with	penicillin	>	penicillin	regard as	antibiotic
+nephrosis	treat with	penicillin	>	penicillin	know as	antibiotic
+penicillin	consider	drug	>	penicillin	remain	drug
+endocarditis	cure by	penicillin	>	bacteria	kill by	penicillin
+infection	treat	penicillin	>	infection	treat by	penicillin
+infection	control by	penicillin	>	penicillin	eradicate	infection
+streptomycin	combine with	penicillin	>	penicillin	use with	streptomycin
+fleming	invent	penicillin	>	fleming	discover	penicillin
+penicillin	kill	streptococci	>	penicillin	regard as	antibiotic
+infection	control by	penicillin	>	infection	control with	penicillin
+antibiotic	include	penicillin	>	penicillin	be against	bacteria
+penicillin	inactivate by	penicillinase	>	penicillinase	destroy	penicillin
+penicillin	combine with	aminoglycoside	>	aminoglycoside	combine with	penicillin
+penicillin	be against	staphylococci	>	penicillin	be for	bacteria
+fleming	give	penicillin	>	penicillin	observe by	fleming
+fleming	find	penicillin	>	penicillin	discover by	flemming
+aminoglycoside	give with	penicillin	>	aminoglycosides	inactivate by	penicillin
+endocarditis	treat with	penicillin	>	penicillin	kill	bacteria
+antibiotic	include	penicillin	>	penicillin	know as	antibiotic
+penicillin	cause	toxicity	>	penicillin	become of	toxicity
+antibiotic	include	penicillin	>	bacteria	kill by	penicillin
+penicillin	give for	syphilis	>	penicillin	kill	bacteria
+penicillin	be against	staphylococci	>	penicillin	be among	antibiotic
+streptomycin	use with	penicillin	>	penicillin	follow by	streptomycin
+infection	treat	penicillin	>	infection	treat with	penicillin
+infection	cure with	penicillin	>	penicillin	eradicate	infection
+penicillin	be among	antibiotic	>	penicillin	use as	antibiotic
+penicillin	make from	mold	>	penicillin	obtain from	mold
+infection	cure with	penicillin	>	infection	control with	penicillin
+syphilis	treat with	penicillin	>	penicillin	be against	bacteria
+streptococci	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	be against	cocci	>	penicillin	be among	antibiotic
+penicillin	discover in	1940s	>	penicillin	become in	1940s
+penicillin	inject into	wound	>	penicillin	use for	wound
+cervicitis	treat with	penicillin	>	penicillin	be among	antibiotic
+fleming	look for	penicillin	>	fleming	discover	penicillin
+infection	treat by	penicillin	>	penicillin	control	infection
+aminoglycosides	inactivate by	penicillin	>	aminoglycoside	give with	penicillin
+streptomycin	administer with	penicillin	>	streptomycin	use with	penicillin
+endocarditis	treat with	penicillin	>	penicillin	regard as	antibiotic
+nephrosis	treat with	penicillin	>	penicillin	destroy	bacteria
+syphilis	cure with	penicillin	>	penicillin	prevent	syphilis
+penicillin	follow by	streptomycin	>	penicillin	use with	streptomycin
+nephrosis	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	make from	mold	>	penicillin	derive from	mold
+penicillin	give for	infection	>	penicillin	use for	infection
+penicillin	protect against	tetanus	>	penicillin	use as	antibiotic
+penicillin	combine with	aminoglycoside	>	aminoglycoside	give with	penicillin
+gentamicin	use with	penicillin	>	gentamicin	combine with	penicillin
+penicillin	prevent	syphilis	>	penicillin	destroy	bacteria
+yaw	respond with	penicillin	>	penicillin	kill	bacteria
+syphilis	treat with	penicillin	>	penicillin	kill	bacteria
+pneumonia	respond to	penicillin	>	pneumonia	treat with	penicillin
+penicillin	cure	infection	>	infection	control by	penicillin
+penicillin	combine with	aminoglycoside	>	aminoglycosides	use with	penicillin
+syphilis	treat by	penicillin	>	syphilis	cure with	penicillin
+syphilis	treat with	penicillin	>	penicillin	administer with	syphilis
+penicillin	use with	aminoglycoside	>	aminoglycoside	combine with	penicillin
+anthrax	treat with	penicillin	>	penicillin	be among	antibiotic
+penicillin	give for	syphilis	>	bacteria	affect by	penicillin
+yaw	respond with	penicillin	>	bacteria	kill by	penicillin
+infection	cure with	penicillin	>	penicillin	control	infection
+aminoglycoside	give with	penicillin	>	aminoglycoside	combine with	penicillin
+penicillin	use as	antibiotic	>	bacteria	kill by	penicillin
+fleming	find	penicillin	>	penicillin	discover by	fleming
+infection	cure with	penicillin	>	infection	treat by	penicillin
+chloramphenicol	combine with	penicillin	>	chloramphenicol	administer with	penicillin
+impetigo	treat with	penicillin	>	penicillin	kill	bacteria
+penicillin	discover by	fleming	>	fleming	find	penicillin
+infection	treat by	penicillin	>	infection	control with	penicillin
+angina	treat with	penicillin	>	bacteria	kill by	penicillin
+penicillin	know as	antibiotic	>	penicillin	be against	bacteria
+streptomycin	use with	penicillin	>	streptomycin	combine with	penicillin
+diphtheria	treat with	penicillin	>	penicillin	be for	bacteria
+impetigo	treat with	penicillin	>	penicillin	act on	bacteria
+penicillin	cure	syphilis	>	syphilis	treat with	penicillin
+penicillin	give for	syphilis	>	syphilis	treat with	penicillin
+impetigo	treat with	penicillin	>	penicillin	regard as	antibiotic
+florey	develop	penicillin	>	penicillin	isolate by	florey
+penicillin	eliminate	streptococci	>	bacteria	affect by	penicillin
+penicillin	eliminate	streptococci	>	streptococci	respond to	penicillin
+fleming	find	penicillin	>	fleming	name	penicillin
+gonorrhea	cure with	penicillin	>	penicillin	be for	bacteria
+fleming	look for	penicillin	>	fleming	call	penicillin
+pneumonia	treat with	penicillin	>	penicillin	be against	cocci
+penicillin	come from	mold	>	penicillin	extract from	mold

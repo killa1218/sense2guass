@@ -1,0 +1,215 @@
+analgesic	be for	pain
+pain	help by	analgesic
+analgesic	decrease	pain
+analgesic	indicate for	pain
+analgesic	have on	pain
+analgesic	give for	pain
+analgesic	alleviate	pain
+analgesic	take for	pain
+analgesic	mask	pain
+pain	treat with	analgesic
+analgesic	prescribe for	pain
+analgesic	be in	pain
+analgesic	ease	pain
+analgesic	take off	pain
+pain	control with	analgesic
+analgesic	control	pain
+analgesic	administer for	pain
+analgesic	counteract	pain
+analgesic	use in	pain
+pain	relieve by	analgesic
+analgesic	provide from	pain
+analgesic	order for	pain
+analgesic	quiet	pain
+analgesic	help	pain
+analgesic	stop	pain
+analgesic	use for	pain
+analgesic	reserve for	pain
+analgesic	be of	pain
+pain	relieve with	analgesic
+pain	manage by	analgesic
+analgesic	require for	pain
+analgesic	arrest	pain
+analgesic	use to	pain
+analgesic	indicate to	pain
+pain	require	analgesic
+pain	manage with	analgesic
+pain	arrest by	analgesic
+pain	reduce by	analgesic
+analgesic	relieve	pain
+pain	control by	analgesic
+pain	be with	analgesic
+pain	respond to	analgesic
+pain	treat by	analgesic
+pain	alleviate by	analgesic
+analgesic	need for	pain
+analgesic	minimize	pain
+analgesic	reduce	pain
+relief	achieve by	analgesic
+analgesic	bring	relief
+analgesic	prescribe for	relief
+analgesic	give	relief
+analgesic	order for	relief
+analgesic	offer	relief
+relief	obtain with	analgesic
+analgesic	indicate for	relief
+relief	provide by	analgesic
+relief	achieve with	analgesic
+analgesic	provide	relief
+analgesic	recommend for	relief
+relief	obtain from	analgesic
+analgesic	give for	relief
+analgesic	be for	relief
+analgesic	use for	relief
+analgesic	need for	relief
+relief	afford by	analgesic
+analgesic	administer for	relief
+analgesic	employ for	relief
+analgesic	afford	relief
+analgesic	produce	relief
+analgesic	be in	relief
+analgesic	require for	relief
+analgesic	prescribe for	headache
+headache	relieve with	analgesic
+headache	improve with	analgesic
+analgesic	require for	headache
+analgesic	relieve	headache
+headache	treat with	analgesic
+analgesic	give for	headache
+headache	respond to	analgesic
+headache	manage with	analgesic
+analgesic	abuse	headache
+headache	relieve by	analgesic
+analgesic	alleviate	discomfort
+analgesic	prescribe for	discomfort
+analgesic	control	discomfort
+analgesic	relieve	discomfort
+discomfort	relieve with	analgesic
+analgesic	provide from	discomfort
+analgesic	use for	discomfort
+analgesic	reduce	discomfort
+analgesic	give for	discomfort
+discomfort	treat with	analgesic
+discomfort	control with	analgesic
+analgesic	order for	discomfort
+discomfort	relieve by	analgesic
+discomfort	control by	analgesic
+symptom	relieve with	analgesic
+symptom	treat by	analgesic
+symptom	treat with	analgesic
+symptom	control with	analgesic
+analgesic	mask	symptom
+symptom	relieve by	analgesic
+analgesic	alleviate	symptom
+symptom	control by	analgesic
+symptom	manage with	analgesic
+analgesic	relieve	symptom
+analgesic	include	codeine
+codeine	use as	analgesic
+codeine	combine with	analgesic
+analgesic	contain	codeine
+aspirin	use as	analgesic
+aspirin	combine with	analgesic
+aspirin	use for	analgesic
+aspirin	have	analgesic
+analgesic	contain	aspirin
+analgesic	include	aspirin
+analgesic	administer during	period
+analgesic	use during	period
+analgesic	require during	period
+analgesic	use for	period
+analgesic	use in	period
+analgesic	require in	period
+analgesic	avoid in	period
+analgesic	be after	period
+analgesic	relate to	morphine
+morphine	use as	analgesic
+morphine	have	analgesic
+analgesic	include	morphine
+analgesic	derive from	morphine
+analgesic	include	salicylate
+salicylate	have	analgesic
+salicylate	use for	analgesic
+salicylate	use as	analgesic
+analgesic	cause	hypotension
+analgesic	potentiate	hypotension
+analgesic	enhance	hypotension
+antidepressant	use as	analgesic
+analgesic	include	antidepressant
+analgesic	produce	analgesia
+analgesia	allow to	analgesic
+analgesic	administer for	analgesia
+analgesic	provide	analgesia
+sedative	use with	analgesic
+sedation	obtain from	analgesic
+analgesic	cause	sedation
+analgesic	produce	sedation
+analgesic	give before	procedure
+analgesic	administer before	procedure
+opioids	use as	analgesic
+opioids	include	analgesic
+analgesic	include	opioids
+nsaid	use as	analgesic
+nsaid	have	analgesic
+nsaid	use for	analgesic
+analgesic	include	nsaid
+opium	use as	analgesic
+analgesic	derive from	opium
+opiate	use as	analgesic
+opiate	have	analgesic
+analgesic	include	opiate
+methadone	use as	analgesic
+methadone	employ as	analgesic
+ketamine	use as	analgesic
+ketamine	have	analgesic
+analgesic	produce	depression
+analgesic	cause	depression
+analgesic	associate with	depression
+analgesic	cause	constipation
+analgesic	produce	constipation
+analgesic	alter	perception
+analgesic	reduce	perception
+analgesic	cause	nausea
+analgesic	produce	nausea
+analgesic	depress	motility
+analgesic	decrease	motility
+meperidine	use as	analgesic
+analgesic	include	meperidine
+meperidine	have	analgesic
+analgesic	require in	cancer
+acetaminophen	use as	analgesic
+analgesic	include	acetaminophen
+trichloroethylene	use as	analgesic
+analgesic	relieve	tension
+analgesic	be after	surgery
+analgesic	depress	respiration
+analgesic	depress	reflex
+analgesic	include	paracetamol
+paracetamol	use as	analgesic
+analgesic	need during	menses
+analgesic	metabolize in	liver
+analgesic	metabolize by	liver
+analgesic	use during	labor
+fracture	treat with	analgesic
+analgesic	cause	drowsiness
+analgesic	act on	brain
+analgesic	include	alkaloid
+restlessness	respond to	analgesic
+analgesic	include	propoxyphene
+phenylbutazone	use as	analgesic
+phenacetin	use as	analgesic
+pentazocine	use as	analgesic
+injury	treat with	analgesic
+analgesic	reduce	inflammation
+indomethacin	use as	analgesic
+hypnosis	use as	analgesic
+analgesic	reduce	fever
+fentanyl	use as	analgesic
+analgesic	relieve	distress
+analgesic	relieve	cough
+cocaine	use as	analgesic
+camphor	use as	analgesic
+buprenorphine	use as	analgesic
+analgesic	use in	arthritis
+alcohol	use as	analgesic
+analgesic	relieve	ache

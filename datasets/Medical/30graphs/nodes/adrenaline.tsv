@@ -1,0 +1,104 @@
+noradrenaline	convert to	adrenaline
+adrenaline	synthesize from	noradrenaline
+adrenaline	pump through	vein
+adrenaline	fill	vein
+adrenaline	flow in	vein
+adrenaline	pour through	vein
+adrenaline	flow through	vein
+adrenaline	course through	vein
+adrenaline	run through	vein
+adrenaline	surge in	vein
+adrenaline	race through	vein
+adrenaline	surge through	vein
+adrenaline	flood	vein
+adrenaline	pump into	vein
+adrenaline	shoot through	vein
+adrenaline	rush through	vein
+adrenaline	release from	medulla
+medulla	contain	adrenaline
+adrenaline	secrete by	medulla
+adrenaline	secrete from	medulla
+medulla	produce	adrenaline
+adrenaline	come from	medulla
+medulla	manufacture	adrenaline
+medulla	release	adrenaline
+adrenaline	release by	medulla
+adrenaline	produce by	medulla
+medulla	secrete	adrenaline
+heart	race with	adrenaline
+adrenaline	stimulate	heart
+adrenaline	speed	heart
+adrenaline	reach	heart
+adrenaline	accelerate	heart
+adrenaline	inject into	heart
+heart	pound with	adrenaline
+adrenaline	cause	heart
+heart	pump	adrenaline
+adrenaline	cause	vasoconstriction
+adrenaline	induce	vasoconstriction
+adrenaline	produce	vasoconstriction
+adrenaline	flood	bloodstream
+adrenaline	pour into	bloodstream
+adrenaline	pump into	bloodstream
+adrenaline	release into	bloodstream
+adrenaline	course through	bloodstream
+adrenaline	surge through	bloodstream
+adrenaline	sing in	blood
+adrenaline	pump into	blood
+adrenaline	discharge into	blood
+adrenaline	pump through	blood
+adrenaline	release into	blood
+adrenaline	dilate	vessel
+adrenaline	constrict	vessel
+adrenaline	stimulate	nerve
+adrenaline	form from	tyrosine
+adrenaline	derive from	tyrosine
+stress	release	adrenaline
+adrenaline	give	strength
+adrenaline	add in	strength
+hormone	know as	adrenaline
+hormone	include	adrenaline
+glycogen	discharge by	adrenaline
+adrenaline	mobilize	glycogen
+fear	produce	adrenaline
+fear	release	adrenaline
+fear	pump	adrenaline
+adrenaline	cause	constriction
+adrenaline	produce	constriction
+adrenaline	give during	anaesthesia
+adrenaline	use during	anaesthesia
+tumour	secrete	adrenaline
+adrenaline	produce by	strain
+spasm	produce by	adrenaline
+adrenaline	produce	relief
+adrenaline	give	relief
+adrenaline	cause	relaxation
+adrenaline	produce	relaxation
+adrenaline	activate	phosphorylase
+phosphorylase	activate by	adrenaline
+adrenaline	relax	muscle
+adrenaline	inhibit	muscle
+adrenaline	stimulate in	liver
+adrenaline	combat	hypoglycaemia
+adrenaline	cause	glycogenolysis
+adrenaline	stimulate	glycogenolysis
+adrenaline	pump	energy
+adrenaline	give	energy
+adrenaline	activate	cyclase
+adrenaline	stimulate	cyclase
+adrenaline	cause	contraction
+adrenaline	produce	contraction
+adrenaline	cause	vasodilatation
+adrenaline	produce	tachycardia
+adrenaline	dilate	pupil
+adrenaline	mask	pain
+oedema	treat with	adrenaline
+adrenaline	increase	metabolism
+adrenaline	cause	hyperglycemia
+exercise	burn	adrenaline
+adrenaline	cause	dilation
+adrenaline	cause	dilatation
+adrenaline	release into	circulation
+adrenaline	constrict	arteriole
+adrenaline	improve	analgesia
+adrenaline	use with	anaesthetic

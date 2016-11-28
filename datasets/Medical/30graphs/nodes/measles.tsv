@@ -1,0 +1,150 @@
+child	pass through	measles
+child	recover from	measles
+measles	occur in	child
+child	come with	measles
+measles	affect	child
+child	die with	measles
+child	acquire	measles
+child	seize with	measles
+measles	observe in	child
+child	be with	measles
+measles	see in	child
+child	die from	measles
+child	bring	measles
+child	give	measles
+measles	give to	child
+measles	modify in	child
+child	attack with	measles
+child	expose to	measles
+child	protect against	measles
+child	be through	measles
+child	be in	measles
+child	die of	measles
+measles	be among	child
+child	develop	measles
+measles	occur to	child
+child	receive	measles
+measles	break among	child
+measles	kill	child
+child	protect from	measles
+child	get	measles
+child	bring through	measles
+measles	attack	child
+child	contract	measles
+child	catch	measles
+measles	be in	child
+child	take with	measles
+child	suffer from	measles
+measles	keep	child
+child	attack by	measles
+child	get over	measles
+child	take	measles
+child	immunize against	measles
+child	stricken by	measles
+child	have	measles
+vaccine	give with	measles
+measles	contain	vaccine
+vaccine	protect against	measles
+vaccine	prevent	measles
+vaccine	reduce	measles
+measles	prevent by	vaccine
+vaccine	give as	measles
+vaccine	include	measles
+vaccine	develop for	measles
+vaccine	administer with	measles
+vaccine	combine with	measles
+measles	immunize with	vaccine
+virus	include	measles
+virus	cause	measles
+measles	produce by	virus
+measles	cause by	virus
+fever	occur during	measles
+measles	begin with	fever
+measles	develop during	fever
+measles	characterize by	fever
+measles	confound with	fever
+fever	confound with	measles
+measles	confuse with	fever
+fever	differ from	measles
+measles	distinguish from	fever
+fever	distinguish from	measles
+fever	occur with	measles
+measles	resemble	fever
+measles	mistake for	fever
+measles	spot	fever
+pneumonia	follow	measles
+pneumonia	associate with	measles
+pneumonia	complicate	measles
+measles	complicate with	pneumonia
+measles	follow by	pneumonia
+measles	associate with	pneumonia
+measles	complicate by	pneumonia
+measles	cause	pneumonia
+rash	resemble	measles
+rash	distinguish from	measles
+measles	characterize by	rash
+rash	confuse with	measles
+rash	suggest	measles
+rash	appear in	measles
+measles	have	rash
+rash	mistake for	measles
+encephalitis	complicate	measles
+encephalitis	follow	measles
+measles	cause	encephalitis
+rubella	resemble	measles
+rubella	distinguish from	measles
+rubella	mistake for	measles
+measles	associate with	spot
+spot	see in	measles
+spot	appear in	measles
+measles	identify by	spot
+measles	accompany by	spot
+measles	paint	spot
+measles	occur in	epidemic
+epidemic	complicate	measles
+measles	produce	epidemic
+epidemic	sweep like	measles
+measles	spread through	contact
+measles	spread by	contact
+measles	transmit by	contact
+measles	predispose to	tuberculosis
+tuberculosis	exacerbate by	measles
+measles	follow by	cough
+measles	cause	cough
+cough	associate with	measles
+cough	complicate with	measles
+cough	follow	measles
+conjunctivitis	persist after	measles
+measles	accompany by	conjunctivitis
+conjunctivitis	accompany as	measles
+thousand	die of	measles
+thousand	die from	measles
+measles	carry	thousand
+measles	kill	thousand
+measles	prevent by	immunization
+immunization	eliminate	measles
+measles	prevent by	vaccination
+scarlatina	differentiate from	measles
+scarlatina	confound with	measles
+roseola	distinguish from	measles
+roseola	mistake for	measles
+measles	begin with	laryngitis
+measles	accompany by	inflammation
+measles	see with	hemorrhage
+encephalomyelitis	complicate	measles
+diphtheria	complicate	measles
+measles	complicate by	diphtheria
+cataract	follow	measles
+bronchitis	associate with	measles
+measles	mistake for	smallpox
+measles	resemble	smallpox
+measles	associate with	panencephalitis
+nausea	be in	measles
+mumps	follow	measles
+measles	cause	immunosuppression
+measles	accompany by	puffiness
+measles	act like	plague
+measles	claim	life
+hemiplegia	come during	measles
+measles	complicate by	bronchopneumonia
+bronchiectasis	follow	measles

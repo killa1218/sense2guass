@@ -1,0 +1,55 @@
+diet	bring	scurvy
+diet	lead to	scurvy
+scurvy	cause by	diet
+diet	cause	scurvy
+diet	produce	scurvy
+scurvy	induce by	diet
+scurvy	cure by	diet
+scurvy	prevent by	diet
+scurvy	produce on	diet
+diet	bring on	scurvy
+scurvy	manifest in	gum
+scurvy	characterize by	gum
+gum	associate with	scurvy
+gum	swell in	scurvy
+gum	swell by	scurvy
+gum	have	scurvy
+scurvy	conquer by	juice
+juice	use in	scurvy
+juice	inhibit	scurvy
+juice	cure	scurvy
+juice	prevent	scurvy
+hemorrhage	be in	scurvy
+hemorrhage	see in	scurvy
+scurvy	accompany by	hemorrhage
+scurvy	characterize by	hemorrhage
+hemorrhage	occur in	scurvy
+scurvy	characterize by	weakness
+scurvy	begin with	weakness
+vitamin	avoid	scurvy
+vitamin	prevent	scurvy
+rickets	predispose to	scurvy
+rickets	associate with	scurvy
+scurvy	confuse with	rickets
+scurvy	mistake for	rheumatism
+scurvy	differentiate from	rheumatism
+haemorrhage	occur in	scurvy
+haemorrhage	be in	scurvy
+haemorrhage	accompany	scurvy
+fruit	produce in	scurvy
+fruit	cure	scurvy
+fruit	prevent	scurvy
+fever	follow	scurvy
+scurvy	mistake for	fever
+anemia	accompany	scurvy
+anemia	occur in	scurvy
+teeth	fall with	scurvy
+teeth	become in	scurvy
+rhinitis	associate with	scurvy
+scurvy	confuse with	osteomyelitis
+scurvy	mistake for	osteomyelitis
+lemon	cure	scurvy
+lemon	prevent	scurvy
+orange	cure	scurvy
+carrot	prevent	scurvy
+bleeding	find in	scurvy

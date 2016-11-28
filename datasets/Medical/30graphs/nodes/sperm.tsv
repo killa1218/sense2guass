@@ -1,0 +1,370 @@
+sperm	activate	egg
+sperm	surround	egg
+sperm	gain into	egg
+sperm	penetrate into	egg
+sperm	attach to	egg
+sperm	penetrate	egg
+sperm	produce	egg
+sperm	merge with	egg
+egg	fuse with	sperm
+sperm	join	egg
+sperm	attract to	egg
+egg	expose to	sperm
+sperm	draw into	egg
+sperm	unite with	egg
+sperm	bore into	egg
+egg	fertilize by	sperm
+egg	enter by	sperm
+sperm	make with	egg
+sperm	get with	egg
+sperm	make into	egg
+egg	join with	sperm
+sperm	touch	egg
+egg	develop with	sperm
+egg	incubate with	sperm
+sperm	encounter	egg
+egg	mingle with	sperm
+sperm	get to	egg
+egg	meet with	sperm
+sperm	get into	egg
+sperm	find	egg
+egg	place with	sperm
+sperm	cause	egg
+sperm	reach	egg
+sperm	attract by	egg
+sperm	approach	egg
+sperm	enter	egg
+sperm	seek	egg
+egg	meet	sperm
+egg	be with	sperm
+egg	unite with	sperm
+sperm	meet	egg
+egg	encounter	sperm
+sperm	fertilize	egg
+sperm	hit	egg
+sperm	fuse with	egg
+sperm	join with	egg
+sperm	combine with	egg
+egg	surround by	sperm
+sperm	mix with	egg
+egg	receive	sperm
+egg	seek	sperm
+egg	penetrate by	sperm
+egg	activate by	sperm
+egg	develop without	sperm
+egg	combine with	sperm
+sperm	see in	egg
+sperm	inject into	egg
+egg	engulf	sperm
+sperm	add to	egg
+egg	contain	sperm
+sperm	bring into	egg
+sperm	swim to	egg
+spermatocyte	give to	sperm
+sperm	form from	spermatocyte
+sperm	result from	spermatocyte
+spermatocyte	produce	sperm
+spermatid	differentiate into	sperm
+spermatid	undergo into	sperm
+spermatid	transform into	sperm
+spermatid	develop into	sperm
+spermatid	mature into	sperm
+sperm	introduce by	male
+sperm	transfer from	male
+male	emit	sperm
+male	have	sperm
+male	put	sperm
+sperm	collect from	male
+male	transfer	sperm
+male	provide	sperm
+male	release	sperm
+male	shed	sperm
+sperm	produce	male
+sperm	release by	male
+male	ejaculate	sperm
+male	introduce	sperm
+male	contribute	sperm
+sperm	pass from	male
+male	remove	sperm
+male	deliver	sperm
+male	spread	sperm
+male	insert	sperm
+male	cover with	sperm
+male	manufacture	sperm
+sperm	receive from	male
+male	pass	sperm
+male	place	sperm
+male	produce	sperm
+male	make	sperm
+male	eject	sperm
+male	discharge	sperm
+male	inject	sperm
+male	carry	sperm
+male	store	sperm
+male	deposit	sperm
+sperm	join	ovum
+sperm	contribute to	ovum
+sperm	combine with	ovum
+sperm	unite with	ovum
+ovum	combine with	sperm
+ovum	fertilize by	sperm
+ovum	meet	sperm
+ovum	penetrate by	sperm
+ovum	unite with	sperm
+sperm	enter	ovum
+sperm	impregnate	ovum
+ovum	attract	sperm
+sperm	bring to	ovum
+sperm	penetrate	ovum
+sperm	surround	ovum
+sperm	meet	ovum
+ovum	be with	sperm
+sperm	join with	ovum
+sperm	reach	ovum
+ovum	encounter	sperm
+sperm	inject into	ovum
+sperm	touch	ovum
+sperm	fertilize	ovum
+spermicide	kill	sperm
+spermicide	stop	sperm
+testis	make	sperm
+sperm	produce by	testis
+testis	discharge	sperm
+sperm	release from	testis
+sperm	leave	testis
+sperm	transport from	testis
+sperm	form in	testis
+sperm	pass from	testis
+sperm	manufacture in	testis
+sperm	make in	testis
+testis	contain	sperm
+sperm	attribute to	testis
+sperm	carry from	testis
+sperm	absorb in	testis
+sperm	produce in	testis
+testis	produce	sperm
+testis	manufacture	sperm
+sperm	produce by	division
+division	produce	sperm
+sperm	bear	chromosome
+sperm	transmit	chromosome
+sperm	add	chromosome
+sperm	carry	chromosome
+sperm	have	chromosome
+sperm	bring	chromosome
+sperm	provide	chromosome
+sperm	contribute	chromosome
+sperm	contain	chromosome
+sperm	receive	chromosome
+sperm	duplicate	chromosome
+sperm	place in	vagina
+sperm	be in	vagina
+sperm	leave in	vagina
+sperm	deposit in	vagina
+sperm	introduce into	vagina
+sperm	deliver into	vagina
+sperm	find into	vagina
+sperm	enter	vagina
+sperm	get into	vagina
+sperm	release into	vagina
+vagina	receive	sperm
+sperm	find in	vagina
+sperm	survive in	vagina
+sperm	reach from	vagina
+sperm	inject into	vagina
+sperm	deposit into	vagina
+sperm	insert into	vagina
+sperm	have through	vagina
+sperm	live in	vagina
+sperm	use in	fertilization
+sperm	enter during	fertilization
+fertilization	fertilize by	sperm
+sperm	use for	fertilization
+sperm	need for	fertilization
+sperm	involve in	fertilization
+sperm	unite in	fertilization
+fertilization	accomplish by	sperm
+fertilization	achieve with	sperm
+sperm	require for	fertilization
+sperm	participate in	fertilization
+fertilization	effect by	sperm
+fertilization	be by	sperm
+sperm	transport through	uterus
+sperm	be in	uterus
+sperm	inject into	uterus
+sperm	place into	uterus
+sperm	reach	uterus
+sperm	instill into	uterus
+sperm	detect in	uterus
+sperm	pass into	uterus
+sperm	make into	uterus
+sperm	get into	uterus
+sperm	pass through	uterus
+sperm	enter	uterus
+sperm	introduce into	uterus
+sperm	place in	uterus
+sperm	insert into	uterus
+sperm	swim into	uterus
+sperm	deposit into	uterus
+sperm	remain in	uterus
+sperm	store in	uterus
+spermatogonium	yield	sperm
+spermatogonium	produce	sperm
+sperm	pass into	semen
+semen	have	sperm
+sperm	be in	semen
+semen	consist of	sperm
+sperm	find in	semen
+semen	contain	sperm
+semen	support	sperm
+sperm	separate from	semen
+semen	include	sperm
+semen	carry	sperm
+sperm	make	semen
+sperm	expel from	epididymis
+epididymis	store	sperm
+sperm	be in	epididymis
+sperm	remain in	epididymis
+sperm	enter	epididymis
+sperm	accumulate in	epididymis
+sperm	pass through	epididymis
+sperm	mature in	epididymis
+sperm	transport to	epididymis
+sperm	store in	epididymis
+sperm	leave	epididymis
+sperm	collect from	man
+man	have	sperm
+man	deposit	sperm
+man	donate	sperm
+man	produce	sperm
+man	release	sperm
+man	eject	sperm
+man	ejaculate	sperm
+man	make	sperm
+man	provide	sperm
+sperm	enter	oocyte
+sperm	fuse with	oocyte
+oocyte	penetrate by	sperm
+sperm	penetrate	oocyte
+sperm	fertilize	oocyte
+oocyte	fertilize by	sperm
+oocyte	incubate with	sperm
+oocyte	contact by	sperm
+sperm	inject into	oocyte
+oocyte	place with	sperm
+men	ejaculate	sperm
+sperm	find in	men
+men	donate	sperm
+sperm	produce by	men
+men	produce	sperm
+men	sell	sperm
+men	have	sperm
+sperm	possess	motility
+sperm	exhibit	motility
+sperm	lose	motility
+sperm	maintain	motility
+sperm	show	motility
+sperm	acquire	motility
+sperm	have	motility
+sex	determine by	sperm
+sperm	determine	sex
+sex	depend on	sperm
+sperm	reach after	ejaculation
+sperm	enter with	ejaculation
+ejaculation	contain	sperm
+sperm	enter after	ejaculation
+sperm	live after	ejaculation
+sperm	come in	ejaculation
+sperm	be in	ejaculation
+sperm	pass during	ejaculation
+sperm	release during	ejaculation
+tail	propel	sperm
+sperm	have	tail
+sperm	store in	tail
+tail	move	sperm
+sperm	shed	tail
+sperm	lose	tail
+sperm	transfer in	spermatophore
+sperm	carry	gene
+sperm	have	gene
+sperm	contain	gene
+sperm	make in	testicle
+testicle	produce	sperm
+testicle	make	sperm
+sperm	produce in	testicle
+sperm	originate in	testicle
+sperm	reach	spermatheca
+sperm	store in	spermatheca
+sperm	enter	cervix
+sperm	pass through	cervix
+sperm	make through	cervix
+sperm	move through	cervix
+sperm	reach	cervix
+sperm	inject into	cervix
+sperm	deposit at	cervix
+sperm	move through	mucus
+sperm	penetrate	mucus
+sperm	find in	mucus
+mucus	protect	sperm
+mucus	be by	sperm
+sperm	see in	mucus
+sperm	enter	mucus
+ejaculate	contain	sperm
+sperm	be in	ejaculate
+sperm	appear in	ejaculate
+sperm	find in	ejaculate
+sperm	yield	zygote
+sperm	produce	zygote
+sperm	form	zygote
+sperm	contribute to	zygote
+insemination	use	sperm
+insemination	deposit	sperm
+insemination	place	sperm
+insemination	involve	sperm
+sperm	use in	insemination
+sperm	use for	insemination
+protamine	find in	sperm
+sperm	contain	protamine
+protamine	occur in	sperm
+protamine	prepare from	sperm
+sperm	form by	meiosis
+sperm	undergo	meiosis
+sperm	propel by	contraction
+sperm	force by	contraction
+contraction	move	sperm
+sperm	transport by	contraction
+contraction	transport	sperm
+sperm	expel by	contraction
+contraction	propel	sperm
+sperm	move by	contraction
+sperm	leave through	penis
+sperm	release from	penis
+sperm	transfer by	penis
+penis	deliver	sperm
+sperm	have through	penis
+sperm	enter	urethra
+urethra	carry	sperm
+sperm	expel from	urethra
+sperm	propel into	urethra
+sperm	transport to	urethra
+sperm	contain	dna
+dna	repeat in	sperm
+dna	obtain from	sperm
+sperm	contribute	dna
+sperm	deposit at	copulation
+sperm	receive at	copulation
+antheridium	contain	sperm
+antheridium	discharge	sperm
+sperm	escape from	antheridium
+sperm	produce in	antheridium
+antheridium	produce	sperm
+sperm	collect by	masturbation
+sperm	obtain by	masturbation
+gonad	produce	sperm
+gametophyte	deliver	sperm
+gametophyte	produce	sperm
+sperm	swim to	archegonium
+sperm	reach	archegonium
+sperm	enter	archegonium
+pregnancy	cause by	sperm
+sperm	cause	pregnancy

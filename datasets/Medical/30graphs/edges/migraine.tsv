@@ -1,0 +1,691 @@
+headache	include	migraine	>	migraine	involve	pain
+migraine	refer to	headache	>	migraine	characterise by	headache
+migraine	associate with	headache	>	migraine	cause	headache
+pain	be in	migraine	>	migraine	associate with	pain
+headache	classify as	migraine	>	migraine	cause	pain
+migraine	define as	headache	>	migraine	consist of	headache
+headache	include	migraine	>	headache	divide into	migraine
+migraine	describe as	headache	X	headache	confuse with	migraine
+headache	diagnose as	migraine	>	migraine	think as	headache
+headache	distinguish from	migraine	>	headache	mistake for	migraine
+migraine	accompany by	headache	>	headache	simulate	migraine
+headache	distinguish from	migraine	>	headache	differentiate from	migraine
+migraine	present as	headache	>	pain	suggest	migraine
+headache	divide into	migraine	X	headache	confuse with	migraine
+headache	resemble	migraine	>	migraine	present as	headache
+headache	suggest	migraine	>	migraine	involve	pain
+headache	classify as	migraine	>	headache	include	migraine
+migraine	have	aura	>	migraine	precede by	aura
+headache	simulate	migraine	>	migraine	associate with	pain
+headache	resemble	migraine	>	migraine	associate with	pain
+headache	classify as	migraine	>	migraine	consist of	headache
+headache	include	migraine	>	migraine	refer to	headache
+headache	mistake for	migraine	>	headache	distinguish from	migraine
+headache	divide into	migraine	>	migraine	associate with	pain
+migraine	be at	period	>	migraine	disappear at	menopause
+migraine	characterize by	headache	>	migraine	consist of	headache
+migraine	differ from	headache	X	headache	diagnose as	migraine
+migraine	define as	headache	>	migraine	associate with	pain
+migraine	present during	period	>	migraine	be at	period
+migraine	characterize by	headache	>	migraine	have	headache
+headache	classify as	migraine	X	headache	mistake for	migraine
+migraine	provoke by	aspartame	>	food	trigger	migraine
+migraine	trigger by	food	>	food	induce	migraine
+migraine	refer to	headache	>	migraine	consist of	headache
+migraine	think as	headache	>	migraine	characterize by	pain
+migraine	consist of	headache	>	migraine	associate with	pain
+migraine	think as	headache	>	migraine	associate with	headache
+headache	divide into	migraine	X	headache	distinguish from	migraine
+migraine	associate with	headache	>	headache	resemble	migraine
+migraine	start with	aura	>	migraine	have	aura
+migraine	confuse with	neuralgia	>	neuralgia	confound with	migraine
+migraine	differ from	headache	>	headache	distinguish from	migraine
+migraine	cause	headache	>	migraine	associate with	pain
+headache	divide into	migraine	>	headache	simulate	migraine
+migraine	cause	pain	>	migraine	involve	pain
+migraine	cause	nausea	>	migraine	accompany by	nausea
+pain	suggest	migraine	>	migraine	associate with	pain
+migraine	consist of	headache	>	migraine	characterize by	headache
+headache	suggest	migraine	>	migraine	present as	headache
+migraine	confuse with	neuralgia	>	neuralgia	differ from	migraine
+migraine	associate with	vertigo	>	migraine	replace by	vertigo
+migraine	consist of	headache	>	pain	suggest	migraine
+food	induce	migraine	>	food	precipitate	migraine
+nausea	accompany	migraine	>	migraine	associate with	nausea
+migraine	refer to	headache	>	migraine	define as	headache
+migraine	confuse with	epilepsy	>	migraine	associate with	epilepsy
+migraine	cause	headache	>	pain	suggest	migraine
+migraine	characterise by	headache	>	migraine	characterize by	headache
+migraine	cause	headache	>	headache	simulate	migraine
+food	trigger	migraine	>	food	precipitate	migraine
+migraine	associate with	nausea	>	migraine	accompany with	nausea
+migraine	define as	headache	>	migraine	associate with	headache
+migraine	associate with	headache	>	migraine	characterise by	headache
+headache	differentiate from	migraine	X	headache	classify as	migraine
+headache	mistake for	migraine	X	headache	classify as	migraine
+migraine	cause	nausea	>	migraine	accompany with	nausea
+headache	include	migraine	>	migraine	describe as	headache
+migraine	consist of	aura	>	migraine	begin with	aura
+headache	diagnose as	migraine	X	headache	confuse with	migraine
+headache	suggest	migraine	>	pain	be in	migraine
+pain	suggest	migraine	>	migraine	cause	pain
+migraine	cause	headache	>	migraine	characterize by	pain
+headache	classify as	migraine	>	migraine	associate with	headache
+headache	classify as	migraine	>	migraine	characterise by	headache
+headache	diagnose as	migraine	>	migraine	characterise by	headache
+migraine	characterise by	headache	>	migraine	associate with	headache
+migraine	characterize by	pain	>	migraine	associate with	pain
+migraine	differ from	headache	X	headache	classify as	migraine
+migraine	associate with	nausea	>	nausea	occur with	migraine
+headache	classify as	migraine	>	migraine	accompany by	headache
+migraine	distinguish from	headache	X	migraine	describe as	headache
+migraine	differ from	headache	>	headache	differ from	migraine
+migraine	refer to	headache	X	headache	differ from	migraine
+headache	simulate	migraine	>	migraine	present as	headache
+nausea	associate with	migraine	>	migraine	associate with	nausea
+migraine	describe as	headache	>	headache	suggest	migraine
+headache	diagnose as	migraine	X	headache	distinguish from	migraine
+headache	resemble	migraine	>	migraine	accompany by	headache
+migraine	herald by	aura	>	migraine	start with	aura
+migraine	define as	headache	X	headache	confuse with	migraine
+headache	diagnose as	migraine	>	headache	suggest	migraine
+migraine	accompany by	headache	>	migraine	characterise by	headache
+headache	resemble	migraine	>	migraine	characterize by	headache
+migraine	precede by	aura	>	migraine	associate with	aura
+migraine	define as	headache	X	headache	differentiate from	migraine
+headache	suggest	migraine	>	headache	simulate	migraine
+migraine	associate with	headache	>	migraine	consist of	headache
+migraine	accompany by	headache	>	migraine	involve	pain
+headache	suggest	migraine	X	headache	distinguish from	migraine
+migraine	describe as	headache	>	headache	classify as	migraine
+migraine	characterise by	headache	>	migraine	have	headache
+migraine	cause by	astigmatism	>	migraine	cure by	spectacle
+migraine	cause	headache	>	migraine	present as	headache
+headache	differ from	migraine	X	headache	include	migraine
+migraine	accompany by	headache	>	migraine	cause	headache
+migraine	have	headache	>	migraine	cause	pain
+headache	suggest	migraine	>	migraine	associate with	pain
+migraine	have	aura	>	migraine	associate with	aura
+migraine	differ from	headache	X	migraine	refer to	headache
+migraine	consist of	aura	>	migraine	associate with	aura
+migraine	refer to	headache	>	headache	include	migraine
+migraine	think as	headache	>	migraine	refer to	headache
+headache	mistake for	migraine	X	headache	suggest	migraine
+migraine	cause	nausea	>	nausea	occur with	migraine
+migraine	present as	headache	>	migraine	consist of	headache
+headache	include	migraine	>	headache	suggest	migraine
+headache	differ from	migraine	X	headache	divide into	migraine
+headache	confuse with	migraine	>	headache	distinguish from	migraine
+migraine	distinguish from	headache	X	migraine	think as	headache
+migraine	accompany by	headache	>	migraine	consist of	headache
+migraine	describe as	headache	>	headache	diagnose as	migraine
+migraine	associate with	headache	>	migraine	involve	pain
+headache	suggest	migraine	>	headache	divide into	migraine
+migraine	associate with	headache	>	migraine	cause	pain
+headache	differentiate from	migraine	X	headache	divide into	migraine
+migraine	involve	pain	>	migraine	characterize by	pain
+migraine	precede by	aura	>	migraine	start with	aura
+migraine	describe as	headache	>	migraine	characterize by	headache
+headache	divide into	migraine	>	headache	resemble	migraine
+migraine	herald by	aura	>	migraine	associate with	aura
+migraine	begin with	aura	>	migraine	associate with	aura
+migraine	differ from	headache	X	headache	suggest	migraine
+headache	divide into	migraine	>	headache	classify as	migraine
+migraine	describe as	headache	>	pain	suggest	migraine
+migraine	accompany with	nausea	>	migraine	associate with	nausea
+headache	simulate	migraine	>	headache	resemble	migraine
+migraine	think as	headache	>	migraine	describe as	headache
+migraine	define as	headache	>	migraine	refer to	headache
+migraine	think as	headache	>	headache	suggest	migraine
+migraine	cause	nausea	>	nausea	accompany	migraine
+migraine	accompany by	nausea	>	nausea	occur with	migraine
+migraine	provoke by	aspartame	>	migraine	trigger by	food
+headache	differentiate from	migraine	>	headache	confuse with	migraine
+migraine	cause	nausea	>	nausea	associate with	migraine
+headache	suggest	migraine	>	migraine	characterize by	headache
+migraine	think as	headache	X	headache	distinguish from	migraine
+migraine	have	aura	>	migraine	herald by	aura
+migraine	characterize by	headache	>	headache	simulate	migraine
+migraine	replace by	vertigo	>	vertigo	associate with	migraine
+migraine	associate with	nausea	>	nausea	associate with	migraine
+headache	simulate	migraine	>	migraine	characterize by	headache
+migraine	describe as	headache	X	migraine	distinguish from	headache
+migraine	refer to	headache	>	migraine	involve	pain
+headache	divide into	migraine	>	migraine	refer to	headache
+migraine	define as	headache	>	headache	suggest	migraine
+headache	include	migraine	>	pain	be in	migraine
+migraine	associate with	nausea	>	nausea	accompany	migraine
+migraine	characterise by	headache	>	pain	be in	migraine
+migraine	characterize by	pain	>	migraine	involve	pain
+headache	divide into	migraine	>	migraine	describe as	headache
+headache	differentiate from	migraine	>	headache	distinguish from	migraine
+headache	suggest	migraine	>	migraine	characterise by	headache
+migraine	describe as	headache	>	headache	include	migraine
+migraine	define as	headache	X	headache	differ from	migraine
+headache	resemble	migraine	>	headache	simulate	migraine
+headache	differ from	migraine	X	migraine	define as	headache
+headache	diagnose as	migraine	>	headache	simulate	migraine
+headache	suggest	migraine	>	headache	resemble	migraine
+migraine	distinguish from	headache	X	migraine	refer to	headache
+migraine	describe as	headache	X	headache	differ from	migraine
+migraine	think as	headache	X	migraine	distinguish from	headache
+migraine	refer to	headache	>	migraine	cause	headache
+migraine	have	headache	>	migraine	consist of	headache
+headache	simulate	migraine	>	migraine	accompany by	headache
+migraine	associate with	pain	>	migraine	cause	pain
+headache	diagnose as	migraine	>	headache	resemble	migraine
+migraine	describe as	headache	>	migraine	present as	headache
+vertigo	associate with	migraine	>	migraine	replace by	vertigo
+migraine	present as	headache	>	migraine	cause	headache
+migraine	refer to	headache	>	migraine	cause	pain
+migraine	involve	pain	>	migraine	associate with	pain
+migraine	think as	headache	>	headache	classify as	migraine
+migraine	present as	headache	>	migraine	have	headache
+headache	divide into	migraine	X	migraine	differ from	headache
+headache	confuse with	migraine	X	migraine	define as	headache
+migraine	think as	headache	>	migraine	involve	pain
+headache	confuse with	migraine	X	migraine	refer to	headache
+headache	include	migraine	X	headache	differentiate from	migraine
+migraine	cause	headache	>	migraine	associate with	headache
+headache	classify as	migraine	X	headache	differentiate from	migraine
+migraine	have	headache	>	migraine	accompany by	headache
+headache	mistake for	migraine	>	migraine	distinguish from	headache
+migraine	describe as	headache	>	headache	divide into	migraine
+migraine	cause	headache	>	migraine	accompany by	headache
+migraine	distinguish from	headache	X	headache	suggest	migraine
+scotoma	occur in	migraine	>	migraine	precede by	scotoma
+migraine	characterize by	headache	>	headache	resemble	migraine
+headache	diagnose as	migraine	X	migraine	distinguish from	headache
+headache	suggest	migraine	>	migraine	consist of	headache
+headache	suggest	migraine	>	headache	classify as	migraine
+headache	mistake for	migraine	X	migraine	define as	headache
+migraine	begin with	aura	>	migraine	have	aura
+migraine	distinguish from	headache	>	headache	differ from	migraine
+headache	resemble	migraine	>	pain	be in	migraine
+headache	divide into	migraine	>	migraine	associate with	headache
+migraine	distinguish from	headache	>	headache	distinguish from	migraine
+headache	include	migraine	>	migraine	present as	headache
+headache	mistake for	migraine	>	headache	differ from	migraine
+headache	simulate	migraine	>	migraine	cause	headache
+migraine	define as	headache	>	migraine	involve	pain
+migraine	think as	headache	X	migraine	differ from	headache
+headache	confuse with	migraine	X	headache	suggest	migraine
+headache	suggest	migraine	>	migraine	refer to	headache
+headache	include	migraine	>	migraine	have	headache
+headache	divide into	migraine	>	migraine	cause	headache
+migraine	think as	headache	>	migraine	consist of	headache
+migraine	define as	headache	>	migraine	cause	headache
+headache	classify as	migraine	>	migraine	involve	pain
+migraine	describe as	headache	>	migraine	consist of	headache
+migraine	precede by	aura	>	migraine	have	aura
+migraine	cause	headache	>	migraine	involve	pain
+migraine	associate with	headache	>	migraine	accompany by	headache
+headache	diagnose as	migraine	>	pain	suggest	migraine
+migraine	define as	headache	>	headache	include	migraine
+headache	confuse with	migraine	X	headache	classify as	migraine
+headache	distinguish from	migraine	X	migraine	refer to	headache
+migraine	characterise by	headache	>	migraine	involve	pain
+headache	diagnose as	migraine	>	migraine	characterize by	headache
+migraine	present as	headache	>	migraine	characterize by	headache
+headache	mistake for	migraine	X	headache	divide into	migraine
+migraine	be at	period	>	migraine	present during	period
+nausea	accompany	migraine	>	migraine	accompany by	nausea
+nausea	accompany	migraine	>	nausea	occur with	migraine
+headache	suggest	migraine	>	migraine	think as	headache
+headache	differ from	migraine	X	headache	suggest	migraine
+headache	suggest	migraine	>	pain	suggest	migraine
+headache	divide into	migraine	>	pain	be in	migraine
+headache	include	migraine	>	migraine	cause	pain
+headache	include	migraine	X	headache	mistake for	migraine
+migraine	think as	headache	>	migraine	have	headache
+migraine	distinguish from	headache	>	headache	differentiate from	migraine
+headache	divide into	migraine	>	migraine	define as	headache
+headache	include	migraine	>	migraine	characterize by	pain
+migraine	refer to	headache	>	headache	divide into	migraine
+headache	suggest	migraine	X	headache	differ from	migraine
+migraine	characterize by	pain	>	migraine	cause	pain
+migraine	start with	aura	>	migraine	consist of	aura
+headache	simulate	migraine	>	migraine	cause	pain
+nausea	accompany	migraine	>	nausea	associate with	migraine
+migraine	present as	headache	>	migraine	cause	pain
+migraine	relieve by	pregnancy	>	migraine	disappear during	pregnancy
+migraine	think as	headache	>	headache	divide into	migraine
+migraine	characterize by	headache	>	migraine	present as	headache
+headache	divide into	migraine	>	migraine	cause	pain
+migraine	distinguish from	headache	X	headache	diagnose as	migraine
+food	trigger	migraine	>	migraine	trigger by	food
+migraine	define as	headache	>	pain	suggest	migraine
+headache	divide into	migraine	>	migraine	present as	headache
+migraine	distinguish from	headache	X	headache	include	migraine
+headache	classify as	migraine	X	headache	distinguish from	migraine
+headache	diagnose as	migraine	>	migraine	cause	headache
+migraine	refer to	headache	>	migraine	have	headache
+headache	include	migraine	>	headache	simulate	migraine
+headache	simulate	migraine	>	migraine	consist of	headache
+migraine	associate with	vertigo	>	vertigo	occur in	migraine
+headache	classify as	migraine	>	headache	resemble	migraine
+migraine	consist of	headache	>	migraine	present as	headache
+migraine	differ from	headache	X	migraine	define as	headache
+headache	differ from	migraine	X	headache	diagnose as	migraine
+migraine	think as	headache	X	headache	confuse with	migraine
+migraine	describe as	headache	>	migraine	associate with	headache
+migraine	think as	headache	>	migraine	cause	pain
+migraine	define as	headache	>	headache	divide into	migraine
+migraine	involve	pain	>	pain	be in	migraine
+headache	differentiate from	migraine	>	migraine	distinguish from	headache
+migraine	cause	headache	>	migraine	characterize by	headache
+migraine	precede by	aura	>	migraine	begin with	aura
+nausea	associate with	migraine	>	nausea	accompany	migraine
+migraine	begin with	aura	>	migraine	start with	aura
+migraine	characterise by	headache	>	migraine	accompany by	headache
+headache	suggest	migraine	X	headache	differentiate from	migraine
+headache	differentiate from	migraine	>	headache	mistake for	migraine
+headache	include	migraine	>	pain	suggest	migraine
+migraine	present as	headache	>	migraine	involve	pain
+migraine	consist of	headache	>	migraine	involve	pain
+headache	classify as	migraine	>	headache	simulate	migraine
+headache	include	migraine	>	migraine	define as	headache
+migraine	provoke by	aspartame	>	food	induce	migraine
+headache	distinguish from	migraine	>	headache	differ from	migraine
+migraine	consist of	headache	>	migraine	cause	headache
+headache	mistake for	migraine	X	headache	diagnose as	migraine
+migraine	consist of	headache	>	pain	be in	migraine
+migraine	present as	headache	>	migraine	associate with	headache
+nausea	accompany	migraine	>	migraine	cause	nausea
+migraine	present as	headache	>	migraine	characterize by	pain
+migraine	think as	headache	X	headache	differentiate from	migraine
+nausea	associate with	migraine	>	migraine	cause	nausea
+headache	classify as	migraine	>	migraine	characterize by	pain
+nausea	occur with	migraine	>	migraine	cause	nausea
+migraine	accompany by	nausea	>	migraine	cause	nausea
+vertigo	occur in	migraine	>	migraine	replace by	vertigo
+migraine	trigger by	food	>	food	trigger	migraine
+headache	resemble	migraine	>	migraine	characterise by	headache
+migraine	refer to	headache	>	migraine	characterize by	headache
+migraine	have	headache	>	migraine	involve	pain
+migraine	present during	period	>	migraine	disappear at	menopause
+headache	divide into	migraine	>	migraine	have	headache
+migraine	describe as	headache	>	migraine	define as	headache
+migraine	accompany with	nausea	>	nausea	occur with	migraine
+migraine	refer to	headache	>	headache	diagnose as	migraine
+vertigo	occur in	migraine	>	vertigo	associate with	migraine
+headache	differ from	migraine	>	headache	differentiate from	migraine
+headache	resemble	migraine	>	migraine	cause	headache
+migraine	characterise by	headache	>	migraine	present as	headache
+migraine	distinguish from	headache	>	headache	confuse with	migraine
+migraine	provoke by	aspartame	>	food	precipitate	migraine
+migraine	associate with	pain	>	pain	be in	migraine
+migraine	cause	pain	>	pain	be in	migraine
+headache	include	migraine	X	headache	distinguish from	migraine
+headache	simulate	migraine	>	migraine	involve	pain
+headache	resemble	migraine	>	migraine	involve	pain
+migraine	have	aura	>	migraine	begin with	aura
+migraine	refer to	headache	>	migraine	characterize by	pain
+migraine	have	aura	>	migraine	consist of	aura
+headache	differentiate from	migraine	X	headache	include	migraine
+pain	be in	migraine	>	migraine	cause	pain
+headache	differ from	migraine	>	migraine	distinguish from	headache
+headache	distinguish from	migraine	X	headache	suggest	migraine
+migraine	describe as	headache	X	headache	mistake for	migraine
+migraine	describe as	headache	>	migraine	accompany by	headache
+migraine	think as	headache	>	pain	be in	migraine
+migraine	differ from	headache	X	migraine	think as	headache
+pain	suggest	migraine	>	pain	be in	migraine
+headache	suggest	migraine	X	migraine	distinguish from	headache
+headache	differ from	migraine	X	migraine	refer to	headache
+migraine	involve	pain	>	migraine	cause	pain
+headache	divide into	migraine	>	migraine	accompany by	headache
+migraine	have	headache	>	migraine	characterize by	pain
+headache	include	migraine	>	migraine	characterise by	headache
+migraine	present as	headache	>	migraine	accompany by	headache
+migraine	consist of	headache	>	migraine	characterise by	headache
+migraine	consist of	aura	>	migraine	herald by	aura
+migraine	define as	headache	X	headache	distinguish from	migraine
+migraine	have	headache	>	pain	suggest	migraine
+food	induce	migraine	>	migraine	trigger by	food
+headache	classify as	migraine	>	migraine	think as	headache
+migraine	differ from	headache	X	headache	divide into	migraine
+headache	simulate	migraine	>	pain	be in	migraine
+headache	diagnose as	migraine	X	headache	differentiate from	migraine
+neuralgia	confound with	migraine	>	neuralgia	differ from	migraine
+migraine	define as	headache	>	headache	resemble	migraine
+migraine	characterise by	headache	>	migraine	consist of	headache
+migraine	associate with	headache	>	pain	suggest	migraine
+migraine	accompany by	headache	>	migraine	cause	pain
+headache	mistake for	migraine	>	migraine	differ from	headache
+migraine	start with	aura	>	migraine	associate with	aura
+migraine	characterize by	headache	>	migraine	characterise by	headache
+migraine	cause	headache	>	migraine	consist of	headache
+headache	simulate	migraine	>	migraine	characterize by	pain
+migraine	associate with	aura	>	migraine	precede by	aura
+headache	differ from	migraine	>	migraine	differ from	headache
+migraine	describe as	headache	>	migraine	involve	pain
+migraine	think as	headache	X	headache	differ from	migraine
+headache	suggest	migraine	>	migraine	have	headache
+headache	classify as	migraine	X	headache	confuse with	migraine
+headache	classify as	migraine	>	migraine	refer to	headache
+headache	include	migraine	X	headache	confuse with	migraine
+migraine	describe as	headache	>	migraine	cause	headache
+migraine	characterise by	headache	>	headache	resemble	migraine
+migraine	associate with	pain	>	pain	suggest	migraine
+migraine	think as	headache	>	headache	resemble	migraine
+migraine	characterise by	headache	>	migraine	associate with	pain
+migraine	characterize by	headache	>	migraine	associate with	pain
+headache	diagnose as	migraine	>	migraine	have	headache
+migraine	define as	headache	>	migraine	accompany by	headache
+headache	classify as	migraine	>	migraine	associate with	pain
+headache	classify as	migraine	>	headache	diagnose as	migraine
+migraine	start with	aura	>	migraine	begin with	aura
+migraine	associate with	headache	>	migraine	characterize by	pain
+migraine	define as	headache	>	headache	classify as	migraine
+migraine	refer to	headache	>	migraine	accompany by	headache
+headache	classify as	migraine	>	migraine	characterize by	headache
+migraine	associate with	nausea	>	migraine	cause	nausea
+migraine	characterise by	headache	>	pain	suggest	migraine
+headache	divide into	migraine	>	headache	diagnose as	migraine
+migraine	involve	pain	>	pain	suggest	migraine
+migraine	describe as	headache	>	migraine	characterise by	headache
+headache	suggest	migraine	X	headache	mistake for	migraine
+migraine	refer to	headache	>	headache	suggest	migraine
+migraine	herald by	aura	>	migraine	precede by	aura
+migraine	describe as	headache	X	migraine	differ from	headache
+migraine	define as	headache	>	headache	diagnose as	migraine
+headache	differ from	migraine	>	headache	mistake for	migraine
+migraine	cause	headache	>	migraine	cause	pain
+vertigo	associate with	migraine	>	migraine	associate with	vertigo
+migraine	accompany with	nausea	>	nausea	accompany	migraine
+migraine	associate with	nausea	>	migraine	accompany by	nausea
+migraine	define as	headache	>	migraine	characterize by	headache
+headache	divide into	migraine	X	headache	differentiate from	migraine
+migraine	have	headache	>	migraine	associate with	pain
+migraine	characterize by	headache	>	pain	be in	migraine
+headache	include	migraine	>	migraine	accompany by	headache
+headache	diagnose as	migraine	>	migraine	consist of	headache
+pain	be in	migraine	>	migraine	involve	pain
+headache	distinguish from	migraine	>	migraine	distinguish from	headache
+vertigo	occur in	migraine	>	migraine	associate with	vertigo
+migraine	have	headache	>	migraine	associate with	headache
+migraine	distinguish from	headache	X	headache	divide into	migraine
+migraine	cause	nausea	>	migraine	associate with	nausea
+headache	confuse with	migraine	>	headache	mistake for	migraine
+migraine	think as	headache	>	headache	diagnose as	migraine
+headache	confuse with	migraine	>	headache	differentiate from	migraine
+migraine	begin with	aura	>	migraine	consist of	aura
+headache	divide into	migraine	>	migraine	characterize by	pain
+migraine	think as	headache	>	headache	include	migraine
+migraine	consist of	headache	>	migraine	accompany by	headache
+pain	be in	migraine	>	pain	suggest	migraine
+headache	include	migraine	X	headache	differ from	migraine
+migraine	think as	headache	>	migraine	characterize by	headache
+migraine	think as	headache	>	migraine	cause	headache
+migraine	associate with	headache	>	migraine	present as	headache
+migraine	describe as	headache	>	migraine	refer to	headache
+migraine	associate with	aura	>	migraine	start with	aura
+migraine	refer to	headache	X	headache	differentiate from	migraine
+migraine	accompany with	nausea	>	migraine	cause	nausea
+headache	include	migraine	>	migraine	associate with	pain
+headache	simulate	migraine	>	migraine	associate with	headache
+headache	confuse with	migraine	X	headache	divide into	migraine
+migraine	accompany by	headache	>	pain	be in	migraine
+headache	classify as	migraine	X	headache	differ from	migraine
+migraine	distinguish from	headache	>	headache	mistake for	migraine
+headache	differ from	migraine	X	migraine	think as	headache
+migraine	consist of	headache	>	migraine	have	headache
+headache	divide into	migraine	X	headache	differ from	migraine
+migraine	have	headache	>	pain	be in	migraine
+headache	suggest	migraine	>	migraine	define as	headache
+migraine	associate with	vertigo	>	vertigo	associate with	migraine
+migraine	accompany with	nausea	>	nausea	associate with	migraine
+migraine	define as	headache	>	migraine	have	headache
+migraine	define as	headache	X	migraine	differ from	headache
+headache	resemble	migraine	>	migraine	have	headache
+migraine	replace by	vertigo	>	migraine	associate with	vertigo
+migraine	characterise by	headache	>	migraine	cause	pain
+headache	include	migraine	>	headache	classify as	migraine
+headache	diagnose as	migraine	X	headache	differ from	migraine
+headache	differ from	migraine	X	migraine	describe as	headache
+migraine	define as	headache	>	headache	simulate	migraine
+migraine	present as	headache	>	migraine	associate with	pain
+migraine	consist of	aura	>	migraine	precede by	aura
+headache	distinguish from	migraine	X	headache	classify as	migraine
+headache	mistake for	migraine	X	migraine	refer to	headache
+headache	differentiate from	migraine	X	migraine	refer to	headache
+migraine	accompany with	nausea	>	migraine	accompany by	nausea
+migraine	consist of	headache	>	migraine	cause	pain
+food	induce	migraine	>	food	trigger	migraine
+migraine	herald by	aura	>	migraine	have	aura
+migraine	accompany by	headache	>	headache	resemble	migraine
+migraine	define as	headache	X	headache	mistake for	migraine
+pain	suggest	migraine	>	migraine	characterize by	pain
+headache	suggest	migraine	>	migraine	cause	headache
+headache	diagnose as	migraine	>	migraine	accompany by	headache
+headache	divide into	migraine	X	headache	mistake for	migraine
+migraine	define as	headache	>	migraine	cause	pain
+headache	simulate	migraine	>	migraine	characterise by	headache
+headache	suggest	migraine	>	headache	diagnose as	migraine
+migraine	associate with	headache	>	migraine	characterize by	headache
+headache	diagnose as	migraine	>	migraine	refer to	headache
+migraine	associate with	aura	>	migraine	herald by	aura
+migraine	refer to	headache	>	migraine	present as	headache
+headache	simulate	migraine	>	migraine	have	headache
+migraine	associate with	headache	>	migraine	associate with	pain
+headache	include	migraine	>	headache	resemble	migraine
+headache	distinguish from	migraine	>	migraine	differ from	headache
+headache	divide into	migraine	>	headache	include	migraine
+headache	distinguish from	migraine	X	headache	diagnose as	migraine
+headache	confuse with	migraine	X	migraine	think as	headache
+nausea	associate with	migraine	>	migraine	accompany by	nausea
+migraine	have	headache	>	migraine	characterise by	headache
+headache	suggest	migraine	>	migraine	characterize by	pain
+migraine	think as	headache	X	headache	mistake for	migraine
+headache	differ from	migraine	>	headache	confuse with	migraine
+headache	differentiate from	migraine	>	headache	differ from	migraine
+nausea	occur with	migraine	>	nausea	associate with	migraine
+nausea	occur with	migraine	>	nausea	accompany	migraine
+migraine	differ from	headache	>	headache	mistake for	migraine
+migraine	associate with	pain	>	migraine	involve	pain
+headache	suggest	migraine	X	migraine	differ from	headache
+migraine	think as	headache	>	migraine	present as	headache
+nausea	accompany	migraine	>	migraine	accompany with	nausea
+migraine	refer to	headache	X	migraine	distinguish from	headache
+food	precipitate	migraine	>	migraine	trigger by	food
+migraine	precede by	aura	>	migraine	consist of	aura
+migraine	have	headache	>	migraine	characterize by	headache
+headache	classify as	migraine	>	pain	suggest	migraine
+headache	distinguish from	migraine	X	migraine	describe as	headache
+headache	diagnose as	migraine	X	migraine	differ from	headache
+migraine	associate with	pain	>	migraine	characterize by	pain
+headache	classify as	migraine	>	headache	suggest	migraine
+migraine	have	headache	>	headache	resemble	migraine
+headache	differentiate from	migraine	X	migraine	define as	headache
+headache	distinguish from	migraine	X	migraine	define as	headache
+migraine	accompany by	headache	>	migraine	characterize by	headache
+migraine	present as	headache	>	migraine	characterise by	headache
+headache	suggest	migraine	>	migraine	describe as	headache
+headache	confuse with	migraine	X	headache	include	migraine
+migraine	describe as	headache	>	migraine	have	headache
+migraine	characterize by	headache	>	migraine	accompany by	headache
+headache	distinguish from	migraine	X	migraine	think as	headache
+migraine	precede by	scotoma	>	scotoma	occur in	migraine
+migraine	refer to	headache	>	headache	simulate	migraine
+migraine	describe as	headache	>	pain	be in	migraine
+migraine	refer to	headache	>	pain	suggest	migraine
+headache	include	migraine	>	migraine	associate with	headache
+migraine	disappear during	pregnancy	>	migraine	relieve by	pregnancy
+migraine	refer to	headache	>	migraine	associate with	headache
+headache	diagnose as	migraine	>	migraine	involve	pain
+headache	suggest	migraine	X	headache	confuse with	migraine
+headache	diagnose as	migraine	>	migraine	cause	pain
+migraine	begin with	aura	>	migraine	herald by	aura
+migraine	present as	headache	>	pain	be in	migraine
+migraine	refer to	headache	>	migraine	associate with	pain
+headache	diagnose as	migraine	X	headache	mistake for	migraine
+migraine	accompany by	nausea	>	migraine	associate with	nausea
+headache	differentiate from	migraine	X	headache	diagnose as	migraine
+nausea	associate with	migraine	>	nausea	occur with	migraine
+headache	differentiate from	migraine	>	migraine	differ from	headache
+headache	distinguish from	migraine	>	headache	confuse with	migraine
+headache	confuse with	migraine	X	migraine	describe as	headache
+migraine	define as	headache	>	pain	be in	migraine
+headache	suggest	migraine	>	headache	include	migraine
+migraine	characterize by	pain	>	pain	suggest	migraine
+migraine	describe as	headache	X	headache	differentiate from	migraine
+migraine	describe as	headache	>	migraine	cause	pain
+nausea	occur with	migraine	>	migraine	associate with	nausea
+migraine	accompany by	nausea	>	nausea	associate with	migraine
+migraine	characterize by	headache	>	migraine	involve	pain
+migraine	think as	headache	>	migraine	associate with	pain
+migraine	accompany by	headache	>	migraine	have	headache
+headache	classify as	migraine	>	pain	be in	migraine
+migraine	consist of	headache	>	headache	simulate	migraine
+headache	distinguish from	migraine	X	headache	divide into	migraine
+migraine	have	headache	>	headache	simulate	migraine
+migraine	characterise by	headache	>	migraine	cause	headache
+headache	resemble	migraine	>	migraine	characterize by	pain
+headache	include	migraine	X	migraine	differ from	headache
+migraine	define as	headache	>	migraine	characterize by	pain
+migraine	differ from	headache	>	headache	differentiate from	migraine
+vertigo	associate with	migraine	>	vertigo	occur in	migraine
+headache	classify as	migraine	>	migraine	have	headache
+headache	mistake for	migraine	X	migraine	describe as	headache
+migraine	characterize by	headache	>	pain	suggest	migraine
+migraine	think as	headache	>	pain	suggest	migraine
+migraine	differ from	headache	>	migraine	distinguish from	headache
+headache	resemble	migraine	>	migraine	associate with	headache
+headache	differ from	migraine	X	headache	classify as	migraine
+migraine	cause	headache	>	headache	resemble	migraine
+migraine	accompany by	nausea	>	migraine	accompany with	nausea
+food	precipitate	migraine	>	food	trigger	migraine
+food	trigger	migraine	>	food	induce	migraine
+migraine	cause	headache	>	migraine	characterise by	headache
+migraine	precede by	aura	>	migraine	herald by	aura
+headache	mistake for	migraine	X	migraine	think as	headache
+headache	include	migraine	>	migraine	consist of	headache
+headache	mistake for	migraine	>	headache	differentiate from	migraine
+migraine	associate with	headache	>	headache	simulate	migraine
+migraine	characterise by	headache	>	migraine	characterize by	pain
+migraine	have	aura	>	migraine	start with	aura
+headache	classify as	migraine	X	migraine	distinguish from	headache
+migraine	characterize by	headache	>	migraine	associate with	headache
+migraine	associate with	headache	>	migraine	have	headache
+headache	classify as	migraine	X	migraine	differ from	headache
+migraine	have	headache	>	migraine	present as	headache
+migraine	characterize by	headache	>	migraine	cause	pain
+migraine	have	headache	>	migraine	cause	headache
+headache	diagnose as	migraine	>	migraine	define as	headache
+migraine	accompany by	headache	>	migraine	present as	headache
+headache	include	migraine	X	migraine	distinguish from	headache
+headache	diagnose as	migraine	>	migraine	describe as	headache
+migraine	differ from	headache	X	headache	include	migraine
+migraine	define as	headache	X	migraine	distinguish from	headache
+migraine	cause	headache	>	migraine	have	headache
+migraine	start with	aura	>	migraine	herald by	aura
+migraine	refer to	headache	>	headache	resemble	migraine
+headache	resemble	migraine	>	pain	suggest	migraine
+headache	classify as	migraine	>	migraine	present as	headache
+migraine	associate with	aura	>	migraine	begin with	aura
+migraine	characterize by	pain	>	pain	be in	migraine
+migraine	replace by	vertigo	>	vertigo	occur in	migraine
+migraine	trigger by	food	>	food	precipitate	migraine
+headache	differentiate from	migraine	X	migraine	think as	headache
+headache	divide into	migraine	>	headache	suggest	migraine
+migraine	describe as	headache	>	migraine	think as	headache
+headache	confuse with	migraine	X	headache	diagnose as	migraine
+headache	suggest	migraine	>	migraine	cause	pain
+headache	classify as	migraine	>	migraine	define as	headache
+headache	differentiate from	migraine	X	headache	suggest	migraine
+migraine	characterise by	headache	>	headache	simulate	migraine
+headache	divide into	migraine	>	migraine	think as	headache
+pain	suggest	migraine	>	migraine	involve	pain
+headache	resemble	migraine	>	migraine	consist of	headache
+migraine	think as	headache	>	migraine	accompany by	headache
+migraine	consist of	headache	>	migraine	associate with	headache
+strain	cause	migraine	>	exercise	trigger	migraine
+pain	be in	migraine	>	migraine	characterize by	pain
+headache	simulate	migraine	>	pain	suggest	migraine
+headache	diagnose as	migraine	>	migraine	present as	headache
+migraine	describe as	headache	>	headache	resemble	migraine
+migraine	refer to	headache	>	headache	classify as	migraine
+migraine	associate with	headache	>	pain	be in	migraine
+headache	divide into	migraine	>	pain	suggest	migraine
+headache	diagnose as	migraine	>	migraine	characterize by	pain
+headache	diagnose as	migraine	>	migraine	associate with	headache
+migraine	present as	headache	>	headache	resemble	migraine
+migraine	refer to	headache	>	pain	be in	migraine
+migraine	consist of	headache	>	migraine	characterize by	pain
+migraine	describe as	headache	>	headache	simulate	migraine
+migraine	cause	pain	>	migraine	characterize by	pain
+headache	suggest	migraine	>	migraine	associate with	headache
+migraine	accompany by	nausea	>	nausea	accompany	migraine
+headache	distinguish from	migraine	X	headache	include	migraine
+migraine	accompany by	headache	>	migraine	associate with	pain
+headache	confuse with	migraine	>	migraine	distinguish from	headache
+migraine	consist of	aura	>	migraine	have	aura
+headache	divide into	migraine	>	migraine	consist of	headache
+migraine	characterize by	headache	>	migraine	characterize by	pain
+migraine	consist of	aura	>	migraine	start with	aura
+migraine	think as	headache	>	headache	simulate	migraine
+food	precipitate	migraine	>	food	induce	migraine
+headache	include	migraine	>	headache	diagnose as	migraine
+migraine	refer to	headache	X	migraine	differ from	headache
+neuralgia	confound with	migraine	>	migraine	confuse with	neuralgia
+migraine	cause	pain	>	pain	suggest	migraine
+migraine	accompany by	headache	>	pain	suggest	migraine
+headache	divide into	migraine	>	migraine	involve	pain
+migraine	refer to	headache	>	migraine	think as	headache
+migraine	define as	headache	>	migraine	describe as	headache
+headache	confuse with	migraine	>	headache	differ from	migraine
+migraine	start with	aura	>	migraine	precede by	aura
+migraine	distinguish from	headache	X	migraine	define as	headache
+migraine	refer to	headache	X	headache	distinguish from	migraine
+migraine	characterize by	headache	>	migraine	cause	headache
+migraine	cause	pain	>	migraine	associate with	pain
+migraine	cause	headache	>	pain	be in	migraine
+migraine	associate with	aura	>	migraine	consist of	aura
+headache	differ from	migraine	>	headache	distinguish from	migraine
+migraine	accompany by	headache	>	migraine	characterize by	pain
+headache	classify as	migraine	>	migraine	cause	headache
+migraine	accompany by	headache	>	migraine	associate with	headache
+headache	classify as	migraine	>	migraine	describe as	headache
+migraine	refer to	headache	>	migraine	describe as	headache
+headache	confuse with	migraine	>	migraine	differ from	headache
+headache	include	migraine	>	migraine	characterize by	headache
+headache	include	migraine	>	migraine	think as	headache
+nausea	occur with	migraine	>	migraine	accompany with	nausea
+headache	suggest	migraine	>	migraine	accompany by	headache
+headache	divide into	migraine	X	migraine	distinguish from	headache
+headache	mistake for	migraine	X	headache	include	migraine
+migraine	differ from	headache	X	migraine	describe as	headache
+headache	diagnose as	migraine	>	migraine	associate with	pain
+migraine	refer to	headache	X	headache	mistake for	migraine
+headache	diagnose as	migraine	>	headache	include	migraine
+nausea	occur with	migraine	>	migraine	accompany by	nausea
+migraine	distinguish from	headache	X	headache	classify as	migraine
+headache	include	migraine	>	migraine	cause	headache
+headache	divide into	migraine	>	migraine	characterise by	headache
+migraine	define as	headache	>	migraine	present as	headache
+migraine	define as	headache	>	migraine	think as	headache
+nausea	associate with	migraine	>	migraine	accompany with	nausea
+migraine	define as	headache	>	migraine	characterise by	headache
+headache	diagnose as	migraine	>	headache	divide into	migraine
+migraine	herald by	aura	>	migraine	consist of	aura
+headache	mistake for	migraine	>	headache	confuse with	migraine
+migraine	associate with	aura	>	migraine	have	aura
+headache	diagnose as	migraine	>	headache	classify as	migraine
+migraine	consist of	headache	>	headache	resemble	migraine
+migraine	refer to	headache	X	headache	confuse with	migraine
+migraine	herald by	aura	>	migraine	begin with	aura
+headache	differentiate from	migraine	X	migraine	describe as	headache
+migraine	describe as	headache	>	migraine	associate with	pain
+headache	divide into	migraine	>	migraine	characterize by	headache
+migraine	begin with	aura	>	migraine	precede by	aura
+migraine	distinguish from	headache	>	migraine	differ from	headache
+headache	diagnose as	migraine	>	pain	be in	migraine
+migraine	think as	headache	>	migraine	define as	headache
+migraine	describe as	headache	>	migraine	characterize by	pain
+migraine	describe as	headache	X	headache	distinguish from	migraine
+migraine	differ from	headache	>	headache	confuse with	migraine
+migraine	present as	headache	>	headache	simulate	migraine
+migraine	think as	headache	>	migraine	characterise by	headache
+headache	resemble	migraine	>	migraine	cause	pain
+headache	classify as	migraine	>	headache	divide into	migraine

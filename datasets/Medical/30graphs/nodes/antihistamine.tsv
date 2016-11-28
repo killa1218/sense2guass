@@ -1,0 +1,141 @@
+antihistamine	mask	symptom
+antihistamine	use for	symptom
+antihistamine	counteract	symptom
+antihistamine	control	symptom
+antihistamine	exacerbate	symptom
+antihistamine	help	symptom
+antihistamine	treat	symptom
+symptom	relieve by	antihistamine
+symptom	relieve with	antihistamine
+antihistamine	reduce	symptom
+symptom	respond to	antihistamine
+antihistamine	relieve	symptom
+antihistamine	decrease	symptom
+symptom	control with	antihistamine
+symptom	treat with	antihistamine
+antihistamine	improve	symptom
+antihistamine	alleviate	symptom
+antihistamine	afford	relief
+relief	obtain from	antihistamine
+antihistamine	prescribe for	relief
+relief	obtain with	antihistamine
+antihistamine	use for	relief
+relief	achieve with	antihistamine
+antihistamine	bring	relief
+antihistamine	be for	relief
+antihistamine	produce	relief
+antihistamine	give	relief
+antihistamine	be in	relief
+antihistamine	offer	relief
+antihistamine	provide	relief
+antihistamine	administer for	pruritus
+pruritus	control with	antihistamine
+antihistamine	control	pruritus
+antihistamine	be in	pruritus
+pruritus	respond to	antihistamine
+pruritus	treat with	antihistamine
+antihistamine	give for	pruritus
+antihistamine	reduce	pruritus
+antihistamine	alleviate	pruritus
+antihistamine	help	pruritus
+antihistamine	use for	pruritus
+antihistamine	relieve	pruritus
+antihistamine	decrease	pruritus
+pruritus	relieve by	antihistamine
+antihistamine	interact with	drug
+drug	combine with	antihistamine
+antihistamine	combine with	drug
+antihistamine	take	drug
+antihistamine	use as	drug
+antihistamine	be among	drug
+drug	include	antihistamine
+drug	contain	antihistamine
+antihistamine	refer to	drug
+drug	classify as	antihistamine
+antihistamine	cause	drowsiness
+drowsiness	indicate	antihistamine
+antihistamine	increase	drowsiness
+antihistamine	produce	drowsiness
+antihistamine	induce	drowsiness
+antihistamine	control	itching
+antihistamine	give for	itching
+antihistamine	help	itching
+antihistamine	relieve	itching
+antihistamine	prescribe for	itching
+antihistamine	suppress	itching
+antihistamine	use for	itching
+antihistamine	provide from	itching
+antihistamine	reduce	itching
+itching	treat with	antihistamine
+antihistamine	use for	sedation
+antihistamine	produce	sedation
+antihistamine	cause	sedation
+antihistamine	increase	sedation
+antihistamine	use with	medication
+medication	include	antihistamine
+medication	contain	antihistamine
+antihistamine	find in	medication
+urticaria	treat with	antihistamine
+antihistamine	reduce	urticaria
+urticaria	respond to	antihistamine
+antihistamine	be in	urticaria
+urticaria	control with	antihistamine
+antihistamine	compete with	histamine
+antihistamine	inhibit	histamine
+antihistamine	block	histamine
+antihistamine	prevent	histamine
+antihistamine	neutralize	histamine
+antihistamine	result in	depression
+antihistamine	cause	depression
+antihistamine	produce	depression
+antihistamine	have	depression
+decongestant	contain	antihistamine
+antihistamine	combine with	decongestant
+decongestant	combine with	antihistamine
+antihistamine	use with	decongestant
+antihistamine	be in	rhinitis
+antihistamine	use in	rhinitis
+rhinitis	treat with	antihistamine
+antihistamine	sell without	prescription
+antihistamine	be without	prescription
+antihistamine	metabolize in	liver
+antihistamine	metabolize by	liver
+antihistamine	prescribe for	allergy
+antihistamine	be in	allergy
+allergy	treat with	antihistamine
+rash	control by	antihistamine
+rash	treat with	antihistamine
+antihistamine	include	diphenhydramine
+antihistamine	be over	counter
+antihistamine	obtain over	counter
+chlorpromazine	develop as	antihistamine
+antihistamine	control	chill
+antihistamine	be in	asthma
+antihistamine	use for	asthma
+antiemetic	include	antihistamine
+antihistamine	use as	antiemetic
+antihistamine	prevent	anaphylaxis
+anaphylaxis	treat with	antihistamine
+antihistamine	diminish	alertness
+antihistamine	decrease	alertness
+antihistamine	relieve	sneezing
+antihistamine	cause	sleepiness
+antihistamine	use as	sedative
+antihistamine	reduce	rhinorrhea
+antihistamine	decrease	responsiveness
+antihistamine	relieve	pain
+nausea	treat with	antihistamine
+antihistamine	inhibit	lactation
+antihistamine	relieve	itch
+antihistamine	use as	hypnotic
+hive	treat with	antihistamine
+antihistamine	cause	heartburn
+antihistamine	cause	dryness
+antihistamine	cause	dizziness
+antihistamine	reduce	coughing
+conjunctivitis	treat with	antihistamine
+antihistamine	reduce	congestion
+antihistamine	include	chlorpheniramine
+antihistamine	use at	bedtime
+antihistamine	include	astemizole
+antihistamine	prescribe for	anxiety

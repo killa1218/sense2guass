@@ -1,0 +1,100 @@
+acne	develop on	face
+acne	appear on	face
+acne	scar	face
+acne	involve	face
+acne	appear about	face
+face	be with	acne
+acne	scatter about	face
+acne	confine to	face
+acne	occur on	face
+acne	be on	face
+face	scar by	acne
+face	cover with	acne
+acne	see on	face
+acne	affect	face
+acne	break on	face
+acne	find on	face
+face	cover in	acne
+face	scar with	acne
+acne	cover	face
+acne	treat with	antibiotic
+antibiotic	use for	acne
+acne	require	antibiotic
+antibiotic	use in	acne
+antibiotic	be in	acne
+isotretinoin	combat	acne
+isotretinoin	reserve for	acne
+isotretinoin	use for	acne
+acne	treat with	isotretinoin
+skin	examine for	acne
+acne	appear upon	skin
+acne	result from	skin
+skin	cover with	acne
+acne	suspect in	teenager
+acne	be in	teenager
+acne	develop in	teenager
+teenager	have	acne
+acne	leave	scar
+scar	result from	acne
+acne	begin at	puberty
+acne	appear about	puberty
+acne	appear at	puberty
+masturbation	cause	acne
+acne	cause by	masturbation
+acne	occur without	masturbation
+acne	be in	adolescence
+acne	be during	adolescence
+acne	occur during	adolescence
+acne	occur in	adolescence
+acne	develop in	syphilis
+stress	cause	acne
+stress	aggravate	acne
+stress	exacerbate	acne
+acne	result in	scarring
+acne	lead to	scarring
+scarring	occur with	acne
+rosacea	resemble	acne
+rosacea	confuse with	acne
+pill	improve	acne
+pill	clear	acne
+pill	decrease	acne
+peroxide	suppress	acne
+acne	treat with	peroxide
+acne	consist of	papule
+acne	characterize by	papule
+acne	accompany	hirsutism
+hirsutism	accompany by	acne
+hirsutism	associate with	acne
+diet	cause	acne
+diet	affect	acne
+acne	cause by	diet
+chocolate	cause	acne
+acne	cause by	chocolate
+chocolate	aggravate	acne
+adolescent	develop	acne
+adolescent	have	acne
+acne	affect	adolescent
+steroid	cause	acne
+pustule	encounter in	acne
+acne	be during	pregnancy
+acne	cause by	dirt
+dirt	aggravate	acne
+dermatosis	include	acne
+cosmetic	aggravate	acne
+cosmetic	worsen	acne
+acne	characterize by	comedo
+acne	consist of	comedo
+acne	cause by	uncleanliness
+testosterone	cause	acne
+teen	have	acne
+oiliness	accompany	acne
+acne	accompany	menstruation
+acne	cause	embarrassment
+dermatitis	accompany	acne
+dapsone	reserve for	acne
+contraceptive	improve	acne
+acne	see on	chin
+acne	consist of	blackhead
+acne	cause by	bacteria
+androstenedione	cause	acne
+androgen	cause	acne

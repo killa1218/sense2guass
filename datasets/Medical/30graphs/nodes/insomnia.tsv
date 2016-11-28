@@ -1,0 +1,96 @@
+symptom	lead to	insomnia
+insomnia	regard as	symptom
+symptom	be as	insomnia
+insomnia	associate with	symptom
+symptom	include	insomnia
+symptom	occur	insomnia
+symptom	consist of	insomnia
+symptom	range from	insomnia
+insomnia	note among	symptom
+insomnia	precede	symptom
+insomnia	be among	symptom
+depression	associate with	insomnia
+depression	produce	insomnia
+insomnia	cause by	depression
+insomnia	accompany by	depression
+depression	characterize by	insomnia
+depression	contribute to	insomnia
+depression	cause	insomnia
+insomnia	accompany	depression
+insomnia	associate with	depression
+insomnia	be in	depression
+withdrawal	characterize by	insomnia
+insomnia	associate with	withdrawal
+withdrawal	produce	insomnia
+insomnia	accompany	withdrawal
+withdrawal	result in	insomnia
+withdrawal	cause	insomnia
+withdrawal	associate with	insomnia
+insomnia	treat with	hypnotic
+hypnotic	relieve	insomnia
+hypnotic	use for	insomnia
+insomnia	treat with	benzodiazepine
+benzodiazepine	prescribe for	insomnia
+benzodiazepine	use for	insomnia
+sleep	disturb by	insomnia
+insomnia	follow by	sleep
+sleep	disturb with	insomnia
+sleep	interrupt by	insomnia
+anxiety	produce	insomnia
+insomnia	cause by	anxiety
+insomnia	associate with	anxiety
+anxiety	associate with	insomnia
+anxiety	cause	insomnia
+insomnia	originate from	fear
+insomnia	conceal	fear
+fear	cause	insomnia
+fear	lead to	insomnia
+insomnia	associate with	stress
+stress	cause	insomnia
+insomnia	cause by	stress
+insomnia	cause by	pain
+pain	cause	insomnia
+insomnia	induce by	lesion
+lesion	cause	insomnia
+lesion	produce	insomnia
+idea	come during	insomnia
+caffeine	produce	insomnia
+caffeine	cause	insomnia
+insomnia	go out	brain
+brain	excite by	insomnia
+bedtime	prevent	insomnia
+bedtime	minimize	insomnia
+bedtime	avoid	insomnia
+barbiturate	be in	insomnia
+barbiturate	prescribe for	insomnia
+insomnia	be to	nervousness
+hydrotherapy	subdue	insomnia
+insomnia	control by	hydrotherapy
+encephalitis	have	insomnia
+insomnia	precede	delirium
+valerian	relieve	insomnia
+trazodone	use for	insomnia
+insomnia	associate with	tension
+tea	cause	insomnia
+steroid	cause	insomnia
+insomnia	be in	neurosis
+insomnia	be in	neurasthenia
+itching	induce	insomnia
+insomnia	lead to	insanity
+indigestion	give	insomnia
+hypnosis	recommend for	insomnia
+hyperthyroidism	associate with	insomnia
+hyoscyamus	induce	insomnia
+hyoscine	indicate in	insomnia
+insomnia	cause	fatigue
+insomnia	lead to	exhaustion
+excitement	give	insomnia
+insomnia	give to	drowsiness
+insomnia	cause	distress
+decongestant	cause	insomnia
+cortisol	cause	insomnia
+corticosteroid	cause	insomnia
+coffee	cause	insomnia
+alcohol	cause	insomnia
+abstinence	cause	insomnia
+abscess	attend with	insomnia

@@ -1,0 +1,304 @@
+influenza	cause	pneumonia	>	influenza	follow by	pneumonia
+pneumonia	occur after	influenza	>	influenza	lead to	pneumonia
+immunization	protect against	influenza	>	influenza	prevent by	vaccination
+influenza	begin with	fever	>	influenza	characterize by	fever
+pneumonia	occur after	influenza	>	influenza	turn into	pneumonia
+pneumonia	precede by	influenza	>	pneumonia	include with	influenza
+everybody	be with	influenza	>	everybody	have	influenza
+influenza	cause	fever	>	influenza	resemble	fever
+influenza	begin with	fever	>	fever	simulate by	influenza
+influenza	follow by	pneumonia	>	pneumonia	follow	influenza
+pneumonia	follow	influenza	>	pneumonia	precede by	influenza
+influenza	lead to	pneumonia	>	pneumonia	precede by	influenza
+influenza	show	leukopenia	>	influenza	characterize by	leucopenia
+influenza	begin with	fever	>	fever	resemble	influenza
+influenza	turn into	pneumonia	>	pneumonia	occur after	influenza
+influenza	complicate by	pneumonia	>	pneumonia	include with	influenza
+virus	refer as	influenza	>	virus	include	influenza
+influenza	develop into	pneumonia	>	influenza	predispose to	pneumonia
+influenza	lead to	pneumonia	>	pneumonia	occur after	influenza
+influenza	complicate by	pneumonia	>	pneumonia	complicate	influenza
+influenza	sweep over	world	>	everybody	be with	influenza
+everybody	be with	influenza	>	influenza	occur throughout	world
+influenza	turn into	pneumonia	>	influenza	predispose to	pneumonia
+virus	refer as	influenza	>	influenza	be among	virus
+influenza	cause	fever	>	fever	simulate by	influenza
+influenza	sweep	world	>	everybody	get	influenza
+pneumonia	occur after	influenza	>	pneumonia	precede by	influenza
+pneumonia	precede by	influenza	>	pneumonia	complicate	influenza
+influenza	predispose to	pneumonia	>	pneumonia	precede by	influenza
+influenza	cause	pneumonia	>	pneumonia	include with	influenza
+influenza	accompany by	cough	>	cough	follow	influenza
+influenza	follow by	pneumonia	>	influenza	complicate by	pneumonia
+influenza	predispose to	pneumonia	>	influenza	cause	pneumonia
+pneumonia	precede by	influenza	>	influenza	follow by	pneumonia
+influenza	develop into	pneumonia	>	pneumonia	complicate	influenza
+influenza	predispose to	pneumonia	>	influenza	develop into	pneumonia
+pneumonia	follow	influenza	>	influenza	develop into	pneumonia
+fever	simulate by	influenza	>	fever	resemble	influenza
+influenza	cause	pneumonia	>	influenza	lead to	pneumonia
+pneumonia	precede by	influenza	>	influenza	lead to	pneumonia
+pneumonia	complicate	influenza	>	influenza	complicate by	pneumonia
+epidemic	cause by	influenza	>	epidemic	occur with	influenza
+influenza	develop into	pneumonia	>	pneumonia	include with	influenza
+influenza	be in	world	>	everybody	have	influenza
+pneumonia	occur after	influenza	>	pneumonia	include with	influenza
+influenza	cause	pneumonia	>	pneumonia	complicate	influenza
+influenza	complicate by	pneumonia	>	influenza	follow by	pneumonia
+influenza	characterize by	leucopenia	>	leukopenia	accompany	influenza
+pneumonia	precede by	influenza	>	pneumonia	follow	influenza
+influenza	follow by	pneumonia	>	influenza	develop into	pneumonia
+influenza	predispose to	pneumonia	>	influenza	follow by	pneumonia
+everybody	have	influenza	>	influenza	occur throughout	world
+influenza	lead to	pneumonia	>	influenza	cause	pneumonia
+everybody	get	influenza	>	influenza	be in	world
+fever	be with	influenza	>	influenza	characterize by	fever
+pneumonia	complicate	influenza	>	influenza	turn into	pneumonia
+influenza	sweep over	world	>	everybody	lay with	influenza
+influenza	complicate by	pneumonia	>	pneumonia	follow	influenza
+influenza	follow by	pneumonia	>	influenza	lead to	pneumonia
+influenza	cause	epidemic	>	epidemic	occur with	influenza
+fever	be with	influenza	>	fever	simulate by	influenza
+influenza	sweep	world	>	influenza	occur throughout	world
+influenza	complicate by	pneumonia	>	influenza	develop into	pneumonia
+influenza	complicate by	pneumonia	>	influenza	cause	pneumonia
+fever	simulate by	influenza	>	fever	be with	influenza
+influenza	characterize by	leucopenia	>	influenza	associate with	leucopenia
+pneumonia	occur after	influenza	>	influenza	predispose to	pneumonia
+influenza	be in	world	>	everybody	get	influenza
+influenza	sweep over	world	>	influenza	occur throughout	world
+everybody	lay with	influenza	>	influenza	be in	world
+influenza	lead to	pneumonia	>	pneumonia	follow	influenza
+influenza	follow by	pneumonia	>	pneumonia	cause by	influenza
+influenza	cause	pneumonia	>	pneumonia	follow	influenza
+influenza	lead to	pneumonia	>	pneumonia	associate with	influenza
+everybody	have	influenza	>	influenza	sweep over	world
+influenza	occur throughout	world	>	influenza	be in	world
+everybody	lay with	influenza	>	influenza	occur throughout	world
+influenza	be in	world	>	influenza	occur throughout	world
+everybody	get	influenza	>	influenza	sweep	world
+pneumonia	follow	influenza	>	pneumonia	complicate	influenza
+influenza	develop into	pneumonia	>	influenza	follow by	pneumonia
+influenza	follow by	pneumonia	>	pneumonia	associate with	influenza
+influenza	treat with	amantadine	>	amantadine	be against	influenza
+fever	simulate by	influenza	>	influenza	cause	fever
+influenza	follow by	pneumonia	>	influenza	turn into	pneumonia
+influenza	sweep over	world	>	influenza	sweep	world
+everybody	be with	influenza	>	influenza	sweep	world
+pneumonia	occur after	influenza	>	pneumonia	follow	influenza
+influenza	occur in	epidemic	>	epidemic	occur with	influenza
+pneumonia	cause by	influenza	>	pneumonia	precede by	influenza
+influenza	sweep	world	>	everybody	have	influenza
+influenza	cause	fever	>	fever	resemble	influenza
+influenza	complicate by	pneumonia	>	influenza	lead to	pneumonia
+influenza	turn into	pneumonia	>	pneumonia	cause by	influenza
+influenza	begin with	fever	>	fever	be with	influenza
+influenza	occur throughout	world	>	influenza	sweep over	world
+influenza	be in	world	>	everybody	be with	influenza
+everybody	lay with	influenza	>	everybody	have	influenza
+influenza	be among	virus	>	influenza	cause by	virus
+pneumonia	complicate	influenza	>	influenza	cause	pneumonia
+influenza	be among	virus	>	virus	refer as	influenza
+influenza	be in	world	>	influenza	sweep over	world
+pneumonia	precede by	influenza	>	influenza	develop into	pneumonia
+pneumonia	complicate	influenza	>	pneumonia	occur after	influenza
+influenza	begin with	fever	>	influenza	resemble	fever
+influenza	predispose to	pneumonia	>	influenza	complicate by	pneumonia
+influenza	lead to	pneumonia	>	influenza	turn into	pneumonia
+pneumonia	precede by	influenza	>	influenza	turn into	pneumonia
+pneumonia	cause by	influenza	>	pneumonia	occur after	influenza
+pneumonia	cause by	influenza	>	influenza	predispose to	pneumonia
+influenza	sweep	world	>	influenza	sweep over	world
+fever	be with	influenza	>	fever	resemble	influenza
+fever	be with	influenza	>	influenza	resemble	fever
+everybody	get	influenza	>	everybody	have	influenza
+pneumonia	follow	influenza	>	pneumonia	include with	influenza
+influenza	develop into	pneumonia	>	pneumonia	associate with	influenza
+influenza	occur throughout	world	>	everybody	have	influenza
+influenza	lead to	pneumonia	>	pneumonia	cause by	influenza
+pneumonia	follow	influenza	>	pneumonia	cause by	influenza
+everybody	get	influenza	>	everybody	be with	influenza
+pneumonia	follow	influenza	>	influenza	predispose to	pneumonia
+influenza	sweep over	world	>	everybody	have	influenza
+pneumonia	follow	influenza	>	pneumonia	occur after	influenza
+amantadine	be against	influenza	>	influenza	treat with	amantadine
+leukopenia	accompany	influenza	>	influenza	associate with	leucopenia
+influenza	occur throughout	world	>	influenza	sweep	world
+pneumonia	cause by	influenza	>	pneumonia	include with	influenza
+influenza	turn into	pneumonia	>	pneumonia	associate with	influenza
+influenza	cause	pneumonia	>	pneumonia	associate with	influenza
+virus	cause	influenza	>	virus	include	influenza
+pneumonia	complicate	influenza	>	pneumonia	precede by	influenza
+pneumonia	cause by	influenza	>	influenza	cause	pneumonia
+influenza	lead to	pneumonia	>	influenza	predispose to	pneumonia
+pneumonia	cause by	influenza	>	influenza	develop into	pneumonia
+inflammation	induce by	influenza	>	influenza	characterize by	inflammation
+pneumonia	follow	influenza	>	influenza	lead to	pneumonia
+virus	include	influenza	>	virus	cause	influenza
+influenza	complicate by	pneumonia	>	pneumonia	precede by	influenza
+fever	be with	influenza	>	influenza	begin with	fever
+epidemic	cause by	influenza	>	influenza	cause	epidemic
+influenza	lead to	pneumonia	>	pneumonia	include with	influenza
+influenza	complicate by	pneumonia	>	pneumonia	cause by	influenza
+influenza	characterize by	fever	>	influenza	cause	fever
+influenza	occur throughout	world	>	everybody	be with	influenza
+influenza	complicate by	pneumonia	>	influenza	predispose to	pneumonia
+influenza	follow by	pneumonia	>	influenza	predispose to	pneumonia
+influenza	complicate by	pneumonia	>	pneumonia	occur after	influenza
+influenza	show	leukopenia	>	influenza	associate with	leucopenia
+influenza	cause	pneumonia	>	pneumonia	cause by	influenza
+pneumonia	complicate	influenza	>	pneumonia	cause by	influenza
+influenza	cause	fever	>	fever	be with	influenza
+influenza	turn into	pneumonia	>	pneumonia	include with	influenza
+influenza	predispose to	pneumonia	>	pneumonia	associate with	influenza
+pneumonia	complicate	influenza	>	pneumonia	include with	influenza
+influenza	cause by	virus	>	virus	cause	influenza
+influenza	develop into	pneumonia	>	influenza	lead to	pneumonia
+influenza	associate with	leucopenia	>	influenza	show	leukopenia
+influenza	turn into	pneumonia	>	pneumonia	follow	influenza
+pneumonia	follow	influenza	>	influenza	turn into	pneumonia
+pneumonia	complicate	influenza	>	pneumonia	associate with	influenza
+epidemic	occur with	influenza	>	influenza	occur in	epidemic
+virus	cause	influenza	>	virus	refer as	influenza
+influenza	cause	fever	>	influenza	characterize by	fever
+everybody	have	influenza	>	everybody	get	influenza
+pneumonia	cause by	influenza	>	pneumonia	follow	influenza
+influenza	sweep	world	>	influenza	be in	world
+pneumonia	precede by	influenza	>	influenza	predispose to	pneumonia
+influenza	sweep	world	>	everybody	be with	influenza
+influenza	characterize by	leucopenia	>	influenza	show	leukopenia
+pneumonia	precede by	influenza	>	pneumonia	occur after	influenza
+everybody	get	influenza	>	influenza	occur throughout	world
+pneumonia	occur after	influenza	>	influenza	complicate by	pneumonia
+leukopenia	accompany	influenza	>	influenza	characterize by	leucopenia
+epidemic	look as	influenza	>	epidemic	simulate	influenza
+influenza	sweep	world	>	everybody	lay with	influenza
+virus	refer as	influenza	>	virus	cause	influenza
+influenza	turn into	pneumonia	>	influenza	lead to	pneumonia
+influenza	turn into	pneumonia	>	influenza	cause	pneumonia
+influenza	cause	epidemic	>	influenza	occur in	epidemic
+fever	simulate by	influenza	>	influenza	begin with	fever
+influenza	turn into	pneumonia	>	influenza	complicate by	pneumonia
+influenza	associate with	leucopenia	>	influenza	characterize by	leucopenia
+virus	include	influenza	>	virus	refer as	influenza
+influenza	characterize by	fever	>	fever	be with	influenza
+influenza	occur in	epidemic	>	influenza	cause	epidemic
+influenza	begin with	fever	>	influenza	cause	fever
+pneumonia	complicate	influenza	>	influenza	develop into	pneumonia
+influenza	associate with	leucopenia	>	leukopenia	accompany	influenza
+influenza	develop into	pneumonia	>	pneumonia	cause by	influenza
+influenza	characterize by	fever	>	fever	resemble	influenza
+influenza	lead to	pneumonia	>	influenza	develop into	pneumonia
+pneumonia	occur after	influenza	>	influenza	develop into	pneumonia
+pneumonia	follow	influenza	>	pneumonia	associate with	influenza
+influenza	occur throughout	world	>	everybody	get	influenza
+everybody	be with	influenza	>	everybody	lay with	influenza
+pneumonia	complicate	influenza	>	influenza	lead to	pneumonia
+influenza	develop into	pneumonia	>	pneumonia	follow	influenza
+influenza	develop into	pneumonia	>	pneumonia	occur after	influenza
+influenza	turn into	pneumonia	>	influenza	follow by	pneumonia
+influenza	lead to	pneumonia	>	pneumonia	complicate	influenza
+influenza	prevent by	vaccination	>	influenza	prevent by	immunization
+pneumonia	associate with	influenza	>	pneumonia	include with	influenza
+everybody	be with	influenza	>	influenza	be in	world
+pneumonia	occur after	influenza	>	influenza	cause	pneumonia
+influenza	cause	pneumonia	>	pneumonia	occur after	influenza
+pneumonia	cause by	influenza	>	pneumonia	associate with	influenza
+influenza	turn into	pneumonia	>	influenza	develop into	pneumonia
+virus	cause	influenza	>	influenza	cause by	virus
+influenza	develop into	pneumonia	>	influenza	turn into	pneumonia
+influenza	cause by	virus	>	influenza	be among	virus
+influenza	characterize by	fever	>	influenza	resemble	fever
+everybody	lay with	influenza	>	influenza	sweep over	world
+influenza	prevent by	vaccination	>	immunization	protect against	influenza
+leukopenia	accompany	influenza	>	influenza	show	leukopenia
+pneumonia	precede by	influenza	>	influenza	cause	pneumonia
+influenza	sweep over	world	>	influenza	be in	world
+influenza	characterize by	fever	>	influenza	begin with	fever
+pneumonia	follow	influenza	>	influenza	cause	pneumonia
+pneumonia	cause by	influenza	>	influenza	complicate by	pneumonia
+influenza	occur in	epidemic	>	epidemic	cause by	influenza
+influenza	turn into	pneumonia	>	pneumonia	precede by	influenza
+pneumonia	cause by	influenza	>	influenza	turn into	pneumonia
+influenza	sweep over	world	>	everybody	get	influenza
+pneumonia	include with	influenza	>	pneumonia	associate with	influenza
+influenza	lead to	pneumonia	>	influenza	follow by	pneumonia
+virus	refer as	influenza	>	influenza	cause by	virus
+influenza	be in	world	>	everybody	lay with	influenza
+epidemic	occur with	influenza	>	epidemic	cause by	influenza
+influenza	show	leukopenia	>	leukopenia	accompany	influenza
+pneumonia	complicate	influenza	>	influenza	follow by	pneumonia
+influenza	predispose to	pneumonia	>	pneumonia	include with	influenza
+influenza	cause by	virus	>	virus	include	influenza
+influenza	resemble	fever	>	fever	resemble	influenza
+influenza	lead to	pneumonia	>	influenza	complicate by	pneumonia
+pneumonia	complicate	influenza	>	pneumonia	follow	influenza
+influenza	follow by	pneumonia	>	influenza	cause	pneumonia
+influenza	cause	pneumonia	>	influenza	develop into	pneumonia
+influenza	be among	virus	>	virus	include	influenza
+pneumonia	precede by	influenza	>	pneumonia	associate with	influenza
+influenza	predispose to	pneumonia	>	influenza	lead to	pneumonia
+pneumonia	cause by	influenza	>	influenza	follow by	pneumonia
+pneumonia	occur after	influenza	>	influenza	follow by	pneumonia
+influenza	follow by	pneumonia	>	pneumonia	complicate	influenza
+virus	include	influenza	>	influenza	cause by	virus
+everybody	lay with	influenza	>	everybody	get	influenza
+everybody	have	influenza	>	everybody	lay with	influenza
+everybody	get	influenza	>	influenza	sweep over	world
+pneumonia	cause by	influenza	>	influenza	lead to	pneumonia
+influenza	complicate by	pneumonia	>	pneumonia	associate with	influenza
+influenza	prevent by	immunization	>	influenza	prevent by	vaccination
+influenza	develop into	pneumonia	>	pneumonia	precede by	influenza
+immunization	protect against	influenza	>	influenza	prevent by	immunization
+influenza	complicate by	pneumonia	>	influenza	turn into	pneumonia
+influenza	predispose to	pneumonia	>	pneumonia	occur after	influenza
+influenza	cause	epidemic	>	epidemic	cause by	influenza
+pneumonia	cause by	influenza	>	pneumonia	complicate	influenza
+fever	be with	influenza	>	influenza	cause	fever
+everybody	be with	influenza	>	influenza	sweep over	world
+influenza	predispose to	pneumonia	>	pneumonia	cause by	influenza
+pneumonia	occur after	influenza	>	pneumonia	cause by	influenza
+influenza	develop into	pneumonia	>	influenza	cause	pneumonia
+influenza	be among	virus	>	virus	cause	influenza
+influenza	characterize by	fever	>	fever	simulate by	influenza
+influenza	cause by	virus	>	virus	refer as	influenza
+epidemic	cause by	influenza	>	influenza	occur in	epidemic
+influenza	follow by	pneumonia	>	pneumonia	occur after	influenza
+fever	simulate by	influenza	>	influenza	resemble	fever
+influenza	cause	fever	>	influenza	begin with	fever
+influenza	predispose to	pneumonia	>	pneumonia	follow	influenza
+pneumonia	occur after	influenza	>	pneumonia	complicate	influenza
+everybody	have	influenza	>	everybody	be with	influenza
+everybody	lay with	influenza	>	everybody	be with	influenza
+pneumonia	occur after	influenza	>	pneumonia	associate with	influenza
+influenza	cause	pneumonia	>	influenza	complicate by	pneumonia
+influenza	follow by	pneumonia	>	pneumonia	precede by	influenza
+pneumonia	follow	influenza	>	influenza	complicate by	pneumonia
+epidemic	simulate	influenza	>	epidemic	look as	influenza
+epidemic	occur with	influenza	>	influenza	cause	epidemic
+fever	simulate by	influenza	>	influenza	characterize by	fever
+influenza	cause	pneumonia	>	influenza	turn into	pneumonia
+influenza	be in	world	>	influenza	sweep	world
+influenza	turn into	pneumonia	>	pneumonia	complicate	influenza
+everybody	have	influenza	>	influenza	be in	world
+cough	follow	influenza	>	influenza	accompany by	cough
+pneumonia	precede by	influenza	>	pneumonia	cause by	influenza
+pneumonia	complicate	influenza	>	influenza	predispose to	pneumonia
+influenza	cause	pneumonia	>	pneumonia	precede by	influenza
+virus	include	influenza	>	influenza	be among	virus
+everybody	lay with	influenza	>	influenza	sweep	world
+virus	cause	influenza	>	influenza	be among	virus
+influenza	follow by	pneumonia	>	pneumonia	include with	influenza
+fever	resemble	influenza	>	influenza	resemble	fever
+everybody	have	influenza	>	influenza	sweep	world
+pneumonia	follow	influenza	>	influenza	follow by	pneumonia
+everybody	get	influenza	>	everybody	lay with	influenza
+influenza	occur throughout	world	>	everybody	lay with	influenza
+pneumonia	precede by	influenza	>	influenza	complicate by	pneumonia
+influenza	predispose to	pneumonia	>	influenza	turn into	pneumonia
+influenza	predispose to	pneumonia	>	pneumonia	complicate	influenza
+influenza	prevent by	immunization	>	immunization	protect against	influenza
+influenza	characterize by	inflammation	>	inflammation	induce by	influenza
+everybody	be with	influenza	>	everybody	get	influenza
+influenza	develop into	pneumonia	>	influenza	complicate by	pneumonia
+influenza	cause	pneumonia	>	influenza	predispose to	pneumonia

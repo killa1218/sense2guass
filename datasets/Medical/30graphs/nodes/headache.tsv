@@ -1,0 +1,562 @@
+symptom	consist in	headache
+symptom	appear with	headache
+symptom	occur without	headache
+headache	precede	symptom
+headache	follow	symptom
+symptom	set with	headache
+symptom	produce	headache
+headache	associate with	symptom
+headache	occur as	symptom
+symptom	comprise	headache
+symptom	consist of	headache
+symptom	occur as	headache
+headache	associate	symptom
+symptom	appear as	headache
+symptom	be of	headache
+headache	occur with	symptom
+symptom	herald by	headache
+symptom	severe	headache
+symptom	precede	headache
+symptom	become with	headache
+symptom	cause	headache
+symptom	occur	headache
+symptom	attend with	headache
+symptom	be include	headache
+symptom	associate with	headache
+symptom	range to	headache
+headache	precede by	symptom
+symptom	continue between	headache
+symptom	occur with	headache
+symptom	range from	headache
+headache	be of	symptom
+symptom	appear	headache
+symptom	accompany	headache
+symptom	characterize by	headache
+symptom	develop	headache
+symptom	complain of	headache
+headache	replace	symptom
+symptom	be in	headache
+symptom	begin with	headache
+headache	accompany	symptom
+headache	have	symptom
+symptom	develop as	headache
+symptom	follow by	headache
+symptom	exist as	headache
+symptom	vary to	headache
+symptom	commence with	headache
+symptom	be as	headache
+symptom	vary from	headache
+symptom	arc	headache
+headache	be among	symptom
+headache	accompany by	symptom
+symptom	vomit	headache
+symptom	observe as	headache
+symptom	accompany by	headache
+headache	mask	symptom
+symptom	describe as	headache
+symptom	develop with	headache
+headache	regard as	symptom
+symptom	include	headache
+symptom	limit to	headache
+headache	report as	symptom
+symptom	precede by	headache
+symptom	be with	headache
+pain	call	headache
+headache	characterize by	pain
+pain	describe as	headache
+pain	relate to	headache
+pain	associate with	headache
+pain	complain of	headache
+headache	define as	pain
+headache	bring	pain
+pain	vary from	headache
+headache	be with	pain
+headache	refer to	pain
+headache	involve	pain
+headache	mean	pain
+headache	describe as	pain
+pain	suggest	headache
+pain	be in	headache
+pain	felt as	headache
+headache	cause	pain
+headache	experience as	pain
+headache	accompany by	pain
+pain	perceive as	headache
+pain	manifest as	headache
+headache	be like	pain
+headache	produce	pain
+pain	accompany	headache
+headache	accompany	pain
+headache	be in	pain
+headache	associate with	pain
+headache	cause by	pain
+pain	occur with	headache
+headache	cause of	pain
+headache	result from	pain
+headache	consist of	pain
+headache	localize	pain
+pain	recognize as	headache
+headache	be despite	pain
+pain	accompany by	headache
+headache	weigh with	pain
+pain	occur from	headache
+migraine	associate with	headache
+headache	resemble	migraine
+headache	confuse with	migraine
+migraine	have	headache
+migraine	accompany by	headache
+headache	diagnose as	migraine
+headache	divide into	migraine
+headache	include	migraine
+migraine	present as	headache
+headache	differentiate from	migraine
+migraine	define as	headache
+headache	distinguish from	migraine
+headache	differ from	migraine
+migraine	characterise by	headache
+migraine	describe as	headache
+migraine	characterize by	headache
+migraine	cause	headache
+migraine	think as	headache
+migraine	refer to	headache
+headache	mistake for	migraine
+headache	have	migraine
+headache	suggest	migraine
+headache	simulate	migraine
+migraine	distinguish from	headache
+migraine	consist of	headache
+migraine	differ from	headache
+headache	classify as	migraine
+headache	associate with	hemorrhage
+headache	accompany	hemorrhage
+headache	suggest	hemorrhage
+headache	occur in	hemorrhage
+hemorrhage	present with	headache
+hemorrhage	occur with	headache
+headache	indicate	hemorrhage
+hemorrhage	produce	headache
+hemorrhage	accompany by	headache
+hemorrhage	present as	headache
+hemorrhage	begin with	headache
+hemorrhage	characterize by	headache
+hemorrhage	cause	headache
+headache	cause by	hemorrhage
+hemorrhage	herald by	headache
+hemorrhage	result in	headache
+hemorrhage	precede by	headache
+hemorrhage	associate with	headache
+headache	accompany	fever
+fever	cause	headache
+headache	come with	fever
+headache	accompany by	fever
+fever	accompany with	headache
+fever	associate with	headache
+fever	develop with	headache
+fever	come	headache
+headache	mean	fever
+fever	characterize by	headache
+fever	begin with	headache
+fever	accompany	headache
+fever	accompany by	headache
+headache	associate with	fever
+headache	follow by	fever
+fever	be with	headache
+headache	relieve by	sleep
+sleep	disturb by	headache
+headache	wake from	sleep
+headache	interrupt	sleep
+headache	occur during	sleep
+sleep	follow by	headache
+headache	felt during	sleep
+headache	destroy	sleep
+headache	appear during	sleep
+headache	interfere with	sleep
+headache	disrupt	sleep
+headache	awaken from	sleep
+meningitis	follow with	headache
+headache	develop into	meningitis
+meningitis	associate with	headache
+meningitis	severe	headache
+meningitis	manifest by	headache
+headache	suggest	meningitis
+headache	associate with	meningitis
+meningitis	cause	headache
+headache	see in	meningitis
+meningitis	manifest as	headache
+headache	indicate	meningitis
+meningitis	characterize by	headache
+meningitis	develop with	headache
+meningitis	present with	headache
+meningitis	produce	headache
+tumor	produce	headache
+headache	overlie	tumor
+headache	associate with	tumor
+tumor	characterize by	headache
+tumor	associate with	headache
+tumor	give to	headache
+tumor	present with	headache
+headache	be in	tumor
+headache	cause by	tumor
+tumor	cause	headache
+headache	indicate	tumor
+infection	produce	headache
+headache	cause by	infection
+infection	result in	headache
+infection	cause	headache
+infection	associate with	headache
+headache	associate with	infection
+headache	attribute to	infection
+headache	occur with	infection
+infection	present with	headache
+infection	characterize by	headache
+infection	begin with	headache
+infection	follow by	headache
+infection	accompany by	headache
+headache	relate to	infection
+period	follow by	headache
+headache	be during	period
+headache	associate with	period
+headache	be after	period
+headache	occur over	period
+period	characterize by	headache
+headache	occur during	period
+headache	occur for	period
+headache	be with	period
+headache	occur in	period
+headache	follow	period
+ead	have	headache
+headache	relieve to	head
+headache	shatter	head
+headache	attribute to	head
+headache	occur in	head
+head	pound with	headache
+headache	presuppose	head
+head	burst with	headache
+headache	be in	head
+head	choose	headache
+headache	be to	head
+headache	go in	head
+head	throb with	headache
+headache	relieve with	aspirin
+headache	relieve by	aspirin
+headache	treat with	aspirin
+headache	control with	aspirin
+aspirin	be for	headache
+aspirin	relieve	headache
+aspirin	take	headache
+aspirin	use for	headache
+aspirin	give for	headache
+aspirin	help	headache
+aspirin	cure	headache
+aspirin	reduce	headache
+aspirin	take for	headache
+analgesic	give for	headache
+headache	respond to	analgesic
+analgesic	abuse	headache
+analgesic	prescribe for	headache
+headache	manage with	analgesic
+headache	improve with	analgesic
+analgesic	require for	headache
+analgesic	relieve	headache
+headache	relieve with	analgesic
+headache	treat with	analgesic
+headache	relieve by	analgesic
+headache	accompany by	nausea
+nausea	follow	headache
+headache	cause	nausea
+headache	attend with	nausea
+nausea	associate with	headache
+headache	associate with	nausea
+headache	be with	nausea
+headache	follow by	nausea
+nausea	accompany by	headache
+headache	accompany with	nausea
+nausea	accompany	headache
+vomiting	relieve	headache
+headache	come with	vomiting
+vomiting	occur with	headache
+headache	accompany by	vomiting
+vomiting	associate with	headache
+vomiting	accompany	headache
+vomiting	accompany by	headache
+headache	associate with	vomiting
+vomiting	precede by	headache
+headache	end in	vomiting
+headache	relieve by	vomiting
+stress	precipitate	headache
+stress	trigger	headache
+stress	lead to	headache
+headache	produce by	stress
+headache	trigger by	stress
+headache	relate to	stress
+stress	give	headache
+stress	cause	headache
+headache	associate with	stress
+headache	cause by	stress
+headache	precipitate by	stress
+headache	be after	injury
+injury	follow by	headache
+headache	develop after	injury
+headache	follow	injury
+headache	attribute to	injury
+injury	cause	headache
+headache	occur after	injury
+headache	initiate by	injury
+headache	cause by	injury
+headache	associate with	tension
+tension	result in	headache
+tension	give	headache
+tension	lead to	headache
+headache	result from	tension
+headache	relate to	tension
+tension	cause	headache
+headache	cause by	tension
+inflammation	accompany by	headache
+inflammation	cause	headache
+inflammation	produce	headache
+inflammation	associate with	headache
+headache	recognize	inflammation
+inflammation	give to	headache
+headache	cause by	inflammation
+inflammation	result in	headache
+lesion	associate with	headache
+lesion	produce	headache
+headache	indicate	lesion
+lesion	cause	headache
+headache	cause by	lesion
+lesion	present with	headache
+lesion	give to	headache
+headache	suggest	lesion
+hypertension	associate with	headache
+hypertension	cause	headache
+headache	ascribe to	hypertension
+headache	occur from	hypertension
+headache	associate with	hypertension
+hypertension	accompany by	headache
+hypertension	present with	headache
+hypertension	produce	headache
+headache	cause by	hypertension
+hypertension	exhibit by	headache
+headache	indicate	hypertension
+headache	cause by	contraction
+headache	associate with	contraction
+headache	result from	contraction
+headache	represent	contraction
+contraction	cause	headache
+headache	produce by	contraction
+headache	begin with	aura
+headache	begin during	aura
+aura	precede	headache
+headache	occur as	aura
+aura	occur without	headache
+headache	follow	aura
+headache	precede by	aura
+aura	follow by	headache
+vertigo	occur with	headache
+vertigo	accompany	headache
+headache	accompany by	vertigo
+headache	precede by	vertigo
+headache	associate with	vertigo
+vertigo	associate with	headache
+vertigo	accompany by	headache
+headache	accompany	vertigo
+depression	come with	headache
+depression	present as	headache
+depression	be like	headache
+headache	associate with	depression
+depression	increase	headache
+headache	associate with	abscess
+abscess	give to	headache
+abscess	associate with	headache
+abscess	present with	headache
+abscess	produce	headache
+abscess	cause	headache
+headache	occur with	abscess
+headache	pound in	temple
+headache	throb in	temple
+headache	start at	temple
+headache	felt in	temple
+temple	throb with	headache
+strain	give	headache
+strain	produce	headache
+headache	cause by	strain
+headache	be from	strain
+strain	cause	headache
+strain	lead to	headache
+noise	intensify	headache
+noise	aggravate	headache
+noise	produce	headache
+noise	give	headache
+headache	come with	noise
+heat	cause	headache
+heat	give	headache
+headache	be from	heat
+dizziness	accompany by	headache
+headache	accompany by	dizziness
+headache	associate with	dizziness
+headache	associate	dizziness
+dizziness	occur without	headache
+dizziness	accompany	headache
+stroke	produce	headache
+stroke	precede by	headache
+headache	precede	stroke
+stroke	cause	headache
+headache	produce by	dilatation
+headache	cause by	dilatation
+headache	associate with	dilatation
+headache	relate to	dilatation
+headache	attribute to	dilatation
+dilatation	cause	headache
+headache	result from	dilatation
+headache	intensify by	movement
+movement	increase	headache
+headache	make by	movement
+headache	reduce by	movement
+headache	aggravate by	movement
+headache	occur follow	ingestion
+ingestion	cause	headache
+headache	precipitate by	ingestion
+headache	produce by	ingestion
+ingestion	improve	headache
+headache	see in	glaucoma
+headache	produce by	glaucoma
+headache	mistake for	glaucoma
+glaucoma	cause	headache
+headache	be across	forehead
+headache	be in	forehead
+headache	locate in	forehead
+headache	begin in	forehead
+headache	confine to	forehead
+excitement	give	headache
+excitement	bring on	headache
+headache	produce by	excitement
+coughing	follow by	headache
+headache	aggravate by	coughing
+caffeine	cause	headache
+headache	treat with	caffeine
+alcohol	give	headache
+alcohol	precipitate	headache
+alcohol	bring	headache
+alcohol	cause	headache
+headache	relieve by	alcohol
+alcohol	trigger	headache
+syphilis	produce	headache
+syphilis	cause	headache
+syphilis	manifest by	headache
+headache	attribute to	syphilis
+sinusitis	characterize by	headache
+sinusitis	cause	headache
+sinusitis	produce	headache
+headache	cause by	sinusitis
+seizure	precede by	headache
+seizure	follow by	headache
+seizure	associate with	headache
+seizure	occur from	headache
+headache	relieve by	rest
+headache	treat with	rest
+headache	remove by	rest
+rest	banish	headache
+rash	accompany by	headache
+rash	come	headache
+rash	come with	headache
+headache	precede	rash
+headache	associate with	photophobia
+photophobia	accompany	headache
+headache	accompany by	photophobia
+photophobia	associate with	headache
+headache	relieve by	massage
+headache	cure by	massage
+massage	relieve	headache
+massage	indicate for	headache
+headache	cause by	irritation
+irritation	cause	headache
+headache	diffuse by	irritation
+irritation	produce	headache
+headache	result from	irritation
+intoxication	follow by	headache
+intoxication	characterize by	headache
+headache	precede	intoxication
+intoxication	produce	headache
+headache	attribute to	hematoma
+hematoma	cause	headache
+hematoma	produce	headache
+headache	associate with	constipation
+headache	accompany by	constipation
+constipation	lead to	headache
+constipation	cause	headache
+headache	accompany by	congestion
+congestion	cause	headache
+headache	cause by	congestion
+headache	associate with	congestion
+coffee	cure	headache
+headache	switch to	coffee
+coffee	increase	headache
+coffee	produce	headache
+headache	set with	chill
+chill	follow by	headache
+headache	succeed to	chill
+catarrh	induce	headache
+headache	come in	catarrh
+catarrh	cause	headache
+headache	associate with	anxiety
+anxiety	give	headache
+headache	cause by	anxiety
+anxiety	associate with	headache
+anxiety	produce	headache
+aneurysm	produce	headache
+headache	associate with	aneurysm
+aneurysm	cause	headache
+water	remove	headache
+water	relieve	headache
+tumour	present with	headache
+tumour	produce	headache
+tumour	cause	headache
+headache	associate with	trauma
+trauma	follow by	headache
+headache	occur after	trauma
+tea	relieve	headache
+headache	cure by	tea
+tea	be in	headache
+sumatriptan	have in	headache
+headache	respond to	sumatriptan
+reading	take during	headache
+headache	increase upon	reading
+reading	give	headache
+prodrome	follow by	headache
+prodrome	precede	headache
+headache	precede by	prodrome
+headache	occur in	pneumonia
+headache	occur with	pneumonia
+headache	associate with	irritability
+headache	accompany by	irritability
+headache	manifest by	irritability
+irritability	connect with	headache
+headache	cause by	indigestion
+headache	accompany by	indigestion
+indigestion	cause	headache
+hypoglycemia	cause	headache
+hypoglycemia	evoke	headache
+hunger	cause	headache
+headache	accompany by	hunger
+haemorrhage	cause	headache
+haemorrhage	present with	headache
+haemorrhage	produce	headache
+exertion	give	headache
+exertion	drive	headache
+exertion	bring on	headache
+exertion	cause	headache
+encephalopathy	manifest by	headache
+encephalopathy	characterize by	headache
+encephalopathy	present with	headache
+headache	cause	discomfort
+headache	characterize by	discomfort
+headache	produce	discomfort
+arteritis	present with	headache
+arteritis	cause	headache
+headache	suggest	arteritis
+headache	cause by	arteritis
+headache	result from	anesthesia
+headache	follow	anesthesia
+headache	experience after	anesthesia
+anesthesia	cause	headache
+headache	treat with	amitriptyline

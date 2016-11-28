@@ -1,0 +1,109 @@
+antioxidant	absorb	radical
+antioxidant	fight	radical
+antioxidant	counteract	radical
+antioxidant	neutralize	radical
+antioxidant	prevent	radical
+antioxidant	intercept	radical
+radical	neutralize by	antioxidant
+antioxidant	quench	radical
+antioxidant	destroy	radical
+antioxidant	remove	radical
+antioxidant	mop	radical
+antioxidant	protect against	radical
+antioxidant	react with	radical
+antioxidant	produce by	body
+body	produce	antioxidant
+body	have	antioxidant
+body	make	antioxidant
+antioxidant	produce in	body
+antioxidant	protect	body
+body	use	antioxidant
+body	need	antioxidant
+antioxidant	provide	protection
+protection	afford by	antioxidant
+protection	offer by	antioxidant
+protection	provide by	antioxidant
+antioxidant	give	protection
+antioxidant	use for	protection
+antioxidant	offer	protection
+antioxidant	protect from	damage
+antioxidant	reduce	damage
+antioxidant	protect against	damage
+antioxidant	decrease	damage
+antioxidant	prevent	damage
+antioxidant	diminish	damage
+antioxidant	protect from	oxidation
+antioxidant	retard	oxidation
+antioxidant	prevent	oxidation
+antioxidant	reduce	oxidation
+oxidation	inhibit by	antioxidant
+antioxidant	inhibit	oxidation
+antioxidant	present in	tea
+tea	contain	antioxidant
+tea	have	antioxidant
+fruit	load with	antioxidant
+antioxidant	find in	fruit
+antioxidant	be in	fruit
+fruit	be in	antioxidant
+fruit	contain	antioxidant
+flavonoid	act	antioxidant
+flavonoid	act as	antioxidant
+flavonoid	have	antioxidant
+antioxidant	include	tocopherol
+tocopherol	act as	antioxidant
+tocopherol	occur	antioxidant
+tocopherol	use as	antioxidant
+antioxidant	inhibit	peroxidation
+antioxidant	retard	peroxidation
+antioxidant	use in	oil
+antioxidant	add to	oil
+oil	contain	antioxidant
+antioxidant	present in	oil
+antioxidant	include	dismutase
+carotenoid	act as	antioxidant
+antioxidant	include	carotenoid
+vegetable	contain	antioxidant
+antioxidant	find in	vegetable
+antioxidant	reduce	stress
+antioxidant	protect from	stress
+antioxidant	include	selenium
+rosemary	use as	antioxidant
+rosemary	contain	antioxidant
+antioxidant	include	phenol
+phenol	use as	antioxidant
+antioxidant	protect	lung
+antioxidant	prevent	injury
+antioxidant	protect from	injury
+antioxidant	prevent	apoptosis
+antioxidant	attenuate	apoptosis
+apoptosis	inhibit by	antioxidant
+wine	contain	antioxidant
+rooibos	contain	antioxidant
+antioxidant	preserve	relaxation
+preservative	include	antioxidant
+antioxidant	use as	preservative
+antioxidant	extend	life
+antioxidant	prolong	life
+antioxidant	cause	leukoderma
+antioxidant	decompose	hydroperoxides
+herb	contain	antioxidant
+antioxidant	attenuate	death
+antioxidant	protect against	cytotoxicity
+chocolate	have	antioxidant
+chocolate	contain	antioxidant
+antioxidant	include	carotene
+antioxidant	protect against	cancer
+antioxidant	block	cancer
+antioxidant	protect	brain
+antioxidant	isolate from	soybean
+onion	contain	antioxidant
+antioxidant	protect	neuron
+lecithin	use as	antioxidant
+antioxidant	include	glutathione
+gallate	use as	antioxidant
+antioxidant	prevent	disease
+antioxidant	prevent	discoloration
+blueberry	contain	antioxidant
+berry	load with	antioxidant
+apple	contain	antioxidant
+antioxidant	slow	aging

@@ -1,0 +1,60 @@
+influenza	predispose to	pneumonia
+pneumonia	precede by	influenza
+influenza	lead to	pneumonia
+pneumonia	cause by	influenza
+pneumonia	occur after	influenza
+influenza	follow by	pneumonia
+influenza	complicate by	pneumonia
+influenza	turn into	pneumonia
+pneumonia	follow	influenza
+pneumonia	include with	influenza
+influenza	cause	pneumonia
+pneumonia	associate with	influenza
+pneumonia	complicate	influenza
+influenza	develop into	pneumonia
+influenza	cause by	virus
+influenza	be among	virus
+virus	include	influenza
+virus	cause	influenza
+virus	refer as	influenza
+epidemic	occur with	influenza
+epidemic	cause by	influenza
+epidemic	look as	influenza
+influenza	occur in	epidemic
+epidemic	simulate	influenza
+influenza	cause	epidemic
+influenza	characterize by	fever
+fever	be with	influenza
+fever	resemble	influenza
+influenza	cause	fever
+influenza	resemble	fever
+influenza	begin with	fever
+fever	simulate by	influenza
+influenza	occur throughout	world
+influenza	be in	world
+influenza	sweep	world
+influenza	sweep over	world
+influenza	prevent by	vaccination
+cough	follow	influenza
+influenza	accompany by	cough
+influenza	characterize by	inflammation
+inflammation	induce by	influenza
+everybody	lay with	influenza
+everybody	be with	influenza
+everybody	have	influenza
+everybody	get	influenza
+effusion	be in	influenza
+leukopenia	accompany	influenza
+influenza	show	leukopenia
+influenza	treat with	amantadine
+amantadine	be against	influenza
+pregnancy	complicate by	influenza
+influenza	associate with	leucopenia
+influenza	characterize by	leucopenia
+influenza	prevent by	immunization
+immunization	protect against	influenza
+influenza	spread by	contact
+influenza	spread through	air
+vertigo	follow	influenza
+dengue	resemble	influenza
+bronchitis	simulate	influenza

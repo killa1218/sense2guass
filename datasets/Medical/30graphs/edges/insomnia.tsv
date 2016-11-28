@@ -1,0 +1,362 @@
+insomnia	originate from	fear	>	insomnia	conceal	fear
+insomnia	associate with	tension	>	insomnia	conceal	fear
+fear	cause	insomnia	>	insomnia	associate with	anxiety
+insomnia	associate with	anxiety	>	anxiety	produce	insomnia
+depression	associate with	insomnia	>	insomnia	accompany by	depression
+fear	lead to	insomnia	>	stress	cause	insomnia
+depression	cause	insomnia	>	depression	contribute to	insomnia
+depression	associate with	insomnia	>	insomnia	associate with	depression
+depression	characterize by	insomnia	>	insomnia	accompany by	depression
+withdrawal	result in	insomnia	>	withdrawal	associate with	insomnia
+anxiety	produce	insomnia	>	stress	cause	insomnia
+depression	contribute to	insomnia	>	depression	characterize by	insomnia
+anxiety	produce	insomnia	>	insomnia	originate from	fear
+caffeine	cause	insomnia	>	tea	cause	insomnia
+withdrawal	cause	insomnia	>	withdrawal	associate with	insomnia
+depression	produce	insomnia	>	insomnia	accompany	depression
+insomnia	associate with	withdrawal	>	withdrawal	produce	insomnia
+insomnia	associate with	depression	>	insomnia	cause by	depression
+depression	contribute to	insomnia	>	insomnia	associate with	depression
+stress	cause	insomnia	>	insomnia	originate from	fear
+depression	produce	insomnia	>	insomnia	accompany by	depression
+insomnia	be in	depression	>	insomnia	cause by	depression
+insomnia	cause by	anxiety	>	anxiety	produce	insomnia
+insomnia	cause by	depression	>	insomnia	accompany	depression
+insomnia	follow by	sleep	X	sleep	disturb with	insomnia
+sleep	disturb with	insomnia	>	sleep	disturb by	insomnia
+insomnia	cause by	stress	>	anxiety	associate with	insomnia
+insomnia	conceal	fear	>	insomnia	associate with	tension
+insomnia	accompany by	depression	>	depression	produce	insomnia
+insomnia	originate from	fear	>	fear	lead to	insomnia
+insomnia	conceal	fear	>	insomnia	associate with	anxiety
+depression	cause	insomnia	>	insomnia	cause by	depression
+anxiety	associate with	insomnia	>	insomnia	cause by	anxiety
+withdrawal	cause	insomnia	>	withdrawal	produce	insomnia
+stress	cause	insomnia	>	anxiety	associate with	insomnia
+insomnia	associate with	anxiety	>	insomnia	associate with	tension
+insomnia	accompany by	depression	>	insomnia	associate with	depression
+insomnia	cause by	depression	>	insomnia	accompany by	depression
+withdrawal	characterize by	insomnia	>	insomnia	associate with	withdrawal
+anxiety	produce	insomnia	>	anxiety	cause	insomnia
+insomnia	associate with	anxiety	>	insomnia	conceal	fear
+insomnia	conceal	fear	>	fear	lead to	insomnia
+withdrawal	result in	insomnia	>	insomnia	accompany	withdrawal
+sleep	disturb by	insomnia	X	insomnia	follow by	sleep
+insomnia	cause by	anxiety	>	insomnia	associate with	stress
+insomnia	associate with	withdrawal	>	insomnia	accompany	withdrawal
+depression	produce	insomnia	>	depression	cause	insomnia
+anxiety	produce	insomnia	>	insomnia	cause by	anxiety
+sleep	interrupt by	insomnia	>	insomnia	lead to	exhaustion
+withdrawal	produce	insomnia	>	insomnia	accompany	withdrawal
+insomnia	cause by	anxiety	>	insomnia	associate with	tension
+sleep	interrupt by	insomnia	>	insomnia	cause	fatigue
+depression	cause	insomnia	>	depression	associate with	insomnia
+fear	lead to	insomnia	>	insomnia	associate with	stress
+anxiety	cause	insomnia	>	insomnia	cause by	stress
+depression	contribute to	insomnia	>	insomnia	be in	depression
+caffeine	cause	insomnia	>	coffee	cause	insomnia
+insomnia	accompany	withdrawal	>	withdrawal	associate with	insomnia
+insomnia	be in	depression	>	insomnia	associate with	depression
+insomnia	conceal	fear	>	anxiety	cause	insomnia
+anxiety	cause	insomnia	>	stress	cause	insomnia
+insomnia	cause by	stress	>	insomnia	conceal	fear
+withdrawal	characterize by	insomnia	>	withdrawal	produce	insomnia
+insomnia	cause by	depression	>	depression	produce	insomnia
+depression	produce	insomnia	>	insomnia	cause by	depression
+insomnia	associate with	anxiety	>	fear	cause	insomnia
+stress	cause	insomnia	>	fear	lead to	insomnia
+fear	cause	insomnia	>	anxiety	cause	insomnia
+hypnotic	use for	insomnia	>	hypnotic	relieve	insomnia
+depression	produce	insomnia	>	depression	contribute to	insomnia
+insomnia	cause by	depression	>	depression	contribute to	insomnia
+insomnia	conceal	fear	>	insomnia	originate from	fear
+insomnia	accompany by	depression	>	insomnia	accompany	depression
+insomnia	associate with	tension	>	insomnia	originate from	fear
+fear	cause	insomnia	>	stress	cause	insomnia
+insomnia	originate from	fear	>	insomnia	associate with	tension
+steroid	cause	insomnia	>	cortisol	cause	insomnia
+insomnia	follow by	sleep	X	sleep	interrupt by	insomnia
+insomnia	associate with	stress	>	anxiety	cause	insomnia
+insomnia	associate with	stress	>	fear	cause	insomnia
+insomnia	originate from	fear	>	insomnia	associate with	anxiety
+stress	cause	insomnia	>	anxiety	produce	insomnia
+benzodiazepine	prescribe for	insomnia	>	benzodiazepine	use for	insomnia
+insomnia	originate from	fear	>	insomnia	associate with	stress
+hypnosis	recommend for	insomnia	>	hypnotic	relieve	insomnia
+bedtime	prevent	insomnia	>	bedtime	avoid	insomnia
+depression	characterize by	insomnia	>	depression	contribute to	insomnia
+insomnia	cause by	anxiety	>	insomnia	associate with	anxiety
+insomnia	associate with	tension	>	stress	cause	insomnia
+insomnia	cause by	stress	>	insomnia	associate with	tension
+depression	characterize by	insomnia	>	insomnia	associate with	depression
+bedtime	avoid	insomnia	>	bedtime	minimize	insomnia
+insomnia	associate with	withdrawal	>	withdrawal	associate with	insomnia
+corticosteroid	cause	insomnia	>	steroid	cause	insomnia
+fear	lead to	insomnia	>	insomnia	associate with	anxiety
+depression	cause	insomnia	>	depression	produce	insomnia
+anxiety	produce	insomnia	>	fear	cause	insomnia
+anxiety	associate with	insomnia	>	insomnia	originate from	fear
+withdrawal	produce	insomnia	>	withdrawal	associate with	insomnia
+insomnia	cause by	depression	>	depression	cause	insomnia
+anxiety	cause	insomnia	>	insomnia	conceal	fear
+depression	characterize by	insomnia	>	insomnia	be in	depression
+cortisol	cause	insomnia	>	corticosteroid	cause	insomnia
+insomnia	cause by	anxiety	>	anxiety	associate with	insomnia
+fear	cause	insomnia	>	insomnia	originate from	fear
+insomnia	cause by	depression	>	insomnia	associate with	depression
+insomnia	originate from	fear	>	insomnia	cause by	stress
+insomnia	accompany	depression	>	insomnia	be in	depression
+withdrawal	associate with	insomnia	>	withdrawal	produce	insomnia
+insomnia	cause by	stress	>	anxiety	cause	insomnia
+insomnia	cause by	stress	>	fear	cause	insomnia
+insomnia	treat with	benzodiazepine	>	benzodiazepine	prescribe for	insomnia
+insomnia	accompany	withdrawal	>	insomnia	associate with	withdrawal
+insomnia	treat with	hypnotic	>	hypnosis	recommend for	insomnia
+depression	produce	insomnia	>	insomnia	be in	depression
+anxiety	cause	insomnia	>	anxiety	produce	insomnia
+withdrawal	associate with	insomnia	>	withdrawal	characterize by	insomnia
+tea	cause	insomnia	>	caffeine	cause	insomnia
+fear	lead to	insomnia	>	insomnia	originate from	fear
+stress	cause	insomnia	>	insomnia	associate with	stress
+insomnia	associate with	stress	>	insomnia	associate with	tension
+insomnia	associate with	anxiety	>	anxiety	cause	insomnia
+depression	associate with	insomnia	>	insomnia	cause by	depression
+withdrawal	characterize by	insomnia	>	withdrawal	cause	insomnia
+sleep	disturb with	insomnia	>	insomnia	lead to	exhaustion
+insomnia	associate with	stress	>	anxiety	associate with	insomnia
+insomnia	associate with	stress	>	insomnia	cause by	stress
+insomnia	associate with	anxiety	>	insomnia	associate with	stress
+insomnia	be in	depression	>	insomnia	accompany by	depression
+insomnia	cause by	depression	>	depression	characterize by	insomnia
+coffee	cause	insomnia	>	caffeine	produce	insomnia
+insomnia	associate with	anxiety	>	insomnia	cause by	anxiety
+insomnia	associate with	tension	>	insomnia	cause by	stress
+insomnia	be in	depression	>	insomnia	accompany	depression
+depression	contribute to	insomnia	>	depression	cause	insomnia
+depression	associate with	insomnia	>	depression	produce	insomnia
+anxiety	cause	insomnia	>	anxiety	associate with	insomnia
+stress	cause	insomnia	>	insomnia	conceal	fear
+insomnia	associate with	depression	>	depression	produce	insomnia
+fear	lead to	insomnia	>	insomnia	associate with	tension
+hypnotic	use for	insomnia	>	insomnia	treat with	hypnotic
+fear	cause	insomnia	>	insomnia	cause by	stress
+insomnia	associate with	tension	>	insomnia	associate with	stress
+bedtime	minimize	insomnia	>	bedtime	prevent	insomnia
+insomnia	accompany	depression	>	insomnia	associate with	depression
+insomnia	accompany	depression	>	depression	characterize by	insomnia
+withdrawal	associate with	insomnia	>	insomnia	accompany	withdrawal
+insomnia	conceal	fear	>	anxiety	produce	insomnia
+withdrawal	associate with	insomnia	>	withdrawal	cause	insomnia
+fear	cause	insomnia	>	insomnia	cause by	anxiety
+bedtime	minimize	insomnia	>	bedtime	avoid	insomnia
+bedtime	avoid	insomnia	>	bedtime	prevent	insomnia
+depression	associate with	insomnia	>	insomnia	be in	depression
+insomnia	be in	depression	>	depression	associate with	insomnia
+stress	cause	insomnia	>	insomnia	associate with	anxiety
+insomnia	associate with	tension	>	fear	lead to	insomnia
+withdrawal	associate with	insomnia	>	insomnia	associate with	withdrawal
+anxiety	associate with	insomnia	>	insomnia	associate with	stress
+insomnia	precede	delirium	>	insomnia	lead to	insanity
+fear	lead to	insomnia	>	insomnia	conceal	fear
+insomnia	accompany	withdrawal	>	withdrawal	characterize by	insomnia
+depression	contribute to	insomnia	>	insomnia	accompany	depression
+anxiety	produce	insomnia	>	fear	lead to	insomnia
+insomnia	originate from	fear	>	anxiety	cause	insomnia
+insomnia	associate with	stress	>	insomnia	cause by	anxiety
+anxiety	cause	insomnia	>	fear	cause	insomnia
+sleep	disturb by	insomnia	>	insomnia	cause	fatigue
+anxiety	associate with	insomnia	>	anxiety	produce	insomnia
+caffeine	produce	insomnia	>	tea	cause	insomnia
+insomnia	treat with	hypnotic	>	hypnotic	use for	insomnia
+insomnia	associate with	anxiety	>	anxiety	associate with	insomnia
+insomnia	associate with	depression	>	depression	characterize by	insomnia
+anxiety	produce	insomnia	>	insomnia	associate with	tension
+anxiety	cause	insomnia	>	insomnia	cause by	anxiety
+hypnotic	relieve	insomnia	>	insomnia	treat with	hypnotic
+insomnia	originate from	fear	>	stress	cause	insomnia
+insomnia	accompany	withdrawal	>	withdrawal	result in	insomnia
+depression	cause	insomnia	>	insomnia	accompany	depression
+insomnia	lead to	exhaustion	>	insomnia	cause	fatigue
+insomnia	associate with	stress	>	insomnia	originate from	fear
+fear	cause	insomnia	>	insomnia	associate with	stress
+insomnia	treat with	benzodiazepine	>	benzodiazepine	use for	insomnia
+insomnia	accompany	depression	>	depression	produce	insomnia
+stress	cause	insomnia	>	insomnia	associate with	tension
+depression	cause	insomnia	>	insomnia	accompany by	depression
+insomnia	associate with	stress	>	insomnia	associate with	anxiety
+depression	associate with	insomnia	>	depression	contribute to	insomnia
+insomnia	associate with	withdrawal	>	withdrawal	cause	insomnia
+depression	cause	insomnia	>	insomnia	associate with	depression
+withdrawal	characterize by	insomnia	>	withdrawal	result in	insomnia
+insomnia	associate with	anxiety	>	stress	cause	insomnia
+lesion	produce	insomnia	>	lesion	cause	insomnia
+withdrawal	cause	insomnia	>	withdrawal	result in	insomnia
+anxiety	associate with	insomnia	>	insomnia	associate with	anxiety
+withdrawal	produce	insomnia	>	withdrawal	cause	insomnia
+anxiety	associate with	insomnia	>	fear	cause	insomnia
+anxiety	associate with	insomnia	>	stress	cause	insomnia
+stress	cause	insomnia	>	insomnia	cause by	stress
+anxiety	produce	insomnia	>	insomnia	conceal	fear
+insomnia	cause by	stress	>	insomnia	cause by	anxiety
+withdrawal	produce	insomnia	>	withdrawal	result in	insomnia
+sleep	disturb by	insomnia	>	insomnia	lead to	exhaustion
+depression	cause	insomnia	>	depression	characterize by	insomnia
+withdrawal	produce	insomnia	>	withdrawal	characterize by	insomnia
+anxiety	produce	insomnia	>	insomnia	cause by	stress
+insomnia	cause by	stress	>	fear	lead to	insomnia
+caffeine	produce	insomnia	>	caffeine	cause	insomnia
+insomnia	cause by	pain	>	pain	cause	insomnia
+insomnia	associate with	withdrawal	>	withdrawal	characterize by	insomnia
+insomnia	cause by	anxiety	>	fear	lead to	insomnia
+pain	cause	insomnia	>	insomnia	cause by	pain
+insomnia	associate with	tension	>	insomnia	associate with	anxiety
+depression	characterize by	insomnia	>	depression	cause	insomnia
+insomnia	cause by	stress	>	insomnia	originate from	fear
+insomnia	cause by	anxiety	>	insomnia	conceal	fear
+insomnia	cause by	stress	>	stress	cause	insomnia
+fear	lead to	insomnia	>	anxiety	cause	insomnia
+anxiety	produce	insomnia	>	insomnia	associate with	anxiety
+fear	lead to	insomnia	>	fear	cause	insomnia
+insomnia	be in	depression	>	depression	contribute to	insomnia
+hypnotic	relieve	insomnia	>	hypnotic	use for	insomnia
+stress	cause	insomnia	>	anxiety	cause	insomnia
+insomnia	cause by	anxiety	>	fear	cause	insomnia
+depression	contribute to	insomnia	>	insomnia	accompany by	depression
+depression	characterize by	insomnia	>	insomnia	cause by	depression
+insomnia	accompany	depression	>	insomnia	accompany by	depression
+fear	lead to	insomnia	>	insomnia	cause by	anxiety
+sleep	disturb with	insomnia	>	insomnia	cause	fatigue
+insomnia	cause by	stress	>	anxiety	produce	insomnia
+depression	associate with	insomnia	>	insomnia	accompany	depression
+hypnosis	recommend for	insomnia	>	insomnia	treat with	hypnotic
+anxiety	produce	insomnia	>	anxiety	associate with	insomnia
+stress	cause	insomnia	>	insomnia	cause by	anxiety
+anxiety	associate with	insomnia	>	fear	lead to	insomnia
+insomnia	conceal	fear	>	anxiety	associate with	insomnia
+insomnia	conceal	fear	>	insomnia	cause by	stress
+anxiety	associate with	insomnia	>	insomnia	cause by	stress
+sleep	interrupt by	insomnia	>	sleep	disturb by	insomnia
+anxiety	associate with	insomnia	>	insomnia	conceal	fear
+insomnia	associate with	depression	>	insomnia	be in	depression
+insomnia	associate with	stress	>	stress	cause	insomnia
+insomnia	associate with	tension	>	anxiety	produce	insomnia
+insomnia	cause by	depression	>	depression	associate with	insomnia
+depression	associate with	insomnia	>	depression	characterize by	insomnia
+corticosteroid	cause	insomnia	>	cortisol	cause	insomnia
+depression	associate with	insomnia	>	depression	cause	insomnia
+insomnia	accompany by	depression	>	insomnia	cause by	depression
+anxiety	cause	insomnia	>	insomnia	associate with	stress
+benzodiazepine	prescribe for	insomnia	>	insomnia	treat with	benzodiazepine
+steroid	cause	insomnia	>	corticosteroid	cause	insomnia
+withdrawal	characterize by	insomnia	>	insomnia	accompany	withdrawal
+insomnia	originate from	fear	>	insomnia	cause by	anxiety
+insomnia	associate with	tension	>	anxiety	cause	insomnia
+anxiety	cause	insomnia	>	insomnia	associate with	tension
+insomnia	cause by	stress	>	insomnia	associate with	anxiety
+insomnia	associate with	stress	>	anxiety	produce	insomnia
+fear	lead to	insomnia	>	anxiety	associate with	insomnia
+depression	contribute to	insomnia	>	insomnia	cause by	depression
+benzodiazepine	use for	insomnia	>	benzodiazepine	prescribe for	insomnia
+sleep	interrupt by	insomnia	X	insomnia	follow by	sleep
+insomnia	accompany	depression	>	depression	cause	insomnia
+fear	cause	insomnia	>	anxiety	associate with	insomnia
+depression	cause	insomnia	>	insomnia	be in	depression
+fear	cause	insomnia	>	anxiety	produce	insomnia
+insomnia	treat with	hypnotic	>	hypnotic	relieve	insomnia
+hypnosis	recommend for	insomnia	>	hypnotic	use for	insomnia
+insomnia	associate with	anxiety	>	fear	lead to	insomnia
+insomnia	conceal	fear	>	insomnia	cause by	anxiety
+insomnia	accompany by	depression	>	insomnia	be in	depression
+insomnia	induce by	lesion	>	lesion	cause	insomnia
+fear	cause	insomnia	>	insomnia	conceal	fear
+insomnia	accompany by	depression	>	depression	cause	insomnia
+depression	characterize by	insomnia	>	depression	produce	insomnia
+insomnia	accompany by	depression	>	depression	associate with	insomnia
+withdrawal	result in	insomnia	>	withdrawal	cause	insomnia
+anxiety	cause	insomnia	>	insomnia	originate from	fear
+fear	lead to	insomnia	>	anxiety	produce	insomnia
+depression	produce	insomnia	>	depression	associate with	insomnia
+insomnia	associate with	stress	>	insomnia	conceal	fear
+insomnia	associate with	withdrawal	>	withdrawal	result in	insomnia
+insomnia	cause by	stress	>	insomnia	associate with	stress
+withdrawal	result in	insomnia	>	insomnia	associate with	withdrawal
+insomnia	associate with	depression	>	insomnia	accompany	depression
+insomnia	associate with	anxiety	>	insomnia	cause by	stress
+sleep	disturb with	insomnia	>	sleep	interrupt by	insomnia
+lesion	produce	insomnia	>	insomnia	induce by	lesion
+withdrawal	result in	insomnia	>	withdrawal	produce	insomnia
+insomnia	cause by	anxiety	>	anxiety	cause	insomnia
+stress	cause	insomnia	>	fear	cause	insomnia
+insomnia	accompany	withdrawal	>	withdrawal	cause	insomnia
+insomnia	originate from	fear	>	fear	cause	insomnia
+withdrawal	characterize by	insomnia	>	withdrawal	associate with	insomnia
+insomnia	associate with	tension	>	anxiety	associate with	insomnia
+insomnia	conceal	fear	>	insomnia	associate with	stress
+insomnia	be in	depression	>	depression	cause	insomnia
+depression	characterize by	insomnia	>	depression	associate with	insomnia
+hypnotic	use for	insomnia	>	hypnosis	recommend for	insomnia
+anxiety	produce	insomnia	>	insomnia	associate with	stress
+withdrawal	cause	insomnia	>	withdrawal	characterize by	insomnia
+withdrawal	result in	insomnia	>	withdrawal	characterize by	insomnia
+fear	cause	insomnia	>	fear	lead to	insomnia
+cortisol	cause	insomnia	>	steroid	cause	insomnia
+insomnia	be in	depression	>	depression	characterize by	insomnia
+insomnia	cause by	depression	>	insomnia	be in	depression
+insomnia	follow by	sleep	X	sleep	disturb by	insomnia
+insomnia	associate with	depression	>	depression	cause	insomnia
+depression	contribute to	insomnia	>	depression	produce	insomnia
+coffee	cause	insomnia	>	caffeine	cause	insomnia
+insomnia	associate with	depression	>	depression	associate with	insomnia
+insomnia	cause by	anxiety	>	stress	cause	insomnia
+depression	contribute to	insomnia	>	depression	associate with	insomnia
+hydrotherapy	subdue	insomnia	>	insomnia	control by	hydrotherapy
+insomnia	accompany	depression	>	insomnia	cause by	depression
+insomnia	cause by	anxiety	>	insomnia	originate from	fear
+depression	produce	insomnia	>	insomnia	associate with	depression
+insomnia	associate with	stress	>	fear	lead to	insomnia
+withdrawal	associate with	insomnia	>	withdrawal	result in	insomnia
+depression	characterize by	insomnia	>	insomnia	accompany	depression
+sleep	interrupt by	insomnia	>	sleep	disturb with	insomnia
+anxiety	associate with	insomnia	>	anxiety	cause	insomnia
+insomnia	cause by	anxiety	>	insomnia	cause by	stress
+bedtime	prevent	insomnia	>	bedtime	minimize	insomnia
+hypnotic	relieve	insomnia	>	hypnosis	recommend for	insomnia
+insomnia	control by	hydrotherapy	>	hydrotherapy	subdue	insomnia
+insomnia	accompany by	depression	>	depression	characterize by	insomnia
+benzodiazepine	use for	insomnia	>	insomnia	treat with	benzodiazepine
+sleep	disturb by	insomnia	>	sleep	interrupt by	insomnia
+tea	cause	insomnia	>	coffee	cause	insomnia
+lesion	cause	insomnia	>	insomnia	induce by	lesion
+insomnia	cause	fatigue	>	insomnia	lead to	exhaustion
+insomnia	induce by	lesion	>	lesion	produce	insomnia
+withdrawal	cause	insomnia	>	insomnia	accompany	withdrawal
+anxiety	cause	insomnia	>	fear	lead to	insomnia
+insomnia	associate with	tension	>	insomnia	cause by	anxiety
+insomnia	be in	depression	>	depression	produce	insomnia
+coffee	cause	insomnia	>	tea	cause	insomnia
+anxiety	cause	insomnia	>	insomnia	associate with	anxiety
+insomnia	associate with	depression	>	depression	contribute to	insomnia
+insomnia	conceal	fear	>	stress	cause	insomnia
+caffeine	produce	insomnia	>	coffee	cause	insomnia
+insomnia	originate from	fear	>	anxiety	produce	insomnia
+fear	lead to	insomnia	>	insomnia	cause by	stress
+lesion	cause	insomnia	>	lesion	produce	insomnia
+insomnia	associate with	depression	>	insomnia	accompany by	depression
+insomnia	accompany	withdrawal	>	withdrawal	produce	insomnia
+insomnia	lead to	insanity	>	insomnia	precede	delirium
+caffeine	cause	insomnia	>	caffeine	produce	insomnia
+insomnia	associate with	anxiety	>	insomnia	originate from	fear
+sleep	disturb with	insomnia	X	insomnia	follow by	sleep
+withdrawal	produce	insomnia	>	insomnia	associate with	withdrawal
+insomnia	accompany	depression	>	depression	associate with	insomnia
+insomnia	accompany by	depression	>	depression	contribute to	insomnia
+anxiety	associate with	insomnia	>	insomnia	associate with	tension
+withdrawal	cause	insomnia	>	insomnia	associate with	withdrawal
+insomnia	originate from	fear	>	anxiety	associate with	insomnia
+tea	cause	insomnia	>	caffeine	produce	insomnia
+insomnia	conceal	fear	>	fear	cause	insomnia
+insomnia	associate with	tension	>	fear	cause	insomnia
+insomnia	accompany	depression	>	depression	contribute to	insomnia
+sleep	disturb by	insomnia	>	sleep	disturb with	insomnia
+depression	produce	insomnia	>	depression	characterize by	insomnia
+fear	cause	insomnia	>	insomnia	associate with	tension

@@ -1,0 +1,1053 @@
+adrenaline	constrict	vessel	X	adrenaline	cause	dilatation
+adrenaline	rush through	vein	>	adrenaline	release into	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	release into	bloodstream
+adrenaline	release into	circulation	>	adrenaline	pump into	blood
+adrenaline	flow in	vein	>	adrenaline	pump into	vein
+adrenaline	give during	anaesthesia	>	adrenaline	mask	pain
+adrenaline	produce	tachycardia	>	adrenaline	speed	heart
+adrenaline	release by	medulla	>	adrenaline	produce by	medulla
+adrenaline	course through	bloodstream	>	adrenaline	surge in	vein
+adrenaline	course through	bloodstream	>	adrenaline	release into	bloodstream
+medulla	contain	adrenaline	>	adrenaline	secrete from	medulla
+medulla	secrete	adrenaline	>	adrenaline	release from	medulla
+adrenaline	surge through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	pour through	vein	>	adrenaline	release into	blood
+adrenaline	rush through	vein	>	adrenaline	shoot through	vein
+adrenaline	produce	vasoconstriction	>	adrenaline	constrict	arteriole
+adrenaline	fill	vein	>	adrenaline	flow in	vein
+adrenaline	shoot through	vein	>	adrenaline	flood	vein
+adrenaline	pump into	vein	>	adrenaline	flow in	vein
+adrenaline	stimulate	heart	>	adrenaline	add in	strength
+glycogen	discharge by	adrenaline	>	adrenaline	cause	glycogenolysis
+adrenaline	shoot through	vein	>	adrenaline	race through	vein
+adrenaline	release into	circulation	>	adrenaline	surge through	bloodstream
+adrenaline	cause	relaxation	>	adrenaline	produce	relaxation
+adrenaline	cause	vasodilatation	X	adrenaline	cause	constriction
+adrenaline	pump into	bloodstream	>	adrenaline	course through	bloodstream
+adrenaline	combat	hypoglycaemia	X	adrenaline	cause	glycogenolysis
+adrenaline	cause	constriction	>	adrenaline	produce	vasoconstriction
+adrenaline	cause	dilation	X	adrenaline	cause	vasoconstriction
+adrenaline	pump into	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	pump into	blood	>	adrenaline	discharge into	blood
+adrenaline	produce	tachycardia	>	adrenaline	add in	strength
+adrenaline	surge in	vein	>	adrenaline	fill	vein
+adrenaline	constrict	arteriole	>	adrenaline	produce	vasoconstriction
+adrenaline	release into	bloodstream	>	adrenaline	flood	vein
+adrenaline	rush through	vein	>	adrenaline	release into	circulation
+adrenaline	course through	vein	>	adrenaline	fill	vein
+adrenaline	induce	vasoconstriction	X	adrenaline	cause	dilation
+adrenaline	fill	vein	>	adrenaline	pour into	bloodstream
+heart	pump	adrenaline	>	adrenaline	pump into	vein
+adrenaline	pour into	bloodstream	>	adrenaline	release into	bloodstream
+adrenaline	stimulate	heart	>	adrenaline	accelerate	heart
+adrenaline	course through	vein	>	adrenaline	run through	vein
+adrenaline	pump through	vein	>	adrenaline	rush through	vein
+adrenaline	pump through	blood	>	adrenaline	flood	bloodstream
+adrenaline	stimulate	glycogenolysis	>	glycogen	discharge by	adrenaline
+adrenaline	pump through	vein	>	adrenaline	flow in	vein
+adrenaline	course through	bloodstream	>	adrenaline	pump through	vein
+adrenaline	pump through	vein	>	adrenaline	race through	vein
+adrenaline	rush through	vein	>	adrenaline	discharge into	blood
+adrenaline	surge through	vein	>	adrenaline	shoot through	vein
+adrenaline	rush through	vein	>	adrenaline	course through	vein
+adrenaline	run through	vein	>	adrenaline	flow through	vein
+adrenaline	shoot through	vein	>	adrenaline	flood	bloodstream
+adrenaline	shoot through	vein	>	heart	pump	adrenaline
+adrenaline	constrict	arteriole	>	adrenaline	induce	vasoconstriction
+adrenaline	secrete by	medulla	>	adrenaline	secrete from	medulla
+fear	produce	adrenaline	>	stress	release	adrenaline
+adrenaline	come from	medulla	>	adrenaline	secrete by	medulla
+adrenaline	flood	bloodstream	>	adrenaline	pour into	bloodstream
+adrenaline	course through	bloodstream	>	adrenaline	pump into	bloodstream
+adrenaline	surge through	vein	>	adrenaline	surge in	vein
+adrenaline	pump into	bloodstream	>	adrenaline	release into	blood
+adrenaline	produce	tachycardia	>	adrenaline	give	strength
+adrenaline	pour into	bloodstream	>	adrenaline	pump through	blood
+adrenaline	run through	vein	>	adrenaline	fill	vein
+heart	pound with	adrenaline	>	adrenaline	give	energy
+fear	release	adrenaline	>	fear	pump	adrenaline
+adrenaline	release into	circulation	>	adrenaline	discharge into	blood
+fear	produce	adrenaline	>	fear	release	adrenaline
+adrenaline	course through	bloodstream	>	adrenaline	pump through	blood
+adrenaline	pump through	blood	>	adrenaline	race through	vein
+adrenaline	pour into	bloodstream	>	adrenaline	pump into	bloodstream
+adrenaline	flow in	vein	>	adrenaline	run through	vein
+adrenaline	secrete by	medulla	>	medulla	contain	adrenaline
+fear	pump	adrenaline	>	fear	produce	adrenaline
+adrenaline	flow in	vein	>	adrenaline	release into	blood
+adrenaline	produce	constriction	X	adrenaline	cause	dilatation
+adrenaline	discharge into	blood	>	adrenaline	flow in	vein
+adrenaline	cause	vasodilatation	>	adrenaline	dilate	vessel
+heart	pound with	adrenaline	>	adrenaline	add in	strength
+adrenaline	release by	medulla	>	adrenaline	come from	medulla
+adrenaline	surge through	vein	>	adrenaline	flow in	vein
+adrenaline	pour through	vein	>	adrenaline	fill	vein
+adrenaline	surge in	vein	>	adrenaline	pump into	bloodstream
+adrenaline	accelerate	heart	>	heart	pound with	adrenaline
+adrenaline	race through	vein	>	adrenaline	shoot through	vein
+adrenaline	course through	vein	>	adrenaline	release into	circulation
+adrenaline	combat	hypoglycaemia	X	glycogen	discharge by	adrenaline
+adrenaline	add in	strength	>	adrenaline	give	strength
+adrenaline	release into	blood	>	adrenaline	flow through	vein
+adrenaline	course through	bloodstream	>	adrenaline	fill	vein
+heart	pump	adrenaline	>	adrenaline	release into	blood
+adrenaline	flood	bloodstream	>	adrenaline	discharge into	blood
+adrenaline	surge through	vein	>	adrenaline	flood	vein
+medulla	release	adrenaline	>	medulla	manufacture	adrenaline
+adrenaline	pump into	bloodstream	>	adrenaline	pump into	blood
+adrenaline	course through	bloodstream	>	adrenaline	surge through	bloodstream
+adrenaline	flood	vein	>	adrenaline	pump into	bloodstream
+adrenaline	constrict	arteriole	>	adrenaline	produce	constriction
+adrenaline	inhibit	muscle	>	adrenaline	produce	relaxation
+adrenaline	flood	vein	>	adrenaline	run through	vein
+adrenaline	synthesize from	noradrenaline	>	noradrenaline	convert to	adrenaline
+adrenaline	give	strength	>	adrenaline	pump	energy
+adrenaline	cause	constriction	X	adrenaline	dilate	vessel
+adrenaline	surge in	vein	>	adrenaline	pump into	vein
+adrenaline	pump into	blood	>	adrenaline	pump through	vein
+adrenaline	shoot through	vein	>	adrenaline	flow through	vein
+adrenaline	release by	medulla	>	medulla	contain	adrenaline
+adrenaline	pump into	vein	>	adrenaline	course through	bloodstream
+adrenaline	improve	analgesia	>	adrenaline	use with	anaesthetic
+adrenaline	produce by	medulla	>	medulla	secrete	adrenaline
+medulla	secrete	adrenaline	>	adrenaline	come from	medulla
+adrenaline	come from	medulla	>	medulla	contain	adrenaline
+heart	pump	adrenaline	>	adrenaline	pump through	blood
+adrenaline	produce	constriction	X	adrenaline	cause	vasodilatation
+adrenaline	pour through	vein	>	adrenaline	course through	vein
+heart	pump	adrenaline	>	adrenaline	shoot through	vein
+adrenaline	flood	bloodstream	>	adrenaline	flood	vein
+heart	pump	adrenaline	>	adrenaline	course through	bloodstream
+adrenaline	pump through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	stimulate	glycogenolysis	>	adrenaline	cause	glycogenolysis
+adrenaline	stimulate	heart	>	adrenaline	reach	heart
+adrenaline	surge through	bloodstream	>	adrenaline	surge through	vein
+adrenaline	flow through	vein	>	adrenaline	shoot through	vein
+adrenaline	pour into	bloodstream	>	adrenaline	release into	blood
+adrenaline	release into	blood	>	adrenaline	run through	vein
+adrenaline	flood	bloodstream	>	adrenaline	pump into	blood
+adrenaline	surge through	bloodstream	>	adrenaline	flood	vein
+adrenaline	flood	bloodstream	>	adrenaline	surge through	vein
+adrenaline	fill	vein	>	adrenaline	run through	vein
+adrenaline	stimulate	glycogenolysis	X	adrenaline	combat	hypoglycaemia
+adrenaline	flow in	vein	>	adrenaline	pump into	bloodstream
+adrenaline	flow in	vein	>	adrenaline	race through	vein
+adrenaline	secrete by	medulla	>	medulla	produce	adrenaline
+heart	pump	adrenaline	>	adrenaline	discharge into	blood
+adrenaline	flood	vein	>	adrenaline	release into	blood
+adrenaline	relax	muscle	>	adrenaline	cause	relaxation
+adrenaline	surge through	bloodstream	>	adrenaline	pump into	bloodstream
+heart	race with	adrenaline	>	adrenaline	give	energy
+adrenaline	pump into	blood	>	adrenaline	release into	circulation
+adrenaline	flow in	vein	>	adrenaline	course through	bloodstream
+adrenaline	flow through	vein	>	adrenaline	reach	heart
+adrenaline	produce	vasoconstriction	X	adrenaline	cause	vasodilatation
+adrenaline	cause	vasoconstriction	X	adrenaline	cause	vasodilatation
+adrenaline	course through	vein	>	adrenaline	flood	vein
+adrenaline	pump through	vein	>	adrenaline	fill	vein
+adrenaline	flood	bloodstream	>	adrenaline	release into	circulation
+adrenaline	release into	blood	>	adrenaline	flood	bloodstream
+adrenaline	pump into	blood	>	adrenaline	fill	vein
+adrenaline	cause	vasodilatation	X	adrenaline	produce	vasoconstriction
+adrenaline	pump into	vein	>	adrenaline	pour through	vein
+adrenaline	fill	vein	>	adrenaline	course through	vein
+heart	race with	adrenaline	>	adrenaline	add in	strength
+adrenaline	cause	relaxation	>	adrenaline	produce	relief
+adrenaline	course through	vein	>	adrenaline	discharge into	blood
+adrenaline	course through	vein	>	adrenaline	flow in	vein
+adrenaline	speed	heart	>	adrenaline	produce	tachycardia
+adrenaline	cause	constriction	>	adrenaline	constrict	vessel
+adrenaline	cause	constriction	>	adrenaline	constrict	arteriole
+medulla	secrete	adrenaline	>	medulla	produce	adrenaline
+adrenaline	pump into	vein	>	adrenaline	flow through	vein
+adrenaline	surge through	vein	>	adrenaline	flood	bloodstream
+medulla	contain	adrenaline	>	medulla	manufacture	adrenaline
+heart	pound with	adrenaline	>	adrenaline	reach	heart
+adrenaline	pump	energy	>	adrenaline	give	strength
+adrenaline	release into	bloodstream	>	adrenaline	fill	vein
+adrenaline	pour into	bloodstream	>	adrenaline	flow in	vein
+adrenaline	pump through	blood	>	adrenaline	reach	heart
+adrenaline	constrict	arteriole	X	adrenaline	cause	dilation
+adrenaline	pump through	vein	>	adrenaline	discharge into	blood
+adrenaline	course through	vein	>	adrenaline	course through	bloodstream
+adrenaline	race through	vein	>	adrenaline	surge through	vein
+adrenaline	fill	vein	>	adrenaline	pump into	blood
+adrenaline	pump into	vein	>	adrenaline	fill	vein
+glycogen	discharge by	adrenaline	>	adrenaline	cause	hyperglycemia
+adrenaline	release into	blood	>	adrenaline	race through	vein
+adrenaline	pump through	blood	>	adrenaline	surge through	bloodstream
+adrenaline	secrete from	medulla	>	medulla	contain	adrenaline
+adrenaline	release into	blood	>	adrenaline	pump into	blood
+adrenaline	release into	bloodstream	>	adrenaline	flow through	vein
+adrenaline	run through	vein	>	adrenaline	pump into	vein
+adrenaline	fill	vein	>	adrenaline	reach	heart
+adrenaline	pump into	bloodstream	>	adrenaline	run through	vein
+adrenaline	surge through	vein	>	adrenaline	flow through	vein
+adrenaline	flow through	vein	>	adrenaline	pump into	vein
+adrenaline	produce by	medulla	>	medulla	produce	adrenaline
+adrenaline	course through	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	dilate	vessel	X	adrenaline	produce	constriction
+adrenaline	flow through	vein	>	adrenaline	discharge into	blood
+adrenaline	produce	constriction	X	adrenaline	cause	dilation
+adrenaline	dilate	vessel	X	adrenaline	constrict	vessel
+heart	pound with	adrenaline	>	heart	race with	adrenaline
+adrenaline	fill	vein	>	adrenaline	flood	bloodstream
+adrenaline	surge through	bloodstream	>	adrenaline	pump through	vein
+heart	race with	adrenaline	>	adrenaline	reach	heart
+adrenaline	course through	vein	>	adrenaline	release into	blood
+adrenaline	flow through	vein	>	adrenaline	race through	vein
+adrenaline	pump through	blood	>	adrenaline	pump into	bloodstream
+adrenaline	cause	vasodilatation	>	adrenaline	cause	dilation
+adrenaline	flow through	vein	>	adrenaline	flood	bloodstream
+adrenaline	release into	circulation	>	adrenaline	pump into	vein
+adrenaline	shoot through	vein	>	adrenaline	release into	circulation
+adrenaline	course through	vein	>	adrenaline	pour through	vein
+adrenaline	fill	vein	>	adrenaline	pump through	vein
+adrenaline	course through	vein	>	adrenaline	rush through	vein
+adrenaline	shoot through	vein	>	adrenaline	rush through	vein
+adrenaline	constrict	vessel	>	adrenaline	induce	vasoconstriction
+adrenaline	flood	vein	>	adrenaline	flow in	vein
+adrenaline	pour into	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	rush through	vein	>	adrenaline	pump through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	discharge into	blood
+adrenaline	pump into	blood	>	adrenaline	shoot through	vein
+adrenaline	mobilize	glycogen	X	adrenaline	combat	hypoglycaemia
+adrenaline	pump through	vein	>	adrenaline	flood	bloodstream
+heart	race with	adrenaline	>	adrenaline	stimulate	heart
+adrenaline	pump through	vein	>	heart	pump	adrenaline
+adrenaline	release into	circulation	>	heart	pump	adrenaline
+adrenaline	pump into	bloodstream	>	adrenaline	flood	bloodstream
+adrenaline	fill	vein	>	adrenaline	surge in	vein
+adrenaline	pump through	blood	>	adrenaline	pump through	vein
+adrenaline	pump through	blood	>	adrenaline	course through	vein
+adrenaline	pour into	bloodstream	>	adrenaline	course through	vein
+adrenaline	come from	medulla	>	medulla	release	adrenaline
+adrenaline	flow in	vein	>	adrenaline	reach	heart
+adrenaline	course through	vein	>	adrenaline	flood	bloodstream
+adrenaline	inhibit	muscle	>	adrenaline	give	relief
+adrenaline	combat	hypoglycaemia	X	adrenaline	stimulate	glycogenolysis
+fear	release	adrenaline	>	fear	produce	adrenaline
+adrenaline	release by	medulla	>	medulla	release	adrenaline
+medulla	manufacture	adrenaline	>	medulla	secrete	adrenaline
+adrenaline	produce by	medulla	>	medulla	release	adrenaline
+heart	pump	adrenaline	>	adrenaline	flow through	vein
+adrenaline	pump into	blood	>	adrenaline	run through	vein
+adrenaline	surge through	vein	>	adrenaline	course through	bloodstream
+adrenaline	produce	relaxation	>	adrenaline	give	relief
+adrenaline	pump into	blood	>	adrenaline	surge through	bloodstream
+adrenaline	surge in	vein	>	adrenaline	surge through	vein
+adrenaline	pump through	vein	>	adrenaline	pump into	blood
+adrenaline	course through	bloodstream	>	adrenaline	run through	vein
+heart	race with	adrenaline	>	adrenaline	pump	energy
+adrenaline	course through	bloodstream	>	adrenaline	surge through	vein
+adrenaline	release into	circulation	>	adrenaline	release into	blood
+adrenaline	course through	bloodstream	>	adrenaline	flood	vein
+adrenaline	produce	vasoconstriction	>	adrenaline	cause	vasoconstriction
+adrenaline	flow through	vein	>	adrenaline	course through	vein
+heart	pump	adrenaline	>	adrenaline	fill	vein
+adrenaline	pump through	blood	>	adrenaline	flow in	vein
+adrenaline	cause	constriction	>	adrenaline	cause	vasoconstriction
+adrenaline	flood	vein	>	heart	pump	adrenaline
+adrenaline	release into	blood	>	adrenaline	rush through	vein
+adrenaline	pour through	vein	>	adrenaline	pump through	blood
+adrenaline	discharge into	blood	>	adrenaline	pump into	bloodstream
+adrenaline	pump through	blood	>	adrenaline	shoot through	vein
+adrenaline	pump into	vein	>	adrenaline	release into	circulation
+adrenaline	course through	vein	>	adrenaline	pump into	blood
+adrenaline	release into	bloodstream	>	adrenaline	race through	vein
+adrenaline	release into	bloodstream	>	adrenaline	pump into	bloodstream
+adrenaline	pump into	vein	>	adrenaline	surge through	bloodstream
+adrenaline	pump through	vein	>	adrenaline	course through	vein
+adrenaline	stimulate	heart	>	adrenaline	pump	energy
+adrenaline	surge through	bloodstream	>	adrenaline	course through	bloodstream
+heart	race with	adrenaline	>	adrenaline	speed	heart
+adrenaline	course through	bloodstream	>	adrenaline	reach	heart
+adrenaline	release from	medulla	>	adrenaline	secrete from	medulla
+adrenaline	fill	vein	>	adrenaline	race through	vein
+adrenaline	pump into	blood	>	adrenaline	pump into	bloodstream
+adrenaline	release into	bloodstream	>	adrenaline	release into	circulation
+adrenaline	flow in	vein	>	adrenaline	pour into	bloodstream
+adrenaline	pump through	vein	>	adrenaline	course through	bloodstream
+medulla	produce	adrenaline	>	medulla	release	adrenaline
+adrenaline	pump through	vein	>	adrenaline	shoot through	vein
+adrenaline	flood	vein	>	adrenaline	pump through	vein
+heart	race with	adrenaline	>	adrenaline	accelerate	heart
+adrenaline	surge in	vein	>	adrenaline	shoot through	vein
+adrenaline	run through	vein	>	adrenaline	release into	blood
+adrenaline	surge through	vein	>	adrenaline	pour through	vein
+adrenaline	shoot through	vein	>	adrenaline	course through	vein
+adrenaline	surge through	vein	>	adrenaline	rush through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	race through	vein
+adrenaline	rush through	vein	>	adrenaline	pump into	vein
+adrenaline	use with	anaesthetic	>	adrenaline	use during	anaesthesia
+adrenaline	discharge into	blood	>	adrenaline	rush through	vein
+adrenaline	flood	bloodstream	>	adrenaline	race through	vein
+adrenaline	release from	medulla	>	medulla	release	adrenaline
+heart	pound with	adrenaline	>	adrenaline	pump	energy
+adrenaline	release into	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	surge through	vein	>	adrenaline	pump through	blood
+adrenaline	speed	heart	>	adrenaline	accelerate	heart
+adrenaline	release into	circulation	>	adrenaline	course through	bloodstream
+adrenaline	race through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	pump into	vein
+adrenaline	flow through	vein	>	adrenaline	surge through	vein
+adrenaline	pump into	blood	>	adrenaline	release into	bloodstream
+adrenaline	flow through	vein	>	adrenaline	release into	bloodstream
+adrenaline	relax	muscle	>	adrenaline	produce	relief
+adrenaline	add in	strength	>	adrenaline	give	energy
+hormone	include	adrenaline	>	hormone	know as	adrenaline
+adrenaline	cause	constriction	X	adrenaline	cause	vasodilatation
+adrenaline	cause	relaxation	>	adrenaline	give	relief
+adrenaline	flood	bloodstream	>	adrenaline	pump into	bloodstream
+adrenaline	run through	vein	>	adrenaline	shoot through	vein
+medulla	release	adrenaline	>	adrenaline	come from	medulla
+adrenaline	run through	vein	>	adrenaline	course through	bloodstream
+adrenaline	pump through	blood	>	adrenaline	pump into	vein
+adrenaline	pour through	vein	>	adrenaline	pump into	vein
+adrenaline	flood	vein	>	adrenaline	flow through	vein
+adrenaline	surge through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	stimulate	glycogenolysis	>	adrenaline	cause	hyperglycemia
+adrenaline	release into	bloodstream	>	adrenaline	reach	heart
+adrenaline	flood	vein	>	adrenaline	pump into	vein
+adrenaline	accelerate	heart	>	adrenaline	give	strength
+adrenaline	produce by	medulla	>	adrenaline	release by	medulla
+medulla	produce	adrenaline	>	adrenaline	come from	medulla
+adrenaline	secrete from	medulla	>	adrenaline	release by	medulla
+medulla	produce	adrenaline	>	medulla	contain	adrenaline
+adrenaline	release into	blood	>	adrenaline	surge in	vein
+adrenaline	rush through	vein	>	adrenaline	pump through	blood
+adrenaline	run through	vein	>	adrenaline	discharge into	blood
+adrenaline	pump into	blood	>	adrenaline	pour through	vein
+adrenaline	surge in	vein	>	adrenaline	flood	vein
+adrenaline	cause	vasoconstriction	>	adrenaline	produce	vasoconstriction
+adrenaline	pump into	blood	>	adrenaline	surge through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	release into	blood
+adrenaline	constrict	arteriole	>	adrenaline	cause	constriction
+adrenaline	flood	bloodstream	>	adrenaline	rush through	vein
+adrenaline	surge through	vein	>	adrenaline	pump into	blood
+noradrenaline	convert to	adrenaline	>	adrenaline	synthesize from	noradrenaline
+adrenaline	improve	analgesia	>	adrenaline	give during	anaesthesia
+adrenaline	surge through	vein	>	adrenaline	pump through	vein
+adrenaline	fill	vein	>	adrenaline	release into	circulation
+adrenaline	run through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	improve	analgesia	>	adrenaline	use during	anaesthesia
+adrenaline	pump through	blood	>	adrenaline	discharge into	blood
+adrenaline	release into	circulation	>	adrenaline	reach	heart
+adrenaline	race through	vein	>	adrenaline	fill	vein
+adrenaline	release into	circulation	>	adrenaline	surge in	vein
+adrenaline	give during	anaesthesia	>	adrenaline	use with	anaesthetic
+adrenaline	give	energy	>	adrenaline	add in	strength
+adrenaline	surge in	vein	>	adrenaline	release into	blood
+medulla	release	adrenaline	>	adrenaline	secrete by	medulla
+adrenaline	flow through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	constrict	arteriole	>	adrenaline	cause	vasoconstriction
+adrenaline	pump into	blood	>	adrenaline	pump through	blood
+adrenaline	pump into	blood	>	adrenaline	flow in	vein
+adrenaline	release into	bloodstream	>	adrenaline	surge through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	pump through	vein
+adrenaline	inhibit	muscle	>	adrenaline	cause	relaxation
+adrenaline	cause	contraction	>	adrenaline	produce	contraction
+adrenaline	produce by	medulla	>	medulla	contain	adrenaline
+adrenaline	give	energy	>	adrenaline	pump	energy
+adrenaline	race through	vein	>	adrenaline	flood	vein
+adrenaline	pump into	bloodstream	>	adrenaline	release into	bloodstream
+adrenaline	produce by	medulla	>	adrenaline	come from	medulla
+adrenaline	discharge into	blood	>	adrenaline	shoot through	vein
+adrenaline	pump through	vein	>	adrenaline	release into	blood
+adrenaline	course through	bloodstream	>	adrenaline	race through	vein
+adrenaline	constrict	vessel	>	adrenaline	cause	vasoconstriction
+adrenaline	pump into	vein	>	adrenaline	surge through	vein
+adrenaline	fill	vein	>	adrenaline	surge through	vein
+adrenaline	pour through	vein	>	adrenaline	discharge into	blood
+heart	race with	adrenaline	>	adrenaline	give	strength
+adrenaline	dilate	vessel	X	adrenaline	induce	vasoconstriction
+adrenaline	discharge into	blood	>	adrenaline	surge through	bloodstream
+adrenaline	cause	dilation	>	adrenaline	cause	vasodilatation
+adrenaline	fill	vein	>	adrenaline	pump into	vein
+adrenaline	shoot through	vein	>	adrenaline	pump through	blood
+adrenaline	flood	bloodstream	>	adrenaline	course through	bloodstream
+phosphorylase	activate by	adrenaline	>	adrenaline	activate	phosphorylase
+adrenaline	flow in	vein	>	adrenaline	flow through	vein
+adrenaline	pump through	blood	>	adrenaline	surge in	vein
+adrenaline	accelerate	heart	>	adrenaline	produce	tachycardia
+adrenaline	release into	blood	>	adrenaline	release into	circulation
+adrenaline	pump through	blood	>	adrenaline	pour through	vein
+adrenaline	flow through	vein	>	adrenaline	flow in	vein
+adrenaline	secrete by	medulla	>	adrenaline	release by	medulla
+adrenaline	pump into	vein	>	adrenaline	flood	vein
+adrenaline	secrete from	medulla	>	medulla	secrete	adrenaline
+adrenaline	constrict	vessel	X	adrenaline	cause	dilation
+adrenaline	secrete from	medulla	>	adrenaline	secrete by	medulla
+adrenaline	flow in	vein	>	adrenaline	fill	vein
+adrenaline	course through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	surge through	bloodstream	>	heart	pump	adrenaline
+adrenaline	surge in	vein	>	adrenaline	discharge into	blood
+adrenaline	pump into	bloodstream	>	adrenaline	flow through	vein
+adrenaline	release into	circulation	>	adrenaline	flow in	vein
+adrenaline	pour through	vein	>	adrenaline	pump through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	pump into	vein
+adrenaline	secrete by	medulla	>	adrenaline	produce by	medulla
+adrenaline	cause	vasodilatation	X	adrenaline	constrict	arteriole
+medulla	contain	adrenaline	>	medulla	secrete	adrenaline
+adrenaline	release by	medulla	>	adrenaline	secrete by	medulla
+adrenaline	flow through	vein	>	adrenaline	surge in	vein
+adrenaline	surge in	vein	>	adrenaline	pour into	bloodstream
+adrenaline	cause	vasoconstriction	X	adrenaline	dilate	vessel
+medulla	release	adrenaline	>	medulla	produce	adrenaline
+adrenaline	rush through	vein	>	adrenaline	surge in	vein
+adrenaline	produce	tachycardia	>	adrenaline	accelerate	heart
+medulla	produce	adrenaline	>	adrenaline	produce by	medulla
+adrenaline	fill	vein	>	adrenaline	release into	bloodstream
+adrenaline	cause	dilation	X	adrenaline	induce	vasoconstriction
+adrenaline	flow in	vein	>	adrenaline	rush through	vein
+adrenaline	cause	dilatation	X	adrenaline	produce	vasoconstriction
+adrenaline	cause	dilation	>	adrenaline	cause	dilatation
+adrenaline	discharge into	blood	>	adrenaline	pour into	bloodstream
+adrenaline	constrict	vessel	>	adrenaline	cause	constriction
+heart	pound with	adrenaline	>	adrenaline	speed	heart
+adrenaline	shoot through	vein	>	adrenaline	pump into	blood
+adrenaline	pump into	blood	>	adrenaline	reach	heart
+adrenaline	discharge into	blood	>	adrenaline	surge through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	reach	heart
+adrenaline	release into	bloodstream	>	adrenaline	flood	bloodstream
+adrenaline	constrict	arteriole	X	adrenaline	dilate	vessel
+adrenaline	course through	bloodstream	>	adrenaline	release into	circulation
+adrenaline	pump through	blood	>	adrenaline	release into	circulation
+adrenaline	surge through	vein	>	adrenaline	fill	vein
+adrenaline	release into	blood	>	adrenaline	surge through	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	pump through	vein
+adrenaline	use with	anaesthetic	>	adrenaline	mask	pain
+adrenaline	pour through	vein	>	heart	pump	adrenaline
+adrenaline	run through	vein	>	adrenaline	surge in	vein
+adrenaline	secrete by	medulla	>	adrenaline	release from	medulla
+adrenaline	relax	muscle	>	adrenaline	inhibit	muscle
+medulla	secrete	adrenaline	>	medulla	contain	adrenaline
+adrenaline	cause	vasoconstriction	X	adrenaline	cause	dilation
+adrenaline	pour into	bloodstream	>	adrenaline	surge through	bloodstream
+adrenaline	pump into	blood	>	adrenaline	flood	bloodstream
+adrenaline	use during	anaesthesia	>	adrenaline	improve	analgesia
+adrenaline	rush through	vein	>	adrenaline	flow in	vein
+adrenaline	flow in	vein	>	adrenaline	surge through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	surge in	vein
+adrenaline	race through	vein	>	adrenaline	run through	vein
+adrenaline	pump into	vein	>	adrenaline	pump through	vein
+adrenaline	cause	glycogenolysis	>	adrenaline	stimulate	glycogenolysis
+adrenaline	flood	vein	>	adrenaline	release into	bloodstream
+adrenaline	release into	circulation	>	adrenaline	race through	vein
+adrenaline	cause	hyperglycemia	X	adrenaline	combat	hypoglycaemia
+glycogen	discharge by	adrenaline	>	adrenaline	mobilize	glycogen
+adrenaline	cause	vasoconstriction	X	adrenaline	cause	dilatation
+adrenaline	surge in	vein	>	adrenaline	reach	heart
+adrenaline	course through	bloodstream	>	heart	pump	adrenaline
+adrenaline	induce	vasoconstriction	>	adrenaline	cause	vasoconstriction
+adrenaline	fill	vein	>	adrenaline	pour through	vein
+adrenaline	pump into	vein	>	adrenaline	pump into	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	pump into	blood
+adrenaline	pump through	blood	>	adrenaline	course through	bloodstream
+adrenaline	pour through	vein	>	adrenaline	course through	bloodstream
+adrenaline	release from	medulla	>	medulla	secrete	adrenaline
+adrenaline	produce	tachycardia	>	adrenaline	pump	energy
+adrenaline	pump through	blood	>	adrenaline	pour into	bloodstream
+adrenaline	surge through	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	produce	relaxation	>	adrenaline	produce	relief
+adrenaline	cause	dilatation	X	adrenaline	induce	vasoconstriction
+adrenaline	release into	bloodstream	>	adrenaline	surge through	bloodstream
+medulla	secrete	adrenaline	>	medulla	manufacture	adrenaline
+adrenaline	induce	vasoconstriction	>	adrenaline	cause	constriction
+adrenaline	flow in	vein	>	adrenaline	pump into	blood
+adrenaline	surge through	bloodstream	>	adrenaline	pour through	vein
+adrenaline	give during	anaesthesia	>	adrenaline	improve	analgesia
+glycogen	discharge by	adrenaline	X	adrenaline	combat	hypoglycaemia
+adrenaline	dilate	vessel	>	adrenaline	cause	dilatation
+adrenaline	flow in	vein	>	adrenaline	pour through	vein
+adrenaline	release into	blood	>	adrenaline	course through	vein
+adrenaline	cause	vasodilatation	X	adrenaline	cause	vasoconstriction
+adrenaline	stimulate	heart	>	adrenaline	speed	heart
+adrenaline	race through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	run through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	flood	vein	>	adrenaline	surge in	vein
+adrenaline	flood	bloodstream	>	adrenaline	course through	vein
+adrenaline	pump	energy	>	adrenaline	add in	strength
+adrenaline	surge through	vein	>	adrenaline	release into	circulation
+adrenaline	dilate	vessel	X	adrenaline	cause	constriction
+adrenaline	flow in	vein	>	adrenaline	release into	bloodstream
+adrenaline	surge in	vein	>	adrenaline	course through	bloodstream
+adrenaline	run through	vein	>	adrenaline	race through	vein
+adrenaline	discharge into	blood	>	adrenaline	flood	vein
+adrenaline	discharge into	blood	>	adrenaline	pour through	vein
+adrenaline	produce by	medulla	>	adrenaline	release from	medulla
+adrenaline	flow in	vein	>	adrenaline	surge through	bloodstream
+adrenaline	release into	blood	>	adrenaline	fill	vein
+adrenaline	release into	blood	>	adrenaline	pour into	bloodstream
+adrenaline	pump into	vein	>	adrenaline	release into	blood
+adrenaline	secrete from	medulla	>	adrenaline	come from	medulla
+medulla	release	adrenaline	>	adrenaline	secrete from	medulla
+adrenaline	produce	relief	>	adrenaline	give	relief
+adrenaline	inhibit	muscle	>	adrenaline	relax	muscle
+adrenaline	constrict	vessel	>	adrenaline	produce	constriction
+adrenaline	cause	dilatation	X	adrenaline	produce	constriction
+adrenaline	flood	vein	>	adrenaline	discharge into	blood
+heart	pump	adrenaline	>	adrenaline	rush through	vein
+adrenaline	flood	vein	>	adrenaline	course through	vein
+adrenaline	flow through	vein	>	adrenaline	run through	vein
+adrenaline	induce	vasoconstriction	X	adrenaline	cause	dilatation
+adrenaline	discharge into	blood	>	adrenaline	reach	heart
+adrenaline	surge through	bloodstream	>	adrenaline	pump through	blood
+adrenaline	cause	vasodilatation	X	adrenaline	constrict	vessel
+medulla	manufacture	adrenaline	>	adrenaline	come from	medulla
+medulla	produce	adrenaline	>	adrenaline	secrete from	medulla
+adrenaline	produce	tachycardia	>	adrenaline	stimulate	heart
+adrenaline	flood	vein	>	adrenaline	pour through	vein
+adrenaline	course through	bloodstream	>	adrenaline	flood	bloodstream
+adrenaline	course through	vein	>	adrenaline	release into	bloodstream
+adrenaline	flood	bloodstream	>	adrenaline	reach	heart
+adrenaline	pump into	blood	>	adrenaline	race through	vein
+medulla	release	adrenaline	>	medulla	contain	adrenaline
+adrenaline	pour into	bloodstream	>	adrenaline	run through	vein
+adrenaline	release into	circulation	>	adrenaline	pour into	bloodstream
+adrenaline	surge through	bloodstream	>	adrenaline	rush through	vein
+adrenaline	race through	vein	>	adrenaline	release into	blood
+hormone	know as	adrenaline	>	hormone	include	adrenaline
+adrenaline	produce	vasoconstriction	>	adrenaline	constrict	vessel
+medulla	contain	adrenaline	>	adrenaline	come from	medulla
+adrenaline	fill	vein	>	adrenaline	pump through	blood
+adrenaline	cause	dilatation	X	adrenaline	cause	vasoconstriction
+adrenaline	constrict	arteriole	X	adrenaline	cause	dilatation
+heart	pound with	adrenaline	>	adrenaline	produce	tachycardia
+adrenaline	rush through	vein	>	adrenaline	flood	bloodstream
+adrenaline	pump into	blood	>	adrenaline	rush through	vein
+adrenaline	shoot through	vein	>	adrenaline	surge through	vein
+adrenaline	surge through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	pump through	blood
+adrenaline	combat	hypoglycaemia	X	adrenaline	cause	hyperglycemia
+fear	pump	adrenaline	>	fear	release	adrenaline
+adrenaline	come from	medulla	>	medulla	secrete	adrenaline
+adrenaline	surge in	vein	>	adrenaline	rush through	vein
+adrenaline	release into	circulation	>	adrenaline	flow through	vein
+adrenaline	constrict	vessel	X	adrenaline	dilate	vessel
+adrenaline	induce	vasoconstriction	X	adrenaline	cause	vasodilatation
+adrenaline	rush through	vein	>	adrenaline	course through	bloodstream
+adrenaline	race through	vein	>	adrenaline	pour through	vein
+adrenaline	discharge into	blood	>	adrenaline	course through	bloodstream
+adrenaline	release by	medulla	>	adrenaline	release from	medulla
+adrenaline	cause	dilation	X	adrenaline	produce	constriction
+heart	pound with	adrenaline	>	adrenaline	stimulate	heart
+adrenaline	flow in	vein	>	adrenaline	course through	vein
+adrenaline	surge in	vein	>	heart	pump	adrenaline
+adrenaline	surge through	bloodstream	>	adrenaline	course through	vein
+adrenaline	secrete by	medulla	>	medulla	release	adrenaline
+adrenaline	release into	bloodstream	>	adrenaline	rush through	vein
+adrenaline	release into	bloodstream	>	adrenaline	pour through	vein
+adrenaline	pump through	blood	>	adrenaline	flood	vein
+adrenaline	cause	constriction	>	adrenaline	produce	constriction
+adrenaline	shoot through	vein	>	adrenaline	course through	bloodstream
+adrenaline	pump through	blood	>	adrenaline	surge through	vein
+heart	pump	adrenaline	>	adrenaline	surge through	vein
+adrenaline	course through	vein	>	adrenaline	surge through	vein
+adrenaline	cause	dilation	X	adrenaline	cause	constriction
+adrenaline	pour through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	course through	bloodstream	>	adrenaline	pour through	vein
+adrenaline	fill	vein	>	adrenaline	pump into	bloodstream
+adrenaline	flow through	vein	>	adrenaline	pump into	blood
+adrenaline	produce	vasoconstriction	>	adrenaline	cause	constriction
+adrenaline	rush through	vein	>	adrenaline	run through	vein
+adrenaline	give during	anaesthesia	>	adrenaline	use during	anaesthesia
+adrenaline	pump into	bloodstream	>	adrenaline	surge in	vein
+adrenaline	race through	vein	>	adrenaline	flow in	vein
+adrenaline	race through	vein	>	adrenaline	release into	circulation
+medulla	contain	adrenaline	>	medulla	release	adrenaline
+adrenaline	race through	vein	>	adrenaline	rush through	vein
+adrenaline	improve	analgesia	>	adrenaline	mask	pain
+adrenaline	cause	dilatation	X	adrenaline	constrict	arteriole
+adrenaline	give	relief	>	adrenaline	produce	relief
+adrenaline	flow through	vein	>	heart	pump	adrenaline
+adrenaline	pump into	blood	>	adrenaline	flood	vein
+adrenaline	release into	blood	>	adrenaline	pump through	vein
+medulla	release	adrenaline	>	medulla	secrete	adrenaline
+adrenaline	use during	anaesthesia	>	adrenaline	use with	anaesthetic
+adrenaline	produce	tachycardia	>	heart	pound with	adrenaline
+adrenaline	race through	vein	>	adrenaline	pump through	blood
+medulla	secrete	adrenaline	>	medulla	release	adrenaline
+adrenaline	secrete from	medulla	>	medulla	manufacture	adrenaline
+heart	pump	adrenaline	>	adrenaline	course through	vein
+adrenaline	release into	blood	>	adrenaline	pump through	blood
+adrenaline	release into	blood	>	adrenaline	flood	vein
+adrenaline	activate	phosphorylase	>	phosphorylase	activate by	adrenaline
+adrenaline	pour into	bloodstream	>	adrenaline	race through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	discharge into	blood
+adrenaline	flood	bloodstream	>	adrenaline	shoot through	vein
+adrenaline	release into	blood	>	adrenaline	reach	heart
+adrenaline	run through	vein	>	adrenaline	surge through	vein
+adrenaline	pump into	vein	>	adrenaline	rush through	vein
+adrenaline	surge in	vein	>	adrenaline	pump through	vein
+adrenaline	fill	vein	>	adrenaline	surge through	bloodstream
+adrenaline	produce	contraction	>	adrenaline	cause	contraction
+adrenaline	surge through	vein	>	adrenaline	release into	bloodstream
+adrenaline	release into	bloodstream	>	adrenaline	pour into	bloodstream
+adrenaline	pump into	bloodstream	>	adrenaline	pour through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	pour into	bloodstream
+adrenaline	secrete by	medulla	>	adrenaline	come from	medulla
+adrenaline	pour into	bloodstream	>	adrenaline	pump into	vein
+adrenaline	secrete from	medulla	>	medulla	produce	adrenaline
+adrenaline	pour through	vein	>	adrenaline	flood	bloodstream
+adrenaline	surge through	vein	>	adrenaline	release into	blood
+adrenaline	pump into	bloodstream	>	adrenaline	course through	vein
+adrenaline	shoot through	vein	>	adrenaline	pump through	vein
+adrenaline	flow through	vein	>	adrenaline	pump through	blood
+adrenaline	flow in	vein	>	adrenaline	discharge into	blood
+adrenaline	run through	vein	>	adrenaline	flood	vein
+adrenaline	flood	bloodstream	>	adrenaline	surge in	vein
+medulla	release	adrenaline	>	adrenaline	produce by	medulla
+heart	race with	adrenaline	>	adrenaline	produce	tachycardia
+adrenaline	accelerate	heart	>	heart	race with	adrenaline
+adrenaline	course through	bloodstream	>	adrenaline	pump into	blood
+adrenaline	course through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	release into	bloodstream	>	adrenaline	pump through	vein
+adrenaline	surge in	vein	>	adrenaline	run through	vein
+adrenaline	give	strength	>	adrenaline	give	energy
+adrenaline	flow through	vein	>	adrenaline	rush through	vein
+adrenaline	induce	vasoconstriction	>	adrenaline	produce	constriction
+adrenaline	race through	vein	>	adrenaline	course through	bloodstream
+adrenaline	flood	bloodstream	>	adrenaline	release into	blood
+adrenaline	race through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	produce	constriction	X	adrenaline	dilate	vessel
+adrenaline	race through	vein	>	adrenaline	pump into	blood
+adrenaline	flow in	vein	>	adrenaline	flood	vein
+adrenaline	release into	circulation	>	adrenaline	course through	vein
+heart	race with	adrenaline	>	heart	pound with	adrenaline
+adrenaline	discharge into	blood	>	adrenaline	flood	bloodstream
+adrenaline	give	strength	>	adrenaline	add in	strength
+adrenaline	run through	vein	>	adrenaline	reach	heart
+adrenaline	pump into	blood	>	adrenaline	surge in	vein
+adrenaline	relax	muscle	>	adrenaline	give	relief
+medulla	produce	adrenaline	>	adrenaline	release from	medulla
+adrenaline	derive from	tyrosine	>	adrenaline	form from	tyrosine
+adrenaline	release from	medulla	>	adrenaline	produce by	medulla
+adrenaline	pour into	bloodstream	>	adrenaline	release into	circulation
+heart	pump	adrenaline	>	adrenaline	surge in	vein
+adrenaline	speed	heart	>	adrenaline	stimulate	heart
+adrenaline	release into	circulation	>	adrenaline	pour through	vein
+adrenaline	pour into	bloodstream	>	adrenaline	surge in	vein
+adrenaline	pump into	bloodstream	>	adrenaline	flood	vein
+heart	pump	adrenaline	>	adrenaline	flood	vein
+adrenaline	release into	bloodstream	>	adrenaline	surge in	vein
+adrenaline	shoot through	vein	>	adrenaline	run through	vein
+adrenaline	flood	vein	>	adrenaline	release into	circulation
+adrenaline	pump into	bloodstream	>	heart	pump	adrenaline
+adrenaline	release into	circulation	>	adrenaline	release into	bloodstream
+adrenaline	release into	bloodstream	>	adrenaline	run through	vein
+adrenaline	shoot through	vein	>	adrenaline	fill	vein
+adrenaline	cause	dilatation	X	adrenaline	constrict	vessel
+adrenaline	race through	vein	>	adrenaline	flood	bloodstream
+adrenaline	cause	glycogenolysis	>	adrenaline	cause	hyperglycemia
+adrenaline	pump into	vein	>	adrenaline	surge in	vein
+medulla	secrete	adrenaline	>	adrenaline	release by	medulla
+adrenaline	fill	vein	>	adrenaline	flow through	vein
+adrenaline	pump through	blood	>	adrenaline	fill	vein
+adrenaline	pour into	bloodstream	>	adrenaline	surge through	vein
+adrenaline	rush through	vein	>	heart	pump	adrenaline
+adrenaline	cause	dilatation	>	adrenaline	cause	vasodilatation
+adrenaline	come from	medulla	>	adrenaline	secrete from	medulla
+adrenaline	pour into	bloodstream	>	adrenaline	discharge into	blood
+adrenaline	flow in	vein	>	heart	pump	adrenaline
+adrenaline	run through	vein	>	adrenaline	pump through	vein
+heart	pump	adrenaline	>	adrenaline	flow in	vein
+adrenaline	course through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	course through	bloodstream	>	adrenaline	flow in	vein
+adrenaline	pump through	vein	>	adrenaline	pump into	vein
+adrenaline	pump into	blood	>	adrenaline	flow through	vein
+adrenaline	produce	vasoconstriction	X	adrenaline	cause	dilatation
+adrenaline	stimulate	cyclase	>	adrenaline	activate	cyclase
+adrenaline	release into	circulation	>	adrenaline	flood	bloodstream
+adrenaline	flow in	vein	>	adrenaline	shoot through	vein
+adrenaline	run through	vein	>	adrenaline	pour through	vein
+adrenaline	cause	constriction	X	adrenaline	cause	dilation
+adrenaline	flood	bloodstream	>	adrenaline	surge through	bloodstream
+adrenaline	race through	vein	>	adrenaline	release into	bloodstream
+adrenaline	mobilize	glycogen	>	adrenaline	cause	glycogenolysis
+heart	pump	adrenaline	>	adrenaline	pour into	bloodstream
+adrenaline	relax	muscle	>	adrenaline	produce	relaxation
+adrenaline	release into	circulation	>	adrenaline	rush through	vein
+adrenaline	pump	energy	>	adrenaline	give	energy
+adrenaline	pump into	vein	>	adrenaline	reach	heart
+heart	pump	adrenaline	>	adrenaline	race through	vein
+adrenaline	pump into	blood	>	adrenaline	course through	vein
+adrenaline	pump through	vein	>	adrenaline	pump through	blood
+adrenaline	stimulate	glycogenolysis	>	adrenaline	mobilize	glycogen
+adrenaline	release into	blood	>	adrenaline	release into	bloodstream
+adrenaline	mobilize	glycogen	>	adrenaline	cause	hyperglycemia
+adrenaline	flow in	vein	>	adrenaline	release into	circulation
+adrenaline	cause	vasodilatation	>	adrenaline	cause	dilatation
+adrenaline	rush through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	induce	vasoconstriction	>	adrenaline	constrict	vessel
+adrenaline	flow through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	speed	heart	>	adrenaline	add in	strength
+adrenaline	pour through	vein	>	adrenaline	pump into	blood
+adrenaline	course through	vein	>	adrenaline	shoot through	vein
+adrenaline	course through	bloodstream	>	adrenaline	discharge into	blood
+medulla	manufacture	adrenaline	>	adrenaline	produce by	medulla
+adrenaline	pour through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	course through	vein	>	adrenaline	pump through	blood
+adrenaline	secrete by	medulla	>	medulla	secrete	adrenaline
+adrenaline	constrict	vessel	X	adrenaline	cause	vasodilatation
+adrenaline	surge in	vein	>	adrenaline	pump through	blood
+adrenaline	pump into	blood	>	heart	pump	adrenaline
+adrenaline	pump into	bloodstream	>	adrenaline	release into	circulation
+adrenaline	produce	tachycardia	>	adrenaline	give	energy
+adrenaline	produce	vasoconstriction	X	adrenaline	dilate	vessel
+adrenaline	course through	vein	>	adrenaline	surge in	vein
+adrenaline	speed	heart	>	adrenaline	reach	heart
+adrenaline	stimulate	heart	>	adrenaline	give	strength
+adrenaline	flood	vein	>	adrenaline	flood	bloodstream
+adrenaline	stimulate	heart	>	adrenaline	give	energy
+adrenaline	pour into	bloodstream	>	heart	pump	adrenaline
+adrenaline	pour into	bloodstream	>	adrenaline	flood	bloodstream
+adrenaline	pour into	bloodstream	>	adrenaline	pump into	blood
+adrenaline	pump through	blood	>	adrenaline	release into	blood
+medulla	secrete	adrenaline	>	adrenaline	secrete from	medulla
+adrenaline	pump through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	release into	blood	>	heart	pump	adrenaline
+adrenaline	release from	medulla	>	medulla	contain	adrenaline
+medulla	contain	adrenaline	>	adrenaline	release by	medulla
+adrenaline	pump through	vein	>	adrenaline	surge in	vein
+adrenaline	flow through	vein	>	adrenaline	release into	blood
+adrenaline	release from	medulla	>	adrenaline	come from	medulla
+adrenaline	fill	vein	>	heart	pump	adrenaline
+adrenaline	activate	cyclase	>	adrenaline	stimulate	cyclase
+adrenaline	pump into	vein	>	heart	pump	adrenaline
+adrenaline	race through	vein	>	adrenaline	discharge into	blood
+adrenaline	surge in	vein	>	adrenaline	release into	circulation
+adrenaline	surge in	vein	>	adrenaline	course through	vein
+adrenaline	discharge into	blood	>	adrenaline	surge in	vein
+adrenaline	rush through	vein	>	adrenaline	release into	blood
+adrenaline	course through	bloodstream	>	adrenaline	pour into	bloodstream
+adrenaline	pump through	blood	>	heart	pump	adrenaline
+adrenaline	shoot through	vein	>	adrenaline	pour through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	pump into	blood
+adrenaline	rush through	vein	>	adrenaline	reach	heart
+adrenaline	flood	vein	>	adrenaline	surge through	vein
+adrenaline	constrict	vessel	>	adrenaline	produce	vasoconstriction
+adrenaline	produce	constriction	>	adrenaline	constrict	arteriole
+adrenaline	cause	dilation	>	adrenaline	dilate	vessel
+adrenaline	fill	vein	>	adrenaline	release into	blood
+adrenaline	speed	heart	>	heart	pound with	adrenaline
+adrenaline	pour into	bloodstream	>	adrenaline	flow through	vein
+adrenaline	shoot through	vein	>	adrenaline	pump into	vein
+adrenaline	shoot through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	pour into	bloodstream	>	adrenaline	course through	bloodstream
+adrenaline	release by	medulla	>	medulla	secrete	adrenaline
+adrenaline	surge through	bloodstream	>	adrenaline	release into	bloodstream
+adrenaline	cause	dilation	X	adrenaline	constrict	vessel
+adrenaline	combat	hypoglycaemia	X	adrenaline	mobilize	glycogen
+adrenaline	surge in	vein	>	adrenaline	pump into	blood
+adrenaline	flood	bloodstream	>	adrenaline	pump through	blood
+adrenaline	surge through	bloodstream	>	adrenaline	flow in	vein
+adrenaline	pump through	blood	>	adrenaline	rush through	vein
+adrenaline	pour through	vein	>	adrenaline	rush through	vein
+adrenaline	course through	vein	>	adrenaline	pump through	vein
+adrenaline	come from	medulla	>	adrenaline	release from	medulla
+medulla	produce	adrenaline	>	medulla	secrete	adrenaline
+adrenaline	course through	bloodstream	>	adrenaline	flow through	vein
+adrenaline	flow through	vein	>	adrenaline	pump through	vein
+adrenaline	pour through	vein	>	adrenaline	release into	circulation
+adrenaline	pump through	vein	>	adrenaline	pour through	vein
+adrenaline	pour through	vein	>	adrenaline	surge in	vein
+adrenaline	stimulate	heart	>	heart	pound with	adrenaline
+adrenaline	flood	vein	>	adrenaline	rush through	vein
+adrenaline	pump into	blood	>	adrenaline	pour into	bloodstream
+adrenaline	surge in	vein	>	adrenaline	race through	vein
+medulla	release	adrenaline	>	adrenaline	release by	medulla
+adrenaline	run through	vein	>	adrenaline	course through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	pour into	bloodstream
+adrenaline	course through	bloodstream	>	adrenaline	rush through	vein
+adrenaline	produce	vasoconstriction	>	adrenaline	produce	constriction
+adrenaline	surge in	vein	>	adrenaline	release into	bloodstream
+adrenaline	pump into	vein	>	adrenaline	pump through	blood
+adrenaline	speed	heart	>	adrenaline	pump	energy
+adrenaline	speed	heart	>	heart	race with	adrenaline
+adrenaline	pour through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	fill	vein	>	adrenaline	shoot through	vein
+adrenaline	shoot through	vein	>	adrenaline	reach	heart
+adrenaline	pump into	vein	>	adrenaline	flood	bloodstream
+adrenaline	fill	vein	>	adrenaline	course through	bloodstream
+adrenaline	release from	medulla	>	medulla	produce	adrenaline
+adrenaline	flood	bloodstream	>	adrenaline	pump into	vein
+adrenaline	stimulate	heart	>	adrenaline	produce	tachycardia
+adrenaline	release into	blood	>	adrenaline	surge through	vein
+adrenaline	rush through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	surge in	vein	>	adrenaline	surge through	bloodstream
+adrenaline	discharge into	blood	>	adrenaline	run through	vein
+medulla	contain	adrenaline	>	adrenaline	secrete by	medulla
+adrenaline	pump into	bloodstream	>	adrenaline	race through	vein
+heart	pump	adrenaline	>	adrenaline	run through	vein
+adrenaline	speed	heart	>	adrenaline	give	energy
+adrenaline	pour through	vein	>	adrenaline	flow in	vein
+adrenaline	fill	vein	>	adrenaline	discharge into	blood
+adrenaline	mask	pain	>	adrenaline	use with	anaesthetic
+adrenaline	course through	vein	>	adrenaline	reach	heart
+adrenaline	rush through	vein	>	adrenaline	flow through	vein
+heart	pound with	adrenaline	>	adrenaline	give	strength
+adrenaline	pump into	bloodstream	>	adrenaline	flow in	vein
+adrenaline	shoot through	vein	>	adrenaline	pour into	bloodstream
+adrenaline	secrete from	medulla	>	adrenaline	produce by	medulla
+adrenaline	pump through	vein	>	adrenaline	release into	bloodstream
+adrenaline	flow through	vein	>	adrenaline	fill	vein
+adrenaline	rush through	vein	>	adrenaline	race through	vein
+adrenaline	pump into	vein	>	adrenaline	run through	vein
+medulla	manufacture	adrenaline	>	adrenaline	secrete from	medulla
+adrenaline	release into	circulation	>	adrenaline	pump through	vein
+adrenaline	accelerate	heart	>	adrenaline	reach	heart
+adrenaline	pump through	blood	>	adrenaline	run through	vein
+adrenaline	rush through	vein	>	adrenaline	fill	vein
+adrenaline	come from	medulla	>	adrenaline	release by	medulla
+adrenaline	run through	vein	>	adrenaline	release into	circulation
+adrenaline	pump through	blood	>	adrenaline	pump into	blood
+medulla	manufacture	adrenaline	>	adrenaline	release from	medulla
+adrenaline	run through	vein	>	adrenaline	rush through	vein
+adrenaline	run through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	pump into	vein	>	adrenaline	pump into	blood
+adrenaline	pour through	vein	>	adrenaline	reach	heart
+medulla	release	adrenaline	>	adrenaline	release from	medulla
+adrenaline	produce	constriction	>	adrenaline	constrict	vessel
+adrenaline	surge through	bloodstream	>	adrenaline	flow through	vein
+fear	produce	adrenaline	>	fear	pump	adrenaline
+adrenaline	surge through	vein	>	adrenaline	discharge into	blood
+adrenaline	pour into	bloodstream	>	adrenaline	flood	vein
+adrenaline	release into	circulation	>	adrenaline	shoot through	vein
+adrenaline	flow through	vein	>	adrenaline	flood	vein
+adrenaline	produce	tachycardia	>	heart	race with	adrenaline
+adrenaline	pump through	blood	>	adrenaline	release into	bloodstream
+adrenaline	give	energy	>	adrenaline	give	strength
+adrenaline	flood	bloodstream	>	adrenaline	flow through	vein
+adrenaline	pump into	vein	>	adrenaline	release into	bloodstream
+heart	pump	adrenaline	>	adrenaline	pump into	blood
+adrenaline	pump through	vein	>	adrenaline	run through	vein
+adrenaline	pump into	blood	>	adrenaline	course through	bloodstream
+adrenaline	surge through	bloodstream	>	adrenaline	fill	vein
+adrenaline	race through	vein	>	adrenaline	surge in	vein
+adrenaline	pour into	bloodstream	>	adrenaline	pump through	vein
+adrenaline	pump through	blood	>	adrenaline	flow through	vein
+heart	pump	adrenaline	>	adrenaline	reach	heart
+adrenaline	cause	dilatation	>	adrenaline	dilate	vessel
+adrenaline	release by	medulla	>	medulla	produce	adrenaline
+adrenaline	produce	vasoconstriction	>	adrenaline	induce	vasoconstriction
+heart	pump	adrenaline	>	adrenaline	release into	bloodstream
+adrenaline	flow in	vein	>	adrenaline	pump through	blood
+adrenaline	surge through	bloodstream	>	adrenaline	flood	bloodstream
+adrenaline	flood	bloodstream	>	adrenaline	flow in	vein
+adrenaline	pump through	vein	>	adrenaline	surge through	vein
+adrenaline	induce	vasoconstriction	>	adrenaline	constrict	arteriole
+adrenaline	surge in	vein	>	adrenaline	flow through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	rush through	vein
+adrenaline	pump into	vein	>	adrenaline	shoot through	vein
+adrenaline	course through	vein	>	adrenaline	flow through	vein
+adrenaline	flood	vein	>	adrenaline	pour into	bloodstream
+adrenaline	course through	vein	>	adrenaline	pump into	vein
+adrenaline	cause	glycogenolysis	X	adrenaline	combat	hypoglycaemia
+adrenaline	accelerate	heart	>	adrenaline	add in	strength
+adrenaline	release into	circulation	>	adrenaline	run through	vein
+adrenaline	dilate	vessel	>	adrenaline	cause	vasodilatation
+heart	pump	adrenaline	>	adrenaline	flood	bloodstream
+adrenaline	flood	bloodstream	>	adrenaline	fill	vein
+adrenaline	pump into	bloodstream	>	adrenaline	pump through	blood
+adrenaline	add in	strength	>	adrenaline	pump	energy
+adrenaline	course through	bloodstream	>	adrenaline	pump into	vein
+adrenaline	secrete from	medulla	>	medulla	release	adrenaline
+adrenaline	cause	vasoconstriction	>	adrenaline	produce	constriction
+adrenaline	discharge into	blood	>	adrenaline	release into	circulation
+adrenaline	pump through	vein	>	adrenaline	flow through	vein
+adrenaline	form from	tyrosine	>	adrenaline	derive from	tyrosine
+adrenaline	dilate	vessel	>	adrenaline	cause	dilation
+adrenaline	flow through	vein	>	adrenaline	course through	bloodstream
+adrenaline	cause	dilation	X	adrenaline	constrict	arteriole
+adrenaline	accelerate	heart	>	adrenaline	give	energy
+adrenaline	pour through	vein	>	adrenaline	flow through	vein
+adrenaline	discharge into	blood	>	adrenaline	release into	blood
+adrenaline	flood	vein	>	adrenaline	race through	vein
+heart	pump	adrenaline	>	adrenaline	pump through	vein
+adrenaline	release into	bloodstream	>	adrenaline	discharge into	blood
+adrenaline	run through	vein	>	adrenaline	flow in	vein
+adrenaline	surge through	vein	>	adrenaline	reach	heart
+adrenaline	cause	glycogenolysis	>	adrenaline	mobilize	glycogen
+adrenaline	flood	vein	>	adrenaline	fill	vein
+adrenaline	release into	circulation	>	adrenaline	surge through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	run through	vein
+adrenaline	pour through	vein	>	adrenaline	race through	vein
+adrenaline	cause	dilation	X	adrenaline	produce	vasoconstriction
+adrenaline	pump into	vein	>	adrenaline	discharge into	blood
+adrenaline	race through	vein	>	adrenaline	flow through	vein
+heart	pump	adrenaline	>	adrenaline	pour through	vein
+adrenaline	pump into	vein	>	adrenaline	course through	vein
+adrenaline	discharge into	blood	>	adrenaline	race through	vein
+adrenaline	release into	blood	>	adrenaline	shoot through	vein
+medulla	contain	adrenaline	>	adrenaline	release from	medulla
+fear	release	adrenaline	>	stress	release	adrenaline
+adrenaline	shoot through	vein	>	adrenaline	release into	blood
+adrenaline	discharge into	blood	>	adrenaline	fill	vein
+adrenaline	flow in	vein	>	adrenaline	pump through	vein
+adrenaline	pump into	bloodstream	>	adrenaline	reach	heart
+medulla	secrete	adrenaline	>	adrenaline	produce by	medulla
+adrenaline	produce by	medulla	>	adrenaline	secrete from	medulla
+adrenaline	speed	heart	>	adrenaline	give	strength
+adrenaline	produce	constriction	>	adrenaline	cause	vasoconstriction
+adrenaline	come from	medulla	>	medulla	manufacture	adrenaline
+adrenaline	cause	vasoconstriction	>	adrenaline	induce	vasoconstriction
+adrenaline	mask	pain	>	adrenaline	use during	anaesthesia
+adrenaline	cause	vasoconstriction	>	adrenaline	cause	constriction
+adrenaline	dilate	vessel	X	adrenaline	constrict	arteriole
+adrenaline	cause	constriction	>	adrenaline	induce	vasoconstriction
+adrenaline	mobilize	glycogen	>	adrenaline	stimulate	glycogenolysis
+adrenaline	release into	blood	>	adrenaline	pump into	bloodstream
+adrenaline	release by	medulla	>	medulla	manufacture	adrenaline
+adrenaline	surge in	vein	>	adrenaline	flow in	vein
+adrenaline	discharge into	blood	>	heart	pump	adrenaline
+adrenaline	produce by	medulla	>	medulla	manufacture	adrenaline
+adrenaline	race through	vein	>	adrenaline	course through	vein
+adrenaline	pump into	blood	>	adrenaline	release into	blood
+adrenaline	release into	bloodstream	>	adrenaline	flow in	vein
+adrenaline	rush through	vein	>	adrenaline	surge through	bloodstream
+adrenaline	flood	bloodstream	>	adrenaline	pour through	vein
+adrenaline	pump through	vein	>	adrenaline	flood	vein
+adrenaline	pour through	vein	>	adrenaline	run through	vein
+adrenaline	flow through	vein	>	adrenaline	pump into	bloodstream
+medulla	contain	adrenaline	>	adrenaline	produce by	medulla
+adrenaline	release into	blood	>	adrenaline	discharge into	blood
+adrenaline	release into	blood	>	adrenaline	flow in	vein
+adrenaline	discharge into	blood	>	adrenaline	course through	vein
+adrenaline	cause	dilatation	>	adrenaline	cause	dilation
+adrenaline	course through	bloodstream	>	adrenaline	release into	blood
+adrenaline	race through	vein	>	heart	pump	adrenaline
+adrenaline	flow through	vein	>	adrenaline	pour through	vein
+adrenaline	surge through	bloodstream	>	adrenaline	release into	circulation
+fear	pump	adrenaline	>	stress	release	adrenaline
+adrenaline	release into	bloodstream	>	adrenaline	course through	vein
+adrenaline	cause	constriction	X	adrenaline	cause	dilatation
+adrenaline	pump through	vein	>	adrenaline	pump into	bloodstream
+heart	pound with	adrenaline	>	adrenaline	accelerate	heart
+adrenaline	surge through	vein	>	adrenaline	pump into	vein
+medulla	secrete	adrenaline	>	adrenaline	secrete by	medulla
+adrenaline	accelerate	heart	>	adrenaline	speed	heart
+adrenaline	shoot through	vein	>	adrenaline	flow in	vein
+adrenaline	shoot through	vein	>	adrenaline	discharge into	blood
+adrenaline	course through	vein	>	adrenaline	race through	vein
+adrenaline	dilate	vessel	X	adrenaline	cause	vasoconstriction
+adrenaline	produce	tachycardia	>	adrenaline	reach	heart
+adrenaline	cause	vasoconstriction	>	adrenaline	constrict	arteriole
+adrenaline	flood	vein	>	adrenaline	pump through	blood
+medulla	manufacture	adrenaline	>	adrenaline	secrete by	medulla
+medulla	produce	adrenaline	>	medulla	manufacture	adrenaline
+adrenaline	pump into	blood	>	adrenaline	pump into	vein
+adrenaline	pour into	bloodstream	>	adrenaline	pour through	vein
+adrenaline	release from	medulla	>	adrenaline	release by	medulla
+adrenaline	flood	bloodstream	>	adrenaline	release into	bloodstream
+adrenaline	pour through	vein	>	adrenaline	surge through	vein
+adrenaline	cause	glycogenolysis	>	glycogen	discharge by	adrenaline
+adrenaline	use during	anaesthesia	>	adrenaline	mask	pain
+adrenaline	course through	vein	>	heart	pump	adrenaline
+adrenaline	shoot through	vein	>	adrenaline	pump into	bloodstream
+adrenaline	flow through	vein	>	adrenaline	release into	circulation
+adrenaline	surge in	vein	>	adrenaline	pour through	vein
+adrenaline	flood	bloodstream	>	adrenaline	run through	vein
+adrenaline	accelerate	heart	>	adrenaline	pump	energy
+adrenaline	mask	pain	>	adrenaline	improve	analgesia
+medulla	produce	adrenaline	>	adrenaline	release by	medulla
+adrenaline	pump into	bloodstream	>	adrenaline	fill	vein
+adrenaline	induce	vasoconstriction	X	adrenaline	dilate	vessel
+adrenaline	release from	medulla	>	medulla	manufacture	adrenaline
+adrenaline	pour through	vein	>	adrenaline	flood	vein
+adrenaline	produce	relaxation	>	adrenaline	cause	relaxation
+adrenaline	surge through	bloodstream	>	adrenaline	pump into	vein
+medulla	manufacture	adrenaline	>	medulla	produce	adrenaline
+adrenaline	surge through	vein	>	heart	pump	adrenaline
+medulla	manufacture	adrenaline	>	adrenaline	release by	medulla
+adrenaline	produce	constriction	>	adrenaline	cause	constriction
+adrenaline	inhibit	muscle	>	adrenaline	produce	relief
+adrenaline	secrete by	medulla	>	medulla	manufacture	adrenaline
+adrenaline	course through	bloodstream	>	adrenaline	course through	vein
+adrenaline	race through	vein	>	adrenaline	pump through	vein
+adrenaline	release into	bloodstream	>	heart	pump	adrenaline
+adrenaline	constrict	arteriole	>	adrenaline	constrict	vessel
+adrenaline	flood	vein	>	adrenaline	surge through	bloodstream
+heart	pump	adrenaline	>	adrenaline	pump into	bloodstream
+medulla	produce	adrenaline	>	adrenaline	secrete by	medulla
+adrenaline	pump through	vein	>	adrenaline	release into	circulation
+adrenaline	release into	bloodstream	>	adrenaline	release into	blood
+adrenaline	shoot through	vein	>	adrenaline	release into	bloodstream
+adrenaline	flood	vein	>	adrenaline	pump into	blood
+adrenaline	accelerate	heart	>	adrenaline	stimulate	heart
+adrenaline	use during	anaesthesia	>	adrenaline	give during	anaesthesia
+adrenaline	cause	vasoconstriction	>	adrenaline	constrict	vessel
+adrenaline	surge through	vein	>	adrenaline	course through	vein
+adrenaline	surge in	vein	>	adrenaline	flood	bloodstream
+adrenaline	cause	dilatation	X	adrenaline	cause	constriction
+adrenaline	run through	vein	>	adrenaline	pump through	blood
+adrenaline	use with	anaesthetic	>	adrenaline	give during	anaesthesia
+adrenaline	pour through	vein	>	adrenaline	release into	bloodstream
+adrenaline	mobilize	glycogen	>	glycogen	discharge by	adrenaline
+adrenaline	release into	bloodstream	>	adrenaline	pump into	vein
+adrenaline	rush through	vein	>	adrenaline	pour through	vein
+adrenaline	cause	vasodilatation	X	adrenaline	induce	vasoconstriction
+adrenaline	fill	vein	>	adrenaline	flood	vein
+adrenaline	flow in	vein	>	adrenaline	surge in	vein
+medulla	contain	adrenaline	>	medulla	produce	adrenaline
+adrenaline	release into	circulation	>	adrenaline	fill	vein
+adrenaline	release by	medulla	>	adrenaline	secrete from	medulla
+adrenaline	come from	medulla	>	medulla	produce	adrenaline
+adrenaline	constrict	arteriole	X	adrenaline	cause	vasodilatation
+adrenaline	cause	vasodilatation	X	adrenaline	produce	constriction
+adrenaline	secrete from	medulla	>	adrenaline	release from	medulla
+adrenaline	stimulate	heart	>	heart	race with	adrenaline
+adrenaline	pump into	bloodstream	>	adrenaline	surge through	vein
+adrenaline	dilate	vessel	X	adrenaline	produce	vasoconstriction
+adrenaline	flood	bloodstream	>	adrenaline	pump through	vein
+adrenaline	pour through	vein	>	adrenaline	shoot through	vein
+heart	pump	adrenaline	>	adrenaline	release into	circulation
+adrenaline	release into	bloodstream	>	adrenaline	pump into	blood
+adrenaline	race through	vein	>	adrenaline	pump into	vein
+adrenaline	flood	vein	>	adrenaline	course through	bloodstream
+adrenaline	surge through	vein	>	adrenaline	race through	vein
+heart	pump	adrenaline	>	adrenaline	surge through	bloodstream
+adrenaline	produce by	medulla	>	adrenaline	secrete by	medulla
+adrenaline	flood	vein	>	adrenaline	shoot through	vein
+adrenaline	produce	vasoconstriction	X	adrenaline	cause	dilation
+adrenaline	pump into	vein	>	adrenaline	pour into	bloodstream
+adrenaline	rush through	vein	>	adrenaline	surge through	vein
+adrenaline	flood	bloodstream	>	heart	pump	adrenaline
+adrenaline	mask	pain	>	adrenaline	give during	anaesthesia
+adrenaline	release into	circulation	>	adrenaline	pump through	blood
+adrenaline	release into	bloodstream	>	adrenaline	course through	bloodstream
+adrenaline	produce	constriction	>	adrenaline	produce	vasoconstriction
+adrenaline	pour into	bloodstream	>	adrenaline	reach	heart
+adrenaline	fill	vein	>	adrenaline	rush through	vein
+adrenaline	release into	blood	>	adrenaline	pump into	vein
+adrenaline	run through	vein	>	adrenaline	pump into	blood
+adrenaline	surge through	vein	>	adrenaline	run through	vein
+adrenaline	pour into	bloodstream	>	adrenaline	fill	vein
+adrenaline	rush through	vein	>	adrenaline	flood	vein
+adrenaline	use with	anaesthetic	>	adrenaline	improve	analgesia
+adrenaline	race through	vein	>	adrenaline	reach	heart
+adrenaline	pump into	bloodstream	>	adrenaline	surge through	bloodstream
+adrenaline	induce	vasoconstriction	>	adrenaline	produce	vasoconstriction
+adrenaline	flood	vein	>	adrenaline	reach	heart
+adrenaline	pump into	vein	>	adrenaline	race through	vein
+adrenaline	flow in	vein	>	adrenaline	flood	bloodstream
+adrenaline	shoot through	vein	>	adrenaline	surge in	vein
+adrenaline	run through	vein	>	adrenaline	release into	bloodstream
+adrenaline	produce	constriction	>	adrenaline	induce	vasoconstriction
+adrenaline	pour into	bloodstream	>	adrenaline	rush through	vein
+glycogen	discharge by	adrenaline	>	adrenaline	stimulate	glycogenolysis
+adrenaline	release into	circulation	>	adrenaline	pump into	bloodstream
+adrenaline	come from	medulla	>	adrenaline	produce by	medulla
+adrenaline	rush through	vein	>	adrenaline	pump into	blood
+adrenaline	release into	bloodstream	>	adrenaline	pump through	blood
+medulla	manufacture	adrenaline	>	medulla	release	adrenaline
+adrenaline	run through	vein	>	heart	pump	adrenaline
+adrenaline	constrict	vessel	>	adrenaline	constrict	arteriole
+adrenaline	pump through	vein	>	adrenaline	reach	heart
+adrenaline	release into	blood	>	adrenaline	pour through	vein
+adrenaline	release into	circulation	>	adrenaline	flood	vein
+medulla	manufacture	adrenaline	>	medulla	contain	adrenaline
+adrenaline	discharge into	blood	>	adrenaline	flow through	vein
+adrenaline	run through	vein	>	adrenaline	flood	bloodstream
+adrenaline	release into	blood	>	adrenaline	course through	bloodstream
+adrenaline	release from	medulla	>	adrenaline	secrete by	medulla

@@ -1,0 +1,2654 @@
+anemia	observe after	hemorrhage	>	anemia	cause by	hemorrhage
+transfusion	be in	anemia	>	transfusion	improve	anemia
+splenectomy	relieve	anemia	>	splenectomy	correct	anemia
+anemia	occur after	hemorrhage	>	transfusion	correct	anemia
+iron	correct	anemia	>	iron	cure	anemia
+anemia	characterize by	pallor	>	pallor	associate with	anemia
+bleeding	manifest as	anemia	>	transfusion	give with	anemia
+iron	use in	anemia	>	iron	give in	anemia
+bleeding	manifest as	anemia	>	transfusion	be in	anemia
+transfusion	give for	anemia	>	transfusion	administer for	anemia
+iron	use in	anemia	>	anemia	require	iron
+anemia	observe after	hemorrhage	>	bleeding	associate with	anemia
+hemolysis	lead to	anemia	>	hemolysis	explain	anemia
+anemia	develop from	hemorrhage	>	transfusion	require in	anemia
+bleeding	produce	anemia	>	bleeding	manifest as	anemia
+leukemia	masquerade as	anemia	>	leukemia	associate with	anemia
+leukemia	present	anemia	>	anemia	accompany	leukemia
+anemia	suggest	hemorrhage	>	bleeding	result in	anemia
+hemorrhage	cause	anemia	>	transfusion	give with	anemia
+splenectomy	ameliorate	anemia	>	splenectomy	correct	anemia
+iron	cause	anemia	>	anemia	cause by	iron
+bleeding	manifest as	anemia	>	anemia	treat by	transfusion
+hemolysis	produce	anemia	>	anemia	associate with	hemolysis
+anemia	accompany	leukemia	>	anemia	find in	leukemia
+diet	develop	anemia	>	anemia	cause by	diet
+anemia	associate with	bleeding	>	anemia	require	transfusion
+pregnancy	associate with	anemia	>	anemia	associate with	pregnancy
+pallor	suggest	anemia	>	anemia	manifest by	pallor
+anemia	develop of	hemolysis	>	hemolysis	contribute to	anemia
+bleeding	manifest as	anemia	>	anemia	observe after	hemorrhage
+anemia	result from	hemorrhage	>	bleeding	lead to	anemia
+bleeding	result in	anemia	>	transfusion	require for	anemia
+iron	indicate for	anemia	>	iron	indicate in	anemia
+anemia	manifest by	pallor	>	anemia	evidence by	pallor
+anemia	correct by	iron	>	anemia	treat with	iron
+anemia	suggest by	pallor	>	anemia	produce	pallor
+anemia	observe after	hemorrhage	>	anemia	correct by	transfusion
+anemia	cause by	hemolysis	>	hemolysis	associate with	anemia
+anemia	relieve by	splenectomy	>	splenectomy	perform for	anemia
+leukemia	present as	anemia	>	anemia	accompany	leukemia
+bleeding	lead to	anemia	>	transfusion	be in	anemia
+hemolysis	contribute to	anemia	>	hemolysis	lead to	anemia
+bleeding	manifest as	anemia	>	transfusion	use for	anemia
+splenectomy	cure	anemia	>	anemia	respond to	splenectomy
+anemia	require	transfusion	>	anemia	treat with	transfusion
+bleeding	associate with	anemia	>	anemia	correct by	transfusion
+anemia	result from	bleeding	>	anemia	correct by	transfusion
+bleeding	result in	anemia	>	hemorrhage	result in	anemia
+bleeding	cause	anemia	>	anemia	observe after	hemorrhage
+anemia	result from	hemorrhage	>	anemia	call for	transfusion
+anemia	manifest by	pallor	>	anemia	produce	pallor
+anemia	occur after	hemorrhage	>	anemia	be of	bleeding
+purpura	associate with	anemia	>	purpura	acquire	anemia
+transfusion	give with	anemia	>	transfusion	use for	anemia
+anemia	cause by	hemolysis	>	hemolysis	produce	anemia
+anemia	treat by	transfusion	>	anemia	treat with	transfusion
+anemia	treat with	iron	>	iron	give in	anemia
+bleeding	associate with	anemia	>	anemia	result from	hemorrhage
+erythrocyte	occur in	anemia	>	anemia	associate with	erythrocyte
+iron	use for	anemia	>	iron	give in	anemia
+anemia	be of	bleeding	>	bleeding	associate with	anemia
+fatigue	result from	anemia	>	anemia	associate with	fatigue
+leukemia	present as	anemia	>	anemia	occur in	leukemia
+iron	give for	anemia	>	anemia	treat by	iron
+anemia	treat with	iron	>	iron	give for	anemia
+bleeding	result in	anemia	>	transfusion	be in	anemia
+anemia	due to	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	result from	hemorrhage	>	anemia	see with	bleeding
+splenectomy	ameliorate	anemia	>	splenectomy	perform for	anemia
+fatigue	result from	anemia	>	fatigue	relate to	anemia
+anemia	result from	bleeding	>	transfusion	correct	anemia
+pallor	indicate	anemia	>	pallor	suggest	anemia
+anemia	improve by	splenectomy	>	splenectomy	alleviate	anemia
+anemia	treat with	transfusion	>	anemia	treat by	transfusion
+anemia	improve by	splenectomy	>	splenectomy	eliminate	anemia
+anemia	result from	bleeding	>	anemia	relieve by	transfusion
+hemolysis	produce	anemia	>	anemia	cause by	hemolysis
+transfusion	improve	anemia	>	anemia	treat by	transfusion
+iron	correct	anemia	>	anemia	respond to	iron
+transfusion	administer for	anemia	>	anemia	correct by	transfusion
+tapeworm	cause	anemia	>	parasite	cause	anemia
+pallor	accompany	anemia	>	anemia	result in	pallor
+transfusion	give with	anemia	>	transfusion	require in	anemia
+anemia	follow	hemorrhage	>	transfusion	give for	anemia
+hemorrhage	cause	anemia	>	bleeding	result in	anemia
+anemia	follow	hemorrhage	>	transfusion	give with	anemia
+hemorrhage	cause	anemia	>	anemia	cause by	hemorrhage
+anemia	respond to	iron	>	anemia	benefit by	iron
+anemia	necessitate	iron	>	iron	give for	anemia
+bleeding	produce	anemia	>	anemia	require	transfusion
+splenectomy	correct	anemia	>	anemia	cure by	splenectomy
+tapeworm	precipitate	anemia	>	tapeworm	produce	anemia
+anemia	manifest by	fatigue	>	fatigue	result from	anemia
+hemolysis	cause	anemia	>	hemolysis	associate with	anemia
+anemia	cause	pallor	>	pallor	result from	anemia
+anemia	follow	hemorrhage	>	anemia	require	transfusion
+anemia	correct by	iron	>	iron	give in	anemia
+hemorrhage	lead to	anemia	>	bleeding	produce	anemia
+erythrocyte	find in	anemia	>	erythrocyte	occur in	anemia
+anemia	suggest	hemorrhage	>	transfusion	require in	anemia
+anemia	be of	bleeding	>	transfusion	give for	anemia
+anemia	suggest by	pallor	>	pallor	denote	anemia
+hemolysis	associate with	anemia	>	anemia	associate with	hemolysis
+anemia	correct with	iron	>	anemia	treat by	iron
+anemia	treat with	transfusion	>	anemia	correct with	transfusion
+splenectomy	relieve	anemia	>	anemia	cure by	splenectomy
+anemia	be during	pregnancy	>	anemia	develop during	pregnancy
+transfusion	improve	anemia	>	transfusion	correct	anemia
+anemia	develop from	hemorrhage	>	anemia	cause by	hemorrhage
+anemia	result from	iron	>	iron	cause	anemia
+hemolysis	associate with	anemia	>	anemia	cause by	hemolysis
+hemorrhage	suggest	anemia	>	hemorrhage	occur in	anemia
+anemia	respond to	splenectomy	>	splenectomy	cure	anemia
+anemia	relieve by	transfusion	>	anemia	treat by	transfusion
+bleeding	lead to	anemia	>	transfusion	need for	anemia
+anemia	cure by	splenectomy	>	splenectomy	perform for	anemia
+thalassemia	produce	anemia	>	thalassemia	cause	anemia
+anemia	produce	pallor	>	anemia	suggest by	pallor
+bleeding	cause	anemia	>	anemia	result from	hemorrhage
+anemia	associate with	hemorrhage	>	anemia	follow	hemorrhage
+anemia	associate with	hemorrhage	>	bleeding	produce	anemia
+anemia	associate with	achlorhydria	>	achlorhydria	associate with	anemia
+fatigue	cause by	anemia	>	anemia	result in	fatigue
+iron	give in	anemia	>	anemia	treat by	iron
+anemia	see with	bleeding	>	transfusion	require in	anemia
+anemia	require	transfusion	>	transfusion	give with	anemia
+anemia	associate with	bleeding	>	bleeding	result in	anemia
+splenectomy	perform for	anemia	>	splenectomy	relieve	anemia
+iron	use in	anemia	>	anemia	correct by	iron
+pallor	accompany	anemia	>	anemia	evidence by	pallor
+anemia	call for	transfusion	>	anemia	correct with	transfusion
+splenectomy	perform for	anemia	>	splenectomy	correct	anemia
+splenectomy	cure	anemia	>	anemia	improve by	splenectomy
+anemia	treat by	splenectomy	>	splenectomy	relieve	anemia
+anemia	suggest by	pallor	>	pallor	suggest	anemia
+anemia	suggest	hemorrhage	>	anemia	call for	transfusion
+anemia	correct with	erythropoietin	>	erythropoietin	reduce	anemia
+pregnancy	cause	anemia	>	anemia	occur in	pregnancy
+bleeding	lead to	anemia	>	anemia	result from	bleeding
+tapeworm	associate with	anemia	>	parasite	cause	anemia
+transfusion	be in	anemia	>	transfusion	use for	anemia
+anemia	result in	fatigue	>	fatigue	cause by	anemia
+transfusion	improve	anemia	>	transfusion	need for	anemia
+anemia	cause by	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	be in	leukemia	>	anemia	accompany	leukemia
+anemia	necessitate	iron	>	iron	use in	anemia
+pallor	suggest	anemia	>	anemia	result in	pallor
+hemolysis	lead to	anemia	>	anemia	associate with	hemolysis
+anemia	be of	bleeding	>	anemia	call for	transfusion
+anemia	treat by	transfusion	>	transfusion	correct	anemia
+anemia	relate	parasite	>	parasite	lead to	anemia
+anemia	accompany	leukemia	>	anemia	occur in	leukemia
+anemia	treat by	splenectomy	>	anemia	respond to	splenectomy
+anemia	produce	pallor	>	anemia	recognize by	pallor
+hemorrhage	result in	anemia	>	transfusion	be in	anemia
+anemia	treat with	transfusion	>	transfusion	relieve	anemia
+anemia	due to	hemorrhage	>	transfusion	relieve	anemia
+bleeding	cause	anemia	>	anemia	treat with	transfusion
+transfusion	give with	anemia	>	transfusion	require for	anemia
+anemia	be of	bleeding	>	anemia	due to	hemorrhage
+transfusion	give for	anemia	>	transfusion	correct	anemia
+bleeding	produce	anemia	>	anemia	see with	bleeding
+pallor	indicate	anemia	>	pallor	see in	anemia
+anemia	call for	transfusion	>	transfusion	need for	anemia
+anemia	treat by	iron	>	iron	use for	anemia
+transfusion	give with	anemia	>	transfusion	give for	anemia
+anemia	evidence by	pallor	>	anemia	produce	pallor
+leukemia	masquerade as	anemia	>	anemia	terminate in	leukemia
+anemia	result from	hemolysis	>	hemolysis	cause	anemia
+pallor	indicate	anemia	>	anemia	produce	pallor
+pallor	suggest	anemia	>	pallor	denote	anemia
+anemia	require	iron	>	iron	use for	anemia
+fatigue	associate with	anemia	>	fatigue	relate to	anemia
+anemia	respond to	iron	>	iron	give in	anemia
+bleeding	manifest as	anemia	>	anemia	associate with	bleeding
+hemorrhage	result in	anemia	>	anemia	treat by	transfusion
+fatigue	cause by	anemia	>	anemia	characterize by	fatigue
+anemia	cause during	pregnancy	>	anemia	observe during	pregnancy
+anemia	cause	pallor	>	anemia	evidence by	pallor
+anemia	treat by	splenectomy	>	splenectomy	correct	anemia
+hemorrhage	result in	anemia	>	transfusion	improve	anemia
+thalassemia	produce	anemia	>	thalassemia	associate with	anemia
+transfusion	correct	anemia	>	transfusion	need for	anemia
+iron	cure	anemia	>	iron	give for	anemia
+hemorrhage	cause	anemia	>	anemia	associate with	bleeding
+anemia	be in	leukemia	>	leukemia	masquerade as	anemia
+anemia	result in	fatigue	>	anemia	lead to	fatigue
+transfusion	give for	anemia	>	anemia	treat by	transfusion
+anemia	treat with	iron	>	anemia	benefit by	iron
+purpura	characterize by	anemia	>	purpura	associate with	anemia
+anemia	associate with	hemorrhage	>	anemia	require	transfusion
+anemia	follow	hemorrhage	>	hemorrhage	produce	anemia
+anemia	develop from	hemorrhage	>	transfusion	be in	anemia
+anemia	associate with	bleeding	>	anemia	suggest	hemorrhage
+anemia	cure by	diet	>	anemia	prevent by	diet
+anemia	result from	bleeding	>	transfusion	improve	anemia
+bleeding	lead to	anemia	>	anemia	call for	transfusion
+bleeding	produce	anemia	>	anemia	follow	hemorrhage
+hemorrhage	produce	anemia	>	transfusion	require for	anemia
+anemia	suggest by	pallor	>	pallor	accompany	anemia
+anemia	result from	hemorrhage	>	transfusion	administer for	anemia
+anemia	treat with	transfusion	>	transfusion	use for	anemia
+diet	produce	anemia	>	diet	cause	anemia
+transfusion	be in	anemia	>	transfusion	give for	anemia
+anemia	result from	hemorrhage	>	transfusion	require for	anemia
+anemia	necessitate	iron	>	iron	prevent	anemia
+achlorhydria	be in	anemia	>	achlorhydria	associate with	anemia
+bleeding	associate with	anemia	>	transfusion	relieve	anemia
+anemia	relieve by	transfusion	>	transfusion	relieve	anemia
+anemia	see with	bleeding	>	anemia	cause by	hemorrhage
+anemia	relieve by	splenectomy	>	splenectomy	improve	anemia
+hemorrhage	produce	anemia	>	anemia	relieve by	transfusion
+hemorrhage	cause	anemia	>	anemia	correct with	transfusion
+anemia	correct by	iron	>	iron	give for	anemia
+leukemia	masquerade as	anemia	>	leukemia	present as	anemia
+iron	prevent	anemia	>	iron	give for	anemia
+tapeworm	associate with	anemia	>	tapeworm	cause	anemia
+anemia	develop from	hemorrhage	>	transfusion	improve	anemia
+anemia	suggest	hemorrhage	>	transfusion	need for	anemia
+tapeworm	develop	anemia	>	parasite	lead to	anemia
+anemia	accompany	leukemia	>	anemia	associate with	leukemia
+anemia	associate with	thalassemia	>	thalassemia	have	anemia
+anemia	associate with	bleeding	>	hemorrhage	cause	anemia
+pallor	associate with	anemia	>	anemia	manifest by	pallor
+anemia	correct by	iron	>	anemia	respond to	iron
+anemia	call for	transfusion	>	anemia	treat by	transfusion
+anemia	suggest	hemorrhage	>	anemia	treat with	transfusion
+anemia	relate	parasite	>	parasite	cause	anemia
+pallor	see in	anemia	>	pallor	denote	anemia
+anemia	treat by	transfusion	>	transfusion	need for	anemia
+iron	cure	anemia	>	iron	give in	anemia
+anemia	result from	bleeding	>	bleeding	lead to	anemia
+bleeding	lead to	anemia	>	transfusion	require in	anemia
+hemorrhage	lead to	anemia	>	anemia	call for	transfusion
+leukemia	present as	anemia	>	leukemia	associate with	anemia
+anemia	cause	pallor	>	pallor	suggest	anemia
+splenectomy	improve	anemia	>	anemia	treat by	splenectomy
+anemia	recognize by	pallor	>	pallor	result from	anemia
+anemia	due to	hemorrhage	>	anemia	be of	bleeding
+transfusion	relieve	anemia	>	anemia	require	transfusion
+anemia	associate with	hemorrhage	>	transfusion	improve	anemia
+anemia	occur during	pregnancy	>	anemia	cause during	pregnancy
+anemia	relieve by	transfusion	>	anemia	correct with	transfusion
+anemia	call for	transfusion	>	transfusion	be in	anemia
+anemia	occur in	leukemia	>	leukemia	present	anemia
+iron	correct	anemia	>	anemia	correct with	iron
+anemia	occur after	hemorrhage	>	anemia	result from	bleeding
+bleeding	associate with	anemia	>	anemia	treat with	transfusion
+anemia	treat by	diet	>	anemia	treat with	diet
+pallor	associate with	anemia	>	pallor	cause by	anemia
+parasite	produce	anemia	>	parasite	cause	anemia
+transfusion	improve	anemia	>	transfusion	administer for	anemia
+anemia	associate with	bleeding	>	bleeding	produce	anemia
+hemorrhage	result in	anemia	>	anemia	relieve by	transfusion
+anemia	see with	bleeding	>	hemorrhage	lead to	anemia
+anemia	result from	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	follow	hemorrhage	>	hemorrhage	result in	anemia
+anemia	correct by	iron	>	iron	correct	anemia
+thalassemia	have	anemia	>	thalassemia	associate with	anemia
+thalassemia	associate with	anemia	>	thalassemia	characterize by	anemia
+anemia	correct with	transfusion	>	anemia	treat by	transfusion
+anemia	due to	hemorrhage	>	anemia	follow	hemorrhage
+anemia	result from	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	associate with	hemorrhage	>	transfusion	be in	anemia
+anemia	respond to	splenectomy	>	anemia	relieve by	splenectomy
+anemia	develop from	hemorrhage	>	anemia	require	transfusion
+hemolysis	cause	anemia	>	hemolysis	explain	anemia
+pregnancy	associate with	anemia	>	anemia	be during	pregnancy
+hemorrhage	lead to	anemia	>	transfusion	need for	anemia
+anemia	associate with	pregnancy	>	anemia	be in	pregnancy
+anemia	correct with	iron	>	anemia	respond to	iron
+transfusion	require in	anemia	>	anemia	treat by	transfusion
+anemia	follow	hemorrhage	>	anemia	cause by	hemorrhage
+hemorrhage	produce	anemia	>	hemorrhage	cause	anemia
+bleeding	manifest as	anemia	>	anemia	require	transfusion
+transfusion	require for	anemia	>	anemia	treat by	transfusion
+anemia	treat by	iron	>	iron	give for	anemia
+bleeding	produce	anemia	>	anemia	cause by	hemorrhage
+hemorrhage	lead to	anemia	>	anemia	due to	hemorrhage
+anemia	result from	bleeding	>	bleeding	associate with	anemia
+pallor	accompany	anemia	>	anemia	characterize by	pallor
+anemia	suggest	hemorrhage	>	transfusion	be in	anemia
+bleeding	lead to	anemia	>	anemia	treat with	transfusion
+pallor	cause by	anemia	>	anemia	recognize by	pallor
+anemia	associate with	hemolysis	>	hemolysis	explain	anemia
+anemia	due to	hemorrhage	>	transfusion	give for	anemia
+hemorrhage	produce	anemia	>	bleeding	associate with	anemia
+anemia	see with	bleeding	>	transfusion	be in	anemia
+anemia	cause by	bleeding	>	bleeding	associate with	anemia
+pallor	cause by	anemia	>	anemia	manifest by	pallor
+transfusion	require for	anemia	>	transfusion	need for	anemia
+anemia	be of	bleeding	>	hemorrhage	cause	anemia
+hemorrhage	produce	anemia	>	hemorrhage	result in	anemia
+anemia	result from	bleeding	>	bleeding	produce	anemia
+hemolysis	explain	anemia	>	hemolysis	associate with	anemia
+anemia	necessitate	iron	>	anemia	correct by	iron
+anemia	recognize by	pallor	>	pallor	cause by	anemia
+thalassemia	characterize by	anemia	>	thalassemia	associate with	anemia
+anemia	manifest by	fatigue	>	anemia	contribute to	fatigue
+anemia	characterize by	hemolysis	>	hemolysis	explain	anemia
+fatigue	cause by	anemia	>	fatigue	relate to	anemia
+anemia	associate with	bleeding	>	anemia	correct with	transfusion
+transfusion	require in	anemia	>	transfusion	administer for	anemia
+anemia	cause	fatigue	>	anemia	characterize by	fatigue
+anemia	complicate	pregnancy	>	pregnancy	complicate by	anemia
+bleeding	lead to	anemia	>	bleeding	result in	anemia
+thalassemia	produce	anemia	>	thalassemia	characterize by	anemia
+fatigue	relate to	anemia	>	anemia	associate with	fatigue
+splenectomy	relieve	anemia	>	anemia	treat by	splenectomy
+hemorrhage	produce	anemia	>	transfusion	be in	anemia
+anemia	cause	pallor	>	anemia	produce	pallor
+transfusion	require in	anemia	>	anemia	relieve by	transfusion
+anemia	treat by	iron	>	anemia	correct by	iron
+anemia	observe after	hemorrhage	>	bleeding	produce	anemia
+achlorhydria	occur in	anemia	>	anemia	associate with	achlorhydria
+anemia	correct with	transfusion	>	anemia	correct by	transfusion
+bleeding	lead to	anemia	>	anemia	cause by	hemorrhage
+anemia	follow	hemorrhage	>	hemorrhage	lead to	anemia
+bleeding	result in	anemia	>	bleeding	cause	anemia
+transfusion	give for	anemia	>	transfusion	improve	anemia
+bleeding	result in	anemia	>	anemia	due to	hemorrhage
+anemia	see with	bleeding	>	transfusion	improve	anemia
+bleeding	cause	anemia	>	bleeding	produce	anemia
+anemia	accompany	leukemia	>	leukemia	present	anemia
+anemia	be of	bleeding	>	anemia	occur after	hemorrhage
+bleeding	manifest as	anemia	>	anemia	relieve by	transfusion
+erythropoietin	correct	anemia	>	erythropoietin	use for	anemia
+anemia	follow	hemorrhage	>	anemia	result from	hemorrhage
+iron	give in	anemia	>	anemia	correct with	iron
+anemia	contribute to	fatigue	>	anemia	associate with	fatigue
+iron	prevent	anemia	>	anemia	necessitate	iron
+transfusion	require in	anemia	>	transfusion	improve	anemia
+anemia	correct by	transfusion	>	anemia	correct with	transfusion
+fatigue	relate to	anemia	>	anemia	contribute to	fatigue
+anemia	evidence by	pallor	>	anemia	result in	pallor
+anemia	associate with	fatigue	>	fatigue	associate with	anemia
+anemia	be of	bleeding	>	bleeding	cause	anemia
+anemia	develop from	hemorrhage	>	anemia	follow	hemorrhage
+anemia	associate with	bleeding	>	anemia	cause by	hemorrhage
+bleeding	associate with	anemia	>	bleeding	cause	anemia
+splenectomy	improve	anemia	>	splenectomy	perform for	anemia
+anemia	result from	hemorrhage	>	bleeding	cause	anemia
+anemia	lead to	fatigue	>	anemia	associate with	fatigue
+anemia	cure by	splenectomy	>	splenectomy	improve	anemia
+anemia	evidence by	pallor	>	pallor	cause by	anemia
+anemia	result from	bleeding	>	transfusion	use for	anemia
+anemia	result from	hemorrhage	>	anemia	due to	hemorrhage
+anemia	cause by	iron	>	iron	cause	anemia
+fatigue	result from	anemia	>	anemia	characterize by	fatigue
+iron	use in	anemia	>	anemia	treat with	iron
+hemorrhage	result in	anemia	>	transfusion	correct	anemia
+iron	give in	anemia	>	iron	prevent	anemia
+hemolysis	cause	anemia	>	hemolysis	produce	anemia
+pregnancy	cause	anemia	>	anemia	associate with	pregnancy
+anemia	treat with	transfusion	>	anemia	relieve by	transfusion
+anemia	characterize by	hemolysis	>	anemia	result from	hemolysis
+anemia	recognize by	pallor	>	anemia	cause	pallor
+anemia	evidence by	pallor	>	pallor	accompany	anemia
+transfusion	correct	anemia	>	anemia	require	transfusion
+purpura	acquire	anemia	>	purpura	characterize by	anemia
+anemia	result from	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	treat by	transfusion	>	transfusion	require for	anemia
+fatigue	cause by	anemia	>	anemia	manifest by	fatigue
+transfusion	need for	anemia	>	anemia	treat by	transfusion
+anemia	cause	fatigue	>	fatigue	cause by	anemia
+anemia	cure by	splenectomy	>	anemia	improve by	splenectomy
+hemolysis	produce	anemia	>	hemolysis	contribute to	anemia
+pregnancy	cause	anemia	>	anemia	observe during	pregnancy
+purpura	acquire	anemia	>	purpura	associate with	anemia
+transfusion	give for	anemia	>	anemia	require	transfusion
+iron	correct	anemia	>	anemia	treat with	iron
+fatigue	relate to	anemia	>	anemia	cause	fatigue
+anemia	occur after	hemorrhage	>	transfusion	relieve	anemia
+anemia	cure by	diet	>	anemia	require	diet
+anemia	cause by	bleeding	>	anemia	call for	transfusion
+anemia	cause by	bleeding	>	anemia	follow	hemorrhage
+thalassemia	characterize by	anemia	>	thalassemia	cause	anemia
+splenectomy	relieve	anemia	>	splenectomy	ameliorate	anemia
+hemorrhage	lead to	anemia	>	anemia	treat with	transfusion
+anemia	cause by	bleeding	>	anemia	see with	bleeding
+iron	use in	anemia	>	iron	use for	anemia
+anemia	see with	bleeding	>	bleeding	produce	anemia
+anemia	manifest by	fatigue	>	fatigue	relate to	anemia
+anemia	result from	bleeding	>	anemia	require	transfusion
+anemia	associate with	bleeding	>	hemorrhage	lead to	anemia
+anemia	follow	hemorrhage	>	anemia	treat with	transfusion
+anemia	due to	hemorrhage	>	anemia	associate with	hemorrhage
+hemorrhage	cause	anemia	>	anemia	result from	hemorrhage
+pallor	denote	anemia	>	pallor	suggest	anemia
+anemia	require	iron	>	anemia	treat by	iron
+iron	correct	anemia	>	iron	use in	anemia
+anemia	suggest	hemorrhage	>	transfusion	relieve	anemia
+anemia	follow	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	correct with	transfusion	>	transfusion	require in	anemia
+anemia	occur in	pregnancy	>	anemia	be in	pregnancy
+transfusion	need for	anemia	>	anemia	require	transfusion
+erythrocyte	find in	anemia	>	anemia	associate with	erythrocyte
+anemia	be of	bleeding	>	anemia	relieve by	transfusion
+anemia	be of	bleeding	>	anemia	cause by	bleeding
+anemia	cause by	hemorrhage	>	anemia	associate with	bleeding
+hemorrhage	result in	anemia	>	anemia	associate with	hemorrhage
+bleeding	manifest as	anemia	>	anemia	result from	hemorrhage
+anemia	be of	bleeding	>	anemia	treat with	transfusion
+iron	give for	anemia	>	iron	use in	anemia
+achlorhydria	be in	anemia	>	anemia	associate with	achlorhydria
+anemia	relieve by	transfusion	>	transfusion	give for	anemia
+bleeding	cause	anemia	>	transfusion	administer for	anemia
+anemia	see with	bleeding	>	transfusion	require for	anemia
+bleeding	lead to	anemia	>	anemia	associate with	bleeding
+anemia	cause by	hemorrhage	>	bleeding	associate with	anemia
+splenectomy	relieve	anemia	>	anemia	respond to	splenectomy
+anemia	associate with	bleeding	>	anemia	treat by	transfusion
+iron	use for	anemia	>	anemia	treat with	iron
+anemia	respond to	splenectomy	>	splenectomy	alleviate	anemia
+pregnancy	associate with	anemia	>	anemia	occur during	pregnancy
+transfusion	use for	anemia	>	transfusion	give with	anemia
+bleeding	manifest as	anemia	>	transfusion	administer for	anemia
+erythropoietin	correct	anemia	>	erythropoietin	reduce	anemia
+hemorrhage	lead to	anemia	>	anemia	develop from	hemorrhage
+anemia	characterize by	fatigue	>	anemia	associate with	fatigue
+pregnancy	cause	anemia	>	pregnancy	associate with	anemia
+transfusion	give with	anemia	>	anemia	require	transfusion
+hemorrhage	suggest	anemia	>	anemia	cause	hemorrhage
+anemia	cause by	bleeding	>	anemia	due to	hemorrhage
+bleeding	associate with	anemia	>	anemia	be of	bleeding
+hemorrhage	cause	anemia	>	anemia	be of	bleeding
+anemia	result from	hemorrhage	>	anemia	be of	bleeding
+bleeding	associate with	anemia	>	hemorrhage	cause	anemia
+transfusion	use for	anemia	>	anemia	relieve by	transfusion
+anemia	suggest	hemorrhage	>	bleeding	cause	anemia
+pallor	cause by	anemia	>	anemia	suggest by	pallor
+transfusion	administer for	anemia	>	transfusion	improve	anemia
+anemia	require	iron	>	anemia	correct with	iron
+hemolysis	result in	anemia	>	hemolysis	cause	anemia
+anemia	associate with	hemorrhage	>	transfusion	require in	anemia
+anemia	see with	bleeding	>	anemia	result from	bleeding
+anemia	cure by	splenectomy	>	anemia	respond to	splenectomy
+anemia	lead to	fatigue	>	fatigue	associate with	anemia
+thalassemia	cause	anemia	>	thalassemia	characterize by	anemia
+anemia	cause by	bleeding	>	anemia	associate with	hemorrhage
+anemia	respond to	splenectomy	>	anemia	cure by	splenectomy
+splenectomy	ameliorate	anemia	>	splenectomy	improve	anemia
+anemia	see with	bleeding	>	anemia	follow	hemorrhage
+iron	give for	anemia	>	iron	correct	anemia
+anemia	associate with	bleeding	>	anemia	call for	transfusion
+tapeworm	produce	anemia	>	tapeworm	associate with	anemia
+bleeding	associate with	anemia	>	anemia	call for	transfusion
+hemorrhage	associate with	anemia	>	hemorrhage	suggest	anemia
+anemia	associate with	leukemia	>	anemia	accompany	leukemia
+anemia	result from	iron	>	anemia	characterize by	iron
+transfusion	require in	anemia	>	transfusion	correct	anemia
+anemia	due to	hemorrhage	>	anemia	develop from	hemorrhage
+hemorrhage	produce	anemia	>	transfusion	give for	anemia
+anemia	manifest by	pallor	>	pallor	associate with	anemia
+anemia	occur in	leukemia	>	leukemia	associate with	anemia
+anemia	manifest by	pallor	>	anemia	recognize by	pallor
+fatigue	relate to	anemia	>	fatigue	associate with	anemia
+anemia	cause	pallor	>	pallor	indicate	anemia
+anemia	be of	bleeding	>	transfusion	need for	anemia
+hemorrhage	produce	anemia	>	anemia	see with	bleeding
+bleeding	cause	anemia	>	transfusion	give for	anemia
+pallor	see in	anemia	>	pallor	result from	anemia
+transfusion	give with	anemia	>	anemia	treat by	transfusion
+leukemia	cause	anemia	>	anemia	be in	leukemia
+hemorrhage	produce	anemia	>	anemia	call for	transfusion
+anemia	associate with	bleeding	>	anemia	correct by	transfusion
+leukemia	simulate	anemia	>	anemia	find in	leukemia
+splenectomy	ameliorate	anemia	>	anemia	improve by	splenectomy
+anemia	associate with	pregnancy	>	anemia	develop during	pregnancy
+transfusion	give with	anemia	>	anemia	treat with	transfusion
+leukemia	present	anemia	>	leukemia	present as	anemia
+iron	prevent	anemia	>	iron	correct	anemia
+anemia	recognize by	pallor	>	pallor	see in	anemia
+transfusion	need for	anemia	>	transfusion	be in	anemia
+anemia	respond to	splenectomy	>	splenectomy	correct	anemia
+bleeding	associate with	anemia	>	anemia	develop from	hemorrhage
+anemia	necessitate	iron	>	iron	cure	anemia
+tapeworm	precipitate	anemia	>	tapeworm	cause	anemia
+fatigue	result from	anemia	>	anemia	cause	fatigue
+anemia	cause by	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	produce	pallor	>	pallor	result from	anemia
+anemia	produce	pallor	>	anemia	manifest by	pallor
+anemia	respond to	iron	>	anemia	require	iron
+anemia	result from	bleeding	>	transfusion	be in	anemia
+transfusion	use for	anemia	>	transfusion	require for	anemia
+transfusion	require for	anemia	>	anemia	correct by	transfusion
+transfusion	need for	anemia	>	anemia	correct by	transfusion
+hemorrhage	result in	anemia	>	transfusion	require in	anemia
+anemia	correct with	iron	>	iron	correct	anemia
+achlorhydria	occur in	anemia	>	achlorhydria	find in	anemia
+anemia	suggest	hemorrhage	>	transfusion	correct	anemia
+hemorrhage	lead to	anemia	>	transfusion	relieve	anemia
+pallor	associate with	anemia	>	pallor	denote	anemia
+anemia	due to	hemorrhage	>	transfusion	improve	anemia
+anemia	benefit by	iron	>	iron	give in	anemia
+splenectomy	cure	anemia	>	splenectomy	improve	anemia
+anemia	observe during	pregnancy	>	pregnancy	associate with	anemia
+anemia	cause by	hemorrhage	>	anemia	see with	bleeding
+hemorrhage	be in	anemia	>	hemorrhage	associate with	anemia
+anemia	cause by	hemorrhage	>	transfusion	require in	anemia
+hemolysis	result in	anemia	>	hemolysis	lead to	anemia
+anemia	occur during	pregnancy	>	anemia	be during	pregnancy
+anemia	occur in	leukemia	>	anemia	be in	leukemia
+anemia	be of	bleeding	>	anemia	correct by	transfusion
+pallor	accompany	anemia	>	pallor	indicate	anemia
+anemia	occur after	hemorrhage	>	anemia	treat by	transfusion
+transfusion	give with	anemia	>	anemia	call for	transfusion
+transfusion	correct	anemia	>	transfusion	require for	anemia
+iron	use in	anemia	>	anemia	treat by	iron
+anemia	occur after	hemorrhage	>	anemia	follow	hemorrhage
+anemia	observe after	hemorrhage	>	transfusion	need for	anemia
+leukemia	present	anemia	>	anemia	occur in	leukemia
+transfusion	be in	anemia	>	anemia	treat with	transfusion
+anemia	associate with	fatigue	>	anemia	result in	fatigue
+anemia	be of	bleeding	>	hemorrhage	produce	anemia
+anemia	follow	hemorrhage	>	anemia	associate with	bleeding
+iron	correct	anemia	>	iron	use for	anemia
+anemia	produce	pallor	>	pallor	suggest	anemia
+anemia	due to	hemorrhage	>	anemia	cause by	bleeding
+pallor	indicate	anemia	>	pallor	result from	anemia
+hemorrhage	lead to	anemia	>	anemia	associate with	bleeding
+anemia	see with	bleeding	>	transfusion	correct	anemia
+anemia	treat with	splenectomy	>	splenectomy	eliminate	anemia
+hemorrhage	lead to	anemia	>	transfusion	improve	anemia
+anemia	develop during	pregnancy	>	anemia	be during	pregnancy
+anemia	relieve by	transfusion	>	transfusion	use for	anemia
+anemia	call for	transfusion	>	transfusion	give for	anemia
+anemia	characterize by	iron	>	anemia	result from	iron
+erythrocyte	find in	anemia	>	anemia	characterize by	erythrocyte
+bleeding	produce	anemia	>	anemia	be of	bleeding
+anemia	manifest by	pallor	>	anemia	suggest by	pallor
+splenectomy	eliminate	anemia	>	splenectomy	perform for	anemia
+anemia	characterize by	pallor	>	anemia	produce	pallor
+anemia	suggest	hemorrhage	>	transfusion	give for	anemia
+thalassemia	associate with	anemia	>	thalassemia	produce	anemia
+anemia	cause by	bleeding	>	transfusion	be in	anemia
+anemia	benefit by	iron	>	anemia	correct with	iron
+anemia	occur after	hemorrhage	>	hemorrhage	lead to	anemia
+iron	give for	anemia	>	anemia	necessitate	iron
+anemia	follow	hemorrhage	>	bleeding	produce	anemia
+transfusion	need for	anemia	>	anemia	treat with	transfusion
+anemia	observe after	hemorrhage	>	anemia	require	transfusion
+hemorrhage	result in	anemia	>	anemia	correct by	transfusion
+hemorrhage	produce	anemia	>	bleeding	cause	anemia
+bleeding	result in	anemia	>	anemia	result from	hemorrhage
+iron	cure	anemia	>	anemia	treat by	iron
+anemia	treat with	transfusion	>	anemia	correct by	transfusion
+bleeding	lead to	anemia	>	anemia	treat by	transfusion
+anemia	associate with	hemorrhage	>	transfusion	give for	anemia
+tapeworm	develop	anemia	>	tapeworm	produce	anemia
+anemia	cause by	bleeding	>	hemorrhage	result in	anemia
+hemorrhage	lead to	anemia	>	anemia	cause by	bleeding
+anemia	treat with	splenectomy	>	splenectomy	perform for	anemia
+anemia	characterize by	fatigue	>	fatigue	associate with	anemia
+transfusion	indicate for	anemia	>	transfusion	indicate in	anemia
+hemolysis	lead to	anemia	>	anemia	result from	hemolysis
+hemolysis	contribute to	anemia	>	hemolysis	result in	anemia
+anemia	cause by	hemolysis	>	anemia	associate with	hemolysis
+iron	prevent	anemia	>	iron	use in	anemia
+tapeworm	cause	anemia	>	tapeworm	precipitate	anemia
+transfusion	improve	anemia	>	transfusion	give for	anemia
+bleeding	manifest as	anemia	>	transfusion	relieve	anemia
+anemia	characterize by	hemolysis	>	anemia	develop of	hemolysis
+bleeding	cause	anemia	>	transfusion	correct	anemia
+anemia	observe after	hemorrhage	>	anemia	result from	hemorrhage
+bleeding	associate with	anemia	>	transfusion	require for	anemia
+anemia	cure by	splenectomy	>	splenectomy	ameliorate	anemia
+fatigue	relate to	anemia	>	anemia	manifest by	fatigue
+hemolysis	explain	anemia	>	hemolysis	produce	anemia
+anemia	result in	fatigue	>	anemia	cause	fatigue
+anemia	require	transfusion	>	transfusion	administer for	anemia
+anemia	treat by	iron	>	anemia	require	iron
+anemia	contribute to	fatigue	>	fatigue	associate with	anemia
+anemia	cause by	hemorrhage	>	anemia	require	transfusion
+fatigue	cause by	anemia	>	fatigue	result from	anemia
+anemia	result in	pallor	>	anemia	suggest by	pallor
+anemia	improve by	splenectomy	>	splenectomy	perform for	anemia
+anemia	require	transfusion	>	transfusion	need for	anemia
+anemia	recognize by	pallor	>	anemia	characterize by	pallor
+iron	cure	anemia	>	anemia	benefit by	iron
+pallor	denote	anemia	>	pallor	result from	anemia
+bleeding	result in	anemia	>	anemia	follow	hemorrhage
+anemia	see with	bleeding	>	anemia	observe after	hemorrhage
+splenectomy	eliminate	anemia	>	anemia	treat with	splenectomy
+thalassemia	associate with	anemia	>	thalassemia	have	anemia
+pallor	denote	anemia	>	anemia	result in	pallor
+anemia	observe after	hemorrhage	>	anemia	call for	transfusion
+anemia	develop of	hemolysis	>	hemolysis	produce	anemia
+bleeding	cause	anemia	>	anemia	correct with	transfusion
+anemia	treat with	iron	>	iron	correct	anemia
+anemia	associate with	hemolysis	>	hemolysis	associate with	anemia
+anemia	correct with	transfusion	>	anemia	relieve by	transfusion
+anemia	relieve by	splenectomy	>	anemia	respond to	splenectomy
+anemia	contribute to	fatigue	>	anemia	characterize by	fatigue
+hemolysis	associate with	anemia	>	hemolysis	cause	anemia
+hemorrhage	occur in	anemia	>	hemorrhage	be in	anemia
+pallor	denote	anemia	>	pallor	cause by	anemia
+anemia	cause by	hemorrhage	>	anemia	call for	transfusion
+fatigue	cause by	anemia	>	anemia	lead to	fatigue
+splenectomy	cure	anemia	>	splenectomy	ameliorate	anemia
+anemia	associate with	hemolysis	>	hemolysis	contribute to	anemia
+bleeding	result in	anemia	>	anemia	cause by	hemorrhage
+iron	give for	anemia	>	anemia	treat with	iron
+hemorrhage	result in	anemia	>	transfusion	use for	anemia
+anemia	due to	hemorrhage	>	transfusion	require in	anemia
+anemia	cause by	bleeding	>	anemia	observe after	hemorrhage
+pallor	denote	anemia	>	pallor	accompany	anemia
+thalassemia	have	anemia	>	thalassemia	cause	anemia
+anemia	observe after	hemorrhage	>	bleeding	cause	anemia
+splenectomy	perform for	anemia	>	splenectomy	alleviate	anemia
+anemia	associate with	bleeding	>	transfusion	correct	anemia
+anemia	treat with	splenectomy	>	splenectomy	ameliorate	anemia
+tapeworm	precipitate	anemia	>	parasite	lead to	anemia
+anemia	be during	pregnancy	>	anemia	encounter during	pregnancy
+transfusion	give for	anemia	>	transfusion	use for	anemia
+transfusion	give with	anemia	>	anemia	correct with	transfusion
+anemia	occur during	pregnancy	>	pregnancy	associate with	anemia
+anemia	occur after	hemorrhage	>	bleeding	lead to	anemia
+iron	use in	anemia	>	anemia	benefit by	iron
+hemorrhage	result in	anemia	>	transfusion	need for	anemia
+hemorrhage	lead to	anemia	>	anemia	cause by	hemorrhage
+anemia	manifest by	fatigue	>	fatigue	cause by	anemia
+anemia	occur after	hemorrhage	>	transfusion	be in	anemia
+anemia	associate with	hemorrhage	>	anemia	cause by	bleeding
+bleeding	manifest as	anemia	>	hemorrhage	cause	anemia
+anemia	improve by	splenectomy	>	anemia	treat with	splenectomy
+hemorrhage	lead to	anemia	>	anemia	relieve by	transfusion
+anemia	result from	hemorrhage	>	transfusion	be in	anemia
+fatigue	result from	anemia	>	anemia	manifest by	fatigue
+hemorrhage	result in	anemia	>	anemia	treat with	transfusion
+anemia	cause	fatigue	>	anemia	contribute to	fatigue
+fatigue	relate to	anemia	>	fatigue	cause by	anemia
+hemorrhage	cause	anemia	>	hemorrhage	produce	anemia
+anemia	evidence by	pallor	>	pallor	denote	anemia
+pregnancy	cause	anemia	>	anemia	occur during	pregnancy
+parasite	cause	anemia	>	anemia	relate	parasite
+anemia	develop of	hemolysis	>	hemolysis	lead to	anemia
+anemia	correct with	iron	>	iron	cure	anemia
+anemia	result in	pallor	>	anemia	recognize by	pallor
+anemia	treat by	splenectomy	>	splenectomy	cure	anemia
+anemia	due to	hemorrhage	>	hemorrhage	lead to	anemia
+anemia	produce	pallor	>	pallor	accompany	anemia
+achlorhydria	find in	anemia	>	achlorhydria	associate with	anemia
+hemolysis	cause	anemia	>	anemia	associate with	hemolysis
+anemia	encounter during	pregnancy	>	anemia	be during	pregnancy
+anemia	result from	hemorrhage	>	hemorrhage	result in	anemia
+anemia	result from	bleeding	>	hemorrhage	lead to	anemia
+anemia	due to	hemorrhage	>	anemia	call for	transfusion
+bleeding	manifest as	anemia	>	hemorrhage	produce	anemia
+anemia	cause by	bleeding	>	transfusion	use for	anemia
+hemolysis	result in	anemia	>	hemolysis	explain	anemia
+anemia	result from	hemorrhage	>	bleeding	associate with	anemia
+anemia	characterize by	pancytopenia	>	anemia	cause	pancytopenia
+pallor	cause by	anemia	>	pallor	indicate	anemia
+bleeding	associate with	anemia	>	anemia	cause by	hemorrhage
+transfusion	correct	anemia	>	transfusion	improve	anemia
+anemia	cause by	diet	>	diet	produce	anemia
+anemia	contribute to	fatigue	>	fatigue	cause by	anemia
+pallor	result from	anemia	>	pallor	denote	anemia
+anemia	cause by	bleeding	>	transfusion	relieve	anemia
+hemorrhage	suggest	anemia	>	hemorrhage	associate with	anemia
+anemia	treat by	transfusion	>	transfusion	use for	anemia
+fatigue	relate to	anemia	>	fatigue	result from	anemia
+splenectomy	ameliorate	anemia	>	anemia	cure by	splenectomy
+anemia	characterize by	pallor	>	anemia	result in	pallor
+anemia	respond to	iron	>	anemia	correct with	iron
+anemia	be in	pregnancy	>	anemia	associate with	pregnancy
+anemia	necessitate	iron	>	iron	correct	anemia
+transfusion	relieve	anemia	>	transfusion	be in	anemia
+anemia	result from	hemolysis	>	hemolysis	lead to	anemia
+anemia	cause by	hemorrhage	>	anemia	be of	bleeding
+anemia	follow	hemorrhage	>	hemorrhage	cause	anemia
+anemia	improve by	splenectomy	>	splenectomy	relieve	anemia
+bleeding	result in	anemia	>	transfusion	administer for	anemia
+anemia	result in	fatigue	>	anemia	contribute to	fatigue
+anemia	result from	hemorrhage	>	anemia	correct by	transfusion
+anemia	cause by	hemorrhage	>	anemia	correct by	transfusion
+anemia	develop during	pregnancy	>	anemia	occur in	pregnancy
+anemia	be in	leukemia	>	leukemia	present	anemia
+anemia	associate with	hemorrhage	>	anemia	result from	hemorrhage
+anemia	suggest	hemorrhage	>	anemia	due to	hemorrhage
+anemia	correct with	iron	>	anemia	correct by	iron
+iron	produce	anemia	>	anemia	result from	iron
+bleeding	associate with	anemia	>	bleeding	manifest as	anemia
+anemia	cause by	hemolysis	>	hemolysis	explain	anemia
+iron	use for	anemia	>	anemia	correct with	iron
+transfusion	need for	anemia	>	transfusion	require in	anemia
+bleeding	produce	anemia	>	anemia	suggest	hemorrhage
+thalassemia	have	anemia	>	thalassemia	produce	anemia
+anemia	treat by	iron	>	iron	cure	anemia
+anemia	accompany	leukemia	>	leukemia	simulate	anemia
+bleeding	cause	anemia	>	anemia	see with	bleeding
+anemia	cause by	iron	>	anemia	characterize by	iron
+pallor	cause by	anemia	>	anemia	characterize by	pallor
+bleeding	associate with	anemia	>	hemorrhage	lead to	anemia
+pregnancy	associate with	anemia	>	anemia	be in	pregnancy
+transfusion	require in	anemia	>	transfusion	give with	anemia
+anemia	correct with	transfusion	>	transfusion	use for	anemia
+hemorrhage	cause	anemia	>	bleeding	cause	anemia
+anemia	cause by	bleeding	>	bleeding	cause	anemia
+hemorrhage	produce	anemia	>	anemia	cause by	bleeding
+anemia	see with	bleeding	>	hemorrhage	result in	anemia
+anemia	result from	bleeding	>	transfusion	relieve	anemia
+anemia	call for	transfusion	>	transfusion	give with	anemia
+achlorhydria	associate with	anemia	>	achlorhydria	occur in	anemia
+fatigue	relate to	anemia	>	anemia	lead to	fatigue
+hemorrhage	produce	anemia	>	anemia	correct by	transfusion
+anemia	develop from	hemorrhage	>	transfusion	administer for	anemia
+tapeworm	associate with	anemia	>	parasite	produce	anemia
+iron	give for	anemia	>	iron	give in	anemia
+anemia	occur during	pregnancy	>	anemia	encounter during	pregnancy
+transfusion	require in	anemia	>	transfusion	use for	anemia
+hemorrhage	lead to	anemia	>	transfusion	administer for	anemia
+anemia	treat with	transfusion	>	transfusion	improve	anemia
+splenectomy	ameliorate	anemia	>	splenectomy	eliminate	anemia
+anemia	treat by	transfusion	>	transfusion	require in	anemia
+leukemia	associate with	anemia	>	anemia	terminate in	leukemia
+anemia	characterize by	iron	>	iron	cause	anemia
+bleeding	manifest as	anemia	>	bleeding	cause	anemia
+anemia	develop from	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	relieve by	splenectomy	>	anemia	treat with	splenectomy
+iron	correct	anemia	>	anemia	require	iron
+hemorrhage	lead to	anemia	>	transfusion	require for	anemia
+anemia	associate with	hemorrhage	>	anemia	due to	hemorrhage
+anemia	necessitate	iron	>	anemia	treat by	iron
+anemia	occur during	pregnancy	>	anemia	develop during	pregnancy
+anemia	suggest	hemorrhage	>	bleeding	produce	anemia
+bleeding	manifest as	anemia	>	bleeding	lead to	anemia
+anemia	cure by	diet	>	anemia	treat with	diet
+anemia	occur in	pregnancy	>	anemia	observe during	pregnancy
+anemia	correct with	transfusion	>	transfusion	relieve	anemia
+anemia	treat by	splenectomy	>	splenectomy	eliminate	anemia
+transfusion	correct	anemia	>	transfusion	require in	anemia
+hemorrhage	produce	anemia	>	anemia	result from	hemorrhage
+splenectomy	eliminate	anemia	>	splenectomy	cure	anemia
+transfusion	require for	anemia	>	transfusion	administer for	anemia
+anemia	treat with	splenectomy	>	anemia	improve by	splenectomy
+anemia	result from	hemorrhage	>	transfusion	use for	anemia
+anemia	due to	hemorrhage	>	transfusion	need for	anemia
+iron	use for	anemia	>	anemia	treat by	iron
+leukemia	cause	anemia	>	leukemia	present as	anemia
+thalassemia	cause	anemia	>	thalassemia	produce	anemia
+anemia	cause by	hemorrhage	>	transfusion	require for	anemia
+hemorrhage	lead to	anemia	>	anemia	be of	bleeding
+transfusion	require in	anemia	>	transfusion	relieve	anemia
+anemia	result from	hemorrhage	>	anemia	follow	hemorrhage
+anemia	treat with	erythropoietin	>	anemia	correct with	erythropoietin
+anemia	relieve by	transfusion	>	anemia	treat with	transfusion
+splenectomy	alleviate	anemia	>	splenectomy	relieve	anemia
+anemia	call for	transfusion	>	anemia	require	transfusion
+anemia	result from	hemorrhage	>	transfusion	relieve	anemia
+achlorhydria	associate with	anemia	>	achlorhydria	be in	anemia
+erythropoietin	reduce	anemia	>	anemia	correct with	erythropoietin
+transfusion	require in	anemia	>	transfusion	be in	anemia
+anemia	characterize by	pancytopenia	>	anemia	define as	pancytopenia
+anemia	follow	hemorrhage	>	bleeding	result in	anemia
+anemia	follow	hemorrhage	>	anemia	cause by	bleeding
+anemia	characterize by	pallor	>	pallor	result from	anemia
+anemia	see with	bleeding	>	transfusion	relieve	anemia
+anemia	see with	bleeding	>	anemia	treat with	transfusion
+hemorrhage	produce	anemia	>	transfusion	administer for	anemia
+anemia	suggest	hemorrhage	>	anemia	cause by	hemorrhage
+bleeding	associate with	anemia	>	anemia	suggest	hemorrhage
+anemia	treat with	splenectomy	>	splenectomy	cure	anemia
+anemia	occur in	pregnancy	>	pregnancy	cause	anemia
+anemia	result from	bleeding	>	anemia	associate with	hemorrhage
+anemia	occur during	pregnancy	>	pregnancy	cause	anemia
+transfusion	correct	anemia	>	transfusion	relieve	anemia
+anemia	cause by	bleeding	>	anemia	correct by	transfusion
+bleeding	cause	anemia	>	anemia	cause by	bleeding
+transfusion	improve	anemia	>	anemia	correct with	transfusion
+anemia	correct with	erythropoietin	>	erythropoietin	use for	anemia
+anemia	occur after	hemorrhage	>	bleeding	result in	anemia
+anemia	see with	bleeding	>	anemia	suggest	hemorrhage
+anemia	observe after	hemorrhage	>	bleeding	result in	anemia
+anemia	treat by	splenectomy	>	splenectomy	improve	anemia
+iron	give in	anemia	>	anemia	treat with	iron
+anemia	improve by	splenectomy	>	splenectomy	cure	anemia
+iron	use in	anemia	>	iron	prevent	anemia
+anemia	be during	pregnancy	>	anemia	cause during	pregnancy
+transfusion	give for	anemia	>	transfusion	require for	anemia
+iron	give for	anemia	>	iron	use for	anemia
+anemia	result from	bleeding	>	anemia	develop from	hemorrhage
+anemia	suggest	hemorrhage	>	anemia	result from	bleeding
+pallor	accompany	anemia	>	pallor	cause by	anemia
+anemia	develop from	hemorrhage	>	anemia	call for	transfusion
+anemia	develop from	hemorrhage	>	hemorrhage	produce	anemia
+anemia	find in	leukemia	>	anemia	accompany	leukemia
+iron	prevent	anemia	>	anemia	benefit by	iron
+anemia	correct with	iron	>	anemia	necessitate	iron
+anemia	relieve by	transfusion	>	transfusion	correct	anemia
+anemia	be in	leukemia	>	anemia	associate with	leukemia
+hemolysis	contribute to	anemia	>	hemolysis	produce	anemia
+anemia	require	diet	>	anemia	treat with	diet
+hemorrhage	produce	anemia	>	anemia	treat with	transfusion
+anemia	see with	bleeding	>	transfusion	give for	anemia
+anemia	occur in	leukemia	>	leukemia	masquerade as	anemia
+anemia	cause by	bleeding	>	transfusion	require for	anemia
+splenectomy	correct	anemia	>	anemia	treat with	splenectomy
+pallor	indicate	anemia	>	anemia	cause	pallor
+pregnancy	associate with	anemia	>	pregnancy	cause	anemia
+hemorrhage	result in	anemia	>	anemia	develop from	hemorrhage
+hemorrhage	lead to	anemia	>	bleeding	lead to	anemia
+anemia	correct by	iron	>	iron	use for	anemia
+hemorrhage	produce	anemia	>	anemia	develop from	hemorrhage
+ulcer	occur in	anemia	>	ulcer	be in	anemia
+bleeding	associate with	anemia	>	transfusion	administer for	anemia
+anemia	result in	pallor	>	pallor	see in	anemia
+transfusion	need for	anemia	>	transfusion	use for	anemia
+anemia	treat by	iron	>	anemia	treat with	iron
+anemia	relieve by	transfusion	>	transfusion	administer for	anemia
+anemia	result from	bleeding	>	anemia	occur after	hemorrhage
+anemia	accompany	leukemia	>	anemia	be in	leukemia
+anemia	treat by	splenectomy	>	anemia	relieve by	splenectomy
+anemia	manifest by	pallor	>	pallor	cause by	anemia
+anemia	associate with	achlorhydria	>	achlorhydria	occur in	anemia
+anemia	observe after	hemorrhage	>	anemia	result from	bleeding
+anemia	associate with	fatigue	>	anemia	characterize by	fatigue
+anemia	suggest	hemorrhage	>	transfusion	give with	anemia
+anemia	result from	hemorrhage	>	transfusion	require in	anemia
+transfusion	relieve	anemia	>	anemia	treat by	transfusion
+anemia	develop from	hemorrhage	>	hemorrhage	result in	anemia
+anemia	cause by	hemorrhage	>	anemia	result from	bleeding
+bleeding	produce	anemia	>	transfusion	need for	anemia
+anemia	cure by	splenectomy	>	splenectomy	eliminate	anemia
+transfusion	correct	anemia	>	anemia	call for	transfusion
+bleeding	cause	anemia	>	anemia	occur after	hemorrhage
+bleeding	cause	anemia	>	transfusion	use for	anemia
+pregnancy	associate with	anemia	>	anemia	observe during	pregnancy
+anemia	result from	hemolysis	>	hemolysis	produce	anemia
+anemia	follow	hemorrhage	>	transfusion	require in	anemia
+anemia	contribute to	fatigue	>	anemia	cause	fatigue
+anemia	cause by	hemorrhage	>	transfusion	improve	anemia
+anemia	develop from	hemorrhage	>	anemia	cause by	bleeding
+pallor	denote	anemia	>	pallor	see in	anemia
+hemolysis	lead to	anemia	>	anemia	characterize by	hemolysis
+anemia	be of	bleeding	>	transfusion	be in	anemia
+bleeding	result in	anemia	>	bleeding	manifest as	anemia
+anemia	produce	pallor	>	anemia	result in	pallor
+anemia	occur after	hemorrhage	>	transfusion	require for	anemia
+transfusion	relieve	anemia	>	transfusion	need for	anemia
+anemia	associate with	pregnancy	>	anemia	encounter during	pregnancy
+anemia	find in	leukemia	>	anemia	terminate in	leukemia
+anemia	find in	leukemia	>	leukemia	present as	anemia
+transfusion	use for	anemia	>	anemia	call for	transfusion
+anemia	suggest	hemorrhage	>	hemorrhage	cause	anemia
+anemia	associate with	bleeding	>	bleeding	manifest as	anemia
+bleeding	cause	anemia	>	anemia	due to	hemorrhage
+anemia	associate with	fatigue	>	fatigue	cause by	anemia
+thalassemia	characterize by	anemia	>	thalassemia	produce	anemia
+anemia	associate with	achlorhydria	>	achlorhydria	be in	anemia
+splenectomy	alleviate	anemia	>	splenectomy	eliminate	anemia
+splenectomy	correct	anemia	>	splenectomy	eliminate	anemia
+anemia	correct by	iron	>	anemia	treat by	iron
+transfusion	relieve	anemia	>	transfusion	require in	anemia
+anemia	require	iron	>	anemia	respond to	iron
+bleeding	produce	anemia	>	transfusion	correct	anemia
+hemorrhage	associate with	anemia	>	hemorrhage	occur in	anemia
+hemorrhage	cause	anemia	>	transfusion	be in	anemia
+anemia	result in	fatigue	>	fatigue	result from	anemia
+anemia	associate with	pregnancy	>	anemia	occur during	pregnancy
+anemia	suggest by	pallor	>	anemia	cause	pallor
+iron	cure	anemia	>	anemia	correct by	iron
+anemia	prevent by	diet	>	anemia	require	diet
+anemia	associate with	bleeding	>	transfusion	use for	anemia
+pallor	result from	anemia	>	anemia	produce	pallor
+anemia	be in	pregnancy	>	anemia	be during	pregnancy
+transfusion	require in	anemia	>	transfusion	require for	anemia
+anemia	develop during	pregnancy	>	anemia	be in	pregnancy
+anemia	follow	hemorrhage	>	anemia	call for	transfusion
+bleeding	produce	anemia	>	hemorrhage	result in	anemia
+splenectomy	improve	anemia	>	splenectomy	correct	anemia
+bleeding	lead to	anemia	>	hemorrhage	produce	anemia
+anemia	be of	bleeding	>	bleeding	result in	anemia
+anemia	develop from	hemorrhage	>	anemia	suggest	hemorrhage
+transfusion	need for	anemia	>	transfusion	give for	anemia
+anemia	cause by	hemorrhage	>	bleeding	produce	anemia
+hemorrhage	lead to	anemia	>	bleeding	manifest as	anemia
+anemia	follow	hemorrhage	>	anemia	result from	bleeding
+splenectomy	correct	anemia	>	anemia	improve by	splenectomy
+anemia	due to	hemorrhage	>	anemia	correct by	transfusion
+anemia	associate with	hemorrhage	>	anemia	treat with	transfusion
+anemia	treat by	transfusion	>	anemia	correct by	transfusion
+anemia	observe during	pregnancy	>	anemia	cause during	pregnancy
+anemia	develop from	hemorrhage	>	anemia	correct with	transfusion
+anemia	cause by	hemorrhage	>	hemorrhage	cause	anemia
+anemia	be of	bleeding	>	bleeding	produce	anemia
+anemia	associate with	hemorrhage	>	transfusion	need for	anemia
+transfusion	correct	anemia	>	anemia	correct by	transfusion
+splenectomy	relieve	anemia	>	anemia	improve by	splenectomy
+transfusion	improve	anemia	>	anemia	treat with	transfusion
+anemia	lead to	fatigue	>	anemia	result in	fatigue
+bleeding	cause	anemia	>	bleeding	result in	anemia
+anemia	manifest by	pallor	>	pallor	result from	anemia
+bleeding	manifest as	anemia	>	hemorrhage	result in	anemia
+transfusion	require in	anemia	>	anemia	call for	transfusion
+diet	cause	anemia	>	diet	produce	anemia
+hemorrhage	produce	anemia	>	transfusion	need for	anemia
+splenectomy	improve	anemia	>	splenectomy	relieve	anemia
+anemia	associate with	leukemia	>	leukemia	simulate	anemia
+anemia	cause by	bleeding	>	anemia	occur after	hemorrhage
+bleeding	result in	anemia	>	transfusion	need for	anemia
+anemia	characterize by	erythrocyte	>	erythrocyte	find in	anemia
+anemia	suggest	hemorrhage	>	anemia	see with	bleeding
+anemia	require	iron	>	anemia	correct by	iron
+transfusion	administer for	anemia	>	transfusion	be in	anemia
+anemia	cause	hemorrhage	>	hemorrhage	suggest	anemia
+anemia	recognize by	pallor	>	pallor	suggest	anemia
+bleeding	lead to	anemia	>	transfusion	use for	anemia
+anemia	associate with	hemorrhage	>	hemorrhage	produce	anemia
+hemolysis	associate with	anemia	>	hemolysis	produce	anemia
+bleeding	associate with	anemia	>	transfusion	require in	anemia
+iron	use for	anemia	>	anemia	necessitate	iron
+anemia	respond to	iron	>	iron	correct	anemia
+splenectomy	correct	anemia	>	anemia	respond to	splenectomy
+anemia	necessitate	iron	>	anemia	treat with	iron
+anemia	cause	pancytopenia	>	anemia	characterize by	pancytopenia
+bleeding	cause	anemia	>	anemia	follow	hemorrhage
+anemia	result from	bleeding	>	transfusion	administer for	anemia
+hemorrhage	lead to	anemia	>	bleeding	result in	anemia
+anemia	associate with	hemolysis	>	anemia	develop of	hemolysis
+anemia	encounter during	pregnancy	>	anemia	cause during	pregnancy
+anemia	be in	pregnancy	>	anemia	occur during	pregnancy
+anemia	occur after	hemorrhage	>	transfusion	improve	anemia
+splenectomy	cure	anemia	>	splenectomy	eliminate	anemia
+bleeding	lead to	anemia	>	anemia	correct with	transfusion
+anemia	associate with	bleeding	>	anemia	associate with	hemorrhage
+anemia	treat with	transfusion	>	transfusion	need for	anemia
+anemia	associate with	bleeding	>	anemia	cause by	bleeding
+anemia	occur in	leukemia	>	anemia	accompany	leukemia
+hemolysis	contribute to	anemia	>	anemia	characterize by	hemolysis
+anemia	treat by	iron	>	anemia	correct with	iron
+anemia	see with	bleeding	>	anemia	cause by	bleeding
+anemia	result from	hemolysis	>	hemolysis	associate with	anemia
+hemorrhage	result in	anemia	>	anemia	see with	bleeding
+anemia	associate with	pregnancy	>	anemia	occur in	pregnancy
+anemia	cause	pallor	>	anemia	recognize by	pallor
+anemia	be in	pregnancy	>	anemia	encounter during	pregnancy
+anemia	result from	bleeding	>	anemia	associate with	bleeding
+hemorrhage	result in	anemia	>	transfusion	give for	anemia
+anemia	be of	bleeding	>	anemia	correct with	transfusion
+fatigue	associate with	anemia	>	fatigue	result from	anemia
+bleeding	lead to	anemia	>	anemia	due to	hemorrhage
+iron	give for	anemia	>	anemia	require	iron
+anemia	define as	pancytopenia	>	anemia	involve	pancytopenia
+purpura	characterize by	anemia	>	purpura	acquire	anemia
+anemia	recognize by	pallor	>	pallor	accompany	anemia
+anemia	be of	bleeding	>	anemia	observe after	hemorrhage
+anemia	require	transfusion	>	anemia	call for	transfusion
+anemia	encounter during	pregnancy	>	anemia	develop during	pregnancy
+transfusion	be in	anemia	>	transfusion	need for	anemia
+pallor	suggest	anemia	>	anemia	suggest by	pallor
+anemia	result in	pallor	>	anemia	cause	pallor
+anemia	prevent by	diet	>	anemia	cure by	diet
+anemia	follow	hemorrhage	>	anemia	correct with	transfusion
+anemia	due to	hemorrhage	>	bleeding	produce	anemia
+anemia	see with	bleeding	>	anemia	associate with	bleeding
+pregnancy	cause	anemia	>	anemia	develop during	pregnancy
+anemia	associate with	hemorrhage	>	transfusion	give with	anemia
+anemia	cause by	hemorrhage	>	transfusion	relieve	anemia
+bleeding	manifest as	anemia	>	anemia	see with	bleeding
+anemia	due to	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	lead to	fatigue	>	anemia	manifest by	fatigue
+transfusion	administer for	anemia	>	anemia	treat with	transfusion
+hemolysis	cause	anemia	>	anemia	characterize by	hemolysis
+anemia	develop during	pregnancy	>	pregnancy	associate with	anemia
+anemia	accompany	leukemia	>	leukemia	masquerade as	anemia
+anemia	associate with	hemorrhage	>	bleeding	cause	anemia
+bleeding	associate with	anemia	>	hemorrhage	result in	anemia
+anemia	result in	pallor	>	anemia	produce	pallor
+hemorrhage	result in	anemia	>	hemorrhage	cause	anemia
+anemia	develop from	hemorrhage	>	anemia	see with	bleeding
+iron	prevent	anemia	>	anemia	treat by	iron
+fatigue	result from	anemia	>	fatigue	associate with	anemia
+hemolysis	result in	anemia	>	anemia	develop of	hemolysis
+anemia	cause	fatigue	>	fatigue	associate with	anemia
+bleeding	produce	anemia	>	anemia	correct by	transfusion
+transfusion	require for	anemia	>	transfusion	require in	anemia
+anemia	observe after	hemorrhage	>	hemorrhage	lead to	anemia
+pallor	associate with	anemia	>	pallor	see in	anemia
+anemia	correct by	transfusion	>	transfusion	give for	anemia
+transfusion	give for	anemia	>	anemia	correct with	transfusion
+anemia	see with	bleeding	>	anemia	require	transfusion
+tapeworm	precipitate	anemia	>	parasite	produce	anemia
+hemorrhage	cause	anemia	>	anemia	require	transfusion
+anemia	cause	pallor	>	pallor	accompany	anemia
+anemia	associate with	bleeding	>	transfusion	need for	anemia
+anemia	encounter during	pregnancy	>	anemia	occur in	pregnancy
+hemolysis	explain	anemia	>	anemia	develop of	hemolysis
+hemolysis	contribute to	anemia	>	hemolysis	cause	anemia
+anemia	associate with	hemolysis	>	anemia	characterize by	hemolysis
+anemia	treat with	transfusion	>	anemia	require	transfusion
+iron	cause	anemia	>	iron	produce	anemia
+transfusion	require in	anemia	>	anemia	correct with	transfusion
+anemia	be during	pregnancy	>	anemia	occur in	pregnancy
+bleeding	lead to	anemia	>	anemia	follow	hemorrhage
+hemolysis	produce	anemia	>	hemolysis	lead to	anemia
+bleeding	produce	anemia	>	hemorrhage	produce	anemia
+anemia	terminate in	leukemia	>	leukemia	simulate	anemia
+pallor	indicate	anemia	>	anemia	result in	pallor
+anemia	be in	leukemia	>	leukemia	simulate	anemia
+anemia	contribute to	fatigue	>	fatigue	result from	anemia
+hemorrhage	cause	anemia	>	anemia	call for	transfusion
+anemia	develop from	hemorrhage	>	anemia	be of	bleeding
+bleeding	produce	anemia	>	anemia	cause by	bleeding
+hemorrhage	associate with	anemia	>	anemia	cause	hemorrhage
+anemia	be of	bleeding	>	anemia	see with	bleeding
+anemia	characterize by	iron	>	iron	produce	anemia
+anemia	suggest by	pallor	>	anemia	evidence by	pallor
+anemia	correct with	transfusion	>	transfusion	be in	anemia
+anemia	treat by	splenectomy	>	anemia	treat with	splenectomy
+anemia	result from	bleeding	>	hemorrhage	cause	anemia
+anemia	be of	bleeding	>	anemia	result from	hemorrhage
+transfusion	improve	anemia	>	transfusion	relieve	anemia
+anemia	treat by	transfusion	>	anemia	relieve by	transfusion
+anemia	cause by	hemorrhage	>	anemia	correct with	transfusion
+fatigue	cause by	anemia	>	fatigue	associate with	anemia
+pregnancy	cause	anemia	>	anemia	be in	pregnancy
+iron	give in	anemia	>	anemia	benefit by	iron
+anemia	correct by	iron	>	iron	use in	anemia
+anemia	cure by	splenectomy	>	splenectomy	relieve	anemia
+bleeding	lead to	anemia	>	anemia	be of	bleeding
+splenectomy	correct	anemia	>	splenectomy	improve	anemia
+fatigue	associate with	anemia	>	anemia	lead to	fatigue
+anemia	cause by	bleeding	>	transfusion	correct	anemia
+anemia	suggest by	pallor	>	pallor	result from	anemia
+bleeding	associate with	anemia	>	anemia	follow	hemorrhage
+pallor	associate with	anemia	>	anemia	evidence by	pallor
+anemia	correct with	transfusion	>	transfusion	give for	anemia
+leukemia	masquerade as	anemia	>	anemia	be in	leukemia
+anemia	develop of	hemolysis	>	anemia	associate with	hemolysis
+anemia	result in	pallor	>	pallor	result from	anemia
+bleeding	cause	anemia	>	bleeding	manifest as	anemia
+pregnancy	associate with	anemia	>	anemia	encounter during	pregnancy
+anemia	occur after	hemorrhage	>	anemia	relieve by	transfusion
+pallor	see in	anemia	>	pallor	associate with	anemia
+bleeding	cause	anemia	>	hemorrhage	result in	anemia
+hemolysis	result in	anemia	>	hemolysis	associate with	anemia
+bleeding	cause	anemia	>	bleeding	associate with	anemia
+pallor	suggest	anemia	>	pallor	result from	anemia
+anemia	develop from	hemorrhage	>	bleeding	lead to	anemia
+anemia	treat by	transfusion	>	transfusion	be in	anemia
+anemia	due to	hemorrhage	>	transfusion	give with	anemia
+anemia	encounter during	pregnancy	>	pregnancy	cause	anemia
+anemia	necessitate	iron	>	anemia	respond to	iron
+anemia	relieve by	transfusion	>	transfusion	require for	anemia
+leukemia	masquerade as	anemia	>	anemia	occur in	leukemia
+pallor	cause by	anemia	>	pallor	accompany	anemia
+anemia	follow	hemorrhage	>	bleeding	cause	anemia
+anemia	result in	pallor	>	pallor	associate with	anemia
+anemia	treat with	splenectomy	>	splenectomy	relieve	anemia
+anemia	contribute to	fatigue	>	anemia	result in	fatigue
+hemorrhage	produce	anemia	>	transfusion	relieve	anemia
+iron	give for	anemia	>	anemia	correct by	iron
+anemia	occur after	hemorrhage	>	anemia	observe after	hemorrhage
+hemorrhage	produce	anemia	>	anemia	follow	hemorrhage
+anemia	treat with	iron	>	iron	use in	anemia
+anemia	suggest by	pallor	>	anemia	result in	pallor
+anemia	result from	bleeding	>	anemia	be of	bleeding
+anemia	respond to	splenectomy	>	splenectomy	perform for	anemia
+anemia	cause by	bleeding	>	anemia	treat by	transfusion
+anemia	develop from	hemorrhage	>	anemia	associate with	bleeding
+splenectomy	ameliorate	anemia	>	anemia	relieve by	splenectomy
+anemia	observe after	hemorrhage	>	anemia	due to	hemorrhage
+leukemia	associate with	anemia	>	leukemia	masquerade as	anemia
+pallor	accompany	anemia	>	anemia	produce	pallor
+anemia	manifest by	pallor	>	pallor	denote	anemia
+bleeding	manifest as	anemia	>	anemia	suggest	hemorrhage
+hemorrhage	cause	anemia	>	anemia	correct by	transfusion
+transfusion	be in	anemia	>	transfusion	require in	anemia
+anemia	due to	hemorrhage	>	hemorrhage	cause	anemia
+anemia	cause by	hemolysis	>	anemia	characterize by	hemolysis
+transfusion	relieve	anemia	>	anemia	relieve by	transfusion
+hemorrhage	cause	anemia	>	anemia	associate with	hemorrhage
+anemia	cause	fatigue	>	anemia	result in	fatigue
+thalassemia	produce	anemia	>	anemia	associate with	thalassemia
+bleeding	lead to	anemia	>	bleeding	manifest as	anemia
+transfusion	give for	anemia	>	anemia	treat with	transfusion
+transfusion	relieve	anemia	>	transfusion	correct	anemia
+anemia	correct by	iron	>	iron	prevent	anemia
+anemia	find in	leukemia	>	leukemia	masquerade as	anemia
+tapeworm	precipitate	anemia	>	tapeworm	develop	anemia
+bleeding	manifest as	anemia	>	transfusion	give for	anemia
+bleeding	result in	anemia	>	anemia	correct by	transfusion
+anemia	associate with	fatigue	>	anemia	lead to	fatigue
+anemia	result from	bleeding	>	hemorrhage	result in	anemia
+anemia	associate with	fatigue	>	fatigue	result from	anemia
+anemia	observe after	hemorrhage	>	transfusion	require for	anemia
+splenectomy	eliminate	anemia	>	anemia	respond to	splenectomy
+iron	correct	anemia	>	iron	give for	anemia
+pallor	cause by	anemia	>	anemia	evidence by	pallor
+bleeding	cause	anemia	>	transfusion	require in	anemia
+anemia	benefit by	iron	>	iron	cure	anemia
+hemorrhage	produce	anemia	>	bleeding	manifest as	anemia
+anemia	accompany	leukemia	>	leukemia	associate with	anemia
+bleeding	associate with	anemia	>	anemia	cause by	bleeding
+anemia	due to	hemorrhage	>	transfusion	require for	anemia
+anemia	observe after	hemorrhage	>	anemia	see with	bleeding
+diet	produce	anemia	>	anemia	cause by	diet
+anemia	be of	bleeding	>	bleeding	manifest as	anemia
+bleeding	produce	anemia	>	transfusion	relieve	anemia
+anemia	follow	hemorrhage	>	transfusion	correct	anemia
+splenectomy	correct	anemia	>	anemia	relieve by	splenectomy
+tapeworm	develop	anemia	>	anemia	relate	parasite
+hemolysis	cause	anemia	>	anemia	result from	hemolysis
+diet	cause	anemia	>	anemia	cause by	diet
+hemolysis	contribute to	anemia	>	anemia	result from	hemolysis
+hemorrhage	lead to	anemia	>	transfusion	correct	anemia
+anemia	result from	hemorrhage	>	anemia	correct with	transfusion
+anemia	be of	bleeding	>	anemia	require	transfusion
+anemia	respond to	iron	>	anemia	treat with	iron
+hemorrhage	result in	anemia	>	anemia	follow	hemorrhage
+anemia	result from	bleeding	>	transfusion	give for	anemia
+anemia	see with	bleeding	>	transfusion	give with	anemia
+iron	prevent	anemia	>	anemia	correct with	iron
+anemia	treat by	splenectomy	>	anemia	cure by	splenectomy
+iron	correct	anemia	>	anemia	correct by	iron
+anemia	involve	pancytopenia	>	anemia	characterize by	pancytopenia
+anemia	occur after	hemorrhage	>	anemia	require	transfusion
+splenectomy	perform for	anemia	>	splenectomy	cure	anemia
+hemorrhage	lead to	anemia	>	anemia	correct with	transfusion
+anemia	see with	bleeding	>	anemia	correct with	transfusion
+anemia	be of	bleeding	>	anemia	develop from	hemorrhage
+iron	prevent	anemia	>	iron	give in	anemia
+hemorrhage	result in	anemia	>	anemia	cause by	hemorrhage
+anemia	require	iron	>	anemia	necessitate	iron
+iron	give in	anemia	>	anemia	correct by	iron
+thalassemia	associate with	anemia	>	anemia	associate with	thalassemia
+anemia	cause by	bleeding	>	transfusion	require in	anemia
+bleeding	associate with	anemia	>	anemia	treat by	transfusion
+pallor	result from	anemia	>	pallor	associate with	anemia
+transfusion	use for	anemia	>	anemia	correct by	transfusion
+transfusion	be in	anemia	>	anemia	correct by	transfusion
+pallor	cause by	anemia	>	anemia	produce	pallor
+hemorrhage	produce	anemia	>	transfusion	correct	anemia
+anemia	develop during	pregnancy	>	anemia	associate with	pregnancy
+anemia	correct with	iron	>	iron	use for	anemia
+anemia	cause during	pregnancy	>	anemia	be during	pregnancy
+pallor	result from	anemia	>	anemia	characterize by	pallor
+anemia	see with	bleeding	>	bleeding	lead to	anemia
+leukemia	masquerade as	anemia	>	leukemia	cause	anemia
+hemolysis	result in	anemia	>	anemia	cause by	hemolysis
+anemia	associate with	hemorrhage	>	anemia	result from	bleeding
+pallor	accompany	anemia	>	anemia	suggest by	pallor
+hemorrhage	occur in	anemia	>	anemia	cause	hemorrhage
+anemia	relieve by	transfusion	>	transfusion	need for	anemia
+anemia	manifest by	pallor	>	pallor	suggest	anemia
+anemia	develop during	pregnancy	>	anemia	observe during	pregnancy
+anemia	associate with	hemolysis	>	anemia	cause by	hemolysis
+anemia	call for	transfusion	>	transfusion	require for	anemia
+bleeding	lead to	anemia	>	anemia	associate with	hemorrhage
+anemia	suggest	hemorrhage	>	transfusion	improve	anemia
+bleeding	result in	anemia	>	hemorrhage	cause	anemia
+achlorhydria	be in	anemia	>	achlorhydria	find in	anemia
+anemia	cause by	hemorrhage	>	bleeding	lead to	anemia
+anemia	encounter during	pregnancy	>	anemia	be in	pregnancy
+anemia	develop from	hemorrhage	>	transfusion	require for	anemia
+hemorrhage	cause	anemia	>	anemia	due to	hemorrhage
+splenectomy	relieve	anemia	>	anemia	relieve by	splenectomy
+anemia	treat with	transfusion	>	anemia	call for	transfusion
+anemia	result from	bleeding	>	transfusion	need for	anemia
+anemia	develop from	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	develop of	hemolysis	>	hemolysis	cause	anemia
+achlorhydria	occur in	anemia	>	achlorhydria	be in	anemia
+anemia	associate with	leukemia	>	anemia	find in	leukemia
+bleeding	result in	anemia	>	bleeding	produce	anemia
+anemia	characterize by	pallor	>	pallor	accompany	anemia
+anemia	treat by	iron	>	anemia	necessitate	iron
+anemia	follow	hemorrhage	>	anemia	due to	hemorrhage
+achlorhydria	precede	anemia	>	achlorhydria	find in	anemia
+anemia	associate with	achlorhydria	>	achlorhydria	find in	anemia
+parasite	produce	anemia	>	parasite	lead to	anemia
+anemia	terminate in	leukemia	>	leukemia	associate with	anemia
+anemia	associate with	hemorrhage	>	bleeding	result in	anemia
+splenectomy	cure	anemia	>	splenectomy	relieve	anemia
+anemia	associate with	hemorrhage	>	transfusion	require for	anemia
+transfusion	give with	anemia	>	transfusion	correct	anemia
+anemia	be of	bleeding	>	anemia	result from	bleeding
+anemia	observe during	pregnancy	>	anemia	encounter during	pregnancy
+anemia	cause	fatigue	>	anemia	associate with	fatigue
+transfusion	be in	anemia	>	anemia	correct with	transfusion
+hemorrhage	cause	anemia	>	transfusion	require in	anemia
+anemia	associate with	pregnancy	>	pregnancy	cause	anemia
+anemia	treat by	transfusion	>	anemia	call for	transfusion
+hemorrhage	result in	anemia	>	transfusion	administer for	anemia
+pallor	indicate	anemia	>	pallor	denote	anemia
+anemia	treat with	splenectomy	>	anemia	cure by	splenectomy
+anemia	treat with	erythropoietin	>	erythropoietin	reduce	anemia
+iron	use for	anemia	>	anemia	respond to	iron
+pallor	result from	anemia	>	anemia	result in	pallor
+anemia	require	transfusion	>	anemia	relieve by	transfusion
+anemia	characterize by	fatigue	>	fatigue	relate to	anemia
+anemia	cause	pallor	>	anemia	suggest by	pallor
+anemia	result from	hemorrhage	>	hemorrhage	lead to	anemia
+anemia	correct with	iron	>	iron	give in	anemia
+anemia	associate with	thalassemia	>	thalassemia	cause	anemia
+diet	develop	anemia	>	diet	cause	anemia
+anemia	call for	transfusion	>	anemia	relieve by	transfusion
+anemia	result from	hemorrhage	>	hemorrhage	produce	anemia
+anemia	cause	hemorrhage	>	hemorrhage	be in	anemia
+anemia	result in	fatigue	>	fatigue	relate to	anemia
+anemia	result in	pallor	>	anemia	manifest by	pallor
+anemia	be during	pregnancy	>	anemia	occur during	pregnancy
+anemia	due to	hemorrhage	>	transfusion	be in	anemia
+anemia	find in	leukemia	>	anemia	occur in	leukemia
+pallor	suggest	anemia	>	pallor	accompany	anemia
+bleeding	manifest as	anemia	>	anemia	associate with	hemorrhage
+anemia	require	diet	>	anemia	treat by	diet
+hemolysis	contribute to	anemia	>	anemia	associate with	hemolysis
+transfusion	correct	anemia	>	anemia	correct with	transfusion
+anemia	find in	leukemia	>	leukemia	cause	anemia
+anemia	correct with	erythropoietin	>	anemia	treat with	erythropoietin
+anemia	associate with	hemorrhage	>	hemorrhage	cause	anemia
+splenectomy	alleviate	anemia	>	splenectomy	cure	anemia
+tapeworm	produce	anemia	>	tapeworm	precipitate	anemia
+hemorrhage	lead to	anemia	>	anemia	see with	bleeding
+bleeding	cause	anemia	>	anemia	treat by	transfusion
+bleeding	lead to	anemia	>	anemia	result from	hemorrhage
+anemia	characterize by	fatigue	>	fatigue	cause by	anemia
+anemia	suggest	hemorrhage	>	hemorrhage	result in	anemia
+leukemia	masquerade as	anemia	>	anemia	associate with	leukemia
+diet	produce	anemia	>	diet	develop	anemia
+leukemia	simulate	anemia	>	anemia	associate with	leukemia
+anemia	associate with	fatigue	>	fatigue	relate to	anemia
+anemia	due to	hemorrhage	>	anemia	cause by	hemorrhage
+iron	use in	anemia	>	anemia	respond to	iron
+tapeworm	associate with	anemia	>	tapeworm	produce	anemia
+anemia	cause by	hemorrhage	>	anemia	result from	hemorrhage
+splenectomy	perform for	anemia	>	splenectomy	improve	anemia
+achlorhydria	find in	anemia	>	achlorhydria	precede	anemia
+tapeworm	precipitate	anemia	>	parasite	cause	anemia
+bleeding	cause	anemia	>	anemia	call for	transfusion
+anemia	relieve by	transfusion	>	transfusion	require in	anemia
+pallor	result from	anemia	>	pallor	see in	anemia
+hemorrhage	result in	anemia	>	hemorrhage	produce	anemia
+hemolysis	result in	anemia	>	anemia	characterize by	hemolysis
+anemia	characterize by	pallor	>	anemia	cause	pallor
+hemorrhage	lead to	anemia	>	hemorrhage	cause	anemia
+anemia	suggest by	pallor	>	anemia	recognize by	pallor
+anemia	be of	bleeding	>	bleeding	lead to	anemia
+anemia	benefit by	iron	>	anemia	treat with	iron
+transfusion	improve	anemia	>	transfusion	give with	anemia
+anemia	treat by	transfusion	>	transfusion	relieve	anemia
+hemorrhage	cause	anemia	>	anemia	occur after	hemorrhage
+anemia	respond to	iron	>	anemia	correct by	iron
+thalassemia	have	anemia	>	anemia	associate with	thalassemia
+hemorrhage	cause	anemia	>	transfusion	administer for	anemia
+anemia	suggest by	pallor	>	pallor	see in	anemia
+anemia	relieve by	splenectomy	>	anemia	improve by	splenectomy
+anemia	develop during	pregnancy	>	anemia	occur during	pregnancy
+anemia	suggest by	pallor	>	anemia	characterize by	pallor
+splenectomy	alleviate	anemia	>	anemia	respond to	splenectomy
+bleeding	manifest as	anemia	>	anemia	occur after	hemorrhage
+transfusion	administer for	anemia	>	transfusion	give for	anemia
+anemia	accompany	leukemia	>	leukemia	cause	anemia
+anemia	follow	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	require	iron	>	anemia	benefit by	iron
+bleeding	result in	anemia	>	bleeding	lead to	anemia
+bleeding	manifest as	anemia	>	transfusion	improve	anemia
+anemia	develop of	hemolysis	>	hemolysis	explain	anemia
+pregnancy	associate with	anemia	>	anemia	cause during	pregnancy
+achlorhydria	associate with	anemia	>	achlorhydria	find in	anemia
+anemia	encounter during	pregnancy	>	pregnancy	associate with	anemia
+iron	give for	anemia	>	iron	cure	anemia
+anemia	relieve by	splenectomy	>	splenectomy	cure	anemia
+anemia	associate with	pregnancy	>	anemia	cause during	pregnancy
+anemia	occur after	hemorrhage	>	anemia	suggest	hemorrhage
+anemia	observe during	pregnancy	>	anemia	be in	pregnancy
+anemia	correct by	transfusion	>	anemia	treat with	transfusion
+anemia	associate with	erythrocyte	>	anemia	characterize by	erythrocyte
+anemia	correct by	transfusion	>	transfusion	relieve	anemia
+hemorrhage	lead to	anemia	>	anemia	associate with	hemorrhage
+leukemia	simulate	anemia	>	leukemia	masquerade as	anemia
+anemia	occur after	hemorrhage	>	hemorrhage	produce	anemia
+anemia	cause	fatigue	>	fatigue	relate to	anemia
+pallor	denote	anemia	>	anemia	recognize by	pallor
+leukemia	present	anemia	>	leukemia	masquerade as	anemia
+anemia	observe after	hemorrhage	>	hemorrhage	produce	anemia
+anemia	suggest	hemorrhage	>	hemorrhage	lead to	anemia
+anemia	associate with	fatigue	>	anemia	cause	fatigue
+anemia	correct by	iron	>	iron	cure	anemia
+anemia	occur during	pregnancy	>	anemia	observe during	pregnancy
+iron	cure	anemia	>	iron	use in	anemia
+anemia	improve by	splenectomy	>	splenectomy	ameliorate	anemia
+iron	prevent	anemia	>	iron	cure	anemia
+anemia	require	transfusion	>	transfusion	use for	anemia
+anemia	cause during	pregnancy	>	pregnancy	associate with	anemia
+splenectomy	alleviate	anemia	>	splenectomy	perform for	anemia
+fatigue	result from	anemia	>	anemia	result in	fatigue
+pallor	suggest	anemia	>	anemia	evidence by	pallor
+thalassemia	produce	anemia	>	thalassemia	have	anemia
+anemia	cause	pallor	>	anemia	manifest by	pallor
+anemia	observe after	hemorrhage	>	transfusion	give with	anemia
+bleeding	associate with	anemia	>	anemia	see with	bleeding
+bleeding	lead to	anemia	>	bleeding	associate with	anemia
+transfusion	administer for	anemia	>	transfusion	correct	anemia
+iron	cause	anemia	>	anemia	result from	iron
+bleeding	associate with	anemia	>	hemorrhage	produce	anemia
+hemolysis	cause	anemia	>	hemolysis	result in	anemia
+anemia	occur after	hemorrhage	>	transfusion	give with	anemia
+splenectomy	alleviate	anemia	>	anemia	relieve by	splenectomy
+hemorrhage	occur in	anemia	>	hemorrhage	suggest	anemia
+anemia	require	transfusion	>	transfusion	improve	anemia
+anemia	evidence by	pallor	>	anemia	manifest by	pallor
+splenectomy	improve	anemia	>	anemia	respond to	splenectomy
+anemia	develop from	hemorrhage	>	bleeding	associate with	anemia
+anemia	develop of	hemolysis	>	hemolysis	result in	anemia
+fatigue	cause by	anemia	>	anemia	associate with	fatigue
+transfusion	relieve	anemia	>	anemia	call for	transfusion
+splenectomy	relieve	anemia	>	splenectomy	improve	anemia
+anemia	associate with	hemorrhage	>	transfusion	use for	anemia
+anemia	characterize by	fatigue	>	anemia	cause	fatigue
+anemia	result from	hemorrhage	>	anemia	cause by	hemorrhage
+leukemia	cause	anemia	>	anemia	occur in	leukemia
+pallor	indicate	anemia	>	anemia	characterize by	pallor
+fatigue	relate to	anemia	>	anemia	characterize by	fatigue
+bleeding	produce	anemia	>	transfusion	improve	anemia
+anemia	correct with	transfusion	>	anemia	treat with	transfusion
+hemolysis	explain	anemia	>	hemolysis	result in	anemia
+anemia	occur after	hemorrhage	>	anemia	result from	hemorrhage
+anemia	improve by	splenectomy	>	splenectomy	correct	anemia
+anemia	respond to	splenectomy	>	splenectomy	ameliorate	anemia
+leukemia	associate with	anemia	>	anemia	accompany	leukemia
+anemia	result from	hemorrhage	>	anemia	treat by	transfusion
+achlorhydria	be in	anemia	>	achlorhydria	occur in	anemia
+tapeworm	associate with	anemia	>	tapeworm	precipitate	anemia
+bleeding	produce	anemia	>	anemia	occur after	hemorrhage
+anemia	see with	bleeding	>	anemia	treat by	transfusion
+anemia	correct with	erythropoietin	>	erythropoietin	correct	anemia
+fatigue	associate with	anemia	>	anemia	manifest by	fatigue
+anemia	cure by	splenectomy	>	splenectomy	cure	anemia
+transfusion	relieve	anemia	>	anemia	treat with	transfusion
+leukemia	cause	anemia	>	anemia	accompany	leukemia
+anemia	characterize by	hemolysis	>	hemolysis	produce	anemia
+transfusion	give for	anemia	>	anemia	relieve by	transfusion
+pallor	denote	anemia	>	anemia	suggest by	pallor
+pallor	see in	anemia	>	pallor	cause by	anemia
+anemia	evidence by	pallor	>	pallor	indicate	anemia
+anemia	see with	bleeding	>	anemia	due to	hemorrhage
+anemia	suggest by	pallor	>	pallor	associate with	anemia
+anemia	manifest by	fatigue	>	anemia	characterize by	fatigue
+hemolysis	contribute to	anemia	>	hemolysis	explain	anemia
+anemia	require	iron	>	iron	cure	anemia
+anemia	associate with	hemolysis	>	hemolysis	lead to	anemia
+transfusion	correct	anemia	>	anemia	relieve by	transfusion
+bleeding	produce	anemia	>	transfusion	administer for	anemia
+anemia	find in	leukemia	>	leukemia	simulate	anemia
+anemia	due to	hemorrhage	>	anemia	require	transfusion
+pallor	denote	anemia	>	anemia	manifest by	pallor
+tapeworm	cause	anemia	>	tapeworm	associate with	anemia
+splenectomy	cure	anemia	>	anemia	treat with	splenectomy
+anemia	benefit by	iron	>	iron	give for	anemia
+anemia	associate with	bleeding	>	anemia	follow	hemorrhage
+hemorrhage	occur in	anemia	>	hemorrhage	associate with	anemia
+hemorrhage	cause	anemia	>	bleeding	lead to	anemia
+anemia	result in	fatigue	>	anemia	characterize by	fatigue
+anemia	necessitate	iron	>	iron	give in	anemia
+anemia	occur after	hemorrhage	>	anemia	due to	hemorrhage
+anemia	observe after	hemorrhage	>	anemia	relieve by	transfusion
+anemia	characterize by	hemolysis	>	hemolysis	contribute to	anemia
+anemia	occur after	hemorrhage	>	anemia	see with	bleeding
+anemia	improve by	splenectomy	>	splenectomy	improve	anemia
+anemia	relieve by	splenectomy	>	anemia	treat by	splenectomy
+anemia	terminate in	leukemia	>	anemia	associate with	leukemia
+anemia	develop from	hemorrhage	>	hemorrhage	lead to	anemia
+anemia	occur in	pregnancy	>	anemia	develop during	pregnancy
+anemia	occur after	hemorrhage	>	anemia	treat with	transfusion
+anemia	lead to	fatigue	>	anemia	characterize by	fatigue
+anemia	characterize by	hemolysis	>	anemia	associate with	hemolysis
+bleeding	manifest as	anemia	>	anemia	correct with	transfusion
+anemia	occur in	pregnancy	>	anemia	encounter during	pregnancy
+anemia	treat with	iron	>	iron	prevent	anemia
+pallor	denote	anemia	>	anemia	evidence by	pallor
+hemorrhage	produce	anemia	>	anemia	cause by	hemorrhage
+transfusion	use for	anemia	>	transfusion	be in	anemia
+anemia	be in	pregnancy	>	pregnancy	cause	anemia
+anemia	recognize by	pallor	>	pallor	associate with	anemia
+anemia	associate with	hemorrhage	>	anemia	develop from	hemorrhage
+hemolysis	produce	anemia	>	hemolysis	cause	anemia
+tapeworm	associate with	anemia	>	parasite	lead to	anemia
+splenectomy	alleviate	anemia	>	splenectomy	correct	anemia
+anemia	be in	leukemia	>	leukemia	cause	anemia
+transfusion	administer for	anemia	>	transfusion	relieve	anemia
+anemia	require	iron	>	iron	correct	anemia
+anemia	require	transfusion	>	transfusion	require for	anemia
+iron	prevent	anemia	>	anemia	treat with	iron
+hemolysis	cause	anemia	>	hemolysis	lead to	anemia
+leukemia	cause	anemia	>	leukemia	associate with	anemia
+bleeding	cause	anemia	>	anemia	suggest	hemorrhage
+anemia	due to	hemorrhage	>	transfusion	correct	anemia
+anemia	treat with	transfusion	>	transfusion	correct	anemia
+anemia	follow	hemorrhage	>	anemia	relieve by	transfusion
+pallor	see in	anemia	>	anemia	suggest by	pallor
+anemia	follow	hemorrhage	>	bleeding	associate with	anemia
+bleeding	lead to	anemia	>	anemia	suggest	hemorrhage
+fatigue	result from	anemia	>	anemia	contribute to	fatigue
+bleeding	result in	anemia	>	transfusion	improve	anemia
+anemia	relieve by	splenectomy	>	splenectomy	correct	anemia
+transfusion	use for	anemia	>	anemia	treat by	transfusion
+anemia	associate with	pregnancy	>	anemia	observe during	pregnancy
+anemia	evidence by	pallor	>	anemia	cause	pallor
+thalassemia	have	anemia	>	thalassemia	characterize by	anemia
+anemia	result from	bleeding	>	anemia	treat with	transfusion
+anemia	treat with	diet	>	anemia	prevent by	diet
+anemia	associate with	bleeding	>	bleeding	cause	anemia
+splenectomy	improve	anemia	>	splenectomy	alleviate	anemia
+anemia	observe during	pregnancy	>	anemia	be during	pregnancy
+anemia	cause by	hemorrhage	>	hemorrhage	lead to	anemia
+anemia	result from	bleeding	>	anemia	see with	bleeding
+anemia	prevent by	diet	>	anemia	treat by	diet
+hemolysis	associate with	anemia	>	hemolysis	result in	anemia
+leukemia	masquerade as	anemia	>	anemia	find in	leukemia
+anemia	produce	pallor	>	anemia	evidence by	pallor
+iron	produce	anemia	>	anemia	characterize by	iron
+anemia	respond to	iron	>	anemia	necessitate	iron
+bleeding	associate with	anemia	>	transfusion	need for	anemia
+hemorrhage	lead to	anemia	>	transfusion	give for	anemia
+pallor	indicate	anemia	>	pallor	cause by	anemia
+leukemia	simulate	anemia	>	anemia	terminate in	leukemia
+anemia	associate with	thalassemia	>	thalassemia	characterize by	anemia
+iron	use for	anemia	>	anemia	require	iron
+anemia	result from	hemolysis	>	hemolysis	contribute to	anemia
+pallor	cause by	anemia	>	pallor	result from	anemia
+anemia	suggest	hemorrhage	>	anemia	cause by	bleeding
+anemia	correct with	transfusion	>	transfusion	need for	anemia
+anemia	cause by	bleeding	>	anemia	correct with	transfusion
+bleeding	manifest as	anemia	>	anemia	cause by	bleeding
+splenectomy	eliminate	anemia	>	anemia	improve by	splenectomy
+splenectomy	alleviate	anemia	>	anemia	improve by	splenectomy
+anemia	be in	leukemia	>	leukemia	present as	anemia
+anemia	develop from	hemorrhage	>	anemia	treat by	transfusion
+pregnancy	cause	anemia	>	anemia	encounter during	pregnancy
+anemia	associate with	leukemia	>	leukemia	present	anemia
+splenectomy	eliminate	anemia	>	anemia	relieve by	splenectomy
+transfusion	give for	anemia	>	transfusion	be in	anemia
+bleeding	lead to	anemia	>	anemia	observe after	hemorrhage
+anemia	observe after	hemorrhage	>	bleeding	manifest as	anemia
+anemia	develop from	hemorrhage	>	anemia	relieve by	transfusion
+anemia	see with	bleeding	>	anemia	correct by	transfusion
+bleeding	lead to	anemia	>	anemia	require	transfusion
+splenectomy	correct	anemia	>	anemia	treat by	splenectomy
+anemia	cause by	hemorrhage	>	hemorrhage	produce	anemia
+anemia	result from	hemolysis	>	anemia	develop of	hemolysis
+transfusion	administer for	anemia	>	anemia	call for	transfusion
+pallor	result from	anemia	>	anemia	recognize by	pallor
+iron	prevent	anemia	>	anemia	respond to	iron
+pallor	result from	anemia	>	pallor	cause by	anemia
+iron	cure	anemia	>	iron	prevent	anemia
+transfusion	correct	anemia	>	transfusion	be in	anemia
+anemia	encounter during	pregnancy	>	anemia	observe during	pregnancy
+anemia	due to	hemorrhage	>	anemia	suggest	hemorrhage
+bleeding	produce	anemia	>	anemia	associate with	hemorrhage
+anemia	characterize by	hemolysis	>	hemolysis	associate with	anemia
+hemorrhage	result in	anemia	>	anemia	require	transfusion
+anemia	occur after	hemorrhage	>	transfusion	use for	anemia
+anemia	be during	pregnancy	>	anemia	observe during	pregnancy
+anemia	be of	bleeding	>	transfusion	require in	anemia
+anemia	correct with	iron	>	anemia	require	iron
+bleeding	result in	anemia	>	anemia	result from	bleeding
+anemia	suggest by	pallor	>	pallor	indicate	anemia
+fatigue	associate with	anemia	>	fatigue	cause by	anemia
+anemia	see with	bleeding	>	bleeding	associate with	anemia
+anemia	treat by	transfusion	>	transfusion	improve	anemia
+anemia	occur in	pregnancy	>	anemia	associate with	pregnancy
+anemia	occur during	pregnancy	>	anemia	associate with	pregnancy
+anemia	associate with	hemorrhage	>	anemia	observe after	hemorrhage
+transfusion	require in	anemia	>	transfusion	give for	anemia
+anemia	characterize by	iron	>	anemia	cause by	iron
+anemia	occur in	leukemia	>	anemia	terminate in	leukemia
+anemia	follow	hemorrhage	>	anemia	occur after	hemorrhage
+pregnancy	complicate by	anemia	>	anemia	complicate	pregnancy
+transfusion	give with	anemia	>	anemia	relieve by	transfusion
+iron	give in	anemia	>	iron	use for	anemia
+anemia	evidence by	pallor	>	pallor	result from	anemia
+pallor	result from	anemia	>	anemia	evidence by	pallor
+transfusion	administer for	anemia	>	transfusion	require in	anemia
+anemia	be during	pregnancy	>	pregnancy	cause	anemia
+leukemia	present	anemia	>	leukemia	simulate	anemia
+bleeding	result in	anemia	>	anemia	correct with	transfusion
+tapeworm	produce	anemia	>	parasite	produce	anemia
+anemia	cause during	pregnancy	>	anemia	be in	pregnancy
+anemia	lead to	fatigue	>	fatigue	result from	anemia
+anemia	be of	bleeding	>	transfusion	require for	anemia
+anemia	follow	hemorrhage	>	transfusion	be in	anemia
+transfusion	require for	anemia	>	anemia	treat with	transfusion
+anemia	result in	pallor	>	pallor	denote	anemia
+hemorrhage	produce	anemia	>	anemia	associate with	hemorrhage
+tapeworm	develop	anemia	>	parasite	cause	anemia
+anemia	evidence by	pallor	>	pallor	associate with	anemia
+anemia	cause by	hemolysis	>	hemolysis	lead to	anemia
+anemia	due to	hemorrhage	>	bleeding	associate with	anemia
+anemia	evidence by	pallor	>	anemia	recognize by	pallor
+hemorrhage	produce	anemia	>	hemorrhage	lead to	anemia
+anemia	be in	pregnancy	>	pregnancy	associate with	anemia
+anemia	be of	bleeding	>	anemia	associate with	bleeding
+anemia	result from	bleeding	>	hemorrhage	produce	anemia
+splenectomy	ameliorate	anemia	>	splenectomy	relieve	anemia
+anemia	be of	bleeding	>	anemia	treat by	transfusion
+pallor	associate with	anemia	>	anemia	recognize by	pallor
+iron	prevent	anemia	>	anemia	require	iron
+iron	give in	anemia	>	anemia	require	iron
+anemia	cause during	pregnancy	>	anemia	associate with	pregnancy
+anemia	observe after	hemorrhage	>	transfusion	use for	anemia
+pallor	see in	anemia	>	anemia	produce	pallor
+anemia	result from	hemorrhage	>	anemia	associate with	bleeding
+bleeding	produce	anemia	>	transfusion	give for	anemia
+anemia	result from	bleeding	>	anemia	suggest	hemorrhage
+anemia	cause by	bleeding	>	hemorrhage	lead to	anemia
+splenectomy	perform for	anemia	>	splenectomy	eliminate	anemia
+iron	give in	anemia	>	anemia	respond to	iron
+achlorhydria	precede	anemia	>	anemia	associate with	achlorhydria
+leukemia	present as	anemia	>	anemia	be in	leukemia
+anemia	cause by	bleeding	>	hemorrhage	produce	anemia
+pallor	accompany	anemia	>	anemia	manifest by	pallor
+iron	give for	anemia	>	anemia	correct with	iron
+anemia	benefit by	iron	>	anemia	necessitate	iron
+bleeding	lead to	anemia	>	anemia	correct by	transfusion
+fatigue	result from	anemia	>	anemia	lead to	fatigue
+anemia	relieve by	transfusion	>	transfusion	improve	anemia
+bleeding	cause	anemia	>	anemia	be of	bleeding
+anemia	occur after	hemorrhage	>	anemia	correct with	transfusion
+pregnancy	associate with	anemia	>	anemia	occur in	pregnancy
+bleeding	associate with	anemia	>	transfusion	use for	anemia
+anemia	associate with	bleeding	>	anemia	develop from	hemorrhage
+anemia	associate with	hemorrhage	>	bleeding	manifest as	anemia
+anemia	due to	hemorrhage	>	hemorrhage	produce	anemia
+anemia	occur after	hemorrhage	>	hemorrhage	cause	anemia
+anemia	characterize by	pallor	>	anemia	manifest by	pallor
+hemolysis	contribute to	anemia	>	anemia	cause by	hemolysis
+tapeworm	cause	anemia	>	anemia	relate	parasite
+anemia	associate with	hemorrhage	>	transfusion	correct	anemia
+anemia	see with	bleeding	>	anemia	relieve by	transfusion
+anemia	characterize by	fatigue	>	anemia	manifest by	fatigue
+anemia	develop from	hemorrhage	>	anemia	correct by	transfusion
+bleeding	associate with	anemia	>	anemia	associate with	hemorrhage
+bleeding	produce	anemia	>	hemorrhage	lead to	anemia
+purpura	characterize by	anemia	>	purpura	accompany by	anemia
+anemia	follow	hemorrhage	>	bleeding	lead to	anemia
+achlorhydria	associate with	anemia	>	anemia	associate with	achlorhydria
+anemia	correct with	transfusion	>	transfusion	give with	anemia
+anemia	associate with	erythrocyte	>	erythrocyte	occur in	anemia
+anemia	cause by	hemorrhage	>	anemia	relieve by	transfusion
+bleeding	manifest as	anemia	>	anemia	result from	bleeding
+hemorrhage	result in	anemia	>	anemia	cause by	bleeding
+anemia	be in	leukemia	>	leukemia	associate with	anemia
+anemia	associate with	leukemia	>	anemia	terminate in	leukemia
+purpura	accompany by	anemia	>	purpura	associate with	anemia
+achlorhydria	precede	anemia	>	achlorhydria	occur in	anemia
+anemia	lead to	fatigue	>	fatigue	cause by	anemia
+anemia	suggest	hemorrhage	>	transfusion	administer for	anemia
+transfusion	require for	anemia	>	anemia	call for	transfusion
+hemorrhage	produce	anemia	>	transfusion	use for	anemia
+anemia	be in	pregnancy	>	anemia	observe during	pregnancy
+anemia	suggest	hemorrhage	>	transfusion	require for	anemia
+tapeworm	precipitate	anemia	>	tapeworm	associate with	anemia
+anemia	associate with	hemolysis	>	anemia	result from	hemolysis
+pallor	see in	anemia	>	anemia	characterize by	pallor
+anemia	evidence by	pallor	>	anemia	suggest by	pallor
+transfusion	use for	anemia	>	anemia	treat with	transfusion
+anemia	develop from	hemorrhage	>	transfusion	correct	anemia
+bleeding	manifest as	anemia	>	bleeding	result in	anemia
+anemia	result from	bleeding	>	bleeding	cause	anemia
+fatigue	cause by	anemia	>	anemia	contribute to	fatigue
+transfusion	give with	anemia	>	transfusion	be in	anemia
+hemolysis	explain	anemia	>	hemolysis	cause	anemia
+hemorrhage	lead to	anemia	>	bleeding	cause	anemia
+anemia	benefit by	iron	>	iron	use for	anemia
+anemia	relieve by	transfusion	>	transfusion	give with	anemia
+pallor	suggest	anemia	>	anemia	recognize by	pallor
+bleeding	associate with	anemia	>	anemia	result from	bleeding
+pallor	indicate	anemia	>	anemia	manifest by	pallor
+anemia	due to	hemorrhage	>	anemia	result from	hemorrhage
+anemia	cause by	iron	>	iron	produce	anemia
+anemia	correct with	transfusion	>	transfusion	correct	anemia
+anemia	see with	bleeding	>	transfusion	need for	anemia
+anemia	require	transfusion	>	transfusion	be in	anemia
+anemia	associate with	hemorrhage	>	bleeding	associate with	anemia
+iron	cure	anemia	>	anemia	require	iron
+anemia	treat by	splenectomy	>	splenectomy	perform for	anemia
+hemorrhage	cause	anemia	>	bleeding	manifest as	anemia
+anemia	correct by	transfusion	>	transfusion	be in	anemia
+anemia	suggest	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	associate with	bleeding	>	hemorrhage	result in	anemia
+anemia	observe after	hemorrhage	>	transfusion	administer for	anemia
+tapeworm	produce	anemia	>	tapeworm	develop	anemia
+hemolysis	explain	anemia	>	hemolysis	contribute to	anemia
+anemia	necessitate	iron	>	anemia	require	iron
+tapeworm	associate with	anemia	>	tapeworm	develop	anemia
+anemia	associate with	leukemia	>	anemia	be in	leukemia
+anemia	associate with	bleeding	>	bleeding	associate with	anemia
+transfusion	improve	anemia	>	anemia	relieve by	transfusion
+hemorrhage	lead to	anemia	>	anemia	correct by	transfusion
+anemia	cause by	bleeding	>	anemia	require	transfusion
+anemia	respond to	iron	>	iron	cure	anemia
+hemorrhage	lead to	anemia	>	anemia	require	transfusion
+anemia	result from	hemolysis	>	hemolysis	result in	anemia
+anemia	treat by	iron	>	iron	use in	anemia
+bleeding	result in	anemia	>	transfusion	use for	anemia
+hemolysis	associate with	anemia	>	anemia	result from	hemolysis
+hemorrhage	result in	anemia	>	bleeding	associate with	anemia
+anemia	produce	pallor	>	pallor	cause by	anemia
+anemia	associate with	hemorrhage	>	anemia	correct by	transfusion
+anemia	require	iron	>	anemia	treat with	iron
+achlorhydria	find in	anemia	>	achlorhydria	be in	anemia
+anemia	treat with	splenectomy	>	anemia	relieve by	splenectomy
+anemia	cause by	bleeding	>	anemia	be of	bleeding
+anemia	relieve by	splenectomy	>	splenectomy	alleviate	anemia
+anemia	characterize by	fatigue	>	anemia	lead to	fatigue
+anemia	benefit by	iron	>	iron	correct	anemia
+iron	use for	anemia	>	iron	prevent	anemia
+hemolysis	explain	anemia	>	anemia	result from	hemolysis
+bleeding	manifest as	anemia	>	transfusion	need for	anemia
+anemia	manifest by	fatigue	>	anemia	result in	fatigue
+pallor	suggest	anemia	>	pallor	cause by	anemia
+anemia	develop from	hemorrhage	>	bleeding	manifest as	anemia
+anemia	be of	bleeding	>	hemorrhage	result in	anemia
+splenectomy	eliminate	anemia	>	splenectomy	relieve	anemia
+anemia	associate with	thalassemia	>	thalassemia	produce	anemia
+splenectomy	ameliorate	anemia	>	splenectomy	alleviate	anemia
+anemia	occur after	hemorrhage	>	transfusion	need for	anemia
+anemia	cause by	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	improve by	splenectomy	>	anemia	relieve by	splenectomy
+hemolysis	lead to	anemia	>	hemolysis	contribute to	anemia
+anemia	call for	transfusion	>	anemia	correct by	transfusion
+anemia	occur after	hemorrhage	>	transfusion	administer for	anemia
+anemia	treat with	transfusion	>	transfusion	require in	anemia
+anemia	cure by	splenectomy	>	anemia	treat with	splenectomy
+splenectomy	correct	anemia	>	splenectomy	relieve	anemia
+anemia	treat with	iron	>	anemia	respond to	iron
+anemia	respond to	splenectomy	>	anemia	treat by	splenectomy
+anemia	cure by	splenectomy	>	anemia	treat by	splenectomy
+anemia	associate with	bleeding	>	anemia	treat with	transfusion
+bleeding	manifest as	anemia	>	anemia	develop from	hemorrhage
+anemia	cure by	splenectomy	>	anemia	relieve by	splenectomy
+iron	produce	anemia	>	iron	cause	anemia
+bleeding	associate with	anemia	>	bleeding	produce	anemia
+hemorrhage	produce	anemia	>	bleeding	produce	anemia
+transfusion	relieve	anemia	>	transfusion	give for	anemia
+achlorhydria	be in	anemia	>	achlorhydria	precede	anemia
+anemia	be of	bleeding	>	transfusion	use for	anemia
+bleeding	manifest as	anemia	>	anemia	call for	transfusion
+iron	give in	anemia	>	iron	correct	anemia
+anemia	cause by	bleeding	>	anemia	cause by	hemorrhage
+transfusion	require for	anemia	>	transfusion	give with	anemia
+anemia	define as	pancytopenia	>	anemia	cause	pancytopenia
+anemia	follow	hemorrhage	>	anemia	see with	bleeding
+anemia	suggest by	pallor	>	anemia	manifest by	pallor
+hemorrhage	cause	anemia	>	anemia	develop from	hemorrhage
+transfusion	give for	anemia	>	anemia	correct by	transfusion
+bleeding	cause	anemia	>	hemorrhage	lead to	anemia
+anemia	associate with	achlorhydria	>	achlorhydria	precede	anemia
+anemia	benefit by	iron	>	anemia	respond to	iron
+tapeworm	cause	anemia	>	parasite	produce	anemia
+hemolysis	contribute to	anemia	>	hemolysis	associate with	anemia
+bleeding	produce	anemia	>	transfusion	use for	anemia
+anemia	cause by	hemorrhage	>	transfusion	be in	anemia
+anemia	result from	bleeding	>	bleeding	manifest as	anemia
+transfusion	relieve	anemia	>	anemia	correct by	transfusion
+transfusion	administer for	anemia	>	transfusion	give with	anemia
+bleeding	associate with	anemia	>	transfusion	improve	anemia
+hemorrhage	result in	anemia	>	hemorrhage	lead to	anemia
+bleeding	associate with	anemia	>	anemia	associate with	bleeding
+hemorrhage	cause	anemia	>	anemia	treat by	transfusion
+transfusion	use for	anemia	>	transfusion	improve	anemia
+anemia	see with	bleeding	>	anemia	develop from	hemorrhage
+anemia	call for	transfusion	>	transfusion	administer for	anemia
+bleeding	result in	anemia	>	anemia	call for	transfusion
+erythropoietin	reduce	anemia	>	anemia	treat with	erythropoietin
+anemia	associate with	bleeding	>	transfusion	administer for	anemia
+achlorhydria	precede	anemia	>	achlorhydria	associate with	anemia
+leukemia	simulate	anemia	>	leukemia	associate with	anemia
+transfusion	correct	anemia	>	anemia	treat by	transfusion
+anemia	treat by	iron	>	iron	correct	anemia
+anemia	associate with	bleeding	>	anemia	relieve by	transfusion
+erythropoietin	use for	anemia	>	erythropoietin	reduce	anemia
+anemia	occur after	hemorrhage	>	transfusion	give for	anemia
+anemia	treat by	iron	>	anemia	benefit by	iron
+anemia	occur in	leukemia	>	leukemia	cause	anemia
+leukemia	present	anemia	>	anemia	associate with	leukemia
+transfusion	use for	anemia	>	anemia	require	transfusion
+hemolysis	lead to	anemia	>	anemia	cause by	hemolysis
+anemia	treat with	iron	>	anemia	correct by	iron
+leukemia	present	anemia	>	leukemia	associate with	anemia
+anemia	develop from	hemorrhage	>	anemia	observe after	hemorrhage
+anemia	require	iron	>	iron	give in	anemia
+splenectomy	improve	anemia	>	anemia	treat with	splenectomy
+hemorrhage	produce	anemia	>	anemia	require	transfusion
+leukemia	cause	anemia	>	anemia	find in	leukemia
+anemia	associate with	bleeding	>	anemia	result from	hemorrhage
+erythropoietin	use for	anemia	>	anemia	correct with	erythropoietin
+hemorrhage	produce	anemia	>	anemia	associate with	bleeding
+transfusion	be in	anemia	>	anemia	relieve by	transfusion
+pallor	see in	anemia	>	pallor	indicate	anemia
+bleeding	produce	anemia	>	transfusion	be in	anemia
+hemolysis	result in	anemia	>	hemolysis	produce	anemia
+anemia	correct by	transfusion	>	anemia	treat by	transfusion
+anemia	treat with	splenectomy	>	splenectomy	improve	anemia
+hemorrhage	result in	anemia	>	transfusion	require for	anemia
+iron	use for	anemia	>	iron	give for	anemia
+anemia	improve by	splenectomy	>	anemia	respond to	splenectomy
+fatigue	associate with	anemia	>	anemia	contribute to	fatigue
+anemia	occur after	hemorrhage	>	hemorrhage	result in	anemia
+anemia	be in	pregnancy	>	anemia	develop during	pregnancy
+anemia	result in	pallor	>	pallor	suggest	anemia
+anemia	observe after	hemorrhage	>	anemia	associate with	bleeding
+hemolysis	produce	anemia	>	anemia	result from	hemolysis
+anemia	associate with	hemorrhage	>	anemia	relieve by	transfusion
+bleeding	lead to	anemia	>	transfusion	administer for	anemia
+anemia	treat with	splenectomy	>	anemia	treat by	splenectomy
+anemia	correct by	iron	>	anemia	require	iron
+anemia	occur after	hemorrhage	>	anemia	associate with	bleeding
+anemia	associate with	hemorrhage	>	anemia	treat by	transfusion
+transfusion	be in	anemia	>	transfusion	correct	anemia
+bleeding	result in	anemia	>	anemia	see with	bleeding
+transfusion	need for	anemia	>	anemia	relieve by	transfusion
+anemia	see with	bleeding	>	bleeding	manifest as	anemia
+anemia	occur during	pregnancy	>	anemia	occur in	pregnancy
+anemia	result from	hemorrhage	>	transfusion	improve	anemia
+iron	give in	anemia	>	anemia	necessitate	iron
+anemia	prevent by	diet	>	anemia	treat with	diet
+anemia	observe after	hemorrhage	>	anemia	develop from	hemorrhage
+splenectomy	ameliorate	anemia	>	anemia	treat by	splenectomy
+hemolysis	associate with	anemia	>	hemolysis	lead to	anemia
+pallor	denote	anemia	>	pallor	associate with	anemia
+anemia	treat by	splenectomy	>	anemia	improve by	splenectomy
+leukemia	simulate	anemia	>	anemia	be in	leukemia
+anemia	suggest	hemorrhage	>	anemia	relieve by	transfusion
+tapeworm	develop	anemia	>	tapeworm	associate with	anemia
+erythropoietin	use for	anemia	>	anemia	treat with	erythropoietin
+anemia	associate with	bleeding	>	hemorrhage	produce	anemia
+anemia	see with	bleeding	>	transfusion	use for	anemia
+anemia	terminate in	leukemia	>	leukemia	cause	anemia
+splenectomy	perform for	anemia	>	anemia	improve by	splenectomy
+anemia	respond to	splenectomy	>	splenectomy	eliminate	anemia
+hemorrhage	result in	anemia	>	transfusion	give with	anemia
+bleeding	result in	anemia	>	hemorrhage	produce	anemia
+anemia	follow	hemorrhage	>	anemia	suggest	hemorrhage
+bleeding	result in	anemia	>	anemia	treat with	transfusion
+hemorrhage	cause	anemia	>	anemia	see with	bleeding
+bleeding	lead to	anemia	>	hemorrhage	lead to	anemia
+hemorrhage	result in	anemia	>	bleeding	result in	anemia
+anemia	observe during	pregnancy	>	anemia	occur during	pregnancy
+leukemia	cause	anemia	>	anemia	associate with	leukemia
+transfusion	require for	anemia	>	anemia	require	transfusion
+transfusion	relieve	anemia	>	transfusion	improve	anemia
+splenectomy	alleviate	anemia	>	anemia	treat by	splenectomy
+hemorrhage	cause	anemia	>	transfusion	relieve	anemia
+anemia	cause	fatigue	>	anemia	manifest by	fatigue
+splenectomy	alleviate	anemia	>	anemia	treat with	splenectomy
+hemolysis	explain	anemia	>	anemia	characterize by	hemolysis
+anemia	occur after	hemorrhage	>	anemia	develop from	hemorrhage
+transfusion	require in	anemia	>	transfusion	need for	anemia
+splenectomy	eliminate	anemia	>	anemia	cure by	splenectomy
+hemorrhage	cause	anemia	>	anemia	relieve by	transfusion
+pallor	associate with	anemia	>	anemia	produce	pallor
+iron	correct	anemia	>	anemia	benefit by	iron
+anemia	due to	hemorrhage	>	anemia	correct with	transfusion
+splenectomy	relieve	anemia	>	splenectomy	alleviate	anemia
+transfusion	indicate in	anemia	>	transfusion	indicate for	anemia
+anemia	treat with	erythropoietin	>	erythropoietin	use for	anemia
+splenectomy	perform for	anemia	>	anemia	relieve by	splenectomy
+transfusion	improve	anemia	>	transfusion	require in	anemia
+anemia	cause during	pregnancy	>	anemia	encounter during	pregnancy
+hemolysis	result in	anemia	>	anemia	associate with	hemolysis
+anemia	terminate in	leukemia	>	leukemia	masquerade as	anemia
+anemia	associate with	hemorrhage	>	hemorrhage	lead to	anemia
+iron	prevent	anemia	>	iron	use for	anemia
+anemia	cause by	hemolysis	>	hemolysis	contribute to	anemia
+anemia	find in	leukemia	>	leukemia	associate with	anemia
+anemia	treat with	splenectomy	>	anemia	respond to	splenectomy
+anemia	treat with	splenectomy	>	splenectomy	alleviate	anemia
+anemia	find in	leukemia	>	anemia	associate with	leukemia
+hemorrhage	lead to	anemia	>	anemia	result from	hemorrhage
+hemorrhage	produce	anemia	>	anemia	suggest	hemorrhage
+anemia	occur after	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	treat by	splenectomy	>	splenectomy	ameliorate	anemia
+splenectomy	eliminate	anemia	>	splenectomy	alleviate	anemia
+fatigue	associate with	anemia	>	anemia	cause	fatigue
+anemia	be in	pregnancy	>	anemia	occur in	pregnancy
+anemia	cause during	pregnancy	>	anemia	occur during	pregnancy
+transfusion	require for	anemia	>	transfusion	give for	anemia
+anemia	contribute to	fatigue	>	anemia	lead to	fatigue
+leukemia	associate with	anemia	>	leukemia	present as	anemia
+tapeworm	produce	anemia	>	parasite	lead to	anemia
+anemia	treat with	transfusion	>	transfusion	be in	anemia
+anemia	cause by	hemorrhage	>	hemorrhage	result in	anemia
+transfusion	require in	anemia	>	anemia	require	transfusion
+anemia	improve by	splenectomy	>	anemia	cure by	splenectomy
+purpura	acquire	anemia	>	purpura	accompany by	anemia
+anemia	see with	bleeding	>	anemia	associate with	hemorrhage
+bleeding	lead to	anemia	>	anemia	occur after	hemorrhage
+bleeding	produce	anemia	>	bleeding	lead to	anemia
+bleeding	cause	anemia	>	hemorrhage	produce	anemia
+iron	correct	anemia	>	anemia	necessitate	iron
+splenectomy	improve	anemia	>	splenectomy	ameliorate	anemia
+anemia	result from	hemorrhage	>	transfusion	need for	anemia
+iron	use in	anemia	>	iron	give for	anemia
+hemolysis	cause	anemia	>	hemolysis	contribute to	anemia
+bleeding	lead to	anemia	>	hemorrhage	result in	anemia
+transfusion	be in	anemia	>	transfusion	relieve	anemia
+erythropoietin	reduce	anemia	>	erythropoietin	use for	anemia
+anemia	result from	bleeding	>	anemia	cause by	hemorrhage
+anemia	cause	pallor	>	anemia	characterize by	pallor
+pallor	indicate	anemia	>	pallor	accompany	anemia
+bleeding	produce	anemia	>	anemia	treat with	transfusion
+pallor	result from	anemia	>	pallor	suggest	anemia
+pallor	accompany	anemia	>	anemia	recognize by	pallor
+anemia	respond to	splenectomy	>	splenectomy	improve	anemia
+bleeding	cause	anemia	>	anemia	correct by	transfusion
+splenectomy	improve	anemia	>	splenectomy	cure	anemia
+anemia	terminate in	leukemia	>	leukemia	present as	anemia
+anemia	be during	pregnancy	>	anemia	be in	pregnancy
+leukemia	cause	anemia	>	leukemia	simulate	anemia
+anemia	result from	iron	>	iron	produce	anemia
+pregnancy	cause	anemia	>	anemia	cause during	pregnancy
+anemia	recognize by	pallor	>	anemia	suggest by	pallor
+pallor	associate with	anemia	>	anemia	characterize by	pallor
+bleeding	cause	anemia	>	transfusion	be in	anemia
+anemia	due to	hemorrhage	>	transfusion	use for	anemia
+hemolysis	produce	anemia	>	anemia	characterize by	hemolysis
+hemorrhage	lead to	anemia	>	bleeding	associate with	anemia
+hemorrhage	result in	anemia	>	bleeding	manifest as	anemia
+pallor	accompany	anemia	>	pallor	denote	anemia
+hemorrhage	lead to	anemia	>	hemorrhage	produce	anemia
+anemia	develop from	hemorrhage	>	transfusion	relieve	anemia
+anemia	suggest	hemorrhage	>	anemia	require	transfusion
+anemia	associate with	leukemia	>	leukemia	present as	anemia
+iron	cure	anemia	>	anemia	correct with	iron
+anemia	due to	hemorrhage	>	anemia	result from	bleeding
+anemia	cause by	bleeding	>	anemia	associate with	bleeding
+anemia	develop from	hemorrhage	>	transfusion	use for	anemia
+transfusion	correct	anemia	>	anemia	treat with	transfusion
+anemia	see with	bleeding	>	hemorrhage	cause	anemia
+bleeding	produce	anemia	>	anemia	call for	transfusion
+transfusion	administer for	anemia	>	anemia	correct with	transfusion
+bleeding	associate with	anemia	>	anemia	correct with	transfusion
+hemorrhage	cause	anemia	>	bleeding	associate with	anemia
+anemia	associate with	fatigue	>	anemia	contribute to	fatigue
+anemia	manifest by	fatigue	>	anemia	lead to	fatigue
+anemia	respond to	splenectomy	>	splenectomy	relieve	anemia
+anemia	benefit by	iron	>	iron	prevent	anemia
+transfusion	use for	anemia	>	anemia	correct with	transfusion
+iron	give for	anemia	>	iron	prevent	anemia
+anemia	require	diet	>	anemia	prevent by	diet
+bleeding	lead to	anemia	>	anemia	cause by	bleeding
+anemia	relieve by	splenectomy	>	splenectomy	ameliorate	anemia
+anemia	cause by	hemorrhage	>	anemia	suggest	hemorrhage
+bleeding	manifest as	anemia	>	anemia	correct by	transfusion
+anemia	treat with	diet	>	anemia	require	diet
+anemia	cause by	hemorrhage	>	anemia	develop from	hemorrhage
+leukemia	associate with	anemia	>	anemia	find in	leukemia
+anemia	be in	pregnancy	>	anemia	cause during	pregnancy
+anemia	correct with	iron	>	iron	use in	anemia
+anemia	see with	bleeding	>	hemorrhage	produce	anemia
+pallor	accompany	anemia	>	pallor	suggest	anemia
+pallor	associate with	anemia	>	pallor	suggest	anemia
+anemia	occur after	hemorrhage	>	transfusion	require in	anemia
+anemia	occur after	hemorrhage	>	bleeding	manifest as	anemia
+transfusion	use for	anemia	>	transfusion	give for	anemia
+anemia	associate with	bleeding	>	anemia	observe after	hemorrhage
+leukemia	associate with	anemia	>	leukemia	cause	anemia
+anemia	cause by	hemorrhage	>	anemia	treat by	transfusion
+anemia	respond to	iron	>	anemia	treat by	iron
+bleeding	lead to	anemia	>	transfusion	improve	anemia
+hemolysis	explain	anemia	>	anemia	associate with	hemolysis
+anemia	characterize by	fatigue	>	anemia	result in	fatigue
+anemia	relieve by	splenectomy	>	anemia	cure by	splenectomy
+anemia	characterize by	erythrocyte	>	anemia	associate with	erythrocyte
+transfusion	need for	anemia	>	transfusion	require for	anemia
+bleeding	result in	anemia	>	anemia	be of	bleeding
+splenectomy	cure	anemia	>	splenectomy	alleviate	anemia
+anemia	cause by	hemorrhage	>	transfusion	give with	anemia
+pallor	associate with	anemia	>	pallor	accompany	anemia
+anemia	respond to	splenectomy	>	anemia	treat with	splenectomy
+hemolysis	produce	anemia	>	anemia	develop of	hemolysis
+anemia	treat by	iron	>	iron	prevent	anemia
+transfusion	be in	anemia	>	transfusion	require for	anemia
+pallor	denote	anemia	>	anemia	characterize by	pallor
+hemorrhage	produce	anemia	>	transfusion	require in	anemia
+tapeworm	cause	anemia	>	parasite	lead to	anemia
+tapeworm	cause	anemia	>	tapeworm	produce	anemia
+anemia	cause by	hemorrhage	>	anemia	due to	hemorrhage
+pallor	see in	anemia	>	anemia	result in	pallor
+anemia	follow	hemorrhage	>	transfusion	administer for	anemia
+bleeding	associate with	anemia	>	bleeding	lead to	anemia
+anemia	treat with	splenectomy	>	splenectomy	correct	anemia
+fatigue	result from	anemia	>	fatigue	cause by	anemia
+fatigue	associate with	anemia	>	anemia	characterize by	fatigue
+anemia	cause by	hemolysis	>	hemolysis	cause	anemia
+anemia	result from	bleeding	>	transfusion	require in	anemia
+hemorrhage	lead to	anemia	>	transfusion	give with	anemia
+anemia	characterize by	hemolysis	>	hemolysis	cause	anemia
+hemorrhage	cause	anemia	>	anemia	observe after	hemorrhage
+splenectomy	cure	anemia	>	splenectomy	correct	anemia
+splenectomy	improve	anemia	>	splenectomy	eliminate	anemia
+bleeding	result in	anemia	>	anemia	relieve by	transfusion
+hemolysis	lead to	anemia	>	anemia	develop of	hemolysis
+bleeding	manifest as	anemia	>	anemia	be of	bleeding
+anemia	treat with	iron	>	anemia	necessitate	iron
+hemorrhage	lead to	anemia	>	anemia	suggest	hemorrhage
+bleeding	result in	anemia	>	transfusion	give with	anemia
+hemorrhage	lead to	anemia	>	anemia	occur after	hemorrhage
+bleeding	manifest as	anemia	>	anemia	cause by	hemorrhage
+hemolysis	lead to	anemia	>	hemolysis	cause	anemia
+anemia	result from	hemorrhage	>	anemia	require	transfusion
+anemia	respond to	iron	>	iron	use in	anemia
+transfusion	require for	anemia	>	anemia	correct with	transfusion
+anemia	associate with	bleeding	>	anemia	see with	bleeding
+anemia	correct with	iron	>	iron	give for	anemia
+anemia	necessitate	iron	>	anemia	correct with	iron
+leukemia	associate with	anemia	>	anemia	associate with	leukemia
+bleeding	cause	anemia	>	transfusion	give with	anemia
+anemia	observe after	hemorrhage	>	anemia	follow	hemorrhage
+leukemia	present	anemia	>	anemia	be in	leukemia
+anemia	cause during	pregnancy	>	anemia	develop during	pregnancy
+transfusion	give for	anemia	>	transfusion	relieve	anemia
+hemolysis	cause	anemia	>	anemia	cause by	hemolysis
+bleeding	produce	anemia	>	anemia	correct with	transfusion
+bleeding	result in	anemia	>	transfusion	give for	anemia
+purpura	associate with	anemia	>	purpura	accompany by	anemia
+anemia	due to	hemorrhage	>	anemia	see with	bleeding
+anemia	develop from	hemorrhage	>	hemorrhage	cause	anemia
+anemia	require	iron	>	iron	give for	anemia
+pallor	indicate	anemia	>	pallor	associate with	anemia
+splenectomy	relieve	anemia	>	splenectomy	perform for	anemia
+pallor	associate with	anemia	>	pallor	indicate	anemia
+anemia	lead to	fatigue	>	anemia	cause	fatigue
+bleeding	lead to	anemia	>	anemia	develop from	hemorrhage
+anemia	terminate in	leukemia	>	leukemia	present	anemia
+anemia	result from	bleeding	>	anemia	follow	hemorrhage
+anemia	due to	hemorrhage	>	anemia	associate with	bleeding
+pallor	accompany	anemia	>	pallor	result from	anemia
+hemorrhage	cause	anemia	>	transfusion	give for	anemia
+anemia	correct with	iron	>	anemia	benefit by	iron
+anemia	develop from	hemorrhage	>	bleeding	produce	anemia
+hemolysis	associate with	anemia	>	anemia	characterize by	hemolysis
+transfusion	relieve	anemia	>	transfusion	use for	anemia
+hemolysis	produce	anemia	>	hemolysis	explain	anemia
+anemia	relieve by	transfusion	>	transfusion	be in	anemia
+anemia	respond to	splenectomy	>	anemia	improve by	splenectomy
+bleeding	result in	anemia	>	bleeding	associate with	anemia
+transfusion	administer for	anemia	>	transfusion	need for	anemia
+anemia	contribute to	fatigue	>	anemia	manifest by	fatigue
+hemorrhage	produce	anemia	>	anemia	treat by	transfusion
+hemorrhage	result in	anemia	>	anemia	observe after	hemorrhage
+splenectomy	cure	anemia	>	splenectomy	perform for	anemia
+bleeding	lead to	anemia	>	anemia	see with	bleeding
+anemia	cause by	bleeding	>	anemia	relieve by	transfusion
+hemorrhage	be in	anemia	>	anemia	cause	hemorrhage
+splenectomy	improve	anemia	>	anemia	relieve by	splenectomy
+iron	give in	anemia	>	iron	cure	anemia
+anemia	observe during	pregnancy	>	anemia	develop during	pregnancy
+leukemia	simulate	anemia	>	leukemia	present as	anemia
+bleeding	produce	anemia	>	anemia	result from	bleeding
+splenectomy	ameliorate	anemia	>	splenectomy	cure	anemia
+anemia	necessitate	iron	>	anemia	benefit by	iron
+leukemia	cause	anemia	>	leukemia	present	anemia
+hemolysis	associate with	anemia	>	hemolysis	explain	anemia
+transfusion	administer for	anemia	>	anemia	treat by	transfusion
+hemorrhage	cause	anemia	>	transfusion	require for	anemia
+anemia	suggest	hemorrhage	>	bleeding	associate with	anemia
+bleeding	produce	anemia	>	anemia	treat by	transfusion
+anemia	manifest by	pallor	>	anemia	result in	pallor
+parasite	cause	anemia	>	parasite	lead to	anemia
+anemia	correct by	transfusion	>	anemia	relieve by	transfusion
+bleeding	cause	anemia	>	anemia	develop from	hemorrhage
+transfusion	give for	anemia	>	anemia	call for	transfusion
+anemia	correct by	transfusion	>	transfusion	administer for	anemia
+pallor	cause by	anemia	>	pallor	associate with	anemia
+pallor	suggest	anemia	>	pallor	see in	anemia
+anemia	associate with	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	result from	hemorrhage	>	anemia	cause by	bleeding
+anemia	characterize by	pallor	>	pallor	suggest	anemia
+anemia	cause by	bleeding	>	anemia	result from	bleeding
+anemia	associate with	bleeding	>	transfusion	give with	anemia
+anemia	call for	transfusion	>	transfusion	relieve	anemia
+anemia	observe after	hemorrhage	>	transfusion	require in	anemia
+anemia	manifest by	pallor	>	pallor	accompany	anemia
+tapeworm	precipitate	anemia	>	anemia	relate	parasite
+splenectomy	perform for	anemia	>	anemia	respond to	splenectomy
+transfusion	give with	anemia	>	transfusion	improve	anemia
+anemia	cause during	pregnancy	>	anemia	occur in	pregnancy
+anemia	associate with	erythrocyte	>	erythrocyte	find in	anemia
+anemia	develop from	hemorrhage	>	anemia	result from	bleeding
+anemia	be of	bleeding	>	hemorrhage	lead to	anemia
+anemia	associate with	hemorrhage	>	transfusion	administer for	anemia
+leukemia	present	anemia	>	anemia	terminate in	leukemia
+anemia	benefit by	iron	>	iron	use in	anemia
+hemorrhage	lead to	anemia	>	transfusion	use for	anemia
+iron	use in	anemia	>	iron	correct	anemia
+anemia	suggest	hemorrhage	>	anemia	be of	bleeding
+splenectomy	cure	anemia	>	anemia	treat by	splenectomy
+splenectomy	relieve	anemia	>	splenectomy	cure	anemia
+hemolysis	lead to	anemia	>	hemolysis	result in	anemia
+tapeworm	cause	anemia	>	tapeworm	develop	anemia
+anemia	observe after	hemorrhage	>	bleeding	lead to	anemia
+anemia	find in	leukemia	>	anemia	be in	leukemia
+anemia	be during	pregnancy	>	pregnancy	associate with	anemia
+anemia	result from	bleeding	>	bleeding	result in	anemia
+splenectomy	cure	anemia	>	anemia	relieve by	splenectomy
+tapeworm	produce	anemia	>	parasite	cause	anemia
+anemia	develop of	hemolysis	>	anemia	result from	hemolysis
+bleeding	associate with	anemia	>	transfusion	give with	anemia
+pallor	see in	anemia	>	anemia	evidence by	pallor
+anemia	require	transfusion	>	anemia	treat by	transfusion
+hemorrhage	cause	anemia	>	anemia	result from	bleeding
+bleeding	associate with	anemia	>	transfusion	be in	anemia
+anemia	treat by	transfusion	>	anemia	correct with	transfusion
+anemia	cause by	bleeding	>	bleeding	result in	anemia
+anemia	treat by	iron	>	anemia	respond to	iron
+anemia	cause by	hemorrhage	>	anemia	treat with	transfusion
+anemia	treat with	iron	>	iron	use for	anemia
+anemia	cause by	bleeding	>	transfusion	improve	anemia
+thalassemia	characterize by	anemia	>	thalassemia	have	anemia
+anemia	result from	hemorrhage	>	anemia	relieve by	transfusion
+anemia	produce	pallor	>	pallor	see in	anemia
+transfusion	need for	anemia	>	transfusion	give with	anemia
+anemia	cause by	bleeding	>	anemia	result from	hemorrhage
+anemia	be of	bleeding	>	anemia	associate with	hemorrhage
+iron	cure	anemia	>	iron	correct	anemia
+anemia	call for	transfusion	>	transfusion	correct	anemia
+bleeding	cause	anemia	>	transfusion	need for	anemia
+anemia	recognize by	pallor	>	anemia	manifest by	pallor
+anemia	suggest	hemorrhage	>	transfusion	use for	anemia
+pallor	associate with	anemia	>	pallor	result from	anemia
+anemia	be of	bleeding	>	anemia	suggest	hemorrhage
+anemia	suggest	hemorrhage	>	anemia	result from	hemorrhage
+anemia	cause by	iron	>	anemia	result from	iron
+transfusion	use for	anemia	>	transfusion	require in	anemia
+anemia	produce	pallor	>	anemia	cause	pallor
+anemia	observe during	pregnancy	>	anemia	associate with	pregnancy
+erythropoietin	correct	anemia	>	anemia	treat with	erythropoietin
+anemia	treat with	iron	>	anemia	require	iron
+hemorrhage	cause	anemia	>	transfusion	use for	anemia
+anemia	be of	bleeding	>	transfusion	correct	anemia
+anemia	characterize by	pancytopenia	>	anemia	involve	pancytopenia
+splenectomy	alleviate	anemia	>	splenectomy	improve	anemia
+anemia	produce	pallor	>	pallor	denote	anemia
+anemia	associate with	bleeding	>	transfusion	be in	anemia
+hemorrhage	lead to	anemia	>	hemorrhage	result in	anemia
+hemorrhage	cause	anemia	>	anemia	cause by	bleeding
+iron	use for	anemia	>	anemia	benefit by	iron
+bleeding	produce	anemia	>	transfusion	require for	anemia
+transfusion	correct	anemia	>	transfusion	use for	anemia
+anemia	result from	hemorrhage	>	anemia	result from	bleeding
+splenectomy	cure	anemia	>	anemia	cure by	splenectomy
+transfusion	be in	anemia	>	transfusion	give with	anemia
+leukemia	associate with	anemia	>	leukemia	simulate	anemia
+anemia	lead to	fatigue	>	anemia	contribute to	fatigue
+anemia	benefit by	iron	>	anemia	treat by	iron
+anemia	associate with	hemorrhage	>	anemia	cause by	hemorrhage
+anemia	cause	fatigue	>	anemia	lead to	fatigue
+anemia	cause	pallor	>	pallor	denote	anemia
+diet	develop	anemia	>	diet	produce	anemia
+fatigue	relate to	anemia	>	anemia	result in	fatigue
+pallor	see in	anemia	>	anemia	manifest by	pallor
+bleeding	produce	anemia	>	hemorrhage	cause	anemia
+transfusion	need for	anemia	>	anemia	call for	transfusion
+transfusion	correct	anemia	>	transfusion	give with	anemia
+anemia	require	iron	>	iron	use in	anemia
+hemorrhage	cause	anemia	>	bleeding	produce	anemia
+anemia	relieve by	transfusion	>	anemia	require	transfusion
+anemia	respond to	iron	>	iron	use for	anemia
+anemia	associate with	leukemia	>	anemia	occur in	leukemia
+anemia	associate with	bleeding	>	transfusion	improve	anemia
+anemia	result in	fatigue	>	anemia	manifest by	fatigue
+transfusion	relieve	anemia	>	transfusion	give with	anemia
+splenectomy	relieve	anemia	>	splenectomy	eliminate	anemia
+anemia	produce	pallor	>	pallor	associate with	anemia
+anemia	associate with	hemorrhage	>	anemia	associate with	bleeding
+transfusion	give for	anemia	>	transfusion	give with	anemia
+transfusion	correct	anemia	>	transfusion	give for	anemia
+anemia	due to	hemorrhage	>	hemorrhage	result in	anemia
+bleeding	manifest as	anemia	>	bleeding	produce	anemia
+anemia	observe after	hemorrhage	>	transfusion	give for	anemia
+bleeding	cause	anemia	>	transfusion	relieve	anemia
+iron	use in	anemia	>	anemia	necessitate	iron
+hemorrhage	produce	anemia	>	anemia	correct with	transfusion
+anemia	see with	bleeding	>	anemia	occur after	hemorrhage
+leukemia	simulate	anemia	>	leukemia	present	anemia
+transfusion	give with	anemia	>	anemia	correct by	transfusion
+anemia	characterize by	pallor	>	pallor	denote	anemia
+transfusion	be in	anemia	>	transfusion	administer for	anemia
+anemia	recognize by	pallor	>	anemia	evidence by	pallor
+anemia	characterize by	pallor	>	pallor	see in	anemia
+splenectomy	alleviate	anemia	>	anemia	cure by	splenectomy
+iron	correct	anemia	>	iron	give in	anemia
+pallor	cause by	anemia	>	anemia	result in	pallor
+transfusion	administer for	anemia	>	anemia	relieve by	transfusion
+hemorrhage	result in	anemia	>	transfusion	relieve	anemia
+transfusion	require for	anemia	>	transfusion	be in	anemia
+anemia	require	transfusion	>	transfusion	relieve	anemia
+anemia	occur after	hemorrhage	>	anemia	cause by	hemorrhage
+anemia	associate with	hemorrhage	>	bleeding	lead to	anemia
+anemia	result from	hemorrhage	>	bleeding	result in	anemia
+anemia	result from	hemorrhage	>	bleeding	manifest as	anemia
+transfusion	give with	anemia	>	transfusion	need for	anemia
+pallor	see in	anemia	>	pallor	suggest	anemia
+hemolysis	contribute to	anemia	>	anemia	develop of	hemolysis
+anemia	follow	hemorrhage	>	transfusion	relieve	anemia
+anemia	suggest	hemorrhage	>	anemia	associate with	hemorrhage
+iron	correct	anemia	>	iron	prevent	anemia
+anemia	treat by	splenectomy	>	splenectomy	alleviate	anemia
+splenectomy	ameliorate	anemia	>	anemia	treat with	splenectomy
+pregnancy	associate with	anemia	>	anemia	develop during	pregnancy
+anemia	result from	hemolysis	>	anemia	cause by	hemolysis
+anemia	suggest	hemorrhage	>	bleeding	lead to	anemia
+anemia	cause by	bleeding	>	transfusion	need for	anemia
+anemia	result from	hemorrhage	>	transfusion	give with	anemia
+anemia	associate with	bleeding	>	bleeding	lead to	anemia
+bleeding	result in	anemia	>	transfusion	require in	anemia
+anemia	correct with	transfusion	>	anemia	require	transfusion
+anemia	correct with	transfusion	>	transfusion	improve	anemia
+pallor	see in	anemia	>	pallor	accompany	anemia
+pallor	suggest	anemia	>	pallor	indicate	anemia
+pallor	indicate	anemia	>	anemia	suggest by	pallor
+anemia	produce	pallor	>	anemia	characterize by	pallor
+anemia	manifest by	pallor	>	pallor	see in	anemia
+achlorhydria	associate with	anemia	>	achlorhydria	precede	anemia
+anemia	correct with	transfusion	>	anemia	call for	transfusion
+pallor	suggest	anemia	>	anemia	cause	pallor
+anemia	associate with	bleeding	>	anemia	occur after	hemorrhage
+thalassemia	cause	anemia	>	thalassemia	have	anemia
+pallor	associate with	anemia	>	anemia	result in	pallor
+anemia	benefit by	iron	>	anemia	correct by	iron
+anemia	result from	bleeding	>	anemia	due to	hemorrhage
+anemia	recognize by	pallor	>	pallor	indicate	anemia
+bleeding	result in	anemia	>	anemia	associate with	bleeding
+bleeding	lead to	anemia	>	transfusion	require for	anemia
+anemia	associate with	hemolysis	>	hemolysis	produce	anemia
+hemorrhage	result in	anemia	>	bleeding	cause	anemia
+anemia	result in	pallor	>	pallor	accompany	anemia
+anemia	associate with	hemorrhage	>	anemia	be of	bleeding
+tapeworm	produce	anemia	>	tapeworm	cause	anemia
+anemia	involve	pancytopenia	>	anemia	define as	pancytopenia
+splenectomy	improve	anemia	>	anemia	improve by	splenectomy
+anemia	associate with	bleeding	>	transfusion	give for	anemia
+anemia	correct by	transfusion	>	transfusion	require in	anemia
+anemia	result from	bleeding	>	transfusion	require for	anemia
+anemia	evidence by	pallor	>	pallor	suggest	anemia
+anemia	correct by	transfusion	>	transfusion	give with	anemia
+hemorrhage	result in	anemia	>	bleeding	produce	anemia
+anemia	occur after	hemorrhage	>	anemia	call for	transfusion
+anemia	result from	bleeding	>	anemia	cause by	bleeding
+fatigue	cause by	anemia	>	anemia	cause	fatigue
+anemia	result in	fatigue	>	fatigue	associate with	anemia
+bleeding	result in	anemia	>	hemorrhage	lead to	anemia
+anemia	suggest	hemorrhage	>	hemorrhage	produce	anemia
+anemia	require	transfusion	>	transfusion	correct	anemia
+anemia	suggest	hemorrhage	>	anemia	associate with	bleeding
+iron	give for	anemia	>	anemia	benefit by	iron
+anemia	observe after	hemorrhage	>	transfusion	relieve	anemia
+transfusion	require in	anemia	>	anemia	treat with	transfusion
+anemia	correct by	transfusion	>	anemia	require	transfusion
+transfusion	give for	anemia	>	transfusion	need for	anemia
+anemia	develop of	hemolysis	>	anemia	characterize by	hemolysis
+anemia	cause	pallor	>	pallor	cause by	anemia
+pallor	accompany	anemia	>	pallor	see in	anemia
+leukemia	present as	anemia	>	leukemia	masquerade as	anemia
+anemia	follow	hemorrhage	>	anemia	correct by	transfusion
+anemia	develop during	pregnancy	>	anemia	encounter during	pregnancy
+anemia	associate with	hemorrhage	>	anemia	see with	bleeding
+iron	give in	anemia	>	iron	give for	anemia
+hemorrhage	result in	anemia	>	anemia	result from	hemorrhage
+anemia	cause	pallor	>	anemia	result in	pallor
+anemia	develop from	hemorrhage	>	bleeding	cause	anemia
+anemia	cure by	splenectomy	>	splenectomy	correct	anemia
+anemia	treat with	transfusion	>	transfusion	require for	anemia
+anemia	occur after	hemorrhage	>	bleeding	cause	anemia
+anemia	cause by	bleeding	>	bleeding	manifest as	anemia
+hemorrhage	lead to	anemia	>	anemia	follow	hemorrhage
+anemia	due to	hemorrhage	>	transfusion	administer for	anemia
+anemia	treat with	transfusion	>	transfusion	administer for	anemia
+anemia	develop from	hemorrhage	>	transfusion	give with	anemia
+transfusion	improve	anemia	>	transfusion	require for	anemia
+transfusion	give with	anemia	>	transfusion	relieve	anemia
+anemia	be during	pregnancy	>	anemia	associate with	pregnancy
+anemia	result from	bleeding	>	anemia	result from	hemorrhage
+anemia	result in	pallor	>	pallor	indicate	anemia
+anemia	characterize by	hemolysis	>	hemolysis	result in	anemia
+anemia	occur after	hemorrhage	>	bleeding	produce	anemia
+anemia	suggest	hemorrhage	>	bleeding	manifest as	anemia
+anemia	evidence by	pallor	>	anemia	characterize by	pallor
+anemia	be of	bleeding	>	transfusion	administer for	anemia
+anemia	associate with	hemolysis	>	hemolysis	result in	anemia
+anemia	associate with	bleeding	>	anemia	result from	bleeding
+anemia	cause by	bleeding	>	transfusion	give with	anemia
+splenectomy	eliminate	anemia	>	anemia	treat by	splenectomy
+transfusion	require for	anemia	>	anemia	relieve by	transfusion
+leukemia	associate with	anemia	>	anemia	be in	leukemia
+anemia	find in	leukemia	>	leukemia	present	anemia
+bleeding	cause	anemia	>	hemorrhage	cause	anemia
+hemorrhage	cause	anemia	>	hemorrhage	lead to	anemia
+transfusion	require for	anemia	>	transfusion	relieve	anemia
+iron	use for	anemia	>	iron	correct	anemia
+bleeding	associate with	anemia	>	bleeding	result in	anemia
+anemia	occur after	hemorrhage	>	bleeding	associate with	anemia
+transfusion	give with	anemia	>	transfusion	administer for	anemia
+anemia	require	transfusion	>	transfusion	require in	anemia
+tapeworm	develop	anemia	>	parasite	produce	anemia
+anemia	result from	bleeding	>	transfusion	give with	anemia
+anemia	call for	transfusion	>	transfusion	improve	anemia
+anemia	cause by	bleeding	>	bleeding	lead to	anemia
+anemia	treat by	transfusion	>	transfusion	give with	anemia
+tapeworm	develop	anemia	>	tapeworm	cause	anemia
+anemia	occur in	leukemia	>	leukemia	simulate	anemia
+anemia	due to	hemorrhage	>	anemia	treat by	transfusion
+leukemia	associate with	anemia	>	anemia	occur in	leukemia
+anemia	associate with	pregnancy	>	pregnancy	associate with	anemia
+anemia	accompany	leukemia	>	leukemia	present as	anemia
+parasite	lead to	anemia	>	parasite	produce	anemia
+anemia	associate with	hemolysis	>	hemolysis	cause	anemia
+anemia	associate with	bleeding	>	anemia	due to	hemorrhage
+splenectomy	eliminate	anemia	>	splenectomy	correct	anemia
+anemia	terminate in	leukemia	>	anemia	be in	leukemia
+transfusion	use for	anemia	>	transfusion	correct	anemia
+anemia	result from	bleeding	>	anemia	correct with	transfusion
+anemia	observe after	hemorrhage	>	anemia	cause by	bleeding
+hemolysis	produce	anemia	>	hemolysis	result in	anemia
+hemorrhage	cause	anemia	>	anemia	suggest	hemorrhage
+anemia	cause by	bleeding	>	anemia	treat with	transfusion
+anemia	cause by	bleeding	>	anemia	develop from	hemorrhage
+anemia	lead to	fatigue	>	fatigue	relate to	anemia
+transfusion	improve	anemia	>	anemia	correct by	transfusion
+anemia	result from	bleeding	>	anemia	observe after	hemorrhage
+fatigue	associate with	anemia	>	anemia	associate with	fatigue
+anemia	call for	transfusion	>	anemia	treat with	transfusion
+achlorhydria	occur in	anemia	>	achlorhydria	associate with	anemia
+anemia	associate with	leukemia	>	leukemia	masquerade as	anemia
+anemia	cause	hemorrhage	>	hemorrhage	occur in	anemia
+pallor	denote	anemia	>	anemia	produce	pallor
+anemia	occur in	pregnancy	>	anemia	be during	pregnancy
+leukemia	masquerade as	anemia	>	leukemia	present	anemia
+anemia	result from	hemolysis	>	anemia	associate with	hemolysis
+hemorrhage	cause	anemia	>	anemia	treat with	transfusion
+anemia	observe after	hemorrhage	>	anemia	be of	bleeding
+anemia	terminate in	leukemia	>	anemia	occur in	leukemia
+anemia	result from	bleeding	>	anemia	treat by	transfusion
+leukemia	present	anemia	>	leukemia	cause	anemia
+anemia	suggest	hemorrhage	>	anemia	occur after	hemorrhage
+anemia	relieve by	splenectomy	>	splenectomy	eliminate	anemia
+thalassemia	cause	anemia	>	thalassemia	associate with	anemia
+transfusion	administer for	anemia	>	anemia	require	transfusion
+hemorrhage	cause	anemia	>	transfusion	need for	anemia
+achlorhydria	occur in	anemia	>	achlorhydria	precede	anemia
+purpura	accompany by	anemia	>	purpura	acquire	anemia
+anemia	follow	hemorrhage	>	anemia	treat by	transfusion
+anemia	treat with	iron	>	anemia	treat by	iron
+hemorrhage	result in	anemia	>	anemia	suggest	hemorrhage
+hemorrhage	result in	anemia	>	bleeding	lead to	anemia
+leukemia	simulate	anemia	>	anemia	accompany	leukemia
+hemolysis	cause	anemia	>	anemia	develop of	hemolysis
+hemolysis	associate with	anemia	>	hemolysis	contribute to	anemia
+bleeding	manifest as	anemia	>	anemia	treat with	transfusion
+bleeding	associate with	anemia	>	anemia	due to	hemorrhage
+anemia	result from	hemolysis	>	anemia	characterize by	hemolysis
+iron	cure	anemia	>	iron	use for	anemia
+pallor	result from	anemia	>	anemia	manifest by	pallor
+hemorrhage	result in	anemia	>	anemia	correct with	transfusion
+anemia	cause by	hemorrhage	>	transfusion	use for	anemia
+anemia	develop from	hemorrhage	>	transfusion	need for	anemia
+bleeding	cause	anemia	>	anemia	result from	bleeding
+bleeding	manifest as	anemia	>	transfusion	correct	anemia
+anemia	associate with	hemorrhage	>	anemia	correct with	transfusion
+pallor	accompany	anemia	>	pallor	associate with	anemia
+anemia	cause by	hemorrhage	>	bleeding	cause	anemia
+anemia	observe during	pregnancy	>	anemia	occur in	pregnancy
+anemia	associate with	fatigue	>	anemia	manifest by	fatigue
+anemia	develop from	hemorrhage	>	anemia	treat with	transfusion
+pallor	indicate	anemia	>	anemia	recognize by	pallor
+purpura	associate with	anemia	>	purpura	characterize by	anemia
+anemia	define as	pancytopenia	>	anemia	characterize by	pancytopenia
+pallor	denote	anemia	>	anemia	cause	pallor
+hemorrhage	produce	anemia	>	transfusion	improve	anemia
+anemia	suggest	hemorrhage	>	anemia	follow	hemorrhage
+anemia	correct with	iron	>	iron	prevent	anemia
+transfusion	use for	anemia	>	transfusion	relieve	anemia
+anemia	correct by	transfusion	>	transfusion	use for	anemia
+anemia	associate with	hemorrhage	>	anemia	suggest	hemorrhage
+hemorrhage	cause	anemia	>	transfusion	correct	anemia
+anemia	terminate in	leukemia	>	anemia	accompany	leukemia
+anemia	see with	bleeding	>	bleeding	cause	anemia
+splenectomy	alleviate	anemia	>	splenectomy	ameliorate	anemia
+anemia	occur in	leukemia	>	anemia	associate with	leukemia
+hemorrhage	produce	anemia	>	bleeding	result in	anemia
+hemorrhage	lead to	anemia	>	anemia	treat by	transfusion
+transfusion	need for	anemia	>	transfusion	improve	anemia
+anemia	contribute to	fatigue	>	fatigue	relate to	anemia
+anemia	associate with	bleeding	>	transfusion	relieve	anemia
+anemia	correct by	iron	>	anemia	correct with	iron
+anemia	recognize by	pallor	>	pallor	denote	anemia
+leukemia	masquerade as	anemia	>	leukemia	simulate	anemia
+hemorrhage	lead to	anemia	>	anemia	result from	bleeding
+anemia	observe after	hemorrhage	>	hemorrhage	cause	anemia
+anemia	occur in	pregnancy	>	pregnancy	associate with	anemia
+anemia	treat with	iron	>	anemia	correct with	iron
+pallor	cause by	anemia	>	pallor	see in	anemia
+transfusion	require for	anemia	>	transfusion	correct	anemia
+anemia	cause by	hemorrhage	>	anemia	follow	hemorrhage
+iron	give for	anemia	>	anemia	respond to	iron
+anemia	characterize by	hemolysis	>	hemolysis	lead to	anemia
+bleeding	produce	anemia	>	bleeding	result in	anemia
+bleeding	produce	anemia	>	anemia	develop from	hemorrhage
+splenectomy	relieve	anemia	>	anemia	treat with	splenectomy
+anemia	be of	bleeding	>	transfusion	improve	anemia
+bleeding	cause	anemia	>	anemia	associate with	hemorrhage
+bleeding	lead to	anemia	>	anemia	relieve by	transfusion
+hemorrhage	produce	anemia	>	anemia	due to	hemorrhage
+anemia	see with	bleeding	>	anemia	call for	transfusion
+pallor	suggest	anemia	>	pallor	associate with	anemia
+anemia	result from	hemorrhage	>	anemia	treat with	transfusion
+anemia	follow	hemorrhage	>	anemia	develop from	hemorrhage
+hemolysis	associate with	anemia	>	anemia	develop of	hemolysis
+bleeding	associate with	anemia	>	transfusion	give for	anemia
+anemia	develop during	pregnancy	>	anemia	cause during	pregnancy
+iron	use for	anemia	>	anemia	correct by	iron
+anemia	associate with	pregnancy	>	anemia	be during	pregnancy
+anemia	follow	hemorrhage	>	transfusion	improve	anemia
+bleeding	produce	anemia	>	anemia	relieve by	transfusion
+anemia	manifest by	fatigue	>	anemia	cause	fatigue
+anemia	characterize by	pallor	>	anemia	evidence by	pallor
+transfusion	relieve	anemia	>	anemia	correct with	transfusion
+hemorrhage	be in	anemia	>	hemorrhage	occur in	anemia
+anemia	cause	pallor	>	pallor	see in	anemia
+erythropoietin	use for	anemia	>	erythropoietin	correct	anemia
+anemia	require	diet	>	anemia	cure by	diet
+anemia	treat with	transfusion	>	transfusion	give with	anemia
+hemorrhage	produce	anemia	>	anemia	result from	bleeding
+anemia	cause by	hemorrhage	>	transfusion	give for	anemia
+transfusion	need for	anemia	>	transfusion	correct	anemia
+transfusion	improve	anemia	>	transfusion	use for	anemia
+hemorrhage	lead to	anemia	>	transfusion	be in	anemia
+leukemia	cause	anemia	>	anemia	terminate in	leukemia
+anemia	observe after	hemorrhage	>	anemia	associate with	hemorrhage
+anemia	associate with	hemorrhage	>	hemorrhage	result in	anemia
+thalassemia	characterize by	anemia	>	anemia	associate with	thalassemia
+anemia	encounter during	pregnancy	>	anemia	associate with	pregnancy
+iron	use in	anemia	>	iron	cure	anemia
+anemia	associate with	leukemia	>	leukemia	cause	anemia
+anemia	respond to	iron	>	iron	prevent	anemia
+anemia	correct by	iron	>	anemia	benefit by	iron
+thalassemia	associate with	anemia	>	thalassemia	cause	anemia
+hemolysis	produce	anemia	>	hemolysis	associate with	anemia
+iron	give in	anemia	>	iron	use in	anemia
+anemia	cause	pancytopenia	>	anemia	involve	pancytopenia
+leukemia	present as	anemia	>	anemia	find in	leukemia
+bleeding	manifest as	anemia	>	transfusion	require in	anemia
+anemia	result in	fatigue	>	anemia	associate with	fatigue
+iron	correct	anemia	>	anemia	treat by	iron
+anemia	occur in	leukemia	>	anemia	find in	leukemia
+bleeding	associate with	anemia	>	anemia	observe after	hemorrhage
+anemia	characterize by	pallor	>	pallor	cause by	anemia
+anemia	manifest by	pallor	>	pallor	indicate	anemia
+anemia	due to	hemorrhage	>	bleeding	lead to	anemia
+anemia	associate with	bleeding	>	transfusion	require for	anemia
+anemia	cause by	hemorrhage	>	bleeding	result in	anemia
+bleeding	cause	anemia	>	bleeding	lead to	anemia
+transfusion	improve	anemia	>	anemia	call for	transfusion
+hemorrhage	be in	anemia	>	hemorrhage	suggest	anemia
+anemia	terminate in	leukemia	>	anemia	find in	leukemia
+bleeding	produce	anemia	>	transfusion	give with	anemia
+anemia	observe after	hemorrhage	>	anemia	correct with	transfusion
+anemia	result from	hemorrhage	>	bleeding	produce	anemia
+anemia	associate with	hemorrhage	>	anemia	call for	transfusion
+splenectomy	correct	anemia	>	splenectomy	alleviate	anemia
+leukemia	present	anemia	>	anemia	find in	leukemia
+anemia	correct by	transfusion	>	transfusion	correct	anemia
+anemia	correct with	transfusion	>	transfusion	require for	anemia
+pallor	associate with	anemia	>	anemia	cause	pallor
+anemia	see with	bleeding	>	bleeding	result in	anemia
+transfusion	administer for	anemia	>	transfusion	use for	anemia
+iron	cure	anemia	>	anemia	necessitate	iron
+anemia	correct with	transfusion	>	transfusion	administer for	anemia
+iron	use for	anemia	>	iron	cure	anemia
+anemia	observe after	hemorrhage	>	anemia	suggest	hemorrhage
+hemorrhage	produce	anemia	>	transfusion	give with	anemia
+anemia	result from	hemorrhage	>	hemorrhage	cause	anemia
+iron	produce	anemia	>	anemia	cause by	iron
+splenectomy	improve	anemia	>	anemia	cure by	splenectomy
+anemia	suggest	hemorrhage	>	anemia	correct by	transfusion
+anemia	observe after	hemorrhage	>	transfusion	correct	anemia
+anemia	require	transfusion	>	anemia	correct by	transfusion
+anemia	cause by	hemorrhage	>	bleeding	manifest as	anemia
+parasite	lead to	anemia	>	anemia	relate	parasite
+hemorrhage	result in	anemia	>	anemia	be of	bleeding
+tapeworm	develop	anemia	>	tapeworm	precipitate	anemia
+splenectomy	eliminate	anemia	>	splenectomy	improve	anemia
+anemia	relieve by	splenectomy	>	splenectomy	relieve	anemia
+anemia	observe after	hemorrhage	>	anemia	treat with	transfusion
+hemorrhage	produce	anemia	>	anemia	occur after	hemorrhage
+anemia	cure by	splenectomy	>	splenectomy	alleviate	anemia
+transfusion	be in	anemia	>	anemia	treat by	transfusion
+anemia	cause by	hemolysis	>	anemia	develop of	hemolysis
+anemia	suggest	hemorrhage	>	anemia	correct with	transfusion
+anemia	associate with	bleeding	>	anemia	be of	bleeding
+bleeding	result in	anemia	>	anemia	suggest	hemorrhage
+erythrocyte	occur in	anemia	>	erythrocyte	find in	anemia
+hemorrhage	produce	anemia	>	anemia	observe after	hemorrhage
+bleeding	result in	anemia	>	anemia	develop from	hemorrhage
+bleeding	produce	anemia	>	bleeding	associate with	anemia
+leukemia	simulate	anemia	>	anemia	occur in	leukemia
+anemia	correct by	iron	>	anemia	necessitate	iron
+hemolysis	explain	anemia	>	anemia	cause by	hemolysis
+anemia	require	transfusion	>	transfusion	give for	anemia
+anemia	require	iron	>	iron	prevent	anemia
+bleeding	associate with	anemia	>	anemia	require	transfusion
+pallor	cause by	anemia	>	anemia	cause	pallor
+anemia	manifest by	pallor	>	anemia	cause	pallor
+anemia	treat by	transfusion	>	transfusion	give for	anemia
+anemia	manifest by	fatigue	>	anemia	associate with	fatigue
+anemia	correct by	transfusion	>	transfusion	improve	anemia
+anemia	treat by	transfusion	>	transfusion	administer for	anemia
+anemia	cause	pancytopenia	>	anemia	define as	pancytopenia
+hemorrhage	lead to	anemia	>	transfusion	require in	anemia
+pregnancy	cause	anemia	>	anemia	be during	pregnancy
+anemia	manifest by	fatigue	>	fatigue	associate with	anemia
+splenectomy	perform for	anemia	>	anemia	cure by	splenectomy
+bleeding	associate with	anemia	>	anemia	occur after	hemorrhage
+hemolysis	lead to	anemia	>	hemolysis	associate with	anemia
+transfusion	need for	anemia	>	transfusion	relieve	anemia
+iron	use for	anemia	>	iron	use in	anemia
+anemia	develop from	hemorrhage	>	anemia	due to	hemorrhage
+bleeding	produce	anemia	>	transfusion	require in	anemia
+anemia	due to	hemorrhage	>	bleeding	manifest as	anemia
+anemia	be of	bleeding	>	transfusion	give with	anemia
+anemia	observe after	hemorrhage	>	hemorrhage	result in	anemia
+tapeworm	produce	anemia	>	anemia	relate	parasite
+hemorrhage	lead to	anemia	>	anemia	observe after	hemorrhage
+erythropoietin	correct	anemia	>	anemia	correct with	erythropoietin
+anemia	correct by	transfusion	>	anemia	call for	transfusion
+bleeding	lead to	anemia	>	hemorrhage	cause	anemia
+anemia	follow	hemorrhage	>	transfusion	need for	anemia
+transfusion	correct	anemia	>	transfusion	administer for	anemia
+anemia	treat with	transfusion	>	transfusion	give for	anemia
+parasite	produce	anemia	>	anemia	relate	parasite
+thalassemia	cause	anemia	>	anemia	associate with	thalassemia
+bleeding	cause	anemia	>	transfusion	require for	anemia
+anemia	develop during	pregnancy	>	pregnancy	cause	anemia
+anemia	occur after	hemorrhage	>	anemia	correct by	transfusion
+pallor	result from	anemia	>	pallor	indicate	anemia
+bleeding	produce	anemia	>	anemia	observe after	hemorrhage
+anemia	cause by	bleeding	>	bleeding	produce	anemia
+anemia	develop of	hemolysis	>	hemolysis	associate with	anemia
+anemia	due to	hemorrhage	>	bleeding	result in	anemia
+parasite	lead to	anemia	>	parasite	cause	anemia
+hemorrhage	result in	anemia	>	anemia	associate with	bleeding
+anemia	cause by	hemorrhage	>	anemia	cause by	bleeding
+anemia	associate with	hemorrhage	>	transfusion	relieve	anemia
+anemia	due to	hemorrhage	>	bleeding	cause	anemia
+anemia	be in	leukemia	>	anemia	occur in	leukemia
+leukemia	cause	anemia	>	leukemia	masquerade as	anemia
+bleeding	result in	anemia	>	anemia	require	transfusion
+pallor	associate with	anemia	>	anemia	suggest by	pallor
+anemia	suggest	hemorrhage	>	anemia	treat by	transfusion
+transfusion	be in	anemia	>	anemia	call for	transfusion
+anemia	be of	bleeding	>	transfusion	relieve	anemia
+anemia	cause by	bleeding	>	hemorrhage	cause	anemia
+hemorrhage	result in	anemia	>	anemia	result from	bleeding
+anemia	suggest by	pallor	>	pallor	cause by	anemia
+anemia	respond to	iron	>	iron	give for	anemia
+pallor	suggest	anemia	>	anemia	produce	pallor
+hemorrhage	result in	anemia	>	anemia	due to	hemorrhage
+bleeding	lead to	anemia	>	transfusion	give with	anemia
+anemia	cause by	hemolysis	>	anemia	result from	hemolysis
+anemia	treat with	diet	>	anemia	treat by	diet
+bleeding	lead to	anemia	>	transfusion	give for	anemia
+anemia	develop from	hemorrhage	>	anemia	result from	hemorrhage
+anemia	result from	hemorrhage	>	transfusion	correct	anemia
+anemia	suggest	hemorrhage	>	anemia	develop from	hemorrhage
+iron	cause	anemia	>	anemia	characterize by	iron
+bleeding	result in	anemia	>	anemia	observe after	hemorrhage
+anemia	cause	hemorrhage	>	hemorrhage	associate with	anemia
+leukemia	present as	anemia	>	leukemia	cause	anemia
+transfusion	need for	anemia	>	transfusion	administer for	anemia
+anemia	call for	transfusion	>	transfusion	use for	anemia
+transfusion	need for	anemia	>	anemia	correct with	transfusion
+anemia	develop from	hemorrhage	>	bleeding	result in	anemia
+leukemia	simulate	anemia	>	leukemia	cause	anemia
+bleeding	manifest as	anemia	>	bleeding	associate with	anemia
+transfusion	be in	anemia	>	anemia	require	transfusion
+anemia	cause	pallor	>	pallor	associate with	anemia
+anemia	cause by	diet	>	diet	develop	anemia
+anemia	result from	bleeding	>	anemia	call for	transfusion
+anemia	follow	hemorrhage	>	transfusion	require for	anemia
+anemia	cause	fatigue	>	fatigue	result from	anemia
+bleeding	result in	anemia	>	anemia	occur after	hemorrhage
+anemia	associate with	thalassemia	>	thalassemia	associate with	anemia
+anemia	recognize by	pallor	>	anemia	result in	pallor
+pallor	cause by	anemia	>	pallor	suggest	anemia
+bleeding	result in	anemia	>	transfusion	correct	anemia
+hemolysis	result in	anemia	>	hemolysis	contribute to	anemia
+anemia	improve by	splenectomy	>	anemia	treat by	splenectomy
+anemia	cause by	hemorrhage	>	transfusion	correct	anemia
+splenectomy	perform for	anemia	>	splenectomy	ameliorate	anemia
+erythropoietin	reduce	anemia	>	erythropoietin	correct	anemia
+iron	prevent	anemia	>	anemia	correct by	iron
+anemia	relieve by	transfusion	>	anemia	call for	transfusion
+anemia	occur in	leukemia	>	leukemia	present as	anemia
+anemia	produce	pallor	>	pallor	indicate	anemia
+bleeding	produce	anemia	>	anemia	associate with	bleeding
+transfusion	improve	anemia	>	transfusion	be in	anemia
+bleeding	lead to	anemia	>	transfusion	correct	anemia
+anemia	recognize by	pallor	>	anemia	produce	pallor
+purpura	accompany by	anemia	>	purpura	characterize by	anemia
+anemia	associate with	leukemia	>	leukemia	associate with	anemia
+hemorrhage	cause	anemia	>	anemia	follow	hemorrhage
+bleeding	result in	anemia	>	anemia	treat by	transfusion
+transfusion	administer for	anemia	>	transfusion	require for	anemia
+splenectomy	correct	anemia	>	splenectomy	cure	anemia
+anemia	relate	parasite	>	parasite	produce	anemia
+transfusion	use for	anemia	>	transfusion	need for	anemia
+achlorhydria	find in	anemia	>	anemia	associate with	achlorhydria
+anemia	observe after	hemorrhage	>	anemia	occur after	hemorrhage
+bleeding	manifest as	anemia	>	anemia	follow	hemorrhage
+anemia	see with	bleeding	>	anemia	be of	bleeding
+pallor	result from	anemia	>	anemia	suggest by	pallor
+splenectomy	correct	anemia	>	splenectomy	ameliorate	anemia
+anemia	observe during	pregnancy	>	pregnancy	cause	anemia
+transfusion	require for	anemia	>	transfusion	use for	anemia
+anemia	cause by	bleeding	>	transfusion	give for	anemia
+anemia	correct by	transfusion	>	transfusion	need for	anemia
+anemia	treat with	iron	>	iron	cure	anemia
+anemia	cause by	bleeding	>	transfusion	administer for	anemia
+leukemia	present as	anemia	>	anemia	associate with	leukemia
+parasite	cause	anemia	>	parasite	produce	anemia
+anemia	result from	iron	>	anemia	cause by	iron
+leukemia	present as	anemia	>	anemia	terminate in	leukemia
+transfusion	require for	anemia	>	transfusion	improve	anemia
+anemia	treat with	erythropoietin	>	erythropoietin	correct	anemia
+diet	cause	anemia	>	diet	develop	anemia
+anemia	be of	bleeding	>	anemia	follow	hemorrhage
+bleeding	cause	anemia	>	anemia	cause by	hemorrhage
+bleeding	result in	anemia	>	anemia	associate with	hemorrhage
+anemia	characterize by	fatigue	>	fatigue	result from	anemia
+anemia	occur after	hemorrhage	>	anemia	cause by	bleeding
+anemia	cause by	bleeding	>	anemia	suggest	hemorrhage
+anemia	result in	pallor	>	pallor	cause by	anemia
+anemia	occur during	pregnancy	>	anemia	be in	pregnancy
+bleeding	lead to	anemia	>	bleeding	produce	anemia
+anemia	require	transfusion	>	anemia	correct with	transfusion
+anemia	see with	bleeding	>	transfusion	administer for	anemia
+anemia	cause by	hemolysis	>	hemolysis	result in	anemia
+anemia	treat by	diet	>	anemia	prevent by	diet
+splenectomy	correct	anemia	>	splenectomy	perform for	anemia
+bleeding	result in	anemia	>	anemia	cause by	bleeding
+anemia	observe after	hemorrhage	>	transfusion	improve	anemia
+bleeding	lead to	anemia	>	bleeding	cause	anemia
+anemia	result from	hemorrhage	>	anemia	develop from	hemorrhage
+transfusion	improve	anemia	>	anemia	require	transfusion
+anemia	evidence by	pallor	>	pallor	see in	anemia
+anemia	observe after	hemorrhage	>	anemia	treat by	transfusion
+bleeding	manifest as	anemia	>	transfusion	require for	anemia
+pallor	see in	anemia	>	anemia	recognize by	pallor
+anemia	treat by	iron	>	iron	give in	anemia
+iron	cure	anemia	>	anemia	treat with	iron
+pallor	result from	anemia	>	anemia	cause	pallor
+anemia	see with	bleeding	>	anemia	result from	hemorrhage
+anemia	relieve by	transfusion	>	anemia	correct by	transfusion
+pallor	indicate	anemia	>	anemia	evidence by	pallor
+anemia	be in	leukemia	>	anemia	find in	leukemia
+achlorhydria	precede	anemia	>	achlorhydria	be in	anemia
+pallor	suggest	anemia	>	anemia	characterize by	pallor
+anemia	develop from	hemorrhage	>	transfusion	give for	anemia
+transfusion	give for	anemia	>	transfusion	require in	anemia
+anemia	call for	transfusion	>	transfusion	require in	anemia
+bleeding	manifest as	anemia	>	hemorrhage	lead to	anemia
+anemia	observe after	hemorrhage	>	transfusion	be in	anemia
+anemia	characterize by	pallor	>	anemia	suggest by	pallor
+anemia	correct by	transfusion	>	transfusion	require for	anemia
+anemia	associate with	bleeding	>	transfusion	require in	anemia
+anemia	characterize by	fatigue	>	anemia	contribute to	fatigue
+bleeding	cause	anemia	>	transfusion	improve	anemia
+anemia	cure by	diet	>	anemia	treat by	diet
+anemia	occur in	pregnancy	>	anemia	occur during	pregnancy
+leukemia	associate with	anemia	>	leukemia	present	anemia
+bleeding	associate with	anemia	>	anemia	relieve by	transfusion
+anemia	follow	hemorrhage	>	anemia	be of	bleeding
+bleeding	cause	anemia	>	anemia	relieve by	transfusion
+tapeworm	associate with	anemia	>	anemia	relate	parasite
+splenectomy	ameliorate	anemia	>	anemia	respond to	splenectomy
+hemolysis	explain	anemia	>	hemolysis	lead to	anemia
+splenectomy	perform for	anemia	>	anemia	treat with	splenectomy
+erythrocyte	occur in	anemia	>	anemia	characterize by	erythrocyte
+hemorrhage	associate with	anemia	>	hemorrhage	be in	anemia
+splenectomy	perform for	anemia	>	anemia	treat by	splenectomy
+pallor	accompany	anemia	>	anemia	cause	pallor
+hemorrhage	cause	anemia	>	hemorrhage	result in	anemia
+bleeding	lead to	anemia	>	transfusion	relieve	anemia
+bleeding	manifest as	anemia	>	anemia	due to	hemorrhage
+bleeding	produce	anemia	>	anemia	due to	hemorrhage
+anemia	treat by	transfusion	>	anemia	require	transfusion
+anemia	develop of	hemolysis	>	anemia	cause by	hemolysis
+iron	use in	anemia	>	anemia	correct with	iron
+anemia	manifest by	pallor	>	anemia	characterize by	pallor
+anemia	due to	hemorrhage	>	anemia	relieve by	transfusion
+pallor	cause by	anemia	>	pallor	denote	anemia
+anemia	result from	hemorrhage	>	transfusion	give for	anemia
+anemia	cause during	pregnancy	>	pregnancy	cause	anemia
+bleeding	associate with	anemia	>	transfusion	correct	anemia
+anemia	be in	leukemia	>	anemia	terminate in	leukemia
+anemia	correct with	iron	>	anemia	treat with	iron
+anemia	encounter during	pregnancy	>	anemia	occur during	pregnancy
+hemorrhage	suggest	anemia	>	hemorrhage	be in	anemia
+anemia	treat by	diet	>	anemia	require	diet
+anemia	benefit by	iron	>	anemia	require	iron
+leukemia	present as	anemia	>	leukemia	simulate	anemia
+anemia	be of	bleeding	>	anemia	cause by	hemorrhage
+hemorrhage	produce	anemia	>	bleeding	lead to	anemia
+transfusion	use for	anemia	>	transfusion	administer for	anemia
+bleeding	result in	anemia	>	transfusion	relieve	anemia
+hemolysis	lead to	anemia	>	hemolysis	produce	anemia
+achlorhydria	find in	anemia	>	achlorhydria	occur in	anemia
+leukemia	masquerade as	anemia	>	anemia	accompany	leukemia
+anemia	result from	hemolysis	>	hemolysis	explain	anemia
+bleeding	produce	anemia	>	anemia	result from	hemorrhage
+anemia	result from	hemorrhage	>	anemia	suggest	hemorrhage
+anemia	treat with	diet	>	anemia	cure by	diet
+hemolysis	result in	anemia	>	anemia	result from	hemolysis
+hemorrhage	result in	anemia	>	anemia	occur after	hemorrhage
+pallor	see in	anemia	>	anemia	cause	pallor
+splenectomy	eliminate	anemia	>	splenectomy	ameliorate	anemia
+ulcer	be in	anemia	>	ulcer	occur in	anemia
+hemorrhage	produce	anemia	>	anemia	be of	bleeding
+anemia	follow	hemorrhage	>	transfusion	use for	anemia
+anemia	necessitate	iron	>	iron	use for	anemia
+anemia	characterize by	hemolysis	>	anemia	cause by	hemolysis
+anemia	cause by	diet	>	diet	cause	anemia
+hemorrhage	cause	anemia	>	transfusion	improve	anemia
+anemia	follow	hemorrhage	>	bleeding	manifest as	anemia
+transfusion	require in	anemia	>	anemia	correct by	transfusion
+anemia	cause by	hemorrhage	>	transfusion	need for	anemia
+anemia	cause by	hemorrhage	>	transfusion	administer for	anemia
+pallor	result from	anemia	>	pallor	accompany	anemia
+anemia	characterize by	erythrocyte	>	erythrocyte	occur in	anemia
+fatigue	associate with	anemia	>	anemia	result in	fatigue
+anemia	involve	pancytopenia	>	anemia	cause	pancytopenia
+iron	indicate in	anemia	>	iron	indicate for	anemia
+anemia	accompany	leukemia	>	anemia	terminate in	leukemia
+transfusion	relieve	anemia	>	transfusion	administer for	anemia
+bleeding	cause	anemia	>	anemia	associate with	bleeding
+anemia	due to	hemorrhage	>	anemia	treat with	transfusion
+pallor	denote	anemia	>	pallor	indicate	anemia
+anemia	characterize by	pallor	>	anemia	recognize by	pallor
+anemia	occur in	pregnancy	>	anemia	cause during	pregnancy
+transfusion	relieve	anemia	>	transfusion	require for	anemia
+bleeding	cause	anemia	>	anemia	require	transfusion
+anemia	result in	pallor	>	anemia	characterize by	pallor
+bleeding	produce	anemia	>	bleeding	cause	anemia
+leukemia	present as	anemia	>	leukemia	present	anemia
+iron	cure	anemia	>	anemia	respond to	iron
+anemia	treat by	diet	>	anemia	cure by	diet
+anemia	result in	pallor	>	anemia	evidence by	pallor
+hemorrhage	result in	anemia	>	anemia	call for	transfusion
+anemia	characterize by	pallor	>	pallor	indicate	anemia

@@ -1,0 +1,265 @@
+pain	relieve by	aspirin
+aspirin	alleviate	pain
+aspirin	ease	pain
+aspirin	cause	pain
+aspirin	prescribe for	pain
+aspirin	be in	pain
+aspirin	give for	pain
+aspirin	dull	pain
+pain	treat with	aspirin
+pain	relieve with	aspirin
+aspirin	kill	pain
+pain	manage with	aspirin
+aspirin	take for	pain
+aspirin	help with	pain
+aspirin	help	pain
+pain	control by	aspirin
+pain	respond to	aspirin
+pain	ease by	aspirin
+aspirin	need for	pain
+aspirin	control	pain
+aspirin	relieve	pain
+aspirin	reduce	pain
+aspirin	be for	pain
+aspirin	use for	pain
+pain	control with	aspirin
+child	treat with	aspirin
+child	use	aspirin
+aspirin	administer to	child
+aspirin	use in	child
+aspirin	use for	child
+child	poison by	aspirin
+child	give	aspirin
+child	avoid	aspirin
+child	prescribe	aspirin
+aspirin	avoid for	child
+child	receive	aspirin
+aspirin	be in	child
+aspirin	avoid in	child
+child	have	aspirin
+aspirin	recommend for	child
+aspirin	kill	child
+aspirin	recommend in	child
+aspirin	give to	child
+child	take	aspirin
+aspirin	take by	child
+aspirin	require for	relief
+aspirin	bring	relief
+aspirin	indicate for	relief
+aspirin	be for	relief
+aspirin	take for	relief
+relief	achieve with	aspirin
+aspirin	give for	relief
+aspirin	use for	relief
+aspirin	recommend for	relief
+aspirin	give	relief
+aspirin	afford	relief
+aspirin	provide	relief
+relief	obtain with	aspirin
+aspirin	prescribe for	relief
+aspirin	use for	headache
+headache	relieve by	aspirin
+aspirin	give for	headache
+aspirin	take for	headache
+headache	treat with	aspirin
+aspirin	be for	headache
+aspirin	help	headache
+aspirin	relieve	headache
+headache	relieve with	aspirin
+aspirin	take	headache
+aspirin	cure	headache
+aspirin	reduce	headache
+headache	control with	aspirin
+fever	control by	aspirin
+aspirin	reduce	fever
+aspirin	lower	fever
+aspirin	indicate for	fever
+aspirin	give for	fever
+fever	take	aspirin
+aspirin	use for	fever
+aspirin	use in	fever
+fever	treat with	aspirin
+fever	control with	aspirin
+aspirin	lead to	bleeding
+aspirin	increase	bleeding
+aspirin	induce	bleeding
+aspirin	produce	bleeding
+aspirin	associate with	bleeding
+aspirin	result in	bleeding
+aspirin	cause	bleeding
+bleeding	occur with	aspirin
+asthma	make by	aspirin
+asthma	associate with	aspirin
+aspirin	induce	asthma
+aspirin	provoke	asthma
+aspirin	exacerbate	asthma
+aspirin	cause	asthma
+aspirin	trigger	asthma
+medication	include	aspirin
+medication	take except	aspirin
+medication	consist of	aspirin
+medication	receive	aspirin
+aspirin	use as	medication
+aspirin	take	medication
+medication	contain	aspirin
+aspirin	displace	acid
+aspirin	derive from	acid
+aspirin	synthesize from	acid
+aspirin	convert to	acid
+aspirin	hydrolyze to	acid
+aspirin	metabolize to	acid
+acid	know as	aspirin
+aspirin	take before	surgery
+aspirin	stop before	surgery
+aspirin	complicate	surgery
+aspirin	be after	surgery
+aspirin	upset	stomach
+aspirin	irritate	stomach
+aspirin	damage	stomach
+aspirin	cause from	stomach
+aspirin	absorb in	stomach
+aspirin	irritate to	stomach
+aspirin	cause	stomach
+aspirin	absorb from	stomach
+salicylate	substitute for	aspirin
+salicylate	include	aspirin
+aspirin	substitute for	salicylate
+aspirin	replace	salicylate
+aspirin	differ from	nsaid
+nsaid	include	aspirin
+aspirin	be among	nsaid
+aspirin	mix with	nsaid
+nsaid	use with	aspirin
+arthritis	control by	aspirin
+arthritis	treat with	aspirin
+aspirin	administer for	arthritis
+arthritis	control with	aspirin
+aspirin	be for	arthritis
+arthritis	respond to	aspirin
+aspirin	use as	analgesic
+aspirin	combine with	analgesic
+aspirin	use for	analgesic
+analgesic	contain	aspirin
+aspirin	have	analgesic
+analgesic	include	aspirin
+aspirin	cause	urticaria
+aspirin	produce	urticaria
+aspirin	exacerbate	urticaria
+aspirin	induce	urticaria
+aspirin	aggravate	urticaria
+aspirin	be in	tablet
+tablet	contain	aspirin
+aspirin	interact with	warfarin
+aspirin	displace	warfarin
+aspirin	combine with	warfarin
+aspirin	lower	temperature
+aspirin	store at	temperature
+aspirin	reduce	temperature
+aspirin	bring	temperature
+aspirin	stop before	procedure
+aspirin	administer before	procedure
+aspirin	give before	procedure
+aspirin	avoid in	pregnancy
+aspirin	avoid during	pregnancy
+aspirin	use in	pregnancy
+aspirin	use during	pregnancy
+million	take	aspirin
+aspirin	prove by	million
+aspirin	introduce into	medicine
+medicine	contain	aspirin
+medicine	include	aspirin
+aspirin	take with	food
+aspirin	give with	food
+aspirin	relieve	discomfort
+aspirin	prescribe for	discomfort
+discomfort	relieve by	aspirin
+aspirin	inactivate	cyclooxygenase
+cyclooxygenase	inhibit by	aspirin
+aspirin	inhibit	cyclooxygenase
+codeine	combine with	aspirin
+aspirin	combine with	codeine
+codeine	be whereas	aspirin
+aspirin	come from	bark
+aspirin	originate from	bark
+aspirin	derive from	bark
+aspirin	make from	bark
+aspirin	displace	anticoagulant
+aspirin	prescribe as	anticoagulant
+aspirin	act as	anticoagulant
+aspirin	cause	acetylation
+aspirin	inactivate by	acetylation
+aspirin	inhibit by	acetylation
+aspirin	cause	toxicity
+aspirin	associate with	toxicity
+aspirin	increase	toxicity
+aspirin	cause	tinnitus
+aspirin	sell without	prescription
+aspirin	be without	prescription
+aspirin	require	prescription
+aspirin	give with	meal
+aspirin	take with	meal
+aspirin	take after	meal
+aspirin	recommend as	antipyretic
+aspirin	give as	antipyretic
+aspirin	use as	antipyretic
+antacid	contain	aspirin
+aspirin	decrease	adhesiveness
+aspirin	reduce	adhesiveness
+acetaminophen	prefer over	aspirin
+acetaminophen	substitute for	aspirin
+aspirin	cause	ulcer
+aspirin	prevent	thrombosis
+aspirin	prevent	stroke
+aspirin	use for	prophylaxis
+oxygenase	inhibit by	aspirin
+aspirin	inhibit	oxygenase
+aspirin	irritate	mucosa
+aspirin	metabolize by	liver
+aspirin	metabolize in	liver
+aspirin	absorb in	intestine
+aspirin	absorb from	intestine
+aspirin	reduce	inflammation
+aspirin	decrease	inflammation
+aspirin	cause	heartburn
+aspirin	interfere with	clotting
+aspirin	inhibit	clotting
+aspirin	cause	bronchospasm
+aspirin	precipitate	bronchospasm
+aspirin	cause	anemia
+aspirin	produce as	anemia
+aspirin	provide	analgesia
+aspirin	use for	analgesia
+xanthine	combine with	aspirin
+aspirin	dissolve in	water
+aspirin	excrete in	urine
+aspirin	cause	ulceration
+aspirin	prevent	tumor
+aspirin	inhibit	thromboxane
+aspirin	inhibit	synthetase
+aspirin	administer by	rectum
+aspirin	inhibit	prostaglandin
+aspirin	inhibit	prostacyclin
+aspirin	prevent	preeclampsia
+pericarditis	treat with	aspirin
+aspirin	cause	nausea
+aspirin	improve	metabolism
+aspirin	cause	hypoprothrombinemia
+hyperpyrexia	require with	aspirin
+aspirin	undergo	hydrolysis
+aspirin	induce	hepatotoxicity
+aspirin	interfere with	hemostasis
+aspirin	cause	hemorrhage
+aspirin	cause	haematemesis
+aspirin	use in	gout
+aspirin	take with	glass
+aspirin	cause	gastritis
+aspirin	trigger	eicosanoids
+aspirin	induce	depression
+aspirin	interfere with	coagulation
+aspirin	affect to	clot
+aspirin	compare with	clopidogrel
+aspirin	give with	chickenpox
+aspirin	protect against	cancer
+aspirin	inhibit	atherogenesis
+aspirin	relieve	ache
+aspirin	displace	acetazolamide

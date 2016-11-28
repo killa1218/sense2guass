@@ -1,0 +1,639 @@
+wound	lead to	tetanus	>	abrasion	result in	tetanus
+tetanus	apply to	muscle	>	muscle	go in	tetanus
+tetanus	follow	injury	>	tetanus	follow	wound
+spasm	see in	tetanus	>	muscle	fall into	tetanus
+muscle	go in	tetanus	>	muscle	be in	tetanus
+tetanus	associate with	wound	>	tetanus	develop in	wound
+tetanus	produce by	wound	>	wound	produce	tetanus
+spasm	occur in	tetanus	>	spasm	observe in	tetanus
+tetanus	develop from	infection	>	tetanus	cause by	infection
+wound	follow by	tetanus	>	tetanus	develop in	wound
+toxin	induce	tetanus	>	tetanus	exert by	toxin
+muscle	fall into	tetanus	>	tetanus	apply to	muscle
+tetanus	associate with	wound	>	tetanus	be after	wound
+death	occur from	tetanus	>	tetanus	produce	death
+tetanus	cause by	toxin	>	toxin	induce	tetanus
+tetanus	follow	injury	>	injury	cause	tetanus
+spasm	occur in	tetanus	>	spasm	be in	tetanus
+tetanus	produce by	wound	>	tetanus	develop from	wound
+tetanus	follow	infection	>	tetanus	cause by	infection
+muscle	go into	tetanus	>	muscle	go in	tetanus
+wound	produce	tetanus	>	cut	lead to	tetanus
+cut	lead to	tetanus	>	tetanus	produce by	wound
+muscle	throw into	tetanus	>	tetanus	apply to	muscle
+wound	follow by	tetanus	>	tetanus	result from	wound
+tetanus	follow	injury	>	tetanus	cause by	wound
+tetanus	associate with	wound	>	tetanus	develop from	wound
+muscle	be in	tetanus	>	muscle	throw into	tetanus
+spasm	see in	tetanus	>	muscle	put into	tetanus
+wound	result in	tetanus	>	injury	cause	tetanus
+tetanus	distinguish from	poisoning	>	poisoning	simulate	tetanus
+spasm	be in	tetanus	>	spasm	simulate	tetanus
+abrasion	result in	tetanus	>	tetanus	develop in	wound
+wound	result in	tetanus	>	abrasion	result in	tetanus
+tetanus	exert by	toxin	>	tetanus	cause by	toxin
+poisoning	differ from	tetanus	>	tetanus	distinguish from	poisoning
+tetanus	ascend to	muscle	>	muscle	throw into	tetanus
+tetanus	develop from	wound	>	wound	lead to	tetanus
+muscle	go into	tetanus	>	muscle	be in	tetanus
+wound	follow by	tetanus	>	tetanus	follow	injury
+spasm	see in	tetanus	>	spasm	simulate	tetanus
+spasm	see in	tetanus	>	muscle	exhaust by	tetanus
+tetanus	result from	wound	>	injury	cause	tetanus
+tetanus	develop from	wound	>	tetanus	follow	wound
+spasm	be in	tetanus	>	muscle	throw into	tetanus
+hyperpnea	follow	tetanus	>	tetanus	accompany by	hyperpnea
+tetanus	characterize by	spasm	>	spasm	be in	tetanus
+penicillin	protect against	tetanus	>	tetanus	cause by	bacteria
+wound	produce	tetanus	>	tetanus	produce by	wound
+spasm	observe in	tetanus	>	muscle	enter into	tetanus
+tetanus	cause	spasm	>	tetanus	ascend to	muscle
+wound	produce	tetanus	>	abrasion	result in	tetanus
+tetanus	confound with	meningitis	>	tetanus	mistake for	meningitis
+toxin	induce	tetanus	>	tetanus	cause by	toxin
+tetanus	result from	wound	>	wound	follow by	tetanus
+spasm	be in	tetanus	>	tetanus	apply to	muscle
+tetanus	produce by	wound	>	tetanus	result from	wound
+tetanus	cause by	infection	>	infection	include	tetanus
+spasm	observe in	tetanus	>	spasm	see in	tetanus
+wound	produce	tetanus	>	tetanus	follow	injury
+tetanus	characterize by	stiffness	>	rigidity	suggest	tetanus
+poisoning	mistake for	tetanus	>	poisoning	resemble	tetanus
+wound	lead to	tetanus	>	injury	cause	tetanus
+tetanus	result from	wound	>	abrasion	result in	tetanus
+tetanus	characterize by	spasm	>	muscle	fall into	tetanus
+vaccine	protect against	tetanus	>	tetanus	prevent by	immunization
+tetanus	develop from	wound	>	tetanus	cause by	wound
+spasm	observe in	tetanus	>	tetanus	exhaust	muscle
+tetanus	accompany by	hyperpnea	>	hyperpnea	follow	tetanus
+tetanus	ascend to	muscle	>	muscle	show	tetanus
+wound	follow by	tetanus	>	wound	lead to	tetanus
+tetanus	follow	injury	>	wound	result in	tetanus
+tetanus	follow	wound	>	tetanus	produce by	wound
+tetanus	develop from	wound	>	tetanus	follow	injury
+tetanus	cause	spasm	>	muscle	exhaust by	tetanus
+infection	cause	tetanus	>	infection	include	tetanus
+spasm	be in	tetanus	>	spasm	observe in	tetanus
+tetanus	apply to	muscle	>	muscle	go into	tetanus
+immunization	prevent	tetanus	>	immunization	protect against	tetanus
+abrasion	result in	tetanus	>	tetanus	associate with	wound
+spasm	occur in	tetanus	>	spasm	see in	tetanus
+immunization	protect against	tetanus	>	tetanus	prevent by	immunization
+cut	lead to	tetanus	>	tetanus	develop from	wound
+muscle	fall into	tetanus	>	muscle	subject to	tetanus
+tetanus	produce by	wound	>	tetanus	develop in	wound
+tetanus	result from	wound	>	wound	result in	tetanus
+immunization	prevent	tetanus	>	tetanus	prevent by	immunization
+tetanus	be after	wound	>	tetanus	result from	wound
+tetanus	apply to	muscle	>	muscle	fall into	tetanus
+spasm	see in	tetanus	>	muscle	be in	tetanus
+tetanus	cause	spasm	>	muscle	throw into	tetanus
+muscle	put into	tetanus	>	muscle	go in	tetanus
+muscle	fall into	tetanus	>	muscle	throw into	tetanus
+cut	lead to	tetanus	>	wound	follow by	tetanus
+tetanus	exhaust	muscle	>	muscle	enter into	tetanus
+tetanus	exhaust	muscle	>	muscle	fall into	tetanus
+muscle	be in	tetanus	>	muscle	enter into	tetanus
+wound	result in	tetanus	>	tetanus	produce by	wound
+spasm	see in	tetanus	>	tetanus	exhaust	muscle
+spasm	simulate	tetanus	>	muscle	subject to	tetanus
+muscle	go in	tetanus	>	muscle	show	tetanus
+wound	follow by	tetanus	>	tetanus	follow	wound
+diphtheria	be like	tetanus	>	tetanus	resemble	diphtheria
+muscle	exhaust by	tetanus	>	tetanus	exhaust	muscle
+tetanus	prevent by	immunization	>	vaccine	protect against	tetanus
+wound	follow by	tetanus	>	tetanus	produce by	wound
+tetanus	ascend to	muscle	>	muscle	put into	tetanus
+spasm	observe in	tetanus	>	muscle	be in	tetanus
+tetanus	characterize by	rigidity	>	rigidity	suggest	tetanus
+tetanus	be after	wound	>	wound	follow by	tetanus
+muscle	throw into	tetanus	>	muscle	go in	tetanus
+wound	lead to	tetanus	>	wound	follow by	tetanus
+tetanus	follow	wound	>	wound	result in	tetanus
+tetanus	cause by	toxin	>	tetanus	exert by	toxin
+muscle	put into	tetanus	>	tetanus	ascend to	muscle
+tetanus	cause by	wound	>	tetanus	follow	injury
+tetanus	characterize by	spasm	>	tetanus	cause	spasm
+muscle	go into	tetanus	>	tetanus	apply to	muscle
+muscle	go into	tetanus	>	muscle	show	tetanus
+tetanus	produce by	wound	>	tetanus	cause by	wound
+cut	lead to	tetanus	>	tetanus	be after	wound
+tetanus	follow	injury	>	wound	follow by	tetanus
+muscle	throw into	tetanus	>	muscle	fall into	tetanus
+tetanus	produce by	wound	>	tetanus	follow	injury
+cut	lead to	tetanus	>	tetanus	associate with	wound
+tetanus	develop from	wound	>	wound	produce	tetanus
+wound	follow by	tetanus	>	injury	cause	tetanus
+wound	lead to	tetanus	>	tetanus	follow	injury
+tetanus	exert by	toxin	>	tetanus	cause by	neurotoxin
+tetanus	cause	spasm	>	spasm	see in	tetanus
+wound	result in	tetanus	>	cut	lead to	tetanus
+muscle	enter into	tetanus	>	tetanus	ascend to	muscle
+tetanus	attribute to	infection	>	tetanus	begin after	infection
+tetanus	cause	death	>	death	cause by	tetanus
+tetanus	produce by	wound	>	cut	lead to	tetanus
+tetanus	exhaust	muscle	>	muscle	go into	tetanus
+tetanus	develop in	wound	>	abrasion	result in	tetanus
+injury	cause	tetanus	>	tetanus	develop from	wound
+muscle	exhaust by	tetanus	>	muscle	throw into	tetanus
+tetanus	cause by	infection	>	tetanus	develop from	infection
+tetanus	characterize by	spasm	>	muscle	subject to	tetanus
+abrasion	result in	tetanus	>	wound	follow by	tetanus
+tetanus	be after	wound	>	tetanus	cause by	wound
+tetanus	apply to	muscle	>	muscle	be in	tetanus
+toxin	cause	tetanus	>	tetanus	exert by	toxin
+spasm	occur in	tetanus	>	muscle	throw into	tetanus
+muscle	exhaust by	tetanus	>	muscle	be in	tetanus
+tetanus	develop in	wound	>	wound	lead to	tetanus
+spasm	simulate	tetanus	>	tetanus	exhaust	muscle
+tetanus	cause by	bacterium	>	tetanus	cause by	bacteria
+spasm	simulate	tetanus	>	muscle	throw into	tetanus
+tetanus	follow	wound	>	tetanus	be after	wound
+tetanus	begin after	infection	>	infection	include	tetanus
+tetanus	follow	wound	>	tetanus	cause by	wound
+tetanus	ascend to	muscle	>	muscle	go into	tetanus
+tetanus	develop from	wound	>	injury	cause	tetanus
+spasm	see in	tetanus	>	muscle	go in	tetanus
+muscle	exhaust by	tetanus	>	muscle	show	tetanus
+tetanus	result from	wound	>	tetanus	associate with	wound
+muscle	go into	tetanus	>	muscle	enter into	tetanus
+spasm	be in	tetanus	>	muscle	be in	tetanus
+wound	result in	tetanus	>	wound	lead to	tetanus
+spasm	simulate	tetanus	>	spasm	be in	tetanus
+tetanus	cause by	wound	>	tetanus	develop in	wound
+antitoxin	immunize against	tetanus	>	vaccine	protect against	tetanus
+tetanus	be after	wound	>	tetanus	associate with	wound
+cut	lead to	tetanus	>	abrasion	result in	tetanus
+spasm	see in	tetanus	>	spasm	observe in	tetanus
+wound	result in	tetanus	>	tetanus	follow	wound
+spasm	be in	tetanus	>	tetanus	ascend to	muscle
+tetanus	associate with	wound	>	abrasion	result in	tetanus
+tetanus	cause by	neurotoxin	>	toxin	cause	tetanus
+spasm	simulate	tetanus	>	muscle	exhaust by	tetanus
+spasm	observe in	tetanus	>	spasm	occur in	tetanus
+immunization	protect against	tetanus	>	immunization	prevent	tetanus
+wound	follow by	tetanus	>	wound	result in	tetanus
+infection	cause	tetanus	>	tetanus	develop from	infection
+tetanus	cause by	wound	>	tetanus	produce by	wound
+spasm	be in	tetanus	>	spasm	occur in	tetanus
+tetanus	be after	wound	>	tetanus	produce by	wound
+wound	lead to	tetanus	>	tetanus	be after	wound
+wound	produce	tetanus	>	wound	follow by	tetanus
+injury	cause	tetanus	>	abrasion	result in	tetanus
+tetanus	cause by	bacillus	>	tetanus	cause by	bacteria
+tetanus	result from	wound	>	tetanus	produce by	wound
+muscle	throw into	tetanus	>	muscle	show	tetanus
+tetanus	result from	wound	>	wound	lead to	tetanus
+tetanus	follow	injury	>	tetanus	develop from	wound
+spasm	simulate	tetanus	>	tetanus	characterize by	spasm
+wound	result in	tetanus	>	tetanus	follow	injury
+muscle	be in	tetanus	>	muscle	subject to	tetanus
+spasm	observe in	tetanus	>	muscle	go in	tetanus
+muscle	show	tetanus	>	muscle	throw into	tetanus
+tetanus	characterize by	spasm	>	muscle	put into	tetanus
+wound	produce	tetanus	>	tetanus	be after	wound
+muscle	be in	tetanus	>	muscle	go into	tetanus
+tetanus	follow	infection	>	tetanus	begin after	infection
+spasm	simulate	tetanus	>	tetanus	ascend to	muscle
+poisoning	differ from	tetanus	>	poisoning	simulate	tetanus
+tetanus	follow	infection	>	tetanus	develop from	infection
+muscle	put into	tetanus	>	muscle	go into	tetanus
+muscle	enter into	tetanus	>	muscle	be in	tetanus
+tetanus	be after	wound	>	tetanus	develop from	wound
+wound	produce	tetanus	>	tetanus	develop from	wound
+spasm	be in	tetanus	>	muscle	fall into	tetanus
+rigidity	suggest	tetanus	>	tetanus	characterize by	rigidity
+tetanus	develop in	wound	>	tetanus	produce by	wound
+spasm	simulate	tetanus	>	muscle	show	tetanus
+muscle	be in	tetanus	>	tetanus	ascend to	muscle
+tetanus	develop in	wound	>	tetanus	be after	wound
+tetanus	ascend to	muscle	>	muscle	enter into	tetanus
+spasm	simulate	tetanus	>	spasm	occur in	tetanus
+injury	cause	tetanus	>	wound	produce	tetanus
+spasm	be in	tetanus	>	muscle	put into	tetanus
+tetanus	be after	wound	>	abrasion	result in	tetanus
+tetanus	follow	injury	>	cut	lead to	tetanus
+muscle	enter into	tetanus	>	muscle	go in	tetanus
+muscle	exhaust by	tetanus	>	muscle	fall into	tetanus
+tetanus	associate with	wound	>	wound	result in	tetanus
+tetanus	characterize by	spasm	>	muscle	throw into	tetanus
+tetanus	attribute to	infection	>	infection	cause	tetanus
+poisoning	mistake for	tetanus	>	poisoning	simulate	tetanus
+spasm	simulate	tetanus	>	tetanus	cause	spasm
+muscle	exhaust by	tetanus	>	muscle	go in	tetanus
+spasm	occur in	tetanus	>	muscle	show	tetanus
+spasm	occur in	tetanus	>	tetanus	exhaust	muscle
+tetanus	cause	spasm	>	spasm	be in	tetanus
+spasm	observe in	tetanus	>	spasm	simulate	tetanus
+cut	lead to	tetanus	>	injury	cause	tetanus
+spasm	simulate	tetanus	>	muscle	fall into	tetanus
+tetanus	produce by	bacillus	>	tetanus	cause by	bacterium
+spasm	be in	tetanus	>	muscle	subject to	tetanus
+muscle	be in	tetanus	>	muscle	go in	tetanus
+tetanus	associate with	wound	>	tetanus	follow	injury
+tetanus	result from	wound	>	tetanus	develop in	wound
+muscle	fall into	tetanus	>	muscle	be in	tetanus
+tetanus	develop in	wound	>	tetanus	follow	injury
+wound	lead to	tetanus	>	tetanus	produce by	wound
+wound	result in	tetanus	>	tetanus	associate with	wound
+poisoning	differ from	tetanus	>	poisoning	mistake for	tetanus
+antitoxin	immunize against	tetanus	>	immunization	prevent	tetanus
+tetanus	develop in	wound	>	tetanus	cause by	wound
+spasm	see in	tetanus	>	muscle	go into	tetanus
+tetanus	be after	wound	>	tetanus	develop in	wound
+spasm	observe in	tetanus	>	spasm	be in	tetanus
+tetanus	characterize by	spasm	>	spasm	observe in	tetanus
+tetanus	characterize by	spasm	>	muscle	enter into	tetanus
+muscle	go in	tetanus	>	muscle	go into	tetanus
+tetanus	develop from	wound	>	cut	lead to	tetanus
+wound	produce	tetanus	>	tetanus	result from	wound
+muscle	enter into	tetanus	>	muscle	throw into	tetanus
+tetanus	characterize by	spasm	>	muscle	exhaust by	tetanus
+tetanus	follow	infection	>	tetanus	attribute to	infection
+abrasion	result in	tetanus	>	tetanus	cause by	wound
+tetanus	produce by	bacillus	>	tetanus	cause by	bacteria
+tetanus	exhaust	muscle	>	tetanus	apply to	muscle
+injury	cause	tetanus	>	wound	result in	tetanus
+muscle	exhaust by	tetanus	>	tetanus	ascend to	muscle
+tetanus	characterize by	spasm	>	tetanus	exhaust	muscle
+poisoning	mistake for	tetanus	>	tetanus	distinguish from	poisoning
+abrasion	result in	tetanus	>	tetanus	follow	injury
+spasm	observe in	tetanus	>	muscle	fall into	tetanus
+tetanus	develop in	wound	>	tetanus	follow	wound
+tetanus	cause	spasm	>	muscle	go into	tetanus
+tetanus	cause by	wound	>	tetanus	result from	wound
+muscle	be in	tetanus	>	muscle	put into	tetanus
+muscle	show	tetanus	>	tetanus	apply to	muscle
+infection	include	tetanus	>	tetanus	attribute to	infection
+spasm	occur in	tetanus	>	spasm	simulate	tetanus
+muscle	enter into	tetanus	>	muscle	subject to	tetanus
+tetanus	produce by	wound	>	injury	cause	tetanus
+abrasion	result in	tetanus	>	tetanus	produce by	wound
+spasm	observe in	tetanus	>	muscle	go into	tetanus
+muscle	subject to	tetanus	>	muscle	enter into	tetanus
+muscle	subject to	tetanus	>	muscle	show	tetanus
+death	cause by	tetanus	>	tetanus	produce	death
+tetanus	follow	wound	>	tetanus	associate with	wound
+spasm	simulate	tetanus	>	muscle	be in	tetanus
+muscle	go in	tetanus	>	muscle	enter into	tetanus
+muscle	throw into	tetanus	>	tetanus	ascend to	muscle
+tetanus	result from	wound	>	tetanus	be after	wound
+muscle	show	tetanus	>	muscle	go in	tetanus
+toxin	cause	tetanus	>	toxin	induce	tetanus
+wound	produce	tetanus	>	tetanus	develop in	wound
+tetanus	attribute to	infection	>	tetanus	develop from	infection
+tetanus	cause by	wound	>	tetanus	develop from	wound
+spasm	be in	tetanus	>	tetanus	exhaust	muscle
+muscle	subject to	tetanus	>	muscle	go into	tetanus
+tetanus	be after	wound	>	tetanus	follow	injury
+tetanus	result from	wound	>	tetanus	follow	wound
+tetanus	apply to	muscle	>	muscle	enter into	tetanus
+tetanus	associate with	wound	>	wound	lead to	tetanus
+infection	include	tetanus	>	tetanus	cause by	infection
+wound	follow by	tetanus	>	wound	produce	tetanus
+injury	cause	tetanus	>	tetanus	cause by	wound
+spasm	observe in	tetanus	>	tetanus	ascend to	muscle
+tetanus	cause by	wound	>	tetanus	be after	wound
+tetanus	follow	wound	>	tetanus	follow	injury
+tetanus	cause	spasm	>	muscle	subject to	tetanus
+injury	cause	tetanus	>	wound	lead to	tetanus
+tetanus	follow	injury	>	tetanus	develop in	wound
+wound	produce	tetanus	>	tetanus	cause by	wound
+tetanus	cause by	wound	>	wound	follow by	tetanus
+muscle	go in	tetanus	>	tetanus	apply to	muscle
+spasm	simulate	tetanus	>	tetanus	apply to	muscle
+muscle	show	tetanus	>	tetanus	ascend to	muscle
+tetanus	exhaust	muscle	>	muscle	throw into	tetanus
+tetanus	cause by	neurotoxin	>	tetanus	cause by	toxin
+muscle	exhaust by	tetanus	>	tetanus	apply to	muscle
+muscle	fall into	tetanus	>	muscle	go in	tetanus
+muscle	show	tetanus	>	muscle	enter into	tetanus
+spasm	occur in	tetanus	>	tetanus	apply to	muscle
+muscle	go in	tetanus	>	tetanus	ascend to	muscle
+tetanus	produce	death	>	death	occur from	tetanus
+spasm	see in	tetanus	>	tetanus	ascend to	muscle
+tetanus	follow	wound	>	abrasion	result in	tetanus
+wound	produce	tetanus	>	wound	result in	tetanus
+muscle	put into	tetanus	>	muscle	subject to	tetanus
+tetanus	produce	death	>	death	cause by	tetanus
+tetanus	result from	wound	>	wound	produce	tetanus
+tetanus	cause by	infection	>	tetanus	attribute to	infection
+spasm	see in	tetanus	>	tetanus	apply to	muscle
+rigidity	suggest	tetanus	>	tetanus	characterize by	stiffness
+spasm	simulate	tetanus	>	muscle	enter into	tetanus
+tetanus	begin after	infection	>	tetanus	develop from	infection
+wound	follow by	tetanus	>	tetanus	associate with	wound
+spasm	observe in	tetanus	>	muscle	subject to	tetanus
+spasm	be in	tetanus	>	muscle	go in	tetanus
+injury	cause	tetanus	>	cut	lead to	tetanus
+tetanus	distinguish from	poisoning	>	poisoning	mistake for	tetanus
+tetanus	be after	wound	>	wound	lead to	tetanus
+tetanus	result from	wound	>	tetanus	cause by	wound
+tetanus	characterize by	spasm	>	tetanus	apply to	muscle
+tetanus	cause by	bacillus	>	tetanus	cause by	bacterium
+tetanus	follow	injury	>	wound	produce	tetanus
+tetanus	develop in	wound	>	tetanus	develop from	wound
+muscle	enter into	tetanus	>	muscle	fall into	tetanus
+tetanus	result from	wound	>	tetanus	follow	injury
+tetanus	develop from	wound	>	wound	result in	tetanus
+tetanus	exhaust	muscle	>	muscle	go in	tetanus
+tetanus	associate with	wound	>	tetanus	follow	wound
+muscle	subject to	tetanus	>	tetanus	apply to	muscle
+muscle	go in	tetanus	>	muscle	put into	tetanus
+tetanus	develop from	infection	>	tetanus	begin after	infection
+tetanus	cause	spasm	>	spasm	observe in	tetanus
+muscle	fall into	tetanus	>	muscle	put into	tetanus
+abrasion	result in	tetanus	>	tetanus	develop from	wound
+muscle	exhaust by	tetanus	>	muscle	put into	tetanus
+spasm	observe in	tetanus	>	tetanus	apply to	muscle
+muscle	go in	tetanus	>	muscle	fall into	tetanus
+tetanus	follow	wound	>	wound	produce	tetanus
+wound	produce	tetanus	>	injury	cause	tetanus
+muscle	show	tetanus	>	muscle	be in	tetanus
+tetanus	characterize by	rigidity	>	tetanus	characterize by	stiffness
+meningitis	confuse with	tetanus	>	tetanus	confound with	meningitis
+tetanus	produce by	bacillus	>	tetanus	cause by	bacillus
+tetanus	develop from	wound	>	tetanus	associate with	wound
+cut	lead to	tetanus	>	wound	produce	tetanus
+tetanus	follow	infection	>	infection	include	tetanus
+abrasion	result in	tetanus	>	tetanus	be after	wound
+tetanus	cause by	neurotoxin	>	toxin	induce	tetanus
+tetanus	cause by	wound	>	tetanus	follow	wound
+tetanus	cause by	infection	>	infection	cause	tetanus
+tetanus	follow	injury	>	wound	lead to	tetanus
+tetanus	cause	spasm	>	tetanus	exhaust	muscle
+muscle	go into	tetanus	>	muscle	subject to	tetanus
+wound	follow by	tetanus	>	tetanus	develop from	wound
+tetanus	cause	spasm	>	muscle	put into	tetanus
+tetanus	attribute to	infection	>	tetanus	cause by	infection
+spasm	occur in	tetanus	>	muscle	go into	tetanus
+immunization	protect against	tetanus	>	vaccine	protect against	tetanus
+muscle	enter into	tetanus	>	muscle	put into	tetanus
+tetanus	characterize by	spasm	>	spasm	simulate	tetanus
+tetanus	exhaust	muscle	>	muscle	show	tetanus
+wound	lead to	tetanus	>	tetanus	result from	wound
+tetanus	produce by	wound	>	abrasion	result in	tetanus
+tetanus	develop from	infection	>	tetanus	follow	infection
+tetanus	characterize by	stiffness	>	tetanus	characterize by	rigidity
+toxin	cause	tetanus	>	tetanus	cause by	neurotoxin
+tetanus	ascend to	muscle	>	tetanus	apply to	muscle
+tetanus	follow	wound	>	injury	cause	tetanus
+tetanus	apply to	muscle	>	tetanus	ascend to	muscle
+muscle	throw into	tetanus	>	muscle	be in	tetanus
+tetanus	mistake for	meningitis	>	tetanus	confound with	meningitis
+abrasion	result in	tetanus	>	wound	lead to	tetanus
+death	occur from	tetanus	>	tetanus	cause	death
+infection	include	tetanus	>	tetanus	develop from	infection
+infection	cause	tetanus	>	tetanus	begin after	infection
+tetanus	follow	wound	>	tetanus	develop in	wound
+tetanus	cause by	wound	>	abrasion	result in	tetanus
+infection	include	tetanus	>	tetanus	follow	infection
+muscle	subject to	tetanus	>	muscle	throw into	tetanus
+spasm	see in	tetanus	>	muscle	subject to	tetanus
+tetanus	cause by	infection	>	tetanus	follow	infection
+tetanus	cause by	toxin	>	toxin	cause	tetanus
+cut	lead to	tetanus	>	tetanus	develop in	wound
+tetanus	ascend to	muscle	>	muscle	go in	tetanus
+spasm	occur in	tetanus	>	tetanus	characterize by	spasm
+tetanus	develop from	infection	>	tetanus	attribute to	infection
+tetanus	develop in	wound	>	cut	lead to	tetanus
+immunization	prevent	tetanus	>	vaccine	protect against	tetanus
+tetanus	follow	wound	>	tetanus	result from	wound
+tetanus	follow	injury	>	tetanus	result from	wound
+tetanus	produce	death	>	tetanus	cause	death
+muscle	exhaust by	tetanus	>	muscle	enter into	tetanus
+antitoxin	immunize against	tetanus	>	immunization	protect against	tetanus
+abrasion	result in	tetanus	>	wound	produce	tetanus
+tetanus	cause by	toxin	>	tetanus	cause by	neurotoxin
+tetanus	exhaust	muscle	>	muscle	be in	tetanus
+spasm	observe in	tetanus	>	muscle	throw into	tetanus
+injury	cause	tetanus	>	tetanus	associate with	wound
+wound	follow by	tetanus	>	cut	lead to	tetanus
+tetanus	associate with	wound	>	wound	produce	tetanus
+tetanus	associate with	wound	>	injury	cause	tetanus
+tetanus	distinguish from	poisoning	>	poisoning	differ from	tetanus
+spasm	occur in	tetanus	>	muscle	go in	tetanus
+wound	result in	tetanus	>	tetanus	develop from	wound
+tetanus	be after	wound	>	tetanus	follow	wound
+muscle	throw into	tetanus	>	muscle	go into	tetanus
+injury	cause	tetanus	>	wound	follow by	tetanus
+infection	include	tetanus	>	infection	cause	tetanus
+muscle	enter into	tetanus	>	muscle	go into	tetanus
+tetanus	produce by	wound	>	wound	follow by	tetanus
+wound	result in	tetanus	>	tetanus	be after	wound
+tetanus	result from	wound	>	tetanus	develop from	wound
+muscle	go in	tetanus	>	muscle	throw into	tetanus
+cut	lead to	tetanus	>	tetanus	result from	wound
+tetanus	ascend to	muscle	>	muscle	subject to	tetanus
+spasm	see in	tetanus	>	muscle	throw into	tetanus
+spasm	occur in	tetanus	>	tetanus	cause	spasm
+muscle	be in	tetanus	>	tetanus	apply to	muscle
+injury	cause	tetanus	>	tetanus	follow	injury
+tetanus	produce by	wound	>	wound	lead to	tetanus
+tetanus	follow	wound	>	wound	lead to	tetanus
+tetanus	develop in	wound	>	wound	follow by	tetanus
+cut	lead to	tetanus	>	tetanus	follow	wound
+muscle	subject to	tetanus	>	muscle	be in	tetanus
+spasm	be in	tetanus	>	spasm	see in	tetanus
+tetanus	prevent by	immunization	>	immunization	prevent	tetanus
+tetanus	produce by	wound	>	tetanus	follow	wound
+tetanus	result from	wound	>	cut	lead to	tetanus
+injury	cause	tetanus	>	tetanus	follow	wound
+wound	lead to	tetanus	>	tetanus	develop from	wound
+tetanus	cause	death	>	tetanus	produce	death
+spasm	see in	tetanus	>	spasm	occur in	tetanus
+tetanus	follow	infection	>	infection	cause	tetanus
+tetanus	cause by	bacillus	>	tetanus	produce by	bacillus
+tetanus	produce by	wound	>	wound	result in	tetanus
+muscle	put into	tetanus	>	tetanus	apply to	muscle
+tetanus	cause by	neurotoxin	>	tetanus	exert by	toxin
+wound	produce	tetanus	>	tetanus	follow	wound
+rabies	confuse with	tetanus	>	tetanus	confuse with	rabies
+tetanus	characterize by	spasm	>	muscle	go into	tetanus
+tetanus	be after	wound	>	wound	produce	tetanus
+spasm	occur in	tetanus	>	muscle	subject to	tetanus
+tetanus	exhaust	muscle	>	muscle	put into	tetanus
+muscle	go into	tetanus	>	muscle	fall into	tetanus
+death	cause by	tetanus	>	death	occur from	tetanus
+toxin	cause	tetanus	>	tetanus	cause by	toxin
+tetanus	produce by	wound	>	tetanus	associate with	wound
+tetanus	cause by	bacteria	>	tetanus	cause by	bacterium
+tetanus	begin after	infection	>	tetanus	follow	infection
+tetanus	follow	wound	>	cut	lead to	tetanus
+tetanus	be after	wound	>	wound	result in	tetanus
+tetanus	cause by	wound	>	wound	produce	tetanus
+tetanus	develop from	wound	>	tetanus	develop in	wound
+antitoxin	immunize against	tetanus	>	tetanus	prevent by	immunization
+tetanus	develop from	infection	>	infection	cause	tetanus
+infection	cause	tetanus	>	tetanus	cause by	infection
+muscle	go in	tetanus	>	muscle	subject to	tetanus
+poisoning	differ from	tetanus	>	poisoning	resemble	tetanus
+wound	produce	tetanus	>	tetanus	associate with	wound
+abrasion	result in	tetanus	>	tetanus	result from	wound
+spasm	be in	tetanus	>	tetanus	characterize by	spasm
+tetanus	develop from	wound	>	wound	follow by	tetanus
+spasm	be in	tetanus	>	muscle	show	tetanus
+wound	lead to	tetanus	>	tetanus	associate with	wound
+tetanus	follow	injury	>	abrasion	result in	tetanus
+spasm	see in	tetanus	>	tetanus	cause	spasm
+abrasion	result in	tetanus	>	tetanus	follow	wound
+spasm	occur in	tetanus	>	muscle	put into	tetanus
+spasm	see in	tetanus	>	muscle	enter into	tetanus
+tetanus	exhaust	muscle	>	muscle	subject to	tetanus
+tetanus	produce by	wound	>	tetanus	be after	wound
+muscle	be in	tetanus	>	muscle	show	tetanus
+tetanus	characterize by	spasm	>	spasm	see in	tetanus
+tetanus	apply to	muscle	>	muscle	subject to	tetanus
+tetanus	cause	spasm	>	spasm	simulate	tetanus
+tetanus	develop in	wound	>	wound	produce	tetanus
+tetanus	resemble	diphtheria	>	diphtheria	be like	tetanus
+tetanus	associate with	wound	>	tetanus	cause by	wound
+tetanus	begin after	infection	>	infection	cause	tetanus
+muscle	go into	tetanus	>	tetanus	ascend to	muscle
+wound	lead to	tetanus	>	cut	lead to	tetanus
+tetanus	ascend to	muscle	>	muscle	be in	tetanus
+muscle	fall into	tetanus	>	muscle	show	tetanus
+tetanus	characterize by	spasm	>	muscle	be in	tetanus
+muscle	put into	tetanus	>	muscle	enter into	tetanus
+tetanus	prevent by	immunization	>	immunization	protect against	tetanus
+spasm	simulate	tetanus	>	muscle	go into	tetanus
+spasm	observe in	tetanus	>	muscle	show	tetanus
+wound	lead to	tetanus	>	tetanus	cause by	wound
+toxin	induce	tetanus	>	toxin	cause	tetanus
+muscle	subject to	tetanus	>	tetanus	ascend to	muscle
+tetanus	cause by	wound	>	wound	lead to	tetanus
+wound	result in	tetanus	>	tetanus	result from	wound
+tetanus	cause	spasm	>	spasm	occur in	tetanus
+muscle	enter into	tetanus	>	muscle	show	tetanus
+tetanus	cause	spasm	>	tetanus	apply to	muscle
+muscle	show	tetanus	>	muscle	subject to	tetanus
+muscle	enter into	tetanus	>	tetanus	apply to	muscle
+tetanus	mistake for	meningitis	>	meningitis	confuse with	tetanus
+tetanus	develop in	wound	>	tetanus	associate with	wound
+spasm	see in	tetanus	>	spasm	be in	tetanus
+wound	follow by	tetanus	>	tetanus	be after	wound
+spasm	be in	tetanus	>	tetanus	cause	spasm
+spasm	occur in	tetanus	>	muscle	exhaust by	tetanus
+spasm	occur in	tetanus	>	muscle	enter into	tetanus
+tetanus	cause	spasm	>	muscle	fall into	tetanus
+wound	follow by	tetanus	>	tetanus	cause by	wound
+spasm	simulate	tetanus	>	spasm	see in	tetanus
+tetanus	begin after	infection	>	tetanus	attribute to	infection
+tetanus	cause	death	>	death	occur from	tetanus
+spasm	see in	tetanus	>	tetanus	characterize by	spasm
+spasm	occur in	tetanus	>	muscle	be in	tetanus
+abrasion	result in	tetanus	>	cut	lead to	tetanus
+tetanus	exert by	toxin	>	toxin	cause	tetanus
+injury	cause	tetanus	>	tetanus	develop in	wound
+tetanus	develop in	wound	>	injury	cause	tetanus
+tetanus	develop in	wound	>	wound	result in	tetanus
+tetanus	associate with	wound	>	tetanus	result from	wound
+tetanus	associate with	wound	>	cut	lead to	tetanus
+spasm	simulate	tetanus	>	muscle	go in	tetanus
+tetanus	follow	injury	>	tetanus	associate with	wound
+meningitis	confuse with	tetanus	>	tetanus	mistake for	meningitis
+tetanus	attribute to	infection	>	tetanus	follow	infection
+cut	lead to	tetanus	>	tetanus	follow	injury
+muscle	exhaust by	tetanus	>	muscle	go into	tetanus
+tetanus	follow	injury	>	tetanus	be after	wound
+tetanus	begin after	infection	>	tetanus	cause by	infection
+infection	cause	tetanus	>	tetanus	follow	infection
+injury	cause	tetanus	>	tetanus	result from	wound
+muscle	put into	tetanus	>	muscle	be in	tetanus
+muscle	subject to	tetanus	>	muscle	fall into	tetanus
+tetanus	develop from	wound	>	abrasion	result in	tetanus
+tetanus	develop from	wound	>	tetanus	be after	wound
+spasm	simulate	tetanus	>	spasm	observe in	tetanus
+spasm	observe in	tetanus	>	tetanus	cause	spasm
+death	cause by	tetanus	>	tetanus	cause	death
+muscle	throw into	tetanus	>	muscle	subject to	tetanus
+spasm	observe in	tetanus	>	tetanus	characterize by	spasm
+injury	cause	tetanus	>	tetanus	produce by	wound
+spasm	observe in	tetanus	>	muscle	exhaust by	tetanus
+muscle	subject to	tetanus	>	muscle	put into	tetanus
+tetanus	confound with	meningitis	>	meningitis	confuse with	tetanus
+tetanus	cause by	wound	>	wound	result in	tetanus
+tetanus	exert by	toxin	>	toxin	induce	tetanus
+muscle	show	tetanus	>	muscle	put into	tetanus
+tetanus	cause	spasm	>	muscle	show	tetanus
+wound	produce	tetanus	>	wound	lead to	tetanus
+muscle	throw into	tetanus	>	muscle	enter into	tetanus
+tetanus	characterize by	spasm	>	muscle	go in	tetanus
+spasm	simulate	tetanus	>	muscle	put into	tetanus
+infection	cause	tetanus	>	tetanus	attribute to	infection
+tetanus	associate with	wound	>	tetanus	produce by	wound
+tetanus	exhaust	muscle	>	muscle	exhaust by	tetanus
+abrasion	result in	tetanus	>	wound	result in	tetanus
+wound	lead to	tetanus	>	wound	result in	tetanus
+spasm	occur in	tetanus	>	tetanus	ascend to	muscle
+tetanus	exhaust	muscle	>	tetanus	ascend to	muscle
+poisoning	mistake for	tetanus	>	poisoning	differ from	tetanus
+tetanus	follow	wound	>	wound	follow by	tetanus
+tetanus	characterize by	spasm	>	tetanus	ascend to	muscle
+wound	follow by	tetanus	>	abrasion	result in	tetanus
+wound	result in	tetanus	>	tetanus	cause by	wound
+tetanus	apply to	muscle	>	muscle	put into	tetanus
+penicillin	protect against	tetanus	>	tetanus	cause by	bacterium
+cut	lead to	tetanus	>	wound	result in	tetanus
+tetanus	attribute to	infection	>	infection	include	tetanus
+spasm	be in	tetanus	>	muscle	exhaust by	tetanus
+tetanus	be after	wound	>	cut	lead to	tetanus
+vaccine	protect against	tetanus	>	immunization	prevent	tetanus
+tetanus	be after	wound	>	injury	cause	tetanus
+muscle	put into	tetanus	>	muscle	fall into	tetanus
+muscle	fall into	tetanus	>	muscle	go into	tetanus
+muscle	go into	tetanus	>	muscle	put into	tetanus
+toxin	induce	tetanus	>	tetanus	cause by	neurotoxin
+muscle	show	tetanus	>	muscle	fall into	tetanus
+muscle	fall into	tetanus	>	muscle	enter into	tetanus
+abrasion	result in	tetanus	>	injury	cause	tetanus
+muscle	put into	tetanus	>	muscle	show	tetanus
+tetanus	cause	spasm	>	muscle	go in	tetanus
+wound	result in	tetanus	>	tetanus	develop in	wound
+infection	include	tetanus	>	tetanus	begin after	infection
+tetanus	develop from	infection	>	infection	include	tetanus
+tetanus	cause by	wound	>	cut	lead to	tetanus
+tetanus	characterize by	spasm	>	muscle	show	tetanus
+tetanus	cause	spasm	>	tetanus	characterize by	spasm
+muscle	fall into	tetanus	>	tetanus	ascend to	muscle
+poisoning	simulate	tetanus	>	poisoning	resemble	tetanus
+tetanus	cause by	wound	>	injury	cause	tetanus
+muscle	be in	tetanus	>	muscle	fall into	tetanus
+wound	result in	tetanus	>	wound	follow by	tetanus
+spasm	occur in	tetanus	>	muscle	fall into	tetanus
+wound	lead to	tetanus	>	tetanus	develop in	wound
+muscle	exhaust by	tetanus	>	muscle	subject to	tetanus
+tetanus	apply to	muscle	>	muscle	throw into	tetanus
+tetanus	characterize by	spasm	>	spasm	occur in	tetanus
+tetanus	cause	spasm	>	muscle	be in	tetanus
+tetanus	develop from	wound	>	tetanus	produce by	wound
+spasm	be in	tetanus	>	muscle	enter into	tetanus
+vaccine	protect against	tetanus	>	immunization	protect against	tetanus
+muscle	show	tetanus	>	muscle	go into	tetanus
+tetanus	apply to	muscle	>	muscle	show	tetanus
+cut	lead to	tetanus	>	tetanus	cause by	wound
+muscle	subject to	tetanus	>	muscle	go in	tetanus
+tetanus	develop in	wound	>	tetanus	result from	wound
+muscle	throw into	tetanus	>	muscle	put into	tetanus
+wound	lead to	tetanus	>	tetanus	follow	wound
+muscle	go into	tetanus	>	muscle	throw into	tetanus
+poisoning	resemble	tetanus	>	poisoning	simulate	tetanus
+tetanus	confuse with	rabies	>	rabies	confuse with	tetanus
+tetanus	follow	injury	>	tetanus	produce by	wound
+tetanus	follow	wound	>	tetanus	develop from	wound
+death	occur from	tetanus	>	death	cause by	tetanus
+wound	lead to	tetanus	>	wound	produce	tetanus
+muscle	put into	tetanus	>	muscle	throw into	tetanus
+spasm	observe in	tetanus	>	muscle	put into	tetanus
+tetanus	cause by	infection	>	tetanus	begin after	infection
+spasm	see in	tetanus	>	muscle	show	tetanus
+spasm	be in	tetanus	>	muscle	go into	tetanus
+cut	lead to	tetanus	>	wound	lead to	tetanus
+tetanus	cause	spasm	>	muscle	enter into	tetanus
+tetanus	associate with	wound	>	wound	follow by	tetanus
+tetanus	ascend to	muscle	>	muscle	fall into	tetanus
+tetanus	develop from	wound	>	tetanus	result from	wound
+tetanus	distinguish from	poisoning	>	poisoning	resemble	tetanus
+tetanus	cause by	wound	>	tetanus	associate with	wound
+injury	cause	tetanus	>	tetanus	be after	wound
+wound	result in	tetanus	>	wound	produce	tetanus
