@@ -25,6 +25,7 @@ plt.plot(
     x, yellow.pdf(x), 'y'
 )
 
+
 # print 'Blue to Green:', kl(blue.pdf(x), green.pdf(x))
 # print 'Green to Blue:', kl(green.pdf(x), blue.pdf(x))
 # print 'Green to Red:', kl(green.pdf(x), red.pdf(x))
