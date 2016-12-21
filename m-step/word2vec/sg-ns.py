@@ -103,17 +103,6 @@ class Options(object):
         # Subsampling threshold for word occurrence.
         self.subsample = FLAGS.sample
 
-        # How often to print statistics.
-        self.statistics_interval = FLAGS.statistics_interval
-
-        # How often to write to the summary file (rounds up to the nearest
-        # statistics_interval).
-        self.summary_interval = FLAGS.summary_interval
-
-        # How often to write checkpoints (rounds up to the nearest statistics
-        # interval).
-        self.checkpoint_interval = FLAGS.checkpoint_interval
-
         # Where to write out summaries.
         self.save_path = FLAGS.output
         if not os.path.exists(self.save_path):
