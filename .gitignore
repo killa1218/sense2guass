@@ -90,3 +90,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# PyCharm project settings
+.idea
+
+# Data
+data/output
+data/text8
