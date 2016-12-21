@@ -58,6 +58,7 @@ flags.DEFINE_integer("threads", 12, "How many threads are used to train. Default
 flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
 flags.DEFINE_float("alpha", 0.2, "Initial learning rate. Default is 0.2.")
+flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 
 flags.DEFINE_integer("batch_size", 16, "Number of training examples processed per step (size of a minibatch).")
 flags.DEFINE_boolean("interactive", False, "If true, enters an IPython interactive session to play with the trained model. E.g., try model.analogy(b'france', b'paris', b'russia') and model.nearby([b'proton', b'elephant', b'maxwell'])")
@@ -117,6 +118,9 @@ class Options(object):
         # How often to write checkpoints (rounds up to the nearest statistics
         # interval).
         self.checkpoint_interval = FLAGS.checkpoint_interval
+
+        # Use GPU or CPU. True for GPU, otherwise CPU
+        self.gpu = FLAGS.gpu
 
         # Where to write out summaries.
         self.save_path = FLAGS.output
@@ -484,8 +488,12 @@ def main(_):
         print("--train and --output must be specified.")
         sys.exit(1)
     opts = Options()
+    device = "/cpu:0"
     with tf.Graph().as_default(), tf.Session() as session:
-        with tf.device("/cpu:0"):
+        if opts.gpu:
+            device = "/gpu:0"
+
+        with tf.device(device):
             model = Word2Vec(opts, session)
             # model.read_analogies() # Read analogy questions
         for _ in xrange(opts.epochs_to_train):
