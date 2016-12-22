@@ -76,60 +76,38 @@ class Options(object):
         # Model options.
 
         # Embedding dimension.
-        self.emb_dim = FLAGS.size
-
-        # Training options.
-        # The training text file.
-        self.train_data = FLAGS.train
-
+        self.size = FLAGS.size
+        # Training options. The training text file.
+        self.train = FLAGS.train
         # Number of negative samples per example.
-        self.num_samples = FLAGS.negative
-
+        self.negative = FLAGS.negative
         # The initial learning rate.
-        self.learning_rate = FLAGS.alpha
-
-        # Number of epochs to train. After these many epochs, the learning
-        # rate decays linearly to zero and the training stops.
-        self.epochs_to_train = FLAGS.iter
-
+        self.alpha = FLAGS.alpha
+        # Number of epochs to train. After these many epochs, the learning rate decays linearly to zero and the training stops.
+        self.iter = FLAGS.iter
         # Concurrent training steps.
-        self.concurrent_steps = FLAGS.threads
-
+        self.threads = FLAGS.threads
         # Number of examples for one training step.
         self.batch_size = FLAGS.batch_size
-
         # The number of words to predict to the left and right of the target word.
-        self.window_size = FLAGS.window
-
-        # The minimum number of word occurrences for it to be included in the
-        # vocabulary.
+        self.window = FLAGS.window
+        # The minimum number of word occurrences for it to be included in the vocabulary.
         self.min_count = FLAGS.min_count
-
         # Subsampling threshold for word occurrence.
-        self.subsample = FLAGS.sample
-
+        self.sample = FLAGS.sample
         # How often to print statistics.
         self.statistics_interval = FLAGS.statistics_interval
-
-        # How often to write to the summary file (rounds up to the nearest
-        # statistics_interval).
+        # How often to write to the summary file (rounds up to the nearest statistics_interval).
         self.summary_interval = FLAGS.summary_interval
-
-        # How often to write checkpoints (rounds up to the nearest statistics
-        # interval).
+        # How often to write checkpoints (rounds up to the nearest statistics interval).
         self.checkpoint_interval = FLAGS.checkpoint_interval
-
         # Use GPU or CPU. True for GPU, otherwise CPU
         self.gpu = FLAGS.gpu
-
         # Where to write out summaries.
         self.save_path = FLAGS.output
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)
 
-        # Eval options.
-        # The text file for eval.
-        # self.eval_data = FLAGS.eval_data
 
 
 class Word2Vec(object):
@@ -138,36 +116,12 @@ class Word2Vec(object):
     def __init__(self, options, session):
         self._options = options
         self._session = session
-        self._word2id = {}
-        self._id2word = []
+        self._word2id = {}                          # The hash map from word to index
+        self._id2word = []                          # The vocab array
         self.build_graph()
         # self.build_eval_graph()
         self.save_vocab()
 
-    # def read_analogies(self):
-    #     """Reads through the analogy question file.
-
-    #     Returns:
-    #         questions: a [n, 4] numpy array containing the analogy question's
-    #                              word ids.
-    #         questions_skipped: questions skipped due to unknown words.
-    #     """
-    #     questions = []
-    #     questions_skipped = 0
-    #     with open(self._options.eval_data, "rb") as analogy_f:
-    #         for line in analogy_f:
-    #             if line.startswith(b":"):    # Skip comments.
-    #                 continue
-    #             words = line.strip().lower().split(b" ")
-    #             ids = [self._word2id.get(w.strip()) for w in words]
-    #             if None in ids or len(ids) != 4:
-    #                 questions_skipped += 1
-    #             else:
-    #                 questions.append(np.array(ids))
-    #     print("Eval analogy file: ", self._options.eval_data)
-    #     print("Questions: ", len(questions))
-    #     print("Skipped: ", questions_skipped)
-    #     self._analogy_questions = np.array(questions, dtype=np.int32)
 
     def forward(self, examples, labels):
         """Build the graph for the forward pass."""
@@ -175,16 +129,16 @@ class Word2Vec(object):
 
         # Declare all variables we need.
         # Embedding: [vocab_size, emb_dim]
-        init_width = 0.5 / opts.emb_dim
+        init_width = 0.5 / opts.size
         emb = tf.Variable(
                 tf.random_uniform(
-                        [opts.vocab_size, opts.emb_dim], -init_width, init_width),
+                        [opts.vocab_size, opts.size], -init_width, init_width),
                 name="emb")
         self._emb = emb
 
         # Softmax weight: [vocab_size, emb_dim]. Transposed.
         sm_w_t = tf.Variable(
-                tf.zeros([opts.vocab_size, opts.emb_dim]),
+                tf.zeros([opts.vocab_size, opts.size]),
                 name="sm_w_t")
 
         # Softmax bias: [emb_dim].
@@ -203,7 +157,7 @@ class Word2Vec(object):
         sampled_ids, _, _ = (tf.nn.fixed_unigram_candidate_sampler(
                 true_classes=labels_matrix,
                 num_true=1,
-                num_sampled=opts.num_samples,
+                num_sampled=opts.negative,
                 unique=True,
                 range_max=opts.vocab_size,
                 distortion=0.75,
@@ -228,11 +182,12 @@ class Word2Vec(object):
         # Sampled logits: [batch_size, num_sampled]
         # We replicate sampled noise labels for all examples in the batch
         # using the matmul.
-        sampled_b_vec = tf.reshape(sampled_b, [opts.num_samples])
+        sampled_b_vec = tf.reshape(sampled_b, [opts.negative])
         sampled_logits = tf.matmul(example_emb,
                                                              sampled_w,
                                                              transpose_b=True) + sampled_b_vec
         return true_logits, sampled_logits
+
 
     def nce_loss(self, true_logits, sampled_logits):
         """Build the graph for the NCE loss."""
@@ -250,14 +205,15 @@ class Word2Vec(object):
                                              tf.reduce_sum(sampled_xent)) / opts.batch_size
         return nce_loss_tensor
 
+
     def optimize(self, loss):
         """Build the graph to optimize the loss function."""
 
         # Optimizer nodes.
         # Linear learning rate decay.
         opts = self._options
-        words_to_train = float(opts.words_per_epoch * opts.epochs_to_train)
-        lr = opts.learning_rate * tf.maximum(
+        words_to_train = float(opts.words_per_epoch * opts.iter)
+        lr = opts.alpha * tf.maximum(
                 0.0001, 1.0 - tf.cast(self._words, tf.float32) / words_to_train)
         self._lr = lr
         optimizer = tf.train.GradientDescentOptimizer(lr)
@@ -266,73 +222,22 @@ class Word2Vec(object):
                                                              gate_gradients=optimizer.GATE_NONE)
         self._train = train
 
-    # def build_eval_graph(self):
-    #     """Build the eval graph."""
-    #     # Eval graph
-
-    #     # Each analogy task is to predict the 4th word (d) given three
-    #     # words: a, b, c.    E.g., a=italy, b=rome, c=france, we should
-    #     # predict d=paris.
-
-    #     # The eval feeds three vectors of word ids for a, b, c, each of
-    #     # which is of size N, where N is the number of analogies we want to
-    #     # evaluate in one batch.
-    #     analogy_a = tf.placeholder(dtype=tf.int32)    # [N]
-    #     analogy_b = tf.placeholder(dtype=tf.int32)    # [N]
-    #     analogy_c = tf.placeholder(dtype=tf.int32)    # [N]
-
-    #     # Normalized word embeddings of shape [vocab_size, emb_dim].
-    #     nemb = tf.nn.l2_normalize(self._emb, 1)
-
-    #     # Each row of a_emb, b_emb, c_emb is a word's embedding vector.
-    #     # They all have the shape [N, emb_dim]
-    #     a_emb = tf.gather(nemb, analogy_a)    # a's embs
-    #     b_emb = tf.gather(nemb, analogy_b)    # b's embs
-    #     c_emb = tf.gather(nemb, analogy_c)    # c's embs
-
-    #     # We expect that d's embedding vectors on the unit hyper-sphere is
-    #     # near: c_emb + (b_emb - a_emb), which has the shape [N, emb_dim].
-    #     target = c_emb + (b_emb - a_emb)
-
-    #     # Compute cosine distance between each pair of target and vocab.
-    #     # dist has shape [N, vocab_size].
-    #     dist = tf.matmul(target, nemb, transpose_b=True)
-
-    #     # For each question (row in dist), find the top 4 words.
-    #     _, pred_idx = tf.nn.top_k(dist, 4)
-
-    #     # Nodes for computing neighbors for a given word according to
-    #     # their cosine distance.
-    #     nearby_word = tf.placeholder(dtype=tf.int32)    # word id
-    #     nearby_emb = tf.gather(nemb, nearby_word)
-    #     nearby_dist = tf.matmul(nearby_emb, nemb, transpose_b=True)
-    #     nearby_val, nearby_idx = tf.nn.top_k(nearby_dist,
-    #                                                                              min(1000, self._options.vocab_size))
-
-    #     # Nodes in the construct graph which are used by training and
-    #     # evaluation to run/feed/fetch.
-    #     self._analogy_a = analogy_a
-    #     self._analogy_b = analogy_b
-    #     self._analogy_c = analogy_c
-    #     self._analogy_pred_idx = pred_idx
-    #     self._nearby_word = nearby_word
-    #     self._nearby_val = nearby_val
-    #     self._nearby_idx = nearby_idx
 
     def build_graph(self):
         """Build the graph for the full model."""
         opts = self._options
         # The training data. A text file.
-        (words, counts, words_per_epoch, self._epoch, self._words, examples,
-         labels) = word2vec.skipgram(filename=opts.train_data,
-                                                                 batch_size=opts.batch_size,
-                                                                 window_size=opts.window_size,
-                                                                 min_count=opts.min_count,
-                                                                 subsample=opts.subsample)
+        (words, counts, words_per_epoch, self._epoch, self._words, examples, labels) = word2vec.skipgram(
+            filename=opts.train,
+            batch_size=opts.batch_size,
+            window_size=opts.window,
+            min_count=opts.min_count,
+            subsample=opts.sample
+        )
         (opts.vocab_words, opts.vocab_counts,
          opts.words_per_epoch) = self._session.run([words, counts, words_per_epoch])
         opts.vocab_size = len(opts.vocab_words)
-        print("Data file: ", opts.train_data)
+        print("Data file: ", opts.train)
         print("Vocab size: ", opts.vocab_size - 1, " + UNK")
         print("Words per epoch: ", opts.words_per_epoch)
         self._examples = examples
@@ -351,6 +256,7 @@ class Word2Vec(object):
 
         self.saver = tf.train.Saver()
 
+
     def save_vocab(self):
         """Save the vocabulary to a file so the model can be reloaded."""
         opts = self._options
@@ -360,12 +266,14 @@ class Word2Vec(object):
                 f.write("%s %d\n" % (vocab_word,
                                                          opts.vocab_counts[i]))
 
+
     def _train_thread_body(self):
         initial_epoch, = self._session.run([self._epoch])
         while True:
             _, epoch = self._session.run([self._train, self._epoch])
             if epoch != initial_epoch:
                 break
+
 
     def train(self):
         """Train the model."""
@@ -376,7 +284,7 @@ class Word2Vec(object):
         summary_op = tf.merge_all_summaries()
         summary_writer = tf.train.SummaryWriter(opts.save_path, self._session.graph)
         workers = []
-        for _ in xrange(opts.concurrent_steps):
+        for _ in xrange(opts.threads):
             t = threading.Thread(target=self._train_thread_body)
             t.start()
             workers.append(t)
@@ -410,102 +318,33 @@ class Word2Vec(object):
 
         return epoch
 
-    def _predict(self, analogy):
-        """Predict the top 4 answers for analogy questions."""
-        idx, = self._session.run([self._analogy_pred_idx], {
-                self._analogy_a: analogy[:, 0],
-                self._analogy_b: analogy[:, 1],
-                self._analogy_c: analogy[:, 2]
-        })
-        return idx
-
-    # def eval(self):
-    #     """Evaluate analogy questions and reports accuracy."""
-
-    #     # How many questions we get right at precision@1.
-    #     correct = 0
-
-    #     try:
-    #         total = self._analogy_questions.shape[0]
-    #     except AttributeError as e:
-    #         raise AttributeError("Need to read analogy questions.")
-
-    #     start = 0
-    #     while start < total:
-    #         limit = start + 2500
-    #         sub = self._analogy_questions[start:limit, :]
-    #         idx = self._predict(sub)
-    #         start = limit
-    #         for question in xrange(sub.shape[0]):
-    #             for j in xrange(4):
-    #                 if idx[question, j] == sub[question, 3]:
-    #                     # Bingo! We predicted correctly. E.g., [italy, rome, france, paris].
-    #                     correct += 1
-    #                     break
-    #                 elif idx[question, j] in sub[question, :3]:
-    #                     # We need to skip words already in the question.
-    #                     continue
-    #                 else:
-    #                     # The correct label is not the precision@1
-    #                     break
-    #     print()
-    #     print("Eval %4d/%d accuracy = %4.1f%%" % (correct, total, correct * 100.0 / total))
-
-    # def analogy(self, w0, w1, w2):
-    #     """Predict word w3 as in w0:w1 vs w2:w3."""
-    #     wid = np.array([[self._word2id.get(w, 0) for w in [w0, w1, w2]]])
-    #     idx = self._predict(wid)
-    #     for c in [self._id2word[i] for i in idx[0, :]]:
-    #         if c not in [w0, w1, w2]:
-    #             print(c)
-    #             break
-    #     print("unknown")
-
-    # def nearby(self, words, num=20):
-    #     """Prints out nearby words given a list of words."""
-    #     ids = np.array([self._word2id.get(x, 0) for x in words])
-    #     vals, idx = self._session.run(
-    #             [self._nearby_val, self._nearby_idx], {self._nearby_word: ids})
-    #     for i in xrange(len(words)):
-    #         print("\n%s\n=====================================" % (words[i]))
-    #         for (neighbor, distance) in zip(idx[i, :num], vals[i, :num]):
-    #             print("%-20s %6.4f" % (self._id2word[neighbor], distance))
-
-
-# def _start_shell(local_ns=None):
-#     # An interactive shell is useful for debugging/development.
-#     import IPython
-#     user_ns = {}
-#     if local_ns:
-#         user_ns.update(local_ns)
-#     user_ns.update(globals())
-#     IPython.start_ipython(argv=[], user_ns=user_ns)
 
 
 def main(_):
     """Train a word2vec model."""
-    if not FLAGS.train or not FLAGS.output:
+    if not FLAGS.train or not FLAGS.output:         # Whether the train corpus and output path is set
         print("--train and --output must be specified.")
         sys.exit(1)
-    opts = Options()
+    opts = Options()                                # Instantiate option object
     device = "/cpu:0"
     with tf.Graph().as_default(), tf.Session() as session:
-        if opts.gpu:
+        if opts.gpu:                                # Judge whether use CPU(default) or GPU
             device = "/gpu:0"
 
         with tf.device(device):
-            model = Word2Vec(opts, session)
+            model = Word2Vec(opts, session)         # Instantiate model
             # model.read_analogies() # Read analogy questions
-        for _ in xrange(opts.epochs_to_train):
+        for _ in xrange(opts.iter):      # According to the parameter train the embeddings for iter iterations
             model.train()    # Process one epoch
             # model.eval()    # Eval analogies.
         # Perform a final save.
-        model.saver.save(session, os.path.join(opts.save_path, "model.ckpt"), global_step=model.global_step)
+        model.saver.save(session, os.path.join(opts.save_path, "model.ckpt"), global_step=model.global_step)    # Save model
         # if FLAGS.interactive:
         #     # E.g.,
         #     # [0]: model.analogy(b'france', b'paris', b'russia')
         #     # [1]: model.nearby([b'proton', b'elephant', b'maxwell'])
         #     _start_shell(locals())
+
 
 if __name__ == "__main__":
     tf.app.run()
