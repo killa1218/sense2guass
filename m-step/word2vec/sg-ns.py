@@ -60,7 +60,7 @@ flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for
 flags.DEFINE_float("alpha", 0.2, "Initial learning rate. Default is 0.2.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 
-flags.DEFINE_integer("batch_size", 16, "Number of training examples processed per step (size of a minibatch).")
+flags.DEFINE_integer("batch_size", 128, "Number of training examples processed per step (size of a minibatch).")
 flags.DEFINE_boolean("interactive", False, "If true, enters an IPython interactive session to play with the trained model. E.g., try model.analogy(b'france', b'paris', b'russia') and model.nearby([b'proton', b'elephant', b'maxwell'])")
 flags.DEFINE_integer("statistics_interval", 5, "Print statistics every n seconds.")
 flags.DEFINE_integer("summary_interval", 5, "Save training summary to file every n seconds (rounded up to statistics interval).")
@@ -183,9 +183,7 @@ class Word2Vec(object):
         # We replicate sampled noise labels for all examples in the batch
         # using the matmul.
         sampled_b_vec = tf.reshape(sampled_b, [opts.negative])
-        sampled_logits = tf.matmul(example_emb,
-                                                             sampled_w,
-                                                             transpose_b=True) + sampled_b_vec
+        sampled_logits = tf.matmul(example_emb, sampled_w, transpose_b=True) + sampled_b_vec
         return true_logits, sampled_logits
 
 
@@ -233,21 +231,29 @@ class Word2Vec(object):
             window_size=opts.window,
             min_count=opts.min_count,
             subsample=opts.sample
-        )
-        (opts.vocab_words, opts.vocab_counts,
-         opts.words_per_epoch) = self._session.run([words, counts, words_per_epoch])
+        )                                           # Build the graph that processes corpus file
+
+        (
+            opts.vocab_words,                       # List of all the words in the corpus
+            opts.vocab_counts,                      # List of the count of words ordered by desc
+            opts.words_per_epoch                    # Number of tokens in the corpus file
+        ) = self._session.run([words, counts, words_per_epoch])    # Process corpus file
+
         opts.vocab_size = len(opts.vocab_words)
         print("Data file: ", opts.train)
         print("Vocab size: ", opts.vocab_size - 1, " + UNK")
         print("Words per epoch: ", opts.words_per_epoch)
+
         self._examples = examples
         self._labels = labels
         self._id2word = opts.vocab_words
         for i, w in enumerate(self._id2word):
             self._word2id[w] = i
+
         true_logits, sampled_logits = self.forward(examples, labels)
         loss = self.nce_loss(true_logits, sampled_logits)
-        tf.scalar_summary("NCE loss", loss)
+        tf.scalar_summary("NCE loss", loss)         # Used for visuallization
+
         self._loss = loss
         self.optimize(loss)
 
@@ -263,8 +269,7 @@ class Word2Vec(object):
         with open(os.path.join(opts.save_path, "vocab.txt"), "w") as f:
             for i in xrange(opts.vocab_size):
                 vocab_word = tf.compat.as_text(opts.vocab_words[i]).encode("utf-8")
-                f.write("%s %d\n" % (vocab_word,
-                                                         opts.vocab_counts[i]))
+                f.write("%s %d\n" % (vocab_word, opts.vocab_counts[i]))
 
 
     def _train_thread_body(self):
@@ -298,7 +303,7 @@ class Word2Vec(object):
             now = time.time()
             last_words, last_time, rate = words, now, (words - last_words) / (
                     now - last_time)
-            print("Epoch %4d Step %8d: lr = %5.3f loss = %6.2f words/sec = %8.0f\r" %
+            print("Iter %4d Step %8d: lr = %5.3f loss = %6.2f words/sec = %8.0f\r" %
                         (epoch, step, lr, loss, rate), end="")
             sys.stdout.flush()
             if now - last_summary_time > opts.summary_interval:
