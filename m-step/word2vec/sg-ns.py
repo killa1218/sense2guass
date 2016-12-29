@@ -333,11 +333,11 @@ def main(_):
     opts = Options()                                # Instantiate option object
     device = "/cpu:0"
     with tf.Graph().as_default(), tf.Session() as session:
-        if opts.gpu:                                # Judge whether use CPU(default) or GPU
-            device = "/gpu:0"
-
-        with tf.device(device):
-            model = Word2Vec(opts, session)         # Instantiate model
+        # if opts.gpu:                                # Judge whether use CPU(default) or GPU
+        #     device = "/gpu:0"
+        #
+        # with tf.device(device):
+        model = Word2Vec(opts, session)         # Instantiate model
             # model.read_analogies() # Read analogy questions
         for _ in xrange(opts.iter):      # According to the parameter train the embeddings for iter iterations
             model.train()    # Process one epoch
