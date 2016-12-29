@@ -258,7 +258,8 @@ class Word2Vec(object):
         self.optimize(loss)
 
         # Properly initialize all variables.
-        tf.global_variables_initializer().run()
+        tf.initialize_all_variables().run()         # r0.10
+        # tf.global_variables_initializer().run()   # r0.12
 
         self.saver = tf.train.Saver()
 
