@@ -33,6 +33,9 @@ def EL(m1, sig1, m2, sig2, d):                      # TODO
 def KL(m1, sig1, m2, sig2, d):                      # TODO
     pass
 
+def meanDist(m1, m2):
+    return tf.reduce_sum(m1 * m2)
+
 if __name__ == '__main__':
     sess = tf.Session()
     m1 = tf.constant([1,2,3,4,5,6,7,8,9], dtype=tf.float32)
