@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 
-def lookUpMean(mean, word):
+def lookUpMean(mean, wordIndex, wordSenseCount):
     return mean[]
 
 def lookUpSigma(sigma, word):
