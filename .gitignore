@@ -64,7 +64,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs/_build/p
 
 # PyBuilder
 target/
@@ -97,3 +97,6 @@ ENV/
 # Data
 data/output
 data/text8
+
+# Python cache
+*.pyc
