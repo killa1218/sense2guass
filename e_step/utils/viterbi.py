@@ -4,13 +4,60 @@ import sys
 
 sys.path.append('../..')
 
-from m_step.utils.distance import meanDist as dist
+from utils.distance import meanDist as dist
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
+
+def viterbi(stc, vocab):
+    V = [{}]                            # Output
+
+    stc = stc.split(' ')
+
+    for i in range(vocab.getWord(stc[0]).senseCount):
+        V[0][i] = {"prob": vocab.getWord(stc[0]).senseP[i], "prev": None}
+
+    # for st in states:
+    #     V[0][st] = {"prob": start_p[st] * emit_p[st][obs[0]], "prev": None}
+    #     pp.pprint(V)
+    # Run Viterbi when t > 0
+    for t in range(1, len(stc)):
+        V.append({})
+        for st in states:
+            max_tr_prob = max(V[t-1][prev_st]["prob"]*trans_p[prev_st][st] for prev_st in states)
+            for prev_st in states:
+                if V[t-1][prev_st]["prob"] * trans_p[prev_st][st] == max_tr_prob:
+                    max_prob = max_tr_prob * emit_p[st][obs[t]]
+                    V[t][st] = {"prob": max_prob, "prev": prev_st}
+                    pp.pprint(V)
+                    break
+
+    return V
+
+    # for line in dptable(V):
+    #     print line
+    # opt = []
+    # # The highest probability
+    # max_prob = max(value["prob"] for value in V[-1].values())
+    # previous = None
+    # # Get most probable state and its backtrack
+    # for st, data in V[-1].items():
+    #     if data["prob"] == max_prob:
+    #         opt.append(st)
+    #         previous = st
+    #         break
+    # # Follow the backtrack till the first observation
+    # for t in range(len(V) - 2, -1, -1):
+    #     opt.insert(0, V[t + 1][previous]["prev"])
+    #     previous = V[t + 1][previous]["prev"]
+    # print 'The steps of states are ' + ' '.join(opt) + ' with highest probability of %s' % max_prob
+
 
 def viterbi(obs, states, start_p, trans_p, emit_p):
     V = [{}]
     for st in states:
         V[0][st] = {"prob": start_p[st] * emit_p[st][obs[0]], "prev": None}
-        print(V)
+        pp.pprint(V)
     # Run Viterbi when t > 0
     for t in range(1, len(obs)):
         V.append({})
@@ -20,7 +67,7 @@ def viterbi(obs, states, start_p, trans_p, emit_p):
                 if V[t-1][prev_st]["prob"] * trans_p[prev_st][st] == max_tr_prob:
                     max_prob = max_tr_prob * emit_p[st][obs[t]]
                     V[t][st] = {"prob": max_prob, "prev": prev_st}
-                    print(V)
+                    pp.pprint(V)
                     break
 
     return V

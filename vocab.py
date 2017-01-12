@@ -3,11 +3,13 @@
 
 from __future__ import print_function
 
-from exceptions import NotAFileException
+# from exceptions import NotAFileException
+from options import Options as opt
+from word import Word
 
 import os
 import tensorflow as tf
-import word
+import pickle as pk
 
 
 class Vocab(object):
@@ -35,25 +37,33 @@ class Vocab(object):
         if file != None:
             self.parse(file)
 
+        with open('data/coarse-grained-all-words/sense_clusters-21.senses') as f:
+            self._senseNum = pk.load(f)
+
 
     def _parseLine(self, line):
         words = self._wordSeparator.split(line)
         for word in words:
-            self.totalWordCount ++
+            self.totalWordCount += 1
 
-            try:
-                self._vocab[word].count ++
-            except KeyError:
-                self._vocab[word] = Word(word, self.size)
+            if word in self._vocab.keys():
+                self._vocab[word].count += 1
+            else:
+                if word in self._senseNum.keys():
+                    self.totalSenseCount += self._senseNum[word]
+                    self._vocab[word] = Word(word, self.size, self._senseNum[word]).initSenses()
+                else:
+                    self.totalSenseCount += 1
+                    self._vocab[word] = Word(word, self.size).initSenses()
+
                 self._idx2word[size] = self._vocab[word]
-                self.size ++
+                self.size += 1
                 # {
                 #     'wordCount': 1,
                 #     'senseCount': 1,
                 #     'index': self.size
                 # }
 
-                # self.totalSenseCount += 1
 
 
     def parse(self, file):
@@ -101,5 +111,27 @@ class Vocab(object):
     def getWordFreq(self, word):
         return float(self.getWordCount()) / self.totalWordCount
 
+    def save(self, file):
+        try:
+            with open(file, 'wb') as f:
+                pk.dump(self, f)
+        except:
+            return False
+
+    def load(self, file):
+        try:
+            if os.path.isfile(file):
+                with open(file) as f:
+                    self = pk.load(f)
+                    return True
+        except:
+            return False
 
 
+# if __name__ == '__main__':
+#     opt.embSize = 100;
+
+#     w1 = Word('w', 1)
+#     w1.initSenses()
+
+#     print(w1.means[0].get_shape())
