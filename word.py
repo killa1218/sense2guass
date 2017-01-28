@@ -58,6 +58,7 @@ class Word(object):
                 name="sigmas"
             )
         else:
+            self.sigmas = None
 
         return self
 

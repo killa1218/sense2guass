@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#coding=utf8
+# coding=utf8
 
 from __future__ import print_function
 
@@ -8,12 +8,14 @@ from options import Options as opt
 from word import Word
 
 import os
+import re
 import tensorflow as tf
 import pickle as pk
 
 
 class Vocab(object):
     """Vocabulary of the train corpus, used for embedding lookup and sense number lookup"""
+
     # vocab = {
     #   'wordToken': {
     #     'wordCount': Integer,
@@ -27,6 +29,7 @@ class Vocab(object):
     # }
 
     def __init__(self, file = None):
+        # type: (String) -> Vocab
         self._wordSeparator = re.compile('\\s|(\\s*,\\s*)|(\\s*.\\s*)')
         self._vocab = {}
         self._idx2word = []
@@ -34,12 +37,11 @@ class Vocab(object):
         self.totalWordCount = 0
         self.totalSenseCount = 0
 
-        if file != None:
+        if file is not None:
             self.parse(file)
 
         with open('data/coarse-grained-all-words/sense_clusters-21.senses') as f:
             self._senseNum = pk.load(f)
-
 
     def _parseLine(self, line):
         words = self._wordSeparator.split(line)
@@ -64,8 +66,6 @@ class Vocab(object):
                 #     'index': self.size
                 # }
 
-
-
     def parse(self, file):
         if os.path.isfile(file):
             self.corpus = file
@@ -80,7 +80,6 @@ class Vocab(object):
         else:
             raise NotAFileException(file)
 
-
     def getWord(self, word):
         if isinstance(word, str):
             try:
@@ -93,20 +92,17 @@ class Vocab(object):
         else:
             return None
 
-
     def getSenseCount(self, word):
         try:
             return self._vacob[word].senseCount
         except KeyError:
             return 0
 
-
     def getWordCount(self, word):
         try:
             return self._vacob[word].count
         except KeyError:
             return 0
-
 
     def getWordFreq(self, word):
         return float(self.getWordCount()) / self.totalWordCount
@@ -126,7 +122,6 @@ class Vocab(object):
                     return True
         except:
             return False
-
 
 # if __name__ == '__main__':
 #     opt.embSize = 100;

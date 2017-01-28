@@ -4,18 +4,56 @@ import sys
 
 sys.path.append('../..')
 
-from utils.distance import meanDist as dist
+from utils.distance import dist as dist
+from loss import *
+from options import Options as opt
+import tensorflow as tf
+from tf.nn import sigmoid as act
+from tf.nn import tanh as act
+from tf.nn import relu as act
 import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 
-def viterbi(stc, vocab):
-    V = [{}]                            # Output
 
-    stc = stc.split(' ')
 
-    for i in range(vocab.getWord(stc[0]).senseCount):
-        V[0][i] = {"prob": vocab.getWord(stc[0]).senseP[i], "prev": None}
+def dfs(stc, n, sLabel):
+    global minLoss
+    global assign
+
+    if n == len(stc):
+        return
+
+    with tf.Session() as sess:
+        for i in range(stc[n].senseNum):
+            sLabel[n] = i
+            cur = sess.run(avgSkipGramLoss(stc, sLabel))
+            if cur < minLoss:
+                minLoss = cur
+                assign = sLabel
+            dfs(stc, n + 1, sLabel)
+
+
+
+def violentInference(stc):
+    senseLabel = [0] * len(stc)
+    assign = []
+
+    dfs(stc, 0, senseLabel)
+
+    return assign
+
+
+
+def dpInference(stc, vocab):
+    V = [{}]                            # Record Intermediate Probability
+    path = []                           # Output
+    assign = []                         # Result of word senses in a sentence
+
+    # Initialize Probability Table
+    for i in range(opt.windowSize - 1):
+        for j in range(vocab.getWord(stc[i]).senseCount):
+            V[i][j] = {"prob": vocab.getWord(stc[i]).senseP[j], "prev": None}
 
     # for st in states:
     #     V[0][st] = {"prob": start_p[st] * emit_p[st][obs[0]], "prev": None}
@@ -69,8 +107,6 @@ def viterbi(obs, states, start_p, trans_p, emit_p):
                     V[t][st] = {"prob": max_prob, "prev": prev_st}
                     pp.pprint(V)
                     break
-
-    return V
 
     for line in dptable(V):
         print line
