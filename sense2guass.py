@@ -20,6 +20,7 @@ from vocab import Vocab as v
 from options import Options as opt
 from exceptions import NotAFileException
 from loss import skipGramNCELoss as loss
+from e_step.inference import dpInference as inference
 import pickle as pk
 
 random.seed(time.time())
@@ -106,14 +107,6 @@ def train(s):
     sess.run(optimizer.minimize(l))
 
 
-def negativeLoss():
-    pass
-
-
-def buildGraph(stc, sLabel):
-    pass
-
-
 vocab = None
 
 
@@ -149,30 +142,6 @@ def main(_):
         else:
             raise NotAFileException(file)
 
-
-
-
-
-
-
-
-
-            # # if opt.gpu:                                # Judge whether use CPU(default) or GPU
-            # #     device = "/gpu:0"
-            # #
-            # # with tf.device(device):
-            # model = Word2Vec(opt, session)         # Instantiate model
-            #     # model.read_analogies() # Read analogy questions
-            # for _ in xrange(opt.iter):      # According to the parameter train the embeddings for iter iterations
-            #     model.train()    # Process one epoch
-            #     # model.eval()    # Eval analogies.
-            # # Perform a final save.
-            # model.saver.save(session, os.path.join(opt.save_path, "model.ckpt"), global_step=model.global_step)    # Save model
-            # # if FLAGS.interactive:
-            # #     # E.g.,
-            # #     # [0]: model.analogy(b'france', b'paris', b'russia')
-            # #     # [1]: model.nearby([b'proton', b'elephant', b'maxwell'])
-            # #     _start_shell(locals())
 
 
 if __name__ == "__main__":
