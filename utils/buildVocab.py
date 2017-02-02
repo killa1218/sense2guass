@@ -2,12 +2,14 @@
 # coding=utf8
 
 import sys
+from os import path
 
-sys.path.append('../')
+sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
 from vocab import Vocab as V
 
 def main():
+    pass
     corpus = sys.argv[1]
     target = sys.argv[2]
 
