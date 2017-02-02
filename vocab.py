@@ -58,8 +58,11 @@ class Vocab(object):
                     self.totalSenseCount += 1
                     self._vocab[word] = Word(word, self.size).initSenses()
 
-                self._idx2word[self.size] = self._vocab[word]
+                self._idx2word.append(self._vocab[word])
                 self.size += 1
+
+                if self.size % 100 == 0:
+                    print('Added', self.size, 'words totally.')
                 # {
                 #     'wordCount': 1,
                 #     'senseCount': 1,
