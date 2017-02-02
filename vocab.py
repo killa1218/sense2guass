@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-from exceptions import NotAFileException
+from exceptions import *
 from options import Options as opt
 from word import Word
 
