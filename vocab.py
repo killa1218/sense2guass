@@ -37,11 +37,11 @@ class Vocab(object):
         self.totalWordCount = 0
         self.totalSenseCount = 0
 
-        if file is not None:
-            self.parse(file)
-
         with open('data/coarse-grained-all-words/senseNumberDict.pk') as f:
             self._senseNum = pk.load(f)
+
+        if file is not None:
+            self.parse(file)
 
     def _parseLine(self, line):
         words = self._wordSeparator.split(line)
