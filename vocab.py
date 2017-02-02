@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-# from exceptions import NotAFileException
+from exceptions import NotAFileException
 from options import Options as opt
 from word import Word
 
@@ -40,7 +40,7 @@ class Vocab(object):
         if file is not None:
             self.parse(file)
 
-        with open('data/coarse-grained-all-words/sense_clusters-21.senses') as f:
+        with open('data/coarse-grained-all-words/senseNumberDict.pk') as f:
             self._senseNum = pk.load(f)
 
     def _parseLine(self, line):
@@ -58,7 +58,7 @@ class Vocab(object):
                     self.totalSenseCount += 1
                     self._vocab[word] = Word(word, self.size).initSenses()
 
-                self._idx2word[size] = self._vocab[word]
+                self._idx2word[self.size] = self._vocab[word]
                 self.size += 1
                 # {
                 #     'wordCount': 1,
@@ -71,12 +71,8 @@ class Vocab(object):
             self.corpus = file
 
             with open(file) as f:
-                if os.path.getsize(self.corpus) > 2000000000:
-                    for line in f.readline():
-                        self._parseLine(self, line)
-                else:
-                    for line in f.readlines():
-                        self._parseLine(self, line)
+                for line in f.readlines():
+                    self._parseLine(line)
         else:
             raise NotAFileException(file)
 
