@@ -4,33 +4,23 @@
 from __future__ import print_function
 
 from exceptions import *
-from options import Options as opt
 from word import Word
 
 import os
+import sys
 import re
+import threading
 import tensorflow as tf
 import pickle as pk
+from cStringIO import StringIO
+from threadpool import *
 
 
 class Vocab(object):
-    """Vocabulary of the train corpus, used for embedding lookup and sense number lookup"""
+    """ Vocabulary of the train corpus, used for embedding lookup and sense number lookup. """
 
-    # vocab = {
-    #   'wordToken': {
-    #     'wordCount': Integer,
-    #     'senseCount': Integer,
-    #     'index': Integer
-    #     /* 'senses': [
-    #       'mean': tf.Variable,
-    #       'sigma': tf.Variable
-    #     ] */
-    #   }, ...
-    # }
-
-    def __init__(self, file = None):
-        # type: (String) -> Vocab
-        self._wordSeparator = re.compile('\\s|(\\s*,\\s*)|(\\s*.\\s*)')
+    def __init__(self, file=None):
+        self._wordSeparator = re.compile('\\s|(\\s*,\\s*)|(\\s*\\.\\s*)')
         self._vocab = {}
         self._idx2word = []
         self.size = 0
@@ -42,6 +32,7 @@ class Vocab(object):
 
         if file is not None:
             self.parse(file)
+
 
     def _parseLine(self, line):
         words = self._wordSeparator.split(line)
@@ -63,26 +54,70 @@ class Vocab(object):
 
                 if self.size % 100 == 0:
                     print('Added', self.size, 'words totally.')
-                # {
-                #     'wordCount': 1,
-                #     'senseCount': 1,
-                #     'index': self.size
-                # }
 
-    def parse(self, file):
+
+    def _parseLineThread(self, line):
+        words = self._wordSeparator.split(line)
+        for word in words:
+            if self.mutex.acquire(1):
+                self.totalWordCount += 1
+
+                if word in self._vocab.keys():
+                    self._vocab[word].count += 1
+                else:
+                    if word in self._senseNum.keys():
+                        self.totalSenseCount += self._senseNum[word]
+                        self._vocab[word] = Word(word, self.size, self._senseNum[word])
+                    else:
+                        self.totalSenseCount += 1
+                        self._vocab[word] = Word(word, self.size)
+
+                    self._idx2word.append(self._vocab[word])
+                    self.size += 1
+
+                    if self.size % 100 == 0:
+                        sys.stdout.write('\rAdded %d words totally.' % self.size)
+                        sys.stdout.flush()
+                self.mutex.release()
+
+
+    def parse(self, file, threadNum=10, parseUnitLength=100):
         if os.path.isfile(file):
             self.corpus = file
+            stc = StringIO()
+            wordCount = 0
+            tp = ThreadPool(threadNum)
+            self.mutex = threading.Lock()
 
             with open(file) as f:
-                for line in f.readlines():
-                    self._parseLine(line)
+                c = f.read(1)
+                while c != '':
+                    if self._wordSeparator.search(c) != None:
+                        wordCount += 1
+
+                    if wordCount == parseUnitLength:
+                        requests = makeRequests(self._parseLineThread, [stc.getvalue()])
+
+                        for req in requests:
+                            tp.putRequest(req)
+
+                        wordCount = 0
+                        del(stc)
+                        stc = StringIO()
+                        continue
+
+                    stc.write(c)
+                    c = f.read(1)
+            tp.wait()
+            print('\nParse Finished.')
         else:
             raise NotAFileException(file)
+
 
     def getWord(self, word):
         if isinstance(word, str):
             try:
-                return self._vacob[word]
+                return self._vocab[word]
             except KeyError:
                 return None
         elif isinstance(word, int):
@@ -91,41 +126,54 @@ class Vocab(object):
         else:
             return None
 
+
     def getSenseCount(self, word):
         try:
-            return self._vacob[word].senseCount
+            return self._vocab[word].senseCount
         except KeyError:
             return 0
 
+
     def getWordCount(self, word):
         try:
-            return self._vacob[word].count
+            return self._vocab[word].count
         except KeyError:
             return 0
+
 
     def getWordFreq(self, word):
         return float(self.getWordCount()) / self.totalWordCount
 
+
     def save(self, file):
         try:
+            l = []
+
+            for i in self._idx2word:
+                l.append((i.token, i.senseNum, i.count, i.index ))
             with open(file, 'wb') as f:
-                pk.dump(self, f)
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount}, f)
+                return True
         except:
             return False
+
 
     def load(self, file):
         try:
             if os.path.isfile(file):
                 with open(file) as f:
-                    self = pk.load(f)
+                    data = pk.load(f)
+
+                    self.totalSenseCount = data['tsc']
+                    self.totalWordCount = data['twc']
+
+                    for i in data['words']:
+                        w = Word(i[0], i[3], i[1], i[2])
+                        w.initSenses()
+                        self._idx2word.append(w)
+                        self._vocab[i[0]] = self._idx2word[-1]
+
+                    self.size = len(data['words'])
                     return True
         except:
             return False
-
-# if __name__ == '__main__':
-#     opt.embSize = 100;
-
-#     w1 = Word('w', 1)
-#     w1.initSenses()
-
-#     print(w1.means[0].get_shape())

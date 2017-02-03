@@ -8,10 +8,10 @@ import tensorflow as tf
 
 class Word(object):
     """Word with multiple senses"""
-    def __init__(self, word, index, sNum = 1):
+    def __init__(self, word, index, sNum=1, c=1):
         self.token = word                   # String token of the word
         self.senseNum = sNum                # How many senses does this word have
-        self.count = 1                      # Word count
+        self.count = c                      # Word count
         self.means = None                   # Means of senses
         self.sigmas = None                  # Covariance of senses
         self.index = index                  # The index in vocabulary
@@ -19,6 +19,7 @@ class Word(object):
 
     def setSenseNum(self, num):
         self.senseNum = num
+        self.initSenses()
 
         return self
 
