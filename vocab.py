@@ -8,7 +8,7 @@ import pickle as pk
 import sys
 import threading
 
-from threadpool import *
+from utils.threadpool import *
 from exceptions import *
 from word import Word
 from options import Options as opt
