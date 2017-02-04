@@ -8,7 +8,7 @@ import tensorflow as tf
 
 class Word(object):
     """Word with multiple senses"""
-    def __init__(self, word, index, sNum=1, c=1):
+    def __init__(self, word, index=-1, sNum=1, c=1):
         self.token = word                   # String token of the word
         self.senseNum = sNum                # How many senses does this word have
         self.count = c                      # Word count
