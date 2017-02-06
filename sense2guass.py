@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# coding:utf8
+#!/usr/local/bin/python3
+# coding=utf8
 
 from __future__ import absolute_import
 from __future__ import division
@@ -13,15 +13,15 @@ import random
 
 # from six.moves import xrange    # pylint: disable=redefined-builtin
 
-import numpy as np
-import tensorflow as tf
 
-from vocab import Vocab as v
+from tqdm import tqdm
+from vocab import Vocab as V
 from options import Options as opt
-from exceptions import NotAFileException
 from loss import skipGramNCELoss as loss
 from e_step.inference import dpInference as inference
-import pickle as pk
+from threadpool import *
+from utils.fileIO import fetchSentences
+import tensorflow as tf
 
 random.seed(time.time())
 
@@ -46,8 +46,7 @@ flags.DEFINE_boolean("interactive", False,
 flags.DEFINE_integer("statistics_interval", 5, "Print statistics every n seconds.")
 flags.DEFINE_integer("summary_interval", 5,
                      "Save training summary to file every n seconds (rounded up to statistics interval).")
-flags.DEFINE_integer("checkpoint_interval", 600,
-                     "Checkpoint the model (i.e. save the parameters) every n seconds (rounded up to statistics interval).")
+flags.DEFINE_integer("checkpoint_interval", 600, "Checkpoint the model (i.e. save the parameters) every n seconds (rounded up to statistics interval).")
 
 FLAGS = flags.FLAGS
 
@@ -62,19 +61,19 @@ opt.alpha = FLAGS.alpha
 # Number of epochs to train. After these many epochs, the learning rate decays linearly to zero and the training stops.
 opt.iter = FLAGS.iter
 # Concurrent training steps.
-opt.threads = FLAGS.threads
+# opt.threads = FLAGS.threads
 # Number of examples for one training step.
-opt.batch_size = FLAGS.batch_size
+opt.batchSize = FLAGS.batch_size
 # The number of words to predict to the left and right of the target word.
 opt.windowSize = FLAGS.window
 # The minimum number of word occurrences for it to be included in the vocabulary.
-opt.min_count = FLAGS.min_count
+opt.minCount = FLAGS.min_count
 # Subsampling threshold for word occurrence.
-opt.sample = FLAGS.sample
+# opt.sample = FLAGS.sample
 # Load vocabulary from file.
-opt.vacab = FLAGS.vocab
+opt.vocab = FLAGS.vocab
 # Save the vocab to a file.
-opt.save_vocab = FLAGS.save_vocab
+opt.saveVocab = FLAGS.save_vocab
 # How often to print statistics.
 opt.statistics_interval = FLAGS.statistics_interval
 # How often to write to the summary file (rounds up to the nearest statistics_interval).
@@ -85,63 +84,83 @@ opt.checkpoint_interval = FLAGS.checkpoint_interval
 opt.gpu = FLAGS.gpu
 # Where to write out summaries.
 opt.save_path = FLAGS.output
-if not os.path.exists(opt.save_path):
-    os.makedirs(opt.save_path)
+# if not os.path.exists(opt.save_path):
+#     os.makedirs(opt.save_path)
 
 
-def train(s):
-    global sess
-
-    stc = []
-
-    for i in s.split(' '):
-        stc.append(vocab.getWord(i))
-
-    # Do Inference
-    sLabel = inference(stc)
-
-    # Do Optimize
-    l = loss(stc, sLabel)
-
-    optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
-    sess.run(optimizer.minimize(l))
+vocabulary = None
 
 
-vocab = None
+def train(batch, sess, optimizer):
+    global vocabulary
+
+    l = tf.constant(0., dtype=tf.float32)
+
+    for stc in batch:
+        # stc = []
+        #
+        # for i in s.split(' '):
+        #     stc.append(vocab.getWord(i))
+
+        # E-Step: Do Inference
+        sLabel = inference(stc, vocabulary, sess)
+
+        # Build loss
+        l += loss(stc, sLabel, sess)
+
+    # M-Step: Do Optimize
+    sess.run(optimizer(l))
+    print('Loss:', sess.run(l))
 
 
 def main(_):
-    """Train a sense2guass model."""
+    """ Train a sense2guass model. """
+    global vocabulary
+
     if not FLAGS.train or not FLAGS.output:  # Whether the train corpus and output path is set
         print("--train and --output must be specified.")
         sys.exit(1)
-    # opt = Options()  # Instantiate option object
 
-    stc = None
-    device = "/cpu:0"
-    with tf.Graph().as_default(), tf.Session() as sess:
+    with tf.Session() as sess:
+        tp = ThreadPool(1)
+        optimizer = tf.train.GradientDescentOptimizer(opt.alpha).minimize
+
         # Build vocabulary or load vocabulary from file
-        if opt.vacab != None:
-            vocab = pk.load(opt.vocab)
+        if opt.vocab != None:
+            vocabulary = V()
+            vocabulary.load(opt.vocab)
         else:
-            vocab = v(opt.train)
+            vocabulary = V(opt.train)
+            vocabulary.initAllSenses()
 
-            if opt.save_vocab:
-                pk.dump(vocab, opt.save_vocab)
+            if opt.saveVocab:
+                vocabulary.save(opt.saveVocab)
 
+        tf.global_variables_initializer().run(session=sess)
 
-        # Read batch sentences in
-        if os.path.isfile(opt.train):
-            with open(opt.train) as f:
-                if os.path.getsize(opt.train) > 2000000000:
-                    for line in f.readline():
-                        train(line)
-                else:
-                    for line in f.readlines():
-                        train(line)
-        else:
-            raise NotAFileException(file)
+        # Train iteration
+        print('Start training...')
+        for i in tqdm(range(opt.iter)):
+            if os.path.isfile(opt.train):
+                with open(opt.train) as f:
+                    batch = []
 
+                    for stc in fetchSentences(f, 20000, opt.maxSentenceLength):
+                        batch.append(stc)
+
+                        if len(batch) == opt.batchSize:
+                            train(batch, sess, optimizer)
+                            del(batch)
+                            batch = []
+
+                    train(batch, sess, optimizer)
+
+                # Save training result
+                requests = makeRequests(vocabulary.saveEmbeddings, [opt.save_path])
+                for req in requests:
+                    tp.putRequest(req)
+            else:
+                raise Exception(file)
 
 
 if __name__ == "__main__":

@@ -216,8 +216,8 @@ class Word2Vec(object):
         self._lr = lr
         optimizer = tf.train.GradientDescentOptimizer(lr)
         train = optimizer.minimize(loss,
-                                                             global_step=self.global_step,
-                                                             gate_gradients=optimizer.GATE_NONE)
+             global_step=self.global_step,
+             gate_gradients=optimizer.GATE_NONE)
         self._train = train
 
 
@@ -327,6 +327,7 @@ class Word2Vec(object):
 
     def save_emb(self, file):
         with open(file, 'wb') as f:
+            pass
 
 
 

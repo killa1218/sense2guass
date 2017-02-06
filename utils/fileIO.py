@@ -2,13 +2,14 @@
 
 import time
 import sys
+import os
 
 from options import Options as opt
 from os import path
 
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
-def fetchSentences(f, buffer=20000, sentenceLength=1000):
+def fetchSentences(f, buffer=20000, sentenceLength=1000, verbose=True):
     tmp = []
     # tank = StringIO()
     EOF = False
@@ -41,7 +42,8 @@ def fetchSentences(f, buffer=20000, sentenceLength=1000):
         else:
             yield tmp
 
-        end = time.time()
-        readtime += end - start
-        sys.stdout.write('\rSpeed: %.2fKB/s.' % (float(f.tell()/1000)/readtime))
-        sys.stdout.flush()
+        if verbose:
+            end = time.time()
+            readtime += end - start
+            sys.stdout.write('\rSpeed: %.2fKB/s. %.2f%% Loaded' % (float(f.tell()/1000)/readtime, float(f.tell())*100/os.path.getsize(f.name)))
+            sys.stdout.flush()

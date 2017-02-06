@@ -7,14 +7,15 @@ import os
 import pickle as pk
 import sys
 import threading
+import tensorflow as tf
 
-from utils.threadpool import *
+from threadpool import *
 from exceptions import *
+from tqdm import *
 from word import Word
 from options import Options as opt
 from utils.fileIO import fetchSentences
 from utils.common import is_number
-
 
 class Vocab(object):
     """ Vocabulary of the train corpus, used for embedding lookup and sense number lookup. """
@@ -37,33 +38,11 @@ class Vocab(object):
         if file is not None:
             self.parse(file)
 
-
-    # def _parseLine(self, line):
-    #     words = self._wordSeparator.split(line)
-    #     for word in words:
-    #         self.totalWordCount += 1
-    #
-    #         if word in self._vocab.keys():
-    #             self._vocab[word].count += 1
-    #         else:
-    #             if word in self._senseNum.keys():
-    #                 self.totalSenseCount += self._senseNum[word]
-    #                 self._vocab[word] = Word(word, self.size, self._senseNum[word]).initSenses()
-    #             else:
-    #                 self.totalSenseCount += 1
-    #                 self._vocab[word] = Word(word, self.size).initSenses()
-    #
-    #             self._idx2word.append(self._vocab[word])
-    #             self.size += 1
-    #
-    #             if self.size % 100 == 0:
-    #                 print('Added', self.size, 'words totally.')
-
-
     def _parseLineThread(self, wordsList):
         for word in wordsList:
             if word != None and word != '' and not is_number(word) and self.mutex.acquire(1):
                 word = word.strip()
+                word = word.lower()
                 self.totalWordCount += 1
 
                 if word in self._vocab.keys():
@@ -80,7 +59,7 @@ class Vocab(object):
                     self.size += 1
 
                     if self.size % 100 == 0:
-                        sys.stdout.write('\r                          Added %d words totally using %i threads.' % (self.size, threading.activeCount() - 1))
+                        sys.stdout.write('\r\t\t\t\t\t\t\tAdded %d words totally using %i threads.' % (self.size, threading.activeCount() - 1))
                         sys.stdout.flush()
                 self.mutex.release()
 
@@ -179,18 +158,43 @@ class Vocab(object):
         try:
             if os.path.isfile(file):
                 with open(file, 'rb') as f:
+                    print('Loading vocab from file:', file)
                     data = pk.load(f)
 
                     self.totalSenseCount = data['tsc']
                     self.totalWordCount = data['twc']
 
-                    for i in data['words']:
+                    for i in tqdm(data['words']):
                         w = Word(i[0], i[3], i[1], i[2])
                         w.initSenses()
                         self._idx2word.append(w)
                         self._vocab[i[0]] = self._idx2word[-1]
 
                     self.size = len(data['words'])
+                    print('Vocab load finished.')
+
+                    # self.initAllSenses()
                     return True
         except:
             return False
+
+
+    def initAllSenses(self):
+        print('Initializing all senses.')
+        for word in tqdm(self._idx2word):
+            word.initSenses()
+        # self._idx2word[0].initSenses()
+        # tf.variables_initializer([self._idx2word[0].means]).run(session=tf.Session())
+        # print(tf.Session().run(self._idx2word[0].means))
+        print('Finished initializing senses.')
+
+
+    def saveEmbeddings(self, file, buffer=1000000):
+        print('Saving embeddings to file:', file)
+        with open(file, 'w', buffer) as f, tf.Session() as sess:
+            for word in self._idx2word:
+                means = sess.run(word.means)
+                sigmas = sess.run(word.sigmas)
+
+                f.write(str({'w': '"' + word.token + '"', 'm': means, 's': sigmas}) + '\n')
+        print('Finished saving.')

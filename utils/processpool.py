@@ -61,7 +61,6 @@ try:
     import types
 
     def _pickle_method(m):
-        print(m.im_self)
         if m.im_self is None:
             return getattr, (m.im_class, m.im_func.func_name)
         else:
@@ -233,7 +232,7 @@ class WorkRequest:
         return "<WorkRequest id=%s args=%r kwargs=%r exception=%s>" % \
             (self.requestID, self.args, self.kwds, self.exception)
 
-class ThreadPool:
+class ThreadPool():
     """A thread pool, distributing work requests and collecting results.
 
     See the module docstring for more information.

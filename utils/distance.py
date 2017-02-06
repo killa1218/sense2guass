@@ -3,7 +3,7 @@
 from __future__ import print_function
 
 import tensorflow as tf
-# from options import Options as opt
+from options import Options as opt
 from math import pi
 
 def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal gaussian distributions
@@ -40,8 +40,12 @@ def KL(m1, sig1, m2, sig2, d):                      # TODO
 def meanDist(m1, m2):
     return tf.reduce_sum(m1 * m2)
 
-def dist((w1,s1), (w2, s2)):
-    return diagKL(w1.means[s1], w1,sigmas[s1], w2.means[s2], w2.sigmas[s2], opt.embSize)
+def dist(word1, word2):
+    (w1,s1) = word1
+    (w2, s2) = word2
+    # return tf.reduce_sum(w1.means[s1])
+
+    return diagKL(w1.means[s1], w1.sigmas[s1], w2.means[s2], w2.sigmas[s2], opt.embSize)
 
 
 if __name__ == '__main__':
