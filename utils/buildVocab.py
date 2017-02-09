@@ -7,16 +7,19 @@ from os import path
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
 from vocab import Vocab as V
+from options import Options as opt
 
 def main():
     corpus = sys.argv[1]
     target = sys.argv[2]
+    min = sys.argv[3] if sys.argv[3] else 1
     v = None
 
-    print(sys.path)
+    opt.minCount = min
 
     try:
-        v = V(corpus)
+        v = V()
+        v.parse(corpus)
     except KeyboardInterrupt:
         print('Met key interrupt.')
     except Exception as e:
@@ -24,6 +27,7 @@ def main():
         print('Some error.')
     finally:
         if v:
+            v.reduce()
             v.save(target)
             print('Vocab saved.')
 

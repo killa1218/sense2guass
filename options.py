@@ -18,4 +18,4 @@ class Options(object):
     batchSize = 1                       # How many sentences trained in a batch
     threads = 12                        # How many threads are used to train
     wordSeparator = re.compile('\s*,\s*|\s*\.\s*|\s+')  # Separator pattern of words in corpus
-    minCount = 10                        # Words who exist under minCount times will be omitted
+    minCount = 10                       # Words who exist under minCount times will be omitted
