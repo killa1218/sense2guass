@@ -7,6 +7,7 @@ sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), pa
 
 from loss import *
 from options import Options as opt
+from tqdm import tqdm
 import tensorflow as tf
 from loss import skipGramWindowLoss
 # from tensorflow import sigmoid as act
@@ -73,7 +74,7 @@ def dfs(stcW, mid, sess):
                 stack += [0] * (fullWindowSize - len(stack))
                 loss = sess.run(skipGramWindowLoss(stcW, stack, mid))
 
-                print('STACK:', stack, 'LOSS:', loss)
+                print('\tASSIGN:', stack, 'LOSS:', loss)
 
                 yield stack, loss, mid
 
@@ -91,14 +92,13 @@ def dpInference(stcW, vocab, sess):
             minLoss = l
             assign = a[:]
 
-    for i in range(opt.windowSize + 1, len(stcW)):
+    for i in tqdm(range(opt.windowSize + 1, len(stcW))):
         minLoss = float('inf')  # Minimum loss
         newWord = stcW[i + opt.windowSize] if i + opt.windowSize < len(stcW) else None
         tmpV = {}
 
         for j in v:
             prevAssign = list(j)
-            # prevLoss = v[j]['loss']
             prevLoss = v[j]
 
             if newWord:
@@ -111,6 +111,7 @@ def dpInference(stcW, vocab, sess):
                     if curLoss < minLoss:
                         minLoss = curLoss
                         assign = curAssign[:]
+                        print('\tASSIGN:', assign, 'LOSS:', curLoss)
             else:
                 curLoss = prevLoss + sess.run(skipGramWindowLoss(stcW, prevAssign, i))
 

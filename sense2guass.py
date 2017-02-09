@@ -31,10 +31,10 @@ flags.DEFINE_string("output", None, "Directory to write the model and training s
 flags.DEFINE_string("train", None, "Training text file. E.g., unzipped file http://mattmahoney.net/dc/text8.zip.")
 flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
-flags.DEFINE_integer("size", 100, "The embedding dimension size. Default is 100.")
+flags.DEFINE_integer("size", 50, "The embedding dimension size. Default is 100.")
 flags.DEFINE_integer("window", 5, "The number of words to predict to the left and right of the target word.")
 flags.DEFINE_integer("negative", 100, "Negative samples per training example. Default is 100.")
-flags.DEFINE_integer("threads", 12, "How many threads are used to train. Default 12.")
+flags.DEFINE_integer("threads", 3, "How many threads are used to train. Default 12.")
 flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
 flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
@@ -100,9 +100,10 @@ def train(batch, sess, optimizer):
 
         if len(stcW) > opt.windowSize and len(stcW) > opt.minSentenceLength:
             # E-Step: Do Inference
+            print('Inferencing sentence:', ' '.join(stc))
             sLabel = inference(stcW, vocabulary, sess)
 
-            print('Inference of sentence:"', ' '.join(stc), '"', sLabel)
+            print('Inference of sentence:', sLabel)
 
             # Build loss
             l += loss(stcW, sLabel, vocabulary, sess)
