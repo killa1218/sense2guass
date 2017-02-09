@@ -27,6 +27,8 @@ class Vocab(object):
         self.size = 0
         self.totalWordCount = 0
         self.totalSenseCount = 0
+        self.means = None
+        self.sigmas = None
 
         try:
             with open('data/coarse-grained-all-words/senseNumberDict.pk', 'rb') as f:
@@ -55,7 +57,6 @@ class Vocab(object):
                         self.totalSenseCount += 1
                         self._vocab[word] = Word(word)
 
-                    # self._idx2word.append(self._vocab[word])
                     self.size += 1
 
                     if self.size % 100 == 0:
@@ -105,9 +106,15 @@ class Vocab(object):
         self.size = tmp
 
         for i in toBeDel:
-            del(self._vocab[i])
+            w = self._vocab[i]
+
+            self.totalWordCount -= w.count
+            self.totalSenseCount -= w.senseNum
+            del(w)
 
         print('Reduce Finished. %d Words Encountered.' % self.size)
+
+        self.initAllSenses()
 
 
     def getWord(self, word):
@@ -141,14 +148,14 @@ class Vocab(object):
         return float(self.getWordCount()) / self.totalWordCount
 
 
-    def save(self, file):
+    def save(self, file, sess):
         try:
             l = []
 
             for i in self._idx2word:
                 l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
             with open(file, 'wb') as f:
-                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount}, f)
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas)}, f)
                 return True
         except:
             return False
@@ -160,32 +167,88 @@ class Vocab(object):
                 with open(file, 'rb') as f:
                     print('Loading vocab from file:', file)
                     data = pk.load(f)
+                    curSenseCount = 0
 
                     self.totalSenseCount = data['tsc']
                     self.totalWordCount = data['twc']
 
+                    try:
+                        self.means = tf.Variable(data['means'], dtype=tf.float64)
+                        self.sigmas = tf.Variable(data['sigmas'], dtype=tf.float64)
+                    except KeyError:
+                        print('Using old style vocab file.')
+
                     for i in tqdm(data['words']):
-                        w = Word(i[0], i[3], i[1], i[2])
-                        w.initSenses()
+                        senseStart = None
+
+                        try:
+                            senseStart = i[4]
+                        except IndexError:
+                            senseStart = curSenseCount
+
+                        w = Word(i[0], i[3], i[1], i[2], senseStart)
+                        curSenseCount += i[1]
                         self._idx2word.append(w)
                         self._vocab[i[0]] = self._idx2word[-1]
 
                     self.size = len(data['words'])
                     print('Vocab load finished.')
 
-                    # self.initAllSenses()
+                    if not self.means or not self.sigmas:
+                        self.initAllSenses()
                     return True
-        except:
+        except Exception:
+            print(Exception)
             return False
 
 
     def initAllSenses(self):
         print('Initializing all senses.')
-        for word in tqdm(self._idx2word):
-            word.initSenses()
-        # self._idx2word[0].initSenses()
-        # tf.variables_initializer([self._idx2word[0].means]).run(session=tf.Session())
-        # print(tf.Session().run(self._idx2word[0].means))
+
+        sNum = self.totalSenseCount
+        eSize = opt.embSize
+        iWidth = opt.initWidth
+
+        self.means = tf.Variable(
+            tf.random_uniform(
+                [sNum, eSize],
+                -iWidth,
+                iWidth,
+                dtype=tf.float64
+            ),
+            dtype=tf.float64,
+            name="means"
+        )
+
+        if opt.covarShape == 'normal':
+            self.sigmas = tf.clip_by_value(tf.Variable(
+                tf.random_uniform(
+                    [sNum, eSize, eSize],
+                    0,
+                    iWidth,
+                    dtype=tf.float64
+                ),
+                dtype=tf.float64,
+                name="sigmas"
+            ), 0.01, float('inf'))
+        elif opt.covarShape == 'diagnal':
+            self.sigmas = tf.clip_by_value(tf.Variable(
+                tf.random_uniform(
+                    [sNum, eSize],
+                    0,
+                    iWidth,
+                    dtype=tf.float64
+                ),
+                dtype=tf.float64,
+                name="sigmas"
+            ), 0.01, float('inf'))
+        else:
+            self.sigmas = None
+
+        for w in self._idx2word:
+            w.setMeans(self.means)
+            w.setSigmas(self.sigmas)
+
         print('Finished initializing senses.')
 
 

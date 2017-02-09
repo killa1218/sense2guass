@@ -134,13 +134,14 @@ def main(_):
             vocabulary.initAllSenses()
 
             if opt.saveVocab:
-                vocabulary.save(opt.saveVocab)
+                vocabulary.save(opt.saveVocab. sess)
 
         tf.global_variables_initializer().run(session=sess)
 
         # Train iteration
         print('Start training...')
         for i in tqdm(range(opt.iter)):
+            print('\n')
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
                     batch = []

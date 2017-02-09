@@ -3,26 +3,19 @@
 
 from __future__ import print_function
 
-from options import Options as opt
+# from options import Options as opt
 import tensorflow as tf
 
 class Word():
     """Word with multiple senses"""
-    def __init__(self, word, index=-1, sNum=1, c=1, sStart = None):
+    def __init__(self, word, index=-1, sNum=1, c=1, sStart=None):
         self.token = word                   # String token of the word
         self.senseNum = sNum                # How many senses does this word have
         self.count = c                      # Word count
-        # self.means = None                   # Means of senses
-        # self.sigmas = None                  # Covariance of senses
+        self.means = None                   # Means of senses
+        self.sigmas = None                  # Covariance of senses
         self.index = index                  # The index in vocabulary
         self.senseStart = sStart            # Where does the senses starts
-
-
-    def setSenseNum(self, num):
-        self.senseNum = num
-        self.initSenses()
-
-        return self
 
 
     def setSenseStart(self, sStart):
@@ -31,49 +24,20 @@ class Word():
         return self
 
 
-    def initSenses(self):
-        # self.senseCount = [0] * self.senseNum   # How many times does each sense appears in corpus
-        # self.senseP = [1. / self.senseNum] * self.senseNum  # The prior probability of each senses, calculated by senseCount / count
+    def setMeans(self, means):
+        self.means = means
 
-        sNum = self.senseNum
-        eSize = opt.embSize
-        iWidth = opt.initWidth
 
-        self.means = tf.Variable(
-            tf.random_uniform(
-                [sNum, eSize],
-                -iWidth,
-                iWidth,
-                dtype=tf.float64
-            ),
-            dtype=tf.float64,
-            name="means-"+self.token
-        )
+    def setSigmas(self, sigmas):
+        self.sigmas = sigmas
 
-        if opt.covarShape == 'normal':
-            self.sigmas = tf.clip_by_value(tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize, eSize],
-                    0,
-                    iWidth,
-                    dtype=tf.float64
-                ),
-                dtype=tf.float64,
-                name="sigmas-"+self.token
-            ), 0.01, float('inf'))
-        elif opt.covarShape == 'diagnal':
-            self.sigmas = tf.clip_by_value(tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize],
-                    0,
-                    iWidth,
-                    dtype=tf.float64
-                ),
-                dtype=tf.float64,
-                name="sigmas-"+self.token
-            ), 0.01, float('inf'))
-        else:
-            self.sigmas = None
+
+    def getMean(self, mIdx):
+        return tf.nn.embedding_lookup(self.means, self.senseStart + mIdx - 1)
+
+
+    def getSigma(self, sIdx):
+        return tf.nn.embedding_lookup(self.sigmas, self.senseStart + sIdx - 1)
 
 
     def senseFind(self, sn):

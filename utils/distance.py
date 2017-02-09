@@ -43,9 +43,9 @@ def meanDist(m1, m2):
 def dist(word1, word2):
     (w1,s1) = word1
     (w2, s2) = word2
-    # return tf.reduce_sum(w1.means[s1])
+    # return tf.reduce_sum(w1.getMean(s1])
 
-    return diagKL(w1.means[s1], w1.sigmas[s1], w2.means[s2], w2.sigmas[s2], opt.embSize)
+    return diagKL(w1.getMean(s1), w1.getSigma(s1), w2.getMean(s2), w2.getSigma(s2), opt.embSize)
 
 
 if __name__ == '__main__':
