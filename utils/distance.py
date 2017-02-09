@@ -11,8 +11,8 @@ def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal g
     sig = sig1 + sig2
 
     return tf.div(
-        tf.exp(tf.reduce_sum(-0.5 * tf.pow(m, 2) * tf.div(1., sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
-        tf.sqrt(tf.pow(2. * pi, d) * tf.reduce_prod(sig), name='diagEL-SquareRoot'),
+        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=tf.float64) * tf.pow(m, 2) * tf.div(tf.constant(1., dtype=tf.float64), sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
+        tf.sqrt(tf.pow(tf.constant(2., dtype=tf.float64) * pi, d) * tf.reduce_prod(sig), name='diagEL-SquareRoot'),
         name='diagEL'
     )
 
@@ -20,10 +20,10 @@ def diagKL(m1, sig1, m2, sig2, d):                  # KL energy of two diagnal g
     m = m2 - m1
 
     return tf.div(
-        tf.log(tf.div(tf.reduce_prod(sig2), tf.reduce_prod(sig1))) -
+        tf.log(tf.reduce_prod(sig2 / sig1)) -
         d +
-        tf.reduce_sum(tf.div(1., sig2, name='diagKL-Inverse') * sig1, name='diagKL-Trace') +
-        tf.reduce_sum(tf.pow(m, 2) * tf.div(1., sig2, name='diagKL-Inverse')),
+        tf.reduce_sum(tf.div(tf.constant(1., dtype=tf.float64), sig2, name='diagKL-Inverse') * sig1, name='diagKL-Trace') +
+        tf.reduce_sum(tf.pow(m, 2) * tf.div(tf.constant(1., dtype=tf.float64), sig2, name='diagKL-Inverse')),
         2.,
         name='diagKL'
     )

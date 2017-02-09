@@ -17,24 +17,7 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent = 4)
 
-minLoss = float('inf')
-
-def stc2stcW(stc, vocab):
-    tmp = []
-
-    for s in stc:
-        s = s.lower()
-        w = vocab.getWord(s)
-
-        if w != None:
-            tmp.append(w)
-
-    del(stc)
-    return tmp
-
 def rdfs(stc, n, sLabel, assign, sess):
-    global minLoss
-
     if n == len(stc):
         return
 
@@ -71,11 +54,7 @@ def dfs(stcW, mid, sess):
     else:
         fullWindowSize = opt.windowSize * 2 + 1
 
-    # with tf.Session() as sess:
     stack = [0] * fullWindowSize
-    #
-    # print('\n', sess.run(stcW[0].means))
-    # print(sess.run(skipGramWindowLoss(stcW, stack, mid)))
 
     yield stack,\
           sess.run(
@@ -91,23 +70,30 @@ def dfs(stcW, mid, sess):
                 stack.pop()
             else:
                 stack[-1] += 1
-                stack += [0] * (len(stcW) - len(stack))
-                yield stack, sess.run(skipGramWindowLoss(stcW, stack, mid)), mid
+                stack += [0] * (fullWindowSize - len(stack))
+                loss = sess.run(skipGramWindowLoss(stcW, stack, mid))
+
+                print('STACK:', stack, 'LOSS:', loss)
+
+                yield stack, loss, mid
 
 
-def dpInference(stc, vocab, sess):
+def dpInference(stcW, vocab, sess):
     v = {}  # Record Intermediate Probability
     assign = []  # Result of word senses in a sentence
-    stcW = stc2stcW(stc, vocab)
+    minLoss = float('inf')  # Minimum loss
 
+    assert len(stcW) > opt.windowSize
     for a, l, m in dfs(stcW, opt.windowSize, sess):
-        # v[tuple(a)] = dict(loss = l, mid = m)
         v[tuple(a)] = l
 
-    # with tf.Session() as sess:
+        if l < minLoss:
+            minLoss = l
+            assign = a[:]
+
     for i in range(opt.windowSize + 1, len(stcW)):
         minLoss = float('inf')  # Minimum loss
-        newWord = stcW[i + opt.windowSize if i + opt.windowSize < len(stcW) else len(stcW) - 1]
+        newWord = stcW[i + opt.windowSize] if i + opt.windowSize < len(stcW) else None
         tmpV = {}
 
         for j in v:
@@ -115,19 +101,27 @@ def dpInference(stc, vocab, sess):
             # prevLoss = v[j]['loss']
             prevLoss = v[j]
 
-            for j in range(0, newWord.senseNum):
-                curAssign = prevAssign + [j]
-                curLoss = prevLoss + sess.run(skipGramWindowLoss(stcW, curAssign, i))
+            if newWord:
+                for j in range(0, newWord.senseNum):
+                    curAssign = prevAssign + [j]
+                    curLoss = prevLoss + sess.run(skipGramWindowLoss(stcW, curAssign, i))
 
-                tmpV[tuple(curAssign)] = curLoss
+                    tmpV[tuple(curAssign)] = curLoss
 
-                if curAssign < minLoss:
+                    if curLoss < minLoss:
+                        minLoss = curLoss
+                        assign = curAssign[:]
+            else:
+                curLoss = prevLoss + sess.run(skipGramWindowLoss(stcW, prevAssign, i))
+
+                tmpV[tuple(prevAssign)] = curLoss
+
+                if curLoss < minLoss:
                     minLoss = curLoss
-                    assign = curAssign
-
-        print(assign)
+                    assign = prevAssign[:]
 
         del(v)
+        v = {}
 
         for j in tmpV:
             if j[i - opt.windowSize - 1] == assign[i - opt.windowSize - 1]:

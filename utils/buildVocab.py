@@ -9,16 +9,23 @@ sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), pa
 from vocab import Vocab as V
 
 def main():
-    pass
     corpus = sys.argv[1]
     target = sys.argv[2]
+    v = None
 
-    v = V(corpus)
+    print(sys.path)
 
-    v.save(target)
-
-
-
+    try:
+        v = V(corpus)
+    except KeyboardInterrupt:
+        print('Met key interrupt.')
+    except Exception as e:
+        print(e)
+        print('Some error.')
+    finally:
+        if v:
+            v.save(target)
+            print('Vocab saved.')
 
 if __name__ == '__main__':
     main()

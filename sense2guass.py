@@ -37,16 +37,11 @@ flags.DEFINE_integer("negative", 100, "Negative samples per training example. De
 flags.DEFINE_integer("threads", 12, "How many threads are used to train. Default 12.")
 flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
+flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
+flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
 flags.DEFINE_float("alpha", 0.2, "Initial learning rate. Default is 0.2.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
-
-flags.DEFINE_integer("batch_size", 128, "Number of training examples processed per step (size of a minibatch).")
-flags.DEFINE_boolean("interactive", False,
-                     "If true, enters an IPython interactive session to play with the trained model. E.g., try model.analogy(b'france', b'paris', b'russia') and model.nearby([b'proton', b'elephant', b'maxwell'])")
-flags.DEFINE_integer("statistics_interval", 5, "Print statistics every n seconds.")
-flags.DEFINE_integer("summary_interval", 5,
-                     "Save training summary to file every n seconds (rounded up to statistics interval).")
-flags.DEFINE_integer("checkpoint_interval", 600, "Checkpoint the model (i.e. save the parameters) every n seconds (rounded up to statistics interval).")
+flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
 
 FLAGS = flags.FLAGS
 
@@ -68,18 +63,16 @@ opt.batchSize = FLAGS.batch_size
 opt.windowSize = FLAGS.window
 # The minimum number of word occurrences for it to be included in the vocabulary.
 opt.minCount = FLAGS.min_count
+# The maximum length of one sentence in training.
+opt.maxSentenceLength = FLAGS.max_sentence_length
+# The minimum length of one sentence in training.
+opt.minSentenceLength = FLAGS.min_sentence_length
 # Subsampling threshold for word occurrence.
 # opt.sample = FLAGS.sample
 # Load vocabulary from file.
 opt.vocab = FLAGS.vocab
 # Save the vocab to a file.
 opt.saveVocab = FLAGS.save_vocab
-# How often to print statistics.
-opt.statistics_interval = FLAGS.statistics_interval
-# How often to write to the summary file (rounds up to the nearest statistics_interval).
-opt.summary_interval = FLAGS.summary_interval
-# How often to write checkpoints (rounds up to the nearest statistics interval).
-opt.checkpoint_interval = FLAGS.checkpoint_interval
 # Use GPU or CPU. True for GPU, otherwise CPU
 opt.gpu = FLAGS.gpu
 # Where to write out summaries.
@@ -94,23 +87,30 @@ vocabulary = None
 def train(batch, sess, optimizer):
     global vocabulary
 
-    l = tf.constant(0., dtype=tf.float32)
+    l = tf.constant(0., dtype=tf.float64, name='tmp')
 
     for stc in batch:
-        # stc = []
-        #
-        # for i in s.split(' '):
-        #     stc.append(vocab.getWord(i))
+        stcW = []
 
-        # E-Step: Do Inference
-        sLabel = inference(stc, vocabulary, sess)
+        for i in stc:
+            w = vocabulary.getWord(i)
 
-        # Build loss
-        l += loss(stc, sLabel, sess)
+            if w:
+                stcW.append(w)
 
-    # M-Step: Do Optimize
-    sess.run(optimizer(l))
-    print('Loss:', sess.run(l))
+        if len(stcW) > opt.windowSize and len(stcW) > opt.minSentenceLength:
+            # E-Step: Do Inference
+            sLabel = inference(stcW, vocabulary, sess)
+
+            print('Inference of sentence:"', ' '.join(stc), '"', sLabel)
+
+            # Build loss
+            l += loss(stcW, sLabel, vocabulary, sess)
+
+    if 'tmp' not in l.name:
+        # M-Step: Do Optimize
+        sess.run(optimizer(l))
+        print('Loss:', sess.run(l))
 
 
 def main(_):

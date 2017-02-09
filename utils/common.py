@@ -15,3 +15,16 @@ def is_number(s):
         pass
 
     return False
+
+def stc2stcW(stc, vocab):
+    tmp = []
+
+    for s in stc:
+        s = s.lower()
+        w = vocab.getWord(s)
+
+        if w != None:
+            tmp.append(w)
+
+    del(stc)
+    return tmp
