@@ -64,10 +64,10 @@ class Vocab(object):
                 self.mutex.release()
 
 
-    def parse(self, file, maxThreadNum=500, buffer=200000, parseUnitLength=1000):
+    def parse(self, file, maxThreadNum=20, buffer=200000, parseUnitLength=1000):
         if os.path.isfile(file):
             self.corpus = file
-            tp = ThreadPool(10)
+            tp = ThreadPool(2)
             self.mutex = threading.Lock()
 
             with open(file) as f:
@@ -146,7 +146,7 @@ class Vocab(object):
             l = []
 
             for i in self._idx2word:
-                l.append((i.token, i.senseNum, i.count, i.index ))
+                l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
             with open(file, 'wb') as f:
                 pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount}, f)
                 return True
