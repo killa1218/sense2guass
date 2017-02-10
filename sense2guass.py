@@ -17,7 +17,8 @@ from tqdm import tqdm
 from vocab import Vocab as V
 from options import Options as opt
 from loss import skipGramNCELoss as loss
-from e_step.inference import dpInference as inference
+# from e_step.inference import dpInference as inference
+from e_step.inference import violentInference as inference
 from threadpool import *
 from utils.fileIO import fetchSentences
 import tensorflow as tf
@@ -103,7 +104,10 @@ def train(batch, sess, optimizer):
         if len(stcW) > opt.windowSize and len(stcW) > opt.minSentenceLength:
             # E-Step: Do Inference
             print('Inferencing sentence:', ' '.join(stc))
-            sLabel = inference(stcW, vocabulary, sess)
+            start = time.time()
+            sLabel = inference(stcW, sess)
+            end = time.time()
+            print('INFERENCE TIME:', end - start)
 
             print('Inference of sentence:', sLabel)
 

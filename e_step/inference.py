@@ -32,14 +32,47 @@ def rdfs(stc, n, sLabel, assign, sess):
         rdfs(stc, n + 1, sLabel, assign, sess)
 
 
-def violentInference(stc, sess):
+def assignDFS(stcW):
+    l = len(stcW)
+
+    stack = [0] * l
+
+    yield stack
+
+    while True:
+        if (len(stack) == 0):
+            break
+        else:
+            if stack[-1] == stcW[len(stack) - 1].senseNum - 1:
+                stack.pop()
+            else:
+                stack[-1] += 1
+                stack += [0] * (l - len(stack))
+
+                yield stack
+
+
+def violentInference(stcW, sess):
     ''' Inference the senses using DFS '''
-    senseLabel = [0] * len(stc)
-    assign = []
+    assert len(stcW) > opt.windowSize
 
-    rdfs(stc, 0, senseLabel, assign, sess)
+    assignPoint = 0
+    minLoss = float('inf')
+    lossTensorList = []
+    assignList = []
 
-    return assign
+    for a in assignDFS(stcW):
+        assignList.append(a)
+        lossTensorList.append(skipGramLoss(stcW, a))
+
+    lossList = sess.run(lossTensorList)
+
+    for i in range(len(lossList)):
+        if lossList[i] < minLoss:
+            minLoss = lossList[i]
+            assignPoint = i
+
+    return assignList[assignPoint]
 
 
 def dfs(stcW, mid, sess):
@@ -77,7 +110,7 @@ def dfs(stcW, mid, sess):
                 yield stack, loss, mid
 
 
-def dpInference(stcW, vocab, sess):
+def dpInference(stcW, sess):
     v = {}  # Record Intermediate Probability
     tmpV = None
     assign = []  # Result of word senses in a sentence

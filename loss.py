@@ -46,21 +46,24 @@ def skipGramSepWindowLoss(stc, sLabel, mid):
 
 def skipGramLoss(stc, sLabel):
     '''Return the Tensorflow graph of skip-gram score of the sentence, the sentence is an array of Word()'''
-    totalSum = tf.constant(0., dtype=tf.float64)
+    # totalSum = tf.constant(0., dtype=tf.float64)
+    l = []
 
     for i in range(len(stc)):
-        tmpSum = tf.constant(0., dtype=tf.float64)
+        # tmpSum = tf.constant(0., dtype=tf.float64)
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
-                tmpSum += act(dist((stc[i], sLabel[i]), (stc[i - offset], sLabel[i - offset])), name="loss-ActivationFunction")
+                # tmpSum += act(dist(stc[i], sLabel[i], stc[i - offset], sLabel[i - offset]), name="loss-ActivationFunction")
+                l.append(act(dist(stc[i], sLabel[i], stc[i - offset], sLabel[i - offset]), name="loss-ActivationFunction"))
             if i + offset < len(stc):
-                tmpSum += act(dist((stc[i], sLabel[i]), (stc[i + offset], sLabel[i + offset])), name="loss-ActivationFunction")
+                # tmpSum += act(dist(stc[i], sLabel[i], stc[i + offset], sLabel[i + offset]), name="loss-ActivationFunction")
+                l.append(act(dist(stc[i], sLabel[i], stc[i + offset], sLabel[i + offset]), name="loss-ActivationFunction"))
 
-        totalSum += tmpSum / (((i + opt.windowSize) if i + opt.windowSize < len(stc) else (len(stc) - 1)) - ((i - opt.windowSize) if i - opt.windowSize > -1 else 0))   # Full window
+        # totalSum += tmpSum / (((i + opt.windowSize) if i + opt.windowSize < len(stc) else (len(stc) - 1)) - ((i - opt.windowSize) if i - opt.windowSize > -1 else 0))   # Full window
         # totalSum += tmpSum / ((i if i == 0 else i) if i < opt.windowSize else opt.windowSize)   # Half window
 
-    return totalSum
+    return tf.add_n(l)
 
 
 def avgSkipGramLoss(stc, sLabel):
