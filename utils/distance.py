@@ -5,6 +5,7 @@ from __future__ import print_function
 import tensorflow as tf
 from options import Options as opt
 from math import pi
+import time
 
 def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal gaussian distributions
     m = m1 - m2
@@ -18,12 +19,10 @@ def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal g
 
 def diagKL(m1, sig1, m2, sig2, d):                  # KL energy of two diagnal gaussian distributions
     m = m2 - m1
+    sig2Reciprocal = tf.reciprocal(sig2, name='diagKL-Reciprocal')
 
     return tf.div(
-        tf.log(tf.reduce_prod(sig2 / sig1)) -
-        d +
-        tf.reduce_sum(tf.div(tf.constant(1., dtype=tf.float64), sig2, name='diagKL-Inverse') * sig1, name='diagKL-Trace') +
-        tf.reduce_sum(tf.pow(m, 2) * tf.div(tf.constant(1., dtype=tf.float64), sig2, name='diagKL-Inverse')),
+        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig2Reciprocal * sig1 + tf.square(m) * sig2Reciprocal)]),
         2.,
         name='diagKL'
     )
@@ -40,11 +39,7 @@ def KL(m1, sig1, m2, sig2, d):                      # TODO
 def meanDist(m1, m2):
     return tf.reduce_sum(m1 * m2)
 
-def dist(word1, word2):
-    (w1,s1) = word1
-    (w2, s2) = word2
-    # return tf.reduce_sum(w1.getMean(s1])
-
+def dist(w1, s1, w2, s2):
     return diagKL(w1.getMean(s1), w1.getSigma(s1), w2.getMean(s2), w2.getSigma(s2), opt.embSize)
 
 

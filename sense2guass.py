@@ -7,7 +7,6 @@ from __future__ import print_function
 
 import os
 import sys
-import threading
 import time
 import random
 
@@ -39,6 +38,7 @@ flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration 
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
 flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
+flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
 flags.DEFINE_float("alpha", 0.2, "Initial learning rate. Default is 0.2.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
@@ -67,6 +67,8 @@ opt.minCount = FLAGS.min_count
 opt.maxSentenceLength = FLAGS.max_sentence_length
 # The minimum length of one sentence in training.
 opt.minSentenceLength = FLAGS.min_sentence_length
+# The maximum sense number of one word in training.
+opt.maxSensePerWord = FLAGS.max_sense_per_word
 # Subsampling threshold for word occurrence.
 # opt.sample = FLAGS.sample
 # Load vocabulary from file.

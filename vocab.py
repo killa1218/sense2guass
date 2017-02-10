@@ -51,8 +51,8 @@ class Vocab(object):
                     self._vocab[word].count += 1
                 else:
                     if word in self._senseNum.keys():
-                        self.totalSenseCount += self._senseNum[word]
-                        self._vocab[word] = Word(word, sNum=self._senseNum[word])
+                        self.totalSenseCount += self._senseNum[word] if self._senseNum[word] < opt.maxSensePerWord else opt.maxSensePerWord
+                        self._vocab[word] = Word(word, sNum=self._senseNum[word] if self._senseNum[word] < opt.maxSensePerWord else opt.maxSensePerWord)
                     else:
                         self.totalSenseCount += 1
                         self._vocab[word] = Word(word)
@@ -186,7 +186,7 @@ class Vocab(object):
                         except IndexError:
                             senseStart = curSenseCount
 
-                        w = Word(i[0], i[3], i[1], i[2], senseStart)
+                        w = Word(i[0], i[3], i[1] if i[1] < opt.maxSensePerWord else opt.maxSensePerWord, i[2], senseStart)
                         curSenseCount += i[1]
                         self._idx2word.append(w)
                         self._vocab[i[0]] = self._idx2word[-1]

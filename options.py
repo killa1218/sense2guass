@@ -15,6 +15,7 @@ class Options(object):
     sensePrior = True                   # Whether use sense statistical information as prior probability when doing reference
     maxSentenceLength = 20              # Maximum length of a sentence
     minSentenceLength = 5               # Minimum length of a sentence
+    maxSensePerWord = 5                 # Maximum number of senses of one word
     batchSize = 1                       # How many sentences trained in a batch
     threads = 3                         # How many threads are used to train
     wordSeparator = re.compile('\s*,\s*|\s*\.\s*|\s+')  # Separator pattern of words in corpus

@@ -17,39 +17,19 @@ import math
 act = tf.nn.relu
 
 def skipGramWindowLoss(stc, sLabel, mid):
-    sum = tf.constant(0., dtype=tf.float64)
+    l = []
 
     for i in range(1, opt.windowSize + 1):
         if mid - i > -1:
-            # print('mid:', mid, 'i:', i, 'Distance between', stc[mid].token, 'and', stc[mid - i].token, 'is:', sess.run(act(dist(
-            #         (stc[mid], sLabel[mid]),
-            #         (stc[mid - i], sLabel[mid - i])
-            #     ))))
-
-            sum += act(
-                dist(
-                    (stc[mid], sLabel[mid]),
-                    (stc[mid - i], sLabel[mid - i])
-                ),
-                name="loss-ActivationFunction"
-            )
+            l.append(act(
+                dist(stc[mid], sLabel[mid], stc[mid - i], sLabel[mid - i]), name="loss-ActivationFunction"
+            ))
         if mid + i < len(stc):
-            # print('mid:', mid, 'i:', i, 'Distance between', stc[mid].token, 'and', stc[mid - i].token, 'is:', sess.run(act(dist(
-            #         (stc[mid], sLabel[mid]),
-            #         (stc[mid + i], sLabel[mid + i])
-            #     ))))
+            l.append(act(
+                dist(stc[mid], sLabel[mid], stc[mid + i], sLabel[mid + i]), name="loss-ActivationFunction"
+            ))
 
-            sum += act(
-                dist(
-                    (stc[mid],
-                     sLabel[mid]),
-                    (stc[mid + i],
-                     sLabel[mid + i])
-                ),
-                name="loss-ActivationFunction"
-            )
-
-    return tf.clip_by_value(sum, tf.float64.min, tf.float64.max)
+    return tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
 
 
 def skipGramSepWindowLoss(stc, sLabel, mid):
@@ -102,14 +82,14 @@ def skipGramNCELoss(stc, sLabel, vocab, sess):
                     while sampleWord is stc[i]:
                         sampleWord = vocab.getWord(random.randint(0, vocab.size - 1))
 
-                    totalSum += tf.nn.relu(margin - act(dist((stc[i], sLabel[i]), (stc[i - offset], sLabel[i - offset]))) + act(dist((stc[i], sLabel[i]), (sampleWord, 0))), name="loss-NCEMarginLoss")
+                    totalSum += tf.nn.relu(margin - act(dist(stc[i], sLabel[i], stc[i - offset], sLabel[i - offset])) + act(dist(stc[i], sLabel[i], sampleWord, 0)), name="loss-NCEMarginLoss")
 
                 if i + offset < len(stc):
                     sampleWord = stc[i]
                     while sampleWord is stc[i]:
                         sampleWord = vocab.getWord(random.randint(0, vocab.size - 1))
 
-                    totalSum += tf.nn.relu(margin - act(dist((stc[i], sLabel[i]), (stc[i + offset], sLabel[i + offset]))) + act(dist((stc[i], sLabel[i]), (sampleWord, 0))), name="loss-NCEMarginLoss")
+                    totalSum += tf.nn.relu(margin - act(dist(stc[i], sLabel[i], stc[i + offset], sLabel[i + offset])) + act(dist(stc[i], sLabel[i], sampleWord, 0)), name="loss-NCEMarginLoss")
             except IndexError:
                 print('ERROR:', 'len-', len(stc), 'i-', i, 'offset-', offset, 'stack-', sLabel)
 
