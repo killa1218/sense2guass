@@ -17,8 +17,8 @@ from tqdm import tqdm
 from vocab import Vocab as V
 from options import Options as opt
 from loss import skipGramNCELoss as loss
-# from e_step.inference import dpInference as inference
-from e_step.inference import violentInference as inference
+from e_step.inference import dpInference as inference
+# from e_step.inference import violentInference as inference
 from threadpool import *
 from utils.fileIO import fetchSentences
 import tensorflow as tf
