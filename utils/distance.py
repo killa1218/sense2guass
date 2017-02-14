@@ -17,15 +17,41 @@ def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal g
         name='diagEL'
     )
 
-def diagKL(m1, sig1, m2, sig2, d):                  # KL energy of two diagnal gaussian distributions
-    m = m2 - m1
-    sig2Reciprocal = tf.reciprocal(sig2, name='diagKL-Reciprocal')
+def diagKLSingle(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two diagnal gaussian distributions
+    start = time.time()
 
-    return tf.div(
-        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig2Reciprocal * sig1 + tf.square(m) * sig2Reciprocal)]),
+    m = m2 - m1
+    # sig2Reciprocal = tf.reciprocal(sig2, name='diagKL-Reciprocal')
+
+    # res = tf.div(
+    #     tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig2Reciprocal * sig1 + tf.square(m) * sig2Reciprocal)]),
+    #     2.,
+    #     name='diagKL'
+    # )
+
+    res = tf.div(
+        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2)]),
         2.,
         name='diagKL'
     )
+
+    end = time.time()
+    # print('diagKL time:', end - start)
+    return res
+
+
+def diagKL(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two diagnal gaussian distributions
+    start = time.time()
+    m = m2 - m1
+
+    res = tf.div(
+        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1, 1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2, 1)]),
+        2.,
+        name='diagKL'
+    )
+    end = time.time()
+    # print('diagKL time:', end - start)
+    return res
 
 def crossEntropy():
     pass
@@ -40,16 +66,24 @@ def meanDist(m1, m2):
     return tf.reduce_sum(m1 * m2)
 
 def dist(w1, s1, w2, s2):
-    return diagKL(w1.getMean(s1), w1.getSigma(s1), w2.getMean(s2), w2.getSigma(s2), opt.embSize)
+    start = time.time()
+
+    res = diagKL(w1.getMean(s1), w1.getSigma(s1), w2.getMean(s2), w2.getSigma(s2), opt.embSize)
+
+    end = time.time()
+    # print('dist time:', end - start)
+    return res
 
 
 if __name__ == '__main__':
     sess = tf.Session()
-    m1 = tf.constant([1,2,3,4,5,6,7,8,9], dtype=tf.float32)
-    m2 = tf.constant([0,1,2,3,4,5,6,7,8], dtype=tf.float32)
+    m1 = tf.constant([1,2,3,4,5,6,7,8,9], dtype=tf.float64)
+    m2 = tf.constant([1,2,3,4,5,6,7,8,9], dtype=tf.float64)
+    # m2 = tf.constant([0,1,2,3,4,5,6,7,8], dtype=tf.float64)
 
-    sig1 = tf.constant([1,1,2,4,5,4,7,8,9], dtype=tf.float32)
-    sig2 = tf.constant([1,2,2,4,5,8,7,3,9], dtype=tf.float32)
+    sig1 = tf.constant([1,1,2,4,5,4,7,8,9], dtype=tf.float64)
+    sig2 = tf.constant([1,1,2,4,5,4,7,8,9], dtype=tf.float64)
+    # sig2 = tf.constant([1,2,2,4,5,8,7,3,9], dtype=tf.float64)
 
     print('diagEL: ', sess.run(diagEL(m1, sig1, m2, sig2, 9)))
     print('diagKL: ', sess.run(diagKL(m1, sig1, m2, sig2, 9)))

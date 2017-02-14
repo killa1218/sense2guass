@@ -18,6 +18,10 @@ class Word():
         self.senseStart = sStart            # Where does the senses starts
 
 
+    def __str__(self):
+        return self.token
+
+
     def setSenseStart(self, sStart):
         self.senseStart = sStart
 

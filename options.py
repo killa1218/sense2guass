@@ -14,6 +14,7 @@ class Options(object):
     margin = 1                          # The margin between positive and negative pair energy
     sensePrior = True                   # Whether use sense statistical information as prior probability when doing reference
     maxSentenceLength = 20              # Maximum length of a sentence
+    sentenceLength = 20                 # Maximum length of a sentence
     minSentenceLength = 5               # Minimum length of a sentence
     maxSensePerWord = 5                 # Maximum number of senses of one word
     batchSize = 1                       # How many sentences trained in a batch

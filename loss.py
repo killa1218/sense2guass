@@ -17,19 +17,43 @@ import math
 act = tf.nn.relu
 
 def skipGramWindowLoss(stc, sLabel, mid):
+    start = time.time()
     l = []
 
     for i in range(1, opt.windowSize + 1):
         if mid - i > -1:
-            l.append(act(
-                dist(stc[mid], sLabel[mid], stc[mid - i], sLabel[mid - i]), name="loss-ActivationFunction"
-            ))
+            l.append(
+                dist(stc[mid], sLabel[mid], stc[mid - i], sLabel[mid - i])
+            )
         if mid + i < len(stc):
-            l.append(act(
-                dist(stc[mid], sLabel[mid], stc[mid + i], sLabel[mid + i]), name="loss-ActivationFunction"
-            ))
+            l.append(
+                dist(stc[mid], sLabel[mid], stc[mid + i], sLabel[mid + i])
+            )
 
-    return tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
+    res = tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
+
+    end = time.time()
+    print('skipGramWindowLoss time:', end - start)
+    return res
+
+def skipGramWindowKLLossGraph():
+    from utils.distance import diagKL
+    global vocabulary
+
+    mid = tf.placeholder(dtype=tf.int32, name='mid')
+    other = tf.placeholder(dtype=tf.int32, name='other')
+
+    midMean = tf.nn.embedding_lookup(vocabulary.means, mid)
+    midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid)
+    l = []
+
+    for i in range(opt.windowSize):
+        l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, other[i]), tf.nn.embedding_lookup(vocabulary.sigmas, other[i]), midMean, midSigma))
+        l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, other[opt.windowSize - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, other[opt.windowSize - i - 1]), midMean, midSigma))
+
+    res = tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
+
+    return res
 
 
 def skipGramSepWindowLoss(stc, sLabel, mid):
@@ -66,11 +90,34 @@ def skipGramLoss(stc, sLabel):
     return tf.add_n(l)
 
 
+def skipGramKLLossGraph():
+    '''Return the Tensorflow graph of skip-gram score of the sentence, the sentence is an array of Word()'''
+    from utils.distance import diagKL
+    global vocabulary
+
+    senseIdx = tf.placeholder(dtype=tf.int32, shape=[opt.sentenceLength])
+    l = []
+
+    for i in range(opt.sentenceLength):
+        midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdx[i])
+        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdx[i])
+        l = []
+
+        for offset in range(1, opt.windowSize + 1):
+            if i - offset > -1:
+                l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdx[i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdx[i - offset])))
+            if i + offset < opt.sentenceLength:
+                l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdx[i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdx[i + offset])))
+
+    res = tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
+
+    return res
+
 def avgSkipGramLoss(stc, sLabel):
     return skipGramLoss(stc, sLabel) / len(stc)
 
 
-def skipGramNCELoss(stc, sLabel, vocab, sess):
+def skipGramNCELoss(stc, sLabel, vocab):
     '''Return the Tensorflow graph of skip-gram score with negative sampling of the sentence, the sentence is an array of Word()'''
     assert len(sLabel) == len(stc)
 
