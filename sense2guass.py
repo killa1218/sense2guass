@@ -37,9 +37,9 @@ flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for
 flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
-flags.DEFINE_float("alpha", 0.2, "Initial learning rate. Default is 0.2.")
+flags.DEFINE_float("alpha", 0.01, "Initial learning rate. Default is 0.2.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
-flags.DEFINE_integer("batch_size", 2, "Number of training examples processed per step (size of a minibatch).")
+flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
 
 FLAGS = flags.FLAGS
 
@@ -77,9 +77,6 @@ opt.saveVocab = FLAGS.save_vocab
 opt.gpu = FLAGS.gpu
 # Where to write out summaries.
 opt.save_path = FLAGS.output
-# if not os.path.exists(opt.save_path):
-#     os.makedirs(opt.save_path)
-
 
 vocabulary = None
 
@@ -120,7 +117,7 @@ def main(_):
                 if i + offset < opt.sentenceLength:
                     l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
 
-        batchSentenceLossGraph = tf.clip_by_value(tf.add_n(l), tf.float64.min, tf.float64.max)
+        batchSentenceLossGraph = tf.add_n(l)
 ##----------------- Build Sentence Loss Graph ------------------
 
         tf.global_variables_initializer().run(session=sess)
@@ -136,7 +133,7 @@ def main(_):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) > opt.minSentenceLength:
             # E-Step: Do Inference
-                            print('Inferencing sentence:', ' '.join(str(stcW)))
+                            print('Inferencing sentence:', ' '.join(x.token for x in stcW))
                             start = time.time()
 
 ##--------------------------------- Violent Inference ----------------------------------
@@ -159,9 +156,9 @@ def main(_):
 
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
-                                print('Before Optimization Loss:', sess.run(batchSentenceLossGraph, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                sess.run(optimizer(batchSentenceLossGraph), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                print('After Loss:', sess.run(batchSentenceLossGraph, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                print('Before Optimization Loss:', sess.run(tf.reduce_sum(batchSentenceLossGraph), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                sess.run(optimizer(tf.reduce_sum(batchSentenceLossGraph)), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                print('After Loss:', sess.run(tf.reduce_sum(batchSentenceLossGraph), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
 
                                 del(batchLossSenseIdxList)
                                 batchLossSenseIdxList = []
