@@ -32,6 +32,34 @@ def rdfs(stc, n, sLabel, assign, sess):
         rdfs(stc, n + 1, sLabel, assign, sess)
 
 
+def assign2SenseIdx(stcW, assign):
+    res = []
+
+    for i in range(len(assign)):
+        res.append(stcW[i].senseStart + assign[i])
+
+    return res
+
+def senseIdxDFS(stcW):
+    l = len(stcW)
+
+    stack = [0] * l
+
+    yield assign2SenseIdx(stcW, stack)
+
+    while True:
+        if (len(stack) == 0):
+            break
+        else:
+            if stack[-1] == stcW[len(stack) - 1].senseNum - 1:
+                stack.pop()
+            else:
+                stack[-1] += 1
+                stack += [0] * (l - len(stack))
+
+                yield assign2SenseIdx(stcW, stack)
+
+
 def assignDFS(stcW):
     l = len(stcW)
 
@@ -110,7 +138,7 @@ def dfs(stcW, mid, sess):
                 yield stack, loss, mid
 
 
-window = skipGramWindowKLLossGraph()
+# window = skipGramWindowKLLossGraph()
 
 
 def dpInference(stcW, sess):

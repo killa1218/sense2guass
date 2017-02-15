@@ -41,16 +41,29 @@ def diagKLSingle(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two dia
 
 
 def diagKL(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two diagnal gaussian distributions
-    start = time.time()
     m = m2 - m1
+    sum = tf.log(tf.reduce_prod(sig2 / sig1, 1))
+    sum += -d
+    sum += tf.reduce_sum(
+                sig1 / sig2 +
+                tf.square(m) / sig2,
+                1
+            )
 
     res = tf.div(
-        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1, 1)), tf.constant(-d, dtype=tf.float64), tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2, 1)]),
-        2.,
+        # tf.add_n([
+        #     tf.log(tf.reduce_prod(sig2 / sig1, 1)),
+        #     tf.constant(-d, dtype=tf.float64),
+        #     tf.reduce_sum(
+        #         sig1 / sig2 +
+        #         tf.square(m) / sig2,
+        #         1
+        #     )
+        # ]),
+        sum, 2.,
         name='diagKL'
     )
-    end = time.time()
-    # print('diagKL time:', end - start)
+
     return res
 
 def crossEntropy():
