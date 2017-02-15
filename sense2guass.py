@@ -16,7 +16,6 @@ import random
 from tqdm import tqdm
 from vocab import Vocab as V
 from options import Options as opt
-from threadpool import *
 from utils.fileIO import fetchSentencesAsWords
 import tensorflow as tf
 
@@ -38,7 +37,7 @@ flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sente
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
 flags.DEFINE_integer("sentence_length", 20, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
-flags.DEFINE_float("alpha", 0.01, "Initial learning rate. Default is 0.2.")
+flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.2.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
 
@@ -106,28 +105,14 @@ def main(_):
                 vocabulary.save(opt.saveVocab. sess)
 
 ##----------------- Build Sentence Loss Graph ------------------
-        from utils.distance import diagKL
-        senseIdxPlaceholder = tf.placeholder(dtype=tf.int32, shape=[None, opt.sentenceLength])
-
-        l = []
-        for i in range(opt.sentenceLength):
-            midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i])
-            midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i])
-
-            for offset in range(1, opt.windowSize + 1):
-                if i - offset > -1:
-                    l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i - offset])))
-                if i + offset < opt.sentenceLength:
-                    l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
-
-        batchSentenceLossGraph = tf.add_n(l)
+        from graph import batchSentenceLossGraph as lossGraph
+        batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
 ##----------------- Build Sentence Loss Graph ------------------
 
         tf.global_variables_initializer().run(session=sess)
         # Train iteration
         print('Start training...')
         for i in tqdm(range(opt.iter)):
-            print('\n')
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
                     batchLossSenseIdxList = []
@@ -140,19 +125,14 @@ def main(_):
                             start = time.time()
 
 ##--------------------------------- Violent Inference ----------------------------------
-                            from e_step.inference import senseIdxDFS
-                            senseIdxList = []
+                            from e_step.inference import violentInference as inference
 
-                            for sIdx in senseIdxDFS(stcW):
-                                senseIdxList.append(sIdx)
-
-                            minLossSeqIdx = sess.run(tf.argmin(batchSentenceLossGraph, 0), feed_dict={senseIdxPlaceholder: senseIdxList})
-                            assign = senseIdxList[minLossSeqIdx]
+                            assign = inference(stcW, sess, batchSentenceLossGraph, senseIdxPlaceholder)
 ##--------------------------------- Violent Inference ----------------------------------
 
                             end = time.time()
                             print('INFERENCE TIME:', end - start)
-                            print('Inference of sentence:', assign)
+                            # print('Inference of sentence:', assign)
 
                             # Build loss
                             batchLossSenseIdxList.append(assign)
@@ -169,10 +149,13 @@ def main(_):
 ##----------------------------- Train Batch ------------------------------
 
                 # Save training result
-                tp = ThreadPool(1)
-                requests = makeRequests(vocabulary.saveEmbeddings, [opt.save_path])
-                for req in requests:
-                    tp.putRequest(req)
+                # from threadpool import *
+                # tp = ThreadPool(1)
+                # requests = makeRequests(vocabulary.saveEmbeddings, [opt.saveVocab])
+                # for req in requests:
+                #     tp.putRequest(req)
+
+                vocabulary.save(opt.saveVocab)
             else:
                 raise Exception(file)
 
