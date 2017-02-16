@@ -92,6 +92,8 @@ def main(_):
 
     with tf.Session() as sess:
         optimizer = tf.train.GradientDescentOptimizer(opt.alpha).minimize
+        # merged_summary_op = tf.merge_all_summaries()
+        # summary_writer = tf.train.SummaryWriter('data/output', sess.graph)
 
         # Build vocabulary or load vocabulary from file
         if opt.vocab != None:
@@ -107,11 +109,15 @@ def main(_):
 ##----------------- Build Sentence Loss Graph ------------------
         from graph import batchSentenceLossGraph as lossGraph
         batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
+        minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
+        reduceLoss = tf.reduce_sum(batchSentenceLossGraph)
+        op = optimizer(reduceLoss)
 ##----------------- Build Sentence Loss Graph ------------------
 
         tf.global_variables_initializer().run(session=sess)
         # Train iteration
-        print('Start training...')
+        print('Start training...\n')
+
         for i in tqdm(range(opt.iter)):
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
@@ -121,17 +127,19 @@ def main(_):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
             # E-Step: Do Inference
-                            print('Inferencing sentence:', ' '.join(x.token for x in stcW))
+            #                 print('Inferencing sentence:', ' '.join(x.token for x in stcW))
                             start = time.time()
 
 ##--------------------------------- Violent Inference ----------------------------------
                             from e_step.inference import violentInference as inference
 
-                            assign = inference(stcW, sess, batchSentenceLossGraph, senseIdxPlaceholder)
+                            assign = inference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder)
 ##--------------------------------- Violent Inference ----------------------------------
 
                             end = time.time()
-                            print('INFERENCE TIME:', end - start)
+                            sys.stdout.write('\rINFERENCE TIME: %.6f' % (end - start))
+                            sys.stdout.flush()
+                            # print('INFERENCE TIME:', end - start)
                             # print('Inference of sentence:', assign)
 
                             # Build loss
@@ -139,9 +147,10 @@ def main(_):
 
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
-                                print('Before Optimization Loss:', sess.run(tf.reduce_sum(batchSentenceLossGraph), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                sess.run(optimizer(tf.reduce_sum(batchSentenceLossGraph)), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                print('After Loss:', sess.run(tf.reduce_sum(batchSentenceLossGraph), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                print('\nBefore Optimization Loss:', sess.run(reduceLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                print('After Loss:', sess.run(reduceLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+
 
                                 del(batchLossSenseIdxList)
                                 batchLossSenseIdxList = []
@@ -157,7 +166,7 @@ def main(_):
 
                 vocabulary.save(opt.saveVocab)
             else:
-                raise Exception(file)
+                raise Exception(opt.train)
 
 
 if __name__ == "__main__":

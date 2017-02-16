@@ -73,7 +73,7 @@ def assignDFS(stcW):
                 yield stack
 
 
-def violentInference(stcW, sess, batchSentenceLossGraph, senseIdxPlaceholder):
+def violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder):
     ''' Inference the senses using DFS '''
     assert len(stcW) == opt.sentenceLength
     senseIdxList = []
@@ -81,7 +81,7 @@ def violentInference(stcW, sess, batchSentenceLossGraph, senseIdxPlaceholder):
     for sIdx in senseIdxDFS(stcW):
         senseIdxList.append(sIdx)
 
-    minLossSeqIdx = sess.run(tf.argmin(batchSentenceLossGraph, 0), feed_dict={senseIdxPlaceholder: senseIdxList})
+    minLossSeqIdx = sess.run(minLossIdxGraph, feed_dict={senseIdxPlaceholder: senseIdxList})
 
     return senseIdxList[minLossSeqIdx]
 
