@@ -106,13 +106,31 @@ def main(_):
             if opt.saveVocab:
                 vocabulary.save(opt.saveVocab. sess)
 
-##----------------- Build Sentence Loss Graph ------------------
+##----------------- Build Sentence Loss Graph And Optimizer ------------------
         from graph import batchSentenceLossGraph as lossGraph
         batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
         minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
         reduceLoss = tf.reduce_sum(batchSentenceLossGraph)
-        op = optimizer(reduceLoss)
-##----------------- Build Sentence Loss Graph ------------------
+##----------------- Build Sentence Loss Graph And Optimizer ------------------
+
+##----------------------- Build Negative Loss Graph --------------------------
+        from graph import windowLossGraph
+        negativeLossGraph, mid, others = windowLossGraph(vocabulary)
+##----------------------- Build Negative Loss Graph --------------------------
+
+##---------------------------- Build NCE Loss --------------------------------
+        nceLossGraph = tf.nn.relu(opt.margin - batchSentenceLossGraph + negativeLossGraph)
+        reduceNCELoss = tf.reduce_sum(nceLossGraph)
+        op = optimizer(reduceNCELoss)
+##---------------------------- Build NCE Loss --------------------------------
+
+##------------------------- Build Validate Graph -----------------------------
+        from utils.distance import diagKL
+        w1Plchdr = tf.placeholder(dtype=tf.int32)
+        w2Plchdr = tf.placeholder(dtype=tf.int32)
+
+        dist = diagKL(tf.nn.embedding_lookup(vocabulary.means, w1Plchdr), tf.nn.embedding_lookup(vocabulary.sigmas, w1Plchdr), tf.nn.embedding_lookup(vocabulary.means, w2Plchdr), tf.nn.embedding_lookup(vocabulary.sigmas, w2Plchdr))
+##------------------------- Build Validate Graph -----------------------------
 
         tf.global_variables_initializer().run(session=sess)
         # Train iteration
