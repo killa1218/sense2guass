@@ -39,7 +39,7 @@ flags.DEFINE_integer("sentence_length", 15, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
 flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
-flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
+flags.DEFINE_integer("batch_size", 20, "Number of training examples processed per step (size of a minibatch).")
 
 FLAGS = flags.FLAGS
 
@@ -91,7 +91,7 @@ def main(_):
         sys.exit(1)
 
     with tf.Session() as sess:
-        optimizer = tf.train.GradientDescentOptimizer(opt.alpha).minimize
+        optimizer = tf.train.AdamOptimizer(opt.alpha).minimize
         # merged_summary_op = tf.merge_all_summaries()
         # summary_writer = tf.train.SummaryWriter('data/output', sess.graph)
 
@@ -113,14 +113,15 @@ def main(_):
         from graph import batchSentenceLossGraph as lossGraph
         batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
         minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
-        avgBatchStcLoss = batchSentenceLossGraph / opt.sentenceLength / opt.windowSize
-        # reduceLoss = tf.reduce_sum(batchSentenceLossGraph)
+        avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
+        reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
 ##----------------- Build Sentence Loss Graph And Optimizer ------------------
 
 ##----------------------- Build Negative Loss Graph --------------------------
         from graph import negativeLossGraph
         negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
         avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
+        reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
 ##----------------------- Build Negative Loss Graph --------------------------
 
 ##---------------------------- Build NCE Loss --------------------------------
@@ -128,6 +129,7 @@ def main(_):
         reduceNCELoss = tf.reduce_sum(nceLossGraph)
         avgNCELoss = reduceNCELoss / opt.batchSize
         op = optimizer(reduceNCELoss)
+        # op = optimizer(avgBatchStcLoss)
 ##---------------------------- Build NCE Loss --------------------------------
 
 ##------------------------- Build Validate Graph -----------------------------
@@ -142,18 +144,19 @@ def main(_):
         # Train iteration
         print('Start training...\n')
 
-        for i in tqdm(range(opt.iter)):
+        for i in range(opt.iter):
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
                     batchLossSenseIdxList = []
                     negativeSamplesList = []
+                    trained = 0
 
-                    for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength):
+                    for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
             # E-Step: Do Inference
             #                 print('Inferencing sentence:', ' '.join(x.token for x in stcW))
-                            start = time.time()
+            #                 start = time.time()
 
 ##--------------------------------- Violent Inference ----------------------------------
                             from e_step.inference import violentInference as inference
@@ -161,9 +164,9 @@ def main(_):
                             assign = inference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder)
 ##--------------------------------- Violent Inference ----------------------------------
 
-                            end = time.time()
-                            sys.stdout.write('\rINFERENCE TIME: %.6f' % (end - start))
-                            sys.stdout.flush()
+                            # end = time.time()
+                            # sys.stdout.write('\rINFERENCE TIME: %.6f' % (end - start))
+                            # sys.stdout.flush()
                             # print('INFERENCE TIME:', end - start)
                             # print('Inference of sentence:', assign)
 
@@ -172,18 +175,18 @@ def main(_):
 
                             negativeSampleList = []
                             for a in assign:
-                                sampleTmp = random.sample(range(vocabulary.totalSenseCount + 1), opt.negative)
+                                sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
                                 while a in sampleTmp:
-                                    sampleTmp = random.sample(range(vocabulary.totalSenseCount + 1), opt.negative)
+                                    sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
 
                                 negativeSampleList.append(sampleTmp)
                             negativeSamplesList.append(negativeSampleList)
 
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
-                                print('\nBefore Optimization Loss:', sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+                                loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                 sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                print('After Optimization Loss: ', sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList}))
 
 
                                 del(batchLossSenseIdxList)

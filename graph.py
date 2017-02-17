@@ -41,15 +41,13 @@ def negativeLossGraph(vocabulary):
     mid = tf.placeholder(dtype=tf.int32, name='mid')
     negSamples = tf.placeholder(dtype=tf.int32, name='others', shape=[None, opt.sentenceLength, opt.negative])
 
+    l = []
     for i in range(opt.sentenceLength):
         midMean = tf.nn.embedding_lookup(vocabulary.means, mid[:, i])
         midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i])
         negSample = negSamples[:, i]
-        l = []
 
         for j in range(opt.negative):
             l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j])))
-            # l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j]), midMean, midSigma))
-            # l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, negSample[:, opt.windowSize * 2 - j - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, opt.windowSize * 2 - j - 1]), midMean, midSigma))
 
     return tf.add_n(l), (mid, negSamples)

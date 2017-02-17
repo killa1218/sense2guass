@@ -215,7 +215,7 @@ class Vocab(object):
                         self._vocab[i[0]] = self._idx2word[-1]
 
                     self.size = len(data['words'])
-                    print('Vocab load finished.')
+                    print('Vocab load finished. %d words and %d senses are encountered' % (self.totalWordCount, self.totalSenseCount))
 
                     if not self.means or not self.sigmas:
                         self.initAllSenses()
