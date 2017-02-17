@@ -29,15 +29,15 @@ flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
 flags.DEFINE_integer("size", 50, "The embedding dimension size. Default is 100.")
 flags.DEFINE_integer("window", 5, "The number of words to predict to the left and right of the target word.")
-flags.DEFINE_integer("negative", 100, "Negative samples per training example. Default is 100.")
+flags.DEFINE_integer("negative", 4, "Negative samples per sense. Default is 4.")
 flags.DEFINE_integer("threads", 3, "How many threads are used to train. Default 12.")
 flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
 flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
-flags.DEFINE_integer("sentence_length", 20, "The length of one sentence.")
+flags.DEFINE_integer("sentence_length", 15, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
-flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.2.")
+flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_integer("batch_size", 1, "Number of training examples processed per step (size of a minibatch).")
 
@@ -78,7 +78,7 @@ opt.saveVocab = FLAGS.save_vocab
 # Use GPU or CPU. True for GPU, otherwise CPU
 opt.gpu = FLAGS.gpu
 # Where to write out summaries.
-opt.save_path = FLAGS.output
+opt.savePath = FLAGS.output
 
 vocabulary = None
 
@@ -104,23 +104,29 @@ def main(_):
             vocabulary.initAllSenses()
 
             if opt.saveVocab:
-                vocabulary.save(opt.saveVocab. sess)
+                if vocabulary.saveVocab(opt.saveVocab):
+                    print('Vocab saved at %s.' % opt.saveVocab)
+                else:
+                    print('Vocab save FAILED!')
 
 ##----------------- Build Sentence Loss Graph And Optimizer ------------------
         from graph import batchSentenceLossGraph as lossGraph
         batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
         minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
-        reduceLoss = tf.reduce_sum(batchSentenceLossGraph)
+        avgBatchStcLoss = batchSentenceLossGraph / opt.sentenceLength / opt.windowSize
+        # reduceLoss = tf.reduce_sum(batchSentenceLossGraph)
 ##----------------- Build Sentence Loss Graph And Optimizer ------------------
 
 ##----------------------- Build Negative Loss Graph --------------------------
-        from graph import windowLossGraph
-        negativeLossGraph, mid, others = windowLossGraph(vocabulary)
+        from graph import negativeLossGraph
+        negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
+        avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
 ##----------------------- Build Negative Loss Graph --------------------------
 
 ##---------------------------- Build NCE Loss --------------------------------
-        nceLossGraph = tf.nn.relu(opt.margin - batchSentenceLossGraph + negativeLossGraph)
+        nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
         reduceNCELoss = tf.reduce_sum(nceLossGraph)
+        avgNCELoss = reduceNCELoss / opt.batchSize
         op = optimizer(reduceNCELoss)
 ##---------------------------- Build NCE Loss --------------------------------
 
@@ -140,6 +146,7 @@ def main(_):
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
                     batchLossSenseIdxList = []
+                    negativeSamplesList = []
 
                     for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength):
 ##----------------------------- Train Batch ------------------------------
@@ -163,14 +170,25 @@ def main(_):
                             # Build loss
                             batchLossSenseIdxList.append(assign)
 
+                            negativeSampleList = []
+                            for a in assign:
+                                sampleTmp = random.sample(range(vocabulary.totalSenseCount + 1), opt.negative)
+                                while a in sampleTmp:
+                                    sampleTmp = random.sample(range(vocabulary.totalSenseCount + 1), opt.negative)
+
+                                negativeSampleList.append(sampleTmp)
+                            negativeSamplesList.append(negativeSampleList)
+
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
-                                print('\nBefore Optimization Loss:', sess.run(reduceLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                print('After Loss:', sess.run(reduceLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                print('\nBefore Optimization Loss:', sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                print('After Optimization Loss: ', sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList}))
 
 
                                 del(batchLossSenseIdxList)
+                                del(negativeSamplesList)
+                                negativeSamplesList = []
                                 batchLossSenseIdxList = []
 
 ##----------------------------- Train Batch ------------------------------
@@ -182,7 +200,7 @@ def main(_):
                 # for req in requests:
                 #     tp.putRequest(req)
 
-                vocabulary.save(opt.saveVocab)
+                vocabulary.saveVocabWithEmbeddings(opt.savePath, sess)
             else:
                 raise Exception(opt.train)
 

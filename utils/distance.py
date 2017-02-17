@@ -17,7 +17,7 @@ def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal g
         name='diagEL'
     )
 
-def diagKLSingle(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two diagnal gaussian distributions
+def diagKLSingle(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
     start = time.time()
 
     m = m2 - m1
@@ -40,7 +40,7 @@ def diagKLSingle(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two dia
     return res
 
 
-def diagKL(m1, sig1, m2, sig2, d=opt.windowSize):   # KL energy of two diagnal gaussian distributions
+def diagKL(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
     m = m2 - m1
     sum = tf.log(tf.reduce_prod(sig2 / sig1, 1))
     sum += -d

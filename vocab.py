@@ -65,7 +65,7 @@ class Vocab(object):
                 self.mutex.release()
 
 
-    def parse(self, file, maxThreadNum=20, buffer=200000, parseUnitLength=1000):
+    def parse(self, file, maxThreadNum=2, buffer=200000, parseUnitLength=1000):
         if os.path.isfile(file):
             self.corpus = file
             tp = ThreadPool(2)
@@ -79,7 +79,7 @@ class Vocab(object):
                         tp.putRequest(req)
 
             print('\nRead Finished, Waiting...')
-            tp.createWorkers(maxThreadNum - 10)
+            tp.createWorkers(maxThreadNum - 2)
             tp.wait()
 
             print('\nParse Finished.')
@@ -110,7 +110,16 @@ class Vocab(object):
 
             self.totalWordCount -= w.count
             self.totalSenseCount -= w.senseNum
-            del(w)
+            del(self._vocab[i])
+
+        tmp = 0
+        for i in self._idx2word:
+            i.senseStart = tmp
+            tmp += i.senseNum
+
+        assert tmp == self.totalSenseCount
+        assert len(self._idx2word) == len(self._vocab)
+        assert len(self._idx2word) == self.size
 
         print('Reduce Finished. %d Words Encountered.' % self.size)
 
@@ -148,17 +157,31 @@ class Vocab(object):
         return float(self.getWordCount()) / self.totalWordCount
 
 
-    def save(self, file, sess):
+    def saveVocabWithEmbeddings(self, file, sess):
+        l = []
         try:
-            l = []
-
             for i in self._idx2word:
                 l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
             with open(file, 'wb') as f:
                 pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas)}, f)
                 return True
-        except:
-            return False
+        except Exception:
+            tf.global_variables_initializer().run(session=sess)
+            with open(file, 'wb') as f:
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas)}, f)
+                return True
+
+
+    def saveVocab(self, file):
+        l = []
+        try:
+            for i in self._idx2word:
+                l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
+            with open(file, 'wb') as f:
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount}, f)
+                return True
+        except Exception:
+            return True
 
 
     def load(self, file):
