@@ -75,7 +75,7 @@ def assignDFS(stcW):
 
 def violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder):
     ''' Inference the senses using DFS '''
-    assert len(stcW) == opt.sentenceLength
+    # assert len(stcW) == opt.sentenceLength
     senseIdxList = []
 
     for sIdx in senseIdxDFS(stcW):
