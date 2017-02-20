@@ -7,15 +7,27 @@ from options import Options as opt
 from math import pi
 import time
 
-def diagEL(m1, sig1, m2, sig2, d):                  # EL energy of two diagnal gaussian distributions
+def diagEL(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
     m = m1 - m2
     sig = sig1 + sig2
 
     return tf.div(
-        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=tf.float64) * tf.pow(m, 2) * tf.div(tf.constant(1., dtype=tf.float64), sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
+        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=tf.float64) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1), name='diagEL-Exponential'),
+        tf.sqrt(tf.reduce_prod(tf.constant(2., dtype=tf.float64) * pi * sig, 1), name='diagEL-SquareRoot'),
+        name='diagEL'
+    )
+
+
+def diagELSingle(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
+    m = m1 - m2
+    sig = sig1 + sig2
+
+    return tf.div(
+        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=tf.float64) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
         tf.sqrt(tf.pow(tf.constant(2., dtype=tf.float64) * pi, d) * tf.reduce_prod(sig), name='diagEL-SquareRoot'),
         name='diagEL'
     )
+
 
 def diagKLSingle(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
     start = time.time()
