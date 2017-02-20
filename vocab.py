@@ -17,6 +17,8 @@ from options import Options as opt
 from utils.fileIO import fetchSentences
 from utils.common import is_number
 
+curDir = os.path.dirname(os.path.abspath(__file__))
+
 class Vocab(object):
     """ Vocabulary of the train corpus, used for embedding lookup and sense number lookup. """
 
@@ -31,10 +33,10 @@ class Vocab(object):
         self.sigmas = None
 
         try:
-            with open('data/coarse-grained-all-words/senseNumberDict.pk', 'rb') as f:
+            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pk'), 'rb') as f:
                 self._senseNum = pk.load(f)
         except Exception:
-            with open('data/coarse-grained-all-words/senseNumberDict.pk3', 'rb') as f:
+            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pk3'), 'rb') as f:
                 self._senseNum = pk.load(f)
 
         if file is not None:
