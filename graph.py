@@ -5,18 +5,18 @@ from utils.distance import diagKL
 from options import Options as opt
 
 
-def batchSentenceLossGraph(vocabulary):
+def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
     senseIdxPlaceholder = tf.placeholder(dtype=tf.int32, shape=[None, opt.sentenceLength])
 
     l = []
-    for i in range(opt.sentenceLength):
+    for i in range(sentenceLength):
         midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i])
         midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i])
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
                 l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i - offset])))
-            if i + offset < opt.sentenceLength:
+            if i + offset < sentenceLength:
                 l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
 
     return tf.add_n(l), (senseIdxPlaceholder)
