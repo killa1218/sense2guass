@@ -88,6 +88,7 @@ with tf.Session() as sess:
 
     idx = sess.run(tf.argmin(distance, 0), feed_dict={sensePlaceholder: wordPairList})
 
+    print('Data size:', len(data), 'Data covered:', len(wordPairList), 'Recall:', float(len(wordPairList)) / len(data))
     print(idx)
     print(data[idx]['r'])
 
