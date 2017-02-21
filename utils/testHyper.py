@@ -29,9 +29,9 @@ with open('../data/BLESS/bless.pk3', 'rb') as f:
 with tf.Session() as sess:
     # lossGraph, placeholder = batchSentenceLossGraph(vocab)
     # minLossIdxGraph = tf.argmin(lossGraph, 0)
-    #
-    # sensePlaceholder = tf.placeholder(dtype=tf.int32)
-    # distance = dist(tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 1]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 1]))
+
+    sensePlaceholder = tf.placeholder(dtype=tf.int32)
+    distance = dist(tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 1]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 1]))
     # labelPlaceholder = tf.placeholder(dtype=tf.float64)
     # difference = 10 - labelPlaceholder - distance
 
@@ -45,5 +45,3 @@ with tf.Session() as sess:
                     mero.append([])
 
     print('Data size:', len(data))
-
-

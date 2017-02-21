@@ -18,6 +18,9 @@ from options import Options as opt
 data = None
 vocab = None
 
+result = None
+scoreList = None
+
 with open('../data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
@@ -86,9 +89,20 @@ with tf.Session() as sess:
                 wordPairList.append([assign1[w1sIdx], assign2[w2sIdx]])
                 scoreList.append(i['r'])
 
+    result = sess.run(distance, feed_dict={sensePlaceholder: wordPairList})
     idx = sess.run(tf.argmin(distance, 0), feed_dict={sensePlaceholder: wordPairList})
 
     print('Data size:', len(data), 'Data covered:', len(wordPairList), 'Recall:', float(len(wordPairList)) / len(data))
     print(idx)
     print(data[idx]['r'])
 
+with open('../data/KLResult.txt', 'w') as f:
+    for i in range(len(wordPairList)):
+        f.write(vocab.getWordBySenseId(wordPairList[i][0]).token)
+        f.write('  ')
+        f.write(vocab.getWordBySenseId(wordPairList[i][1]).token)
+        f.write('\t')
+        f.write(str(result[i]))
+        f.write('\t')
+        f.write(str(scoreList[i]))
+        f.write('\n')

@@ -141,6 +141,14 @@ class Vocab(object):
             return None
 
 
+    def getWordBySenseId(self, sId):
+        wId = self.size - 1 if sId > self.size - 1 else sId
+        while wId > 0 and self._idx2word[wId].senseStart > sId:
+            wId -= 1
+
+        return self._idx2word[wId]
+
+
     def getSenseCount(self, word):
         try:
             return self._vocab[word].senseCount
