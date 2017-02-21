@@ -81,6 +81,16 @@ def violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder):
     for sIdx in senseIdxDFS(stcW):
         senseIdxList.append(sIdx)
 
+    if len(senseIdxList) > 100000:
+        reducedList = []
+
+        for i in range(0, len(senseIdxList), 100000):
+            subSenseIdxList = senseIdxList[i:i + 100000]
+            subMinIdx = sess.run(minLossIdxGraph, feed_dict={senseIdxPlaceholder: subSenseIdxList})
+            reducedList.append(senseIdxList[subMinIdx])
+
+        senseIdxList = reducedList
+
     minLossSeqIdx = sess.run(minLossIdxGraph, feed_dict={senseIdxPlaceholder: senseIdxList})
 
     return senseIdxList[minLossSeqIdx]
