@@ -1,8 +1,12 @@
 # coding=utf8
 
 import tensorflow as tf
-from utils.distance import diagKL
 from options import Options as opt
+
+if opt.EL:
+    from utils.distance import diagEL as dist
+else:
+    from utils.distance import diagKL as dist
 
 
 def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
@@ -15,9 +19,9 @@ def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
-                l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i - offset])))
+                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i - offset])))
             if i + offset < sentenceLength:
-                l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
+                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
 
     return tf.add_n(l), (senseIdxPlaceholder)
 
@@ -31,8 +35,8 @@ def windowLossGraph(vocabulary):
     l = []
 
     for i in range(opt.windowSize * 2):
-        l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, others[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, others[:, i]), midMean, midSigma))
-        l.append(diagKL(tf.nn.embedding_lookup(vocabulary.means, others[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, others[:, opt.windowSize * 2 - i - 1]), midMean, midSigma))
+        l.append(dist(tf.nn.embedding_lookup(vocabulary.means, others[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, others[:, i]), midMean, midSigma))
+        l.append(dist(tf.nn.embedding_lookup(vocabulary.means, others[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, others[:, opt.windowSize * 2 - i - 1]), midMean, midSigma))
 
     return tf.add_n(l), (mid, others)
 
@@ -48,6 +52,6 @@ def negativeLossGraph(vocabulary):
         negSample = negSamples[:, i]
 
         for j in range(opt.negative):
-            l.append(diagKL(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j])))
+            l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j])))
 
     return tf.add_n(l), (mid, negSamples)

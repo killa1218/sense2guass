@@ -22,3 +22,4 @@ class Options(object):
     wordSeparator = re.compile('\s*,\s*|\s*\.\s*|\s+')  # Separator pattern of words in corpus
     minCount = 10                       # Words who exist under minCount times will be omitted
     negative = 0                        # Negative samples for each sense
+    EL = False                          # Whether use EL or KL

@@ -27,6 +27,7 @@ flags.DEFINE_string("output", None, "Directory to write the model and training s
 flags.DEFINE_string("train", None, "Training text file. E.g., unzipped file http://mattmahoney.net/dc/text8.zip.")
 flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
+# flags.DEFINE_string("covariance", "diagnal", "Shape of covariance matrix, default is diagnal. Possible value is 'diagnal' or ")
 flags.DEFINE_integer("size", 50, "The embedding dimension size. Default is 100.")
 flags.DEFINE_integer("window", 5, "The number of words to predict to the left and right of the target word.")
 flags.DEFINE_integer("negative", 4, "Negative samples per sense. Default is 4.")
@@ -39,6 +40,7 @@ flags.DEFINE_integer("sentence_length", 15, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
 flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
+flags.DEFINE_boolean("EL", False, "Use EL as energy function or KL, default is KL.")
 flags.DEFINE_integer("batch_size", 20, "Number of training examples processed per step (size of a minibatch).")
 
 FLAGS = flags.FLAGS
@@ -77,6 +79,8 @@ opt.vocab = FLAGS.vocab
 opt.saveVocab = FLAGS.save_vocab
 # Use GPU or CPU. True for GPU, otherwise CPU
 opt.gpu = FLAGS.gpu
+# Use EL or KL, True for EL, otherwise KL
+opt.EL = FLAGS.EL
 # Where to write out summaries.
 opt.savePath = FLAGS.output
 

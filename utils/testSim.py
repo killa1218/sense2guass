@@ -21,10 +21,11 @@ vocab = None
 result = None
 scoreList = None
 
-with open('../data/SCWS/testData.pk3', 'rb') as f:
+# with open('../data/SCWS/testData.pk3', 'rb') as f:
+with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('../data/vec.txt')
+    vocab.load('/mnt/dataset/sense2gauss/data/vec.0222.txt')
 
 with tf.Session() as sess:
     lossGraph, placeholder = batchSentenceLossGraph(vocab)
