@@ -11,7 +11,7 @@ class Options(object):
     covarShape = 'diagnal'              # Shape of covariance matrix, possible values: 'diagnal', 'spherical', 'normal'
     windowSize = 5                      # Window size of the energy function
     fixWindowSize = True                # Whether fix the window size or choose a size randomly
-    margin = 1                          # The margin between positive and negative pair energy
+    margin = 100                        # The margin between positive and negative pair energy
     sensePrior = True                   # Whether use sense statistical information as prior probability when doing reference
     maxSentenceLength = 20              # Maximum length of a sentence
     sentenceLength = 10                 # Maximum length of a sentence
