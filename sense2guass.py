@@ -149,7 +149,6 @@ def main(_):
                 with open(opt.train) as f:
                     batchLossSenseIdxList = []
                     negativeSamplesList = []
-                    trained = 0
 
                     start = time.time()
                     for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
@@ -186,7 +185,7 @@ def main(_):
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
                                 end = time.time()
-                                print('Inferencing time: %.5f' % end - start)
+                                print('Inferencing time: %.5f' % (end - start))
                                 start = time.time()
 
                                 # loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
@@ -194,7 +193,7 @@ def main(_):
                                 sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
                                 end = time.time()
-                                print('Optimization time: %.5f' % end - start)
+                                print('Optimization time: %.5f' % (end - start))
 
                                 del(batchLossSenseIdxList)
                                 del(negativeSamplesList)

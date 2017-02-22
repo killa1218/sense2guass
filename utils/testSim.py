@@ -96,7 +96,7 @@ with tf.Session() as sess:
     print(idx)
     print(data[idx]['r'])
 
-with open('../data/KLResult.txt', 'w') as f:
+with open('../data/SCWS/KLResult.txt', 'w') as f:
     for i in range(len(wordPairList)):
         f.write(vocab.getWordBySenseId(wordPairList[i][0]).token)
         f.write('  ')
