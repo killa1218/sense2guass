@@ -151,6 +151,7 @@ def main(_):
                     negativeSamplesList = []
                     trained = 0
 
+                    start = time.time()
                     for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
@@ -184,15 +185,23 @@ def main(_):
 
             # M-Step: Do Optimize
                             if len(batchLossSenseIdxList) == opt.batchSize:
-                                loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                end = time.time()
+                                print('Inferencing time: %.5f' % end - start)
+                                start = time.time()
+
+                                # loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                # sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                 sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
+                                end = time.time()
+                                print('Optimization time: %.5f' % end - start)
 
                                 del(batchLossSenseIdxList)
                                 del(negativeSamplesList)
                                 negativeSamplesList = []
                                 batchLossSenseIdxList = []
+
+                                start = time.time()
 
 ##----------------------------- Train Batch ------------------------------
 
