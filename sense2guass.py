@@ -38,10 +38,11 @@ flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sente
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
 flags.DEFINE_integer("sentence_length", 15, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
+flags.DEFINE_integer("batch_size", 20, "Number of training examples processed per step (size of a minibatch).")
 flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
+flags.DEFINE_float("margin", 100, "Margin between positive and negative training pairs. Default is 100.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_boolean("EL", False, "Use EL as energy function or KL, default is KL.")
-flags.DEFINE_integer("batch_size", 20, "Number of training examples processed per step (size of a minibatch).")
 
 FLAGS = flags.FLAGS
 
@@ -53,6 +54,8 @@ opt.train = FLAGS.train
 opt.negative = FLAGS.negative
 # The initial learning rate.
 opt.alpha = FLAGS.alpha
+# Margin between positive and negative pairs.
+opt.margin = FLAGS.margin
 # Number of epochs to train. After these many epochs, the learning rate decays linearly to zero and the training stops.
 opt.iter = FLAGS.iter
 # Concurrent training steps.
