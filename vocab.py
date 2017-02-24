@@ -6,6 +6,7 @@ from __future__ import print_function
 import os
 import pickle as pk
 import sys
+import time
 import multiprocessing
 import tensorflow as tf
 
@@ -40,15 +41,17 @@ class Vocab(object):
             self.parse(file)
 
 
-    def _parseThread(self, filePath, start, end, chunkSize = 1048576):
+    def _parseThread(self, filePath, start, end, chunkSize = 524288):
         with open(filePath, 'r') as f:
             f.seek(start)
             d = {}
+            s = start
 
             while f.read(1) != ' ':
                 pass
 
             start = f.tell()
+            st = time.time()
             while start < end:
                 if end - start > chunkSize:
                     chunk = f.read(chunkSize)
@@ -68,6 +71,12 @@ class Vocab(object):
                     else:
                         d[i] = 1
 
+                readSize = float(f.tell() - s)
+                if (int(readSize) // chunkSize) % 10 == 1:
+                    t = time.time()
+                    sys.stdout.write('\r%.3f%% parsed. Speed: %.3fMB/s' % (readSize / (end - s), readSize / (t - st) / 1000000))
+                    sys.stdout.flush()
+
             return d
 
 
@@ -75,7 +84,7 @@ class Vocab(object):
         return self._parseThread(*arg)
 
 
-    def parse(self, file, buffer = 1048576, chunkNum = multiprocessing.cpu_count()):
+    def parse(self, file, buffer = 524288, chunkNum = multiprocessing.cpu_count()):
         import math
         opt.minCount = 5
         pool = multiprocessing.Pool()
