@@ -16,7 +16,7 @@ def main():
     min = sys.argv[3] if sys.argv[3] else 1
     v = None
 
-    opt.minCount = min
+    opt.minCount = int(min)
 
     try:
         v = V()
@@ -28,7 +28,6 @@ def main():
         print('Some error.')
     finally:
         if v:
-            v.reduce()
             with tf.Session() as sess:
                 v.saveVocabWithEmbeddings(target, sess)
             print('Vocab saved.')

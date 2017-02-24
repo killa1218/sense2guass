@@ -6,16 +6,12 @@ from __future__ import print_function
 import os
 import pickle as pk
 import sys
-import threading
 import multiprocessing
 import tensorflow as tf
 
-from threadpool import *
-from exceptions import *
 from tqdm import *
 from word import Word
 from options import Options as opt
-from utils.fileIO import fetchSentences
 from utils.common import is_number
 
 curDir = os.path.dirname(os.path.abspath(__file__))
@@ -30,7 +26,6 @@ class Vocab(object):
         self.size = 0
         self.totalWordCount = 0
         self.totalSenseCount = 0
-        self.pool = multiprocessing.Pool()
         self.means = None
         self.sigmas = None
 
@@ -44,109 +39,88 @@ class Vocab(object):
         if file is not None:
             self.parse(file)
 
-    def _parseLineThread(self, wordsList):
-        for word in wordsList:
-            if word != None and word != '' and not is_number(word) and self.mutex.acquire(1):
-                word = word.strip()
-                word = word.lower()
-                self.totalWordCount += 1
 
-                if word in self._vocab.keys():
-                    self._vocab[word].count += 1
-                else:
-                    if word in self._senseNum.keys():
-                        self.totalSenseCount += self._senseNum[word] if self._senseNum[word] < opt.maxSensePerWord else opt.maxSensePerWord
-                        self._vocab[word] = Word(word, sNum=self._senseNum[word] if self._senseNum[word] < opt.maxSensePerWord else opt.maxSensePerWord)
-                    else:
-                        self.totalSenseCount += 1
-                        self._vocab[word] = Word(word)
-
-                    self.size += 1
-
-                    if self.size % 100 == 0:
-                        sys.stdout.write('\r\t\t\t\t\t\t\tAdded %d words totally using %i threads.' % (self.size, threading.activeCount() - 1))
-                        sys.stdout.flush()
-                self.mutex.release()
-
-
-    def _parseThread(self, filePath, start, end, chunkSize = 20000):
+    def _parseThread(self, filePath, start, end, chunkSize = 1048576):
         with open(filePath, 'r') as f:
             f.seek(start)
             d = {}
 
-            while start < end:
+            while f.read(1) != ' ':
+                pass
 
+            start = f.tell()
+            while start < end:
                 if end - start > chunkSize:
                     chunk = f.read(chunkSize)
                 else:
                     chunk = f.read(end - start)
 
-                
+                c = f.read(1)
+                while c and c != ' ' and c != '\n' and c != '\t':
+                    chunk += c
+                    c = f.read(1)
+
                 start = f.tell()
 
+                for i in chunk.split(' '):
+                    if i in d.keys():
+                        d[i] += 1
+                    else:
+                        d[i] = 1
+
+            return d
 
 
+    def _helper(self, arg):
+        return self._parseThread(*arg)
 
 
+    def parse(self, file, buffer = 1048576, chunkNum = multiprocessing.cpu_count()):
+        import math
+        opt.minCount = 5
+        pool = multiprocessing.Pool()
+        fileSize = os.path.getsize(file)
+        chunkSize = math.ceil(fileSize / chunkNum)
+        task = []
+        d = {}
 
-    def parse(self, file, maxThreadNum=2, buffer=200000, parseUnitLength=1000):
-        if os.path.isfile(file):
-            self.corpus = file
-            tp = ThreadPool(2)
-            self.mutex = threading.Lock()
+        for i in range(chunkNum):
+            start = i * chunkSize
+            end = start + chunkSize if start + chunkSize < fileSize else fileSize
+            task.append((file, start, end, buffer))
 
-            with open(file) as f:
-                for stc in fetchSentences(f, buffer, parseUnitLength):
-                    requests = makeRequests(self._parseLineThread, [stc])
+        dList = pool.imap_unordered(self._helper, task)
 
-                    for req in requests:
-                        tp.putRequest(req)
+        for i in dList:
+            for j in i:
+                if not is_number(j):
+                    if j in d.keys():
+                        d[j] += i[j]
+                    else:
+                        d[j] = i[j]
 
-            print('\nRead Finished, Waiting...')
-            tp.createWorkers(maxThreadNum - 2)
-            tp.wait()
+        for i in d:
+            if d[i] > opt.minCount:
+                if i in self._vocab.keys():
+                    self._vocab[i].count += d[i]
+                else:
+                    if i in self._senseNum.keys():
+                        self._vocab[i] = Word(i, c=d[i], sNum=self._senseNum[i] if self._senseNum[i] < opt.maxSensePerWord else opt.maxSensePerWord)
+                        self._vocab[i].senseStart = self.totalSenseCount
+                        self.totalSenseCount += self._senseNum[i] if self._senseNum[i] < opt.maxSensePerWord else opt.maxSensePerWord
+                    else:
+                        self._vocab[i] = Word(i, c=d[i])
+                        self._vocab[i].senseStart = self.totalSenseCount
+                        self.totalSenseCount += 1
 
-            print('\nParse Finished.')
+                    self.size += 1
+                    self._vocab[i].index = len(self._idx2word)
+                    self._idx2word.append(self._vocab[i])
 
-            self.reduce()
-        else:
-            raise NotAFileException(file)
-
-
-    def reduce(self):
-        tmp = 0
-        toBeDel = []
-
-        for i in self._vocab:
-            w = self._vocab[i]
-
-            if w.count <= opt.minCount:
-                toBeDel.append(i)
-            else:
-                w.index = tmp
-                self._idx2word.append(w)
-                tmp += 1
-
-        self.size = tmp
-
-        for i in toBeDel:
-            w = self._vocab[i]
-
-            self.totalWordCount -= w.count
-            self.totalSenseCount -= w.senseNum
-            del(self._vocab[i])
-
-        tmp = 0
-        for i in self._idx2word:
-            i.senseStart = tmp
-            tmp += i.senseNum
-
-        assert tmp == self.totalSenseCount
-        assert len(self._idx2word) == len(self._vocab)
-        assert len(self._idx2word) == self.size
-
-        print('Reduce Finished. %d Words Encountered.' % self.size)
-
+                    if self.size % 100 == 0:
+                        sys.stdout.write('\r%d words found, %d words encountered using %i threads.' % (len(d), self.size, multiprocessing.cpu_count()))
+                        sys.stdout.flush()
+        print('')
         self.initAllSenses()
 
 
