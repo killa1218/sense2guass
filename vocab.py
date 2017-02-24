@@ -7,6 +7,7 @@ import os
 import pickle as pk
 import sys
 import threading
+import multiprocessing
 import tensorflow as tf
 
 from threadpool import *
@@ -29,6 +30,7 @@ class Vocab(object):
         self.size = 0
         self.totalWordCount = 0
         self.totalSenseCount = 0
+        self.pool = multiprocessing.Pool()
         self.means = None
         self.sigmas = None
 
@@ -65,6 +67,19 @@ class Vocab(object):
                         sys.stdout.write('\r\t\t\t\t\t\t\tAdded %d words totally using %i threads.' % (self.size, threading.activeCount() - 1))
                         sys.stdout.flush()
                 self.mutex.release()
+
+
+    def _parseThread(self, f, start, end, chunkSize = 20000):
+        d = {}
+
+        while start < end:
+
+            if end - start > chunkSize:
+                chunk = f.read()
+            else:
+
+
+
 
 
     def parse(self, file, maxThreadNum=2, buffer=200000, parseUnitLength=1000):
@@ -168,6 +183,18 @@ class Vocab(object):
 
 
     def saveVocabWithEmbeddings(self, file, sess):
+        '''
+        {
+            words: [
+                (String, Integer, Integer, Integer, Integer),
+                ...
+            ]
+            twc: Integer,
+            tsc: Integer,
+            means: [[Double, ...], ...],
+            sigmas: [[Double, ...], ...]
+        }
+        '''
         l = []
         try:
             for i in self._idx2word:
@@ -294,3 +321,6 @@ class Vocab(object):
 
                 f.write(str({'w': '"' + word.token + '"', 'm': means, 's': sigmas}) + '\n')
         print('Finished saving.')
+
+if __name__ == '__main__':
+    vocab = Vocab('data/text8')

@@ -56,7 +56,7 @@ opt.negative = FLAGS.negative
 opt.alpha = FLAGS.alpha
 # Margin between positive and negative pairs.
 opt.margin = FLAGS.margin
-# Number of epochs to train. After these many epochs, the learning rate decays linearly to zero and the training stops.
+# Number of epochs to train.
 opt.iter = FLAGS.iter
 # Concurrent training steps.
 # opt.threads = FLAGS.threads

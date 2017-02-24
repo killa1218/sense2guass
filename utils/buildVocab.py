@@ -8,6 +8,7 @@ sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), pa
 
 from vocab import Vocab as V
 from options import Options as opt
+import tensorflow as tf
 
 def main():
     corpus = sys.argv[1]
@@ -28,7 +29,8 @@ def main():
     finally:
         if v:
             v.reduce()
-            v.save(target)
+            with tf.Session() as sess:
+                v.saveVocabWithEmbeddings(target, sess)
             print('Vocab saved.')
 
 if __name__ == '__main__':
