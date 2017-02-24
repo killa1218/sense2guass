@@ -74,7 +74,7 @@ class Vocab(object):
                 readSize = float(f.tell() - s)
                 if (int(readSize) // chunkSize) % 10 == 1:
                     t = time.time()
-                    sys.stdout.write('\r%.3f%% parsed. Speed: %.3fMB/s' % (readSize / (end - s), readSize / (t - st) / 1000000))
+                    sys.stdout.write('\r%.3f%% parsed. Speed: %.3fMB/s' % (readSize * 100 / (end - s), readSize * multiprocessing.cpu_count() / (t - st) / 1000000))
                     sys.stdout.flush()
 
             return d
@@ -86,7 +86,6 @@ class Vocab(object):
 
     def parse(self, file, buffer = 524288, chunkNum = multiprocessing.cpu_count()):
         import math
-        opt.minCount = 5
         pool = multiprocessing.Pool()
         fileSize = os.path.getsize(file)
         chunkSize = math.ceil(fileSize / chunkNum)
@@ -98,9 +97,9 @@ class Vocab(object):
             end = start + chunkSize if start + chunkSize < fileSize else fileSize
             task.append((file, start, end, buffer))
 
-        dList = pool.imap_unordered(self._helper, task)
-
-        for i in dList:
+        for i in pool.imap_unordered(self._helper, task):
+            sys.stdout.write('\rMerging results from processes...')
+            sys.stdout.flush()
             for j in i:
                 if not is_number(j):
                     if j in d.keys():
@@ -127,7 +126,7 @@ class Vocab(object):
                     self._idx2word.append(self._vocab[i])
 
                     if self.size % 100 == 0:
-                        sys.stdout.write('\r%d words found, %d words encountered using %i threads.' % (len(d), self.size, multiprocessing.cpu_count()))
+                        sys.stdout.write('\r%d words found, %d words encountered using %i processes.' % (len(d), self.size, multiprocessing.cpu_count()))
                         sys.stdout.flush()
         print('')
         self.initAllSenses()
