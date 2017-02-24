@@ -69,14 +69,21 @@ class Vocab(object):
                 self.mutex.release()
 
 
-    def _parseThread(self, f, start, end, chunkSize = 20000):
-        d = {}
+    def _parseThread(self, filePath, start, end, chunkSize = 20000):
+        with open(filePath, 'r') as f:
+            f.seek(start)
+            d = {}
 
-        while start < end:
+            while start < end:
 
-            if end - start > chunkSize:
-                chunk = f.read()
-            else:
+                if end - start > chunkSize:
+                    chunk = f.read(chunkSize)
+                else:
+                    chunk = f.read(end - start)
+
+                
+                start = f.tell()
+
 
 
 
