@@ -95,8 +95,7 @@ ENV/
 .idea
 
 # Data
-data/output
-data/text8
+data
 
 # Python cache
 *.pyc
