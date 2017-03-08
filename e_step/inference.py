@@ -1,6 +1,7 @@
 # coding=utf8
 
 import sys
+import time
 from os import path
 
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
@@ -75,7 +76,6 @@ def assignDFS(stcW):
 
 def violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder):
     ''' Inference the senses using DFS '''
-    # assert len(stcW) == opt.sentenceLength
     senseIdxList = []
 
     for sIdx in senseIdxDFS(stcW):
@@ -94,6 +94,195 @@ def violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder):
     minLossSeqIdx = sess.run(minLossIdxGraph, feed_dict={senseIdxPlaceholder: senseIdxList})
 
     return senseIdxList[minLossSeqIdx]
+
+
+def batchViolentInference(batchStcW, sess, batchSentenceLossGraph, senseIdxPlaceholder, argmin, lossPlaceholder):
+    ''' Inference the senses using DFS '''
+    senseIdxList = []
+    sepList = []
+    lossList = []
+    result = []
+
+    start = time.time()
+
+    for stcW in batchStcW:
+        for sIdx in senseIdxDFS(stcW):
+            senseIdxList.append(sIdx)
+
+        sepList.append(len(senseIdxList))
+
+    for i in range(0, len(senseIdxList), 100000):
+        subSenseIdxList = senseIdxList[i:i + 100000]
+        lossList.extend(list(sess.run(batchSentenceLossGraph, feed_dict={senseIdxPlaceholder: subSenseIdxList})))
+
+    minLoss = float('inf')
+    minLossIdx = 0
+
+    end = time.time()
+    # print('CALCULATE TIME:', end - start)
+
+# TODO
+    start = time.time()
+    for i in range(len(senseIdxList)):
+        if i == sepList[0]:
+            del(sepList[0])
+            result.append(senseIdxList[minLossIdx])
+            minLoss = float('inf')
+            minLossIdx = i
+        else:
+            if lossList[i] < minLoss:
+                minLoss = lossList[i]
+                minLossIdx = i
+    end = time.time()
+    # print('LIST PERFORMENCE TIME:', end - start)
+
+    return result
+
+
+def violentInferenceWithBatchGrapg(stcW, sess, batchInferenceGraph, senseIdxPlaceholder):
+    ''' Inference the senses using DFS '''
+    senseIdxList = []
+
+    for sIdx in senseIdxDFS(stcW):
+        senseIdxList.append(sIdx)
+
+    if len(senseIdxList) > 100000:
+        reducedList = []
+
+        for i in range(0, len(senseIdxList), 100000):
+            subSenseIdxList = senseIdxList[i:i + 100000]
+            subMinIdx = sess.run(batchInferenceGraph, feed_dict={senseIdxPlaceholder: subSenseIdxList})
+            reducedList.append(senseIdxList[subMinIdx])
+
+        senseIdxList = reducedList
+
+    minLossSeqIdx = sess.run(batchInferenceGraph, feed_dict={senseIdxPlaceholder: senseIdxList})
+
+    return senseIdxList[minLossSeqIdx]
+
+
+def dpInference(stcW, sess, windowLossGraph, window):
+    assignList = [] # Sense lists to be calculated
+    lossList = []   # Loss of sense lists
+    assign = []     # Final result of inference
+
+    tmp = []
+    for i in range(opt.windowSize * 2 + 1):
+        tmp.append(stcW[i].senseStart)
+    assignList.append(tmp[:])
+    lossList.append(0)
+
+    while True:
+        if (len(tmp) == 0):
+            break
+        else:
+            if tmp[-1] == stcW[len(tmp) - 1].senseStart + stcW[len(tmp) - 1].senseNum - 1:
+                tmp.pop()
+            else:
+                tmp[-1] += 1
+
+                for i in range(len(tmp), opt.windowSize * 2 + 1):
+                    tmp.append(stcW[i].senseStart)
+
+                assignList.append(tmp[:])
+                lossList.append(0)
+
+    for i in range(opt.windowSize, len(stcW)):
+        tmpLossList = sess.run(windowLossGraph, feed_dict = {window: assignList})
+        minLoss = float('inf')
+        minLossIdx = 0
+        l = []
+        a = []
+
+        for j in range(len(tmpLossList)):
+            lossList[j] += tmpLossList[j]
+
+            if lossList[j] < minLoss:
+                minLoss = lossList[j]
+                minLossIdx = j
+
+        assign.append(assignList[minLossIdx][0]) # Record the inferenced sense
+
+        for j in range(len(assignList)):
+            if assignList[j][0] == assign[-1]:
+                newWordIdx = i + opt.windowSize + 1
+
+                if newWordIdx < len(stcW):
+                    for k in range(stcW[newWordIdx].senseNum):
+                        a.append((assignList[j] + [stcW[newWordIdx].senseStart + k])[1:])
+                        l.append(lossList[j])
+                else:
+                    a.append((assignList[j] + [assignList[j][opt.windowSize + 1]])[1:])
+                    l.append(lossList[j])
+
+        assignList = a
+        lossList = l
+
+    return assign
+
+# TODO
+def batchDPInference(batchStcW, sess, windowLossGraph, window):
+    assignList = [] # Sense lists to be calculated
+    lossList = []   # Loss of sense lists
+    assign = []     # Final result of inference
+    sepList = []
+
+    for stcW in batchStcW:
+        tmp = []
+        for i in range(opt.windowSize * 2 + 1):
+            tmp.append(stcW[i].senseStart)
+        assignList.append(tmp[:])
+        lossList.append(0)
+
+        while True:
+            if (len(tmp) == 0):
+                break
+            else:
+                if tmp[-1] == stcW[len(tmp) - 1].senseStart + stcW[len(tmp) - 1].senseNum - 1:
+                    tmp.pop()
+                else:
+                    tmp[-1] += 1
+
+                    for i in range(len(tmp), opt.windowSize * 2 + 1):
+                        tmp.append(stcW[i].senseStart)
+
+                    assignList.append(tmp[:])
+                    lossList.append(0)
+
+        sepList.append(len(assignList))
+
+    for i in range(opt.windowSize, len(stcW)):
+        tmpLossList = sess.run(windowLossGraph, feed_dict = {window: assignList})
+        minLoss = float('inf')
+        minLossIdx = 0
+        l = []
+        a = []
+
+        for j in range(len(tmpLossList)):
+            lossList[j] += tmpLossList[j]
+
+            if lossList[j] < minLoss:
+                minLoss = lossList[j]
+                minLossIdx = j
+
+        assign.append(assignList[minLossIdx][0]) # Record the inferenced sense
+
+        for j in range(len(assignList)):
+            if assignList[j][0] == assign[-1]:
+                newWordIdx = i + opt.windowSize + 1
+
+                if newWordIdx < len(stcW):
+                    for k in range(stcW[newWordIdx].senseNum):
+                        a.append((assignList[j] + [stcW[newWordIdx].senseStart + k])[1:])
+                        l.append(lossList[j])
+                else:
+                    a.append((assignList[j] + [assignList[j][opt.windowSize + 1]])[1:])
+                    l.append(lossList[j])
+
+        assignList = a
+        lossList = l
+
+    return assign
 
 
 # def dfs(stcW, mid, sess):
