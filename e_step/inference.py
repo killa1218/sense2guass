@@ -162,6 +162,106 @@ def violentInferenceWithBatchGrapg(stcW, sess, batchInferenceGraph, senseIdxPlac
 
 
 def dpInference(stcW, sess, windowLossGraph, window):
+    runtime = 0
+    ssstart = time.time()
+    # Use dictionary to record medium result
+    assignList = [] # Sense lists to be calculated
+    lossList = []   # Loss of sense lists
+    prevAssignList = []
+    assign = []     # Final result of inference
+    map = {}
+
+    # DFS of senses in the first window of sentence
+    tmp = []
+    for i in range(opt.windowSize * 2 + 1):
+        tmp.append(stcW[i].senseStart)
+    assignList.append(tmp[:])
+    lossList.append(0)
+    prevAssignList.append(None)
+    while True:
+        if (len(tmp) == 0):
+            break
+        else:
+            if tmp[-1] == stcW[len(tmp) - 1].senseStart + stcW[len(tmp) - 1].senseNum - 1:
+                tmp.pop()
+            else:
+                tmp[-1] += 1
+
+                for i in range(len(tmp), opt.windowSize * 2 + 1):
+                    tmp.append(stcW[i].senseStart)
+
+                assignList.append(tmp[:])
+                lossList.append(0)
+                prevAssignList.append(None)
+
+    for i in range(opt.windowSize, len(stcW)):
+        start = time.time()
+        tmpLossList = sess.run(windowLossGraph, feed_dict = {window: assignList})
+        runtime += time.time() - start
+        minLoss = float('inf')
+        minLossIdx = 0
+        map = {}
+
+        for j in range(len(tmpLossList)):
+            lossList[j] += tmpLossList[j]
+            tmpAssign = assignList[j]
+            tmpLoss = lossList[j]
+
+            if tmpLoss < minLoss:
+                minLoss = lossList[j]
+                minLossIdx = j
+
+            t = tuple(tmpAssign[1:])
+            if t not in map.keys():
+                map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
+            else:
+                if map[t][1] > tmpLoss:
+                    map[t][0] = tmpAssign[0]
+                    map[t][1] = tmpLoss
+                    map[t][2] = prevAssignList[j]
+
+        if i > opt.windowSize:
+            assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
+
+        newWordIdx = i + opt.windowSize + 1
+        assignList = []
+        lossList = []
+        prevAssignList = []
+        for j in map:
+            if len(assign) == 0 or map[j][2] == assign[-1]:
+                tmp = list(j)
+
+                if newWordIdx < len(stcW):
+                    for k in range(stcW[newWordIdx].senseNum):
+                        assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
+                        lossList.append(map[j][1])
+                        prevAssignList.append(map[j][0])
+                else:
+                    assignList.append(tmp + [tmp[opt.windowSize]])
+                    lossList.append(map[j][1])
+                    prevAssignList.append(map[j][0])
+
+    minLoss = float('inf')
+    minLossIdx = 0
+    for i in map:
+        if map[i][1] < minLoss:
+            minLoss = map[i][1]
+            minLossIdx = i
+
+    assign.extend([map[minLossIdx][0]])
+    assign.extend(list(minLossIdx)[:opt.windowSize])
+
+    eeend = time.time()
+    # print('RUN TIME:', runtime)
+    # print('OTHER TIME:', eeend - ssstart - runtime)
+
+    return assign
+
+
+def olddpInference(stcW, sess, windowLossGraph, window):
+    runtime = 0
+    ssstart = time.time()
+    # Use list to record medium result
     assignList = [] # Sense lists to be calculated
     lossList = []   # Loss of sense lists
     assign = []     # Final result of inference
@@ -188,7 +288,9 @@ def dpInference(stcW, sess, windowLossGraph, window):
                 lossList.append(0)
 
     for i in range(opt.windowSize, len(stcW)):
+        start = time.time()
         tmpLossList = sess.run(windowLossGraph, feed_dict = {window: assignList})
+        runtime += time.time() - start
         minLoss = float('inf')
         minLossIdx = 0
         l = []
@@ -218,7 +320,14 @@ def dpInference(stcW, sess, windowLossGraph, window):
         assignList = a
         lossList = l
 
+
+    eeend = time.time()
+    print('RUN TIME:', runtime)
+    print('OTHER TIME:', eeend - ssstart - runtime)
+
+
     return assign
+
 
 # TODO
 def batchDPInference(batchStcW, sess, windowLossGraph, window):

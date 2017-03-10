@@ -150,13 +150,13 @@ def main(_):
 ##----------------------- Build Negative Loss Graph --------------------------
 
 ##---------------------------- Build NCE Loss --------------------------------
-        # print('Building NCE Loss...')
-        # nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
-        # reduceNCELoss = tf.reduce_sum(nceLossGraph)
-        # avgNCELoss = reduceNCELoss / opt.batchSize
-        # op = optimizer(reduceNCELoss)
-        # # op = optimizer(avgBatchStcLoss)
-        # print('Finished Building NCE Loss.')
+        print('Building NCE Loss...')
+        nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
+        reduceNCELoss = tf.reduce_sum(nceLossGraph)
+        avgNCELoss = reduceNCELoss / opt.batchSize
+        op = optimizer(reduceNCELoss)
+        # op = optimizer(avgBatchStcLoss)
+        print('Finished Building NCE Loss.')
 ##---------------------------- Build NCE Loss --------------------------------
 
 ##------------------------- Build Validate Graph -----------------------------
@@ -195,11 +195,12 @@ def main(_):
             #                 start = time.time()
 
 ##--------------------------------- Inference By Single Sentence ----------------------------------
-                            # from e_step.inference import violentInference
+                            from e_step.inference import violentInference
                             from e_step.inference import dpInference
+                            from e_step.inference import olddpInference
                             # sss = time.time()
-                            # assign = violentInference(stcW, sess, minLossIdxGraph, senseIdxPlaceholder)
                             assign = dpInference(stcW, sess, windowLossGraph, window)
+                            # assign = olddpInference(stcW, sess, windowLossGraph, window)
                             # eee = time.time()
                             # print(eee - sss)
                             batchLossSenseIdxList.append(assign)
@@ -240,7 +241,7 @@ def main(_):
 
                                 # loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                 # sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
-                                # sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
                                 end = time.time()
                                 print('Optimization time: %.5f' % (end - start))
