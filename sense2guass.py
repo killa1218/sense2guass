@@ -150,13 +150,13 @@ def main(_):
 ##----------------------- Build Negative Loss Graph --------------------------
 
 ##---------------------------- Build NCE Loss --------------------------------
-        print('Building NCE Loss...')
-        nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
-        reduceNCELoss = tf.reduce_sum(nceLossGraph)
-        avgNCELoss = reduceNCELoss / opt.batchSize
-        op = optimizer(reduceNCELoss)
-        # op = optimizer(avgBatchStcLoss)
-        print('Finished Building NCE Loss.')
+        # print('Building NCE Loss...')
+        # nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
+        # reduceNCELoss = tf.reduce_sum(nceLossGraph)
+        # avgNCELoss = reduceNCELoss / opt.batchSize
+        # op = optimizer(reduceNCELoss)
+        # # op = optimizer(avgBatchStcLoss)
+        # print('Finished Building NCE Loss.')
 ##---------------------------- Build NCE Loss --------------------------------
 
 ##------------------------- Build Validate Graph -----------------------------
@@ -189,21 +189,21 @@ def main(_):
                     for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
-                            # batchStcW.append(stcW)
+                            batchStcW.append(stcW)
             # E-Step: Do Inference
             #                 print('Inferencing sentence:', ' '.join(x.token for x in stcW))
             #                 start = time.time()
 
 ##--------------------------------- Inference By Single Sentence ----------------------------------
-                            from e_step.inference import violentInference
-                            from e_step.inference import dpInference
-                            from e_step.inference import olddpInference
-                            # sss = time.time()
-                            assign = dpInference(stcW, sess, windowLossGraph, window)
-                            # assign = olddpInference(stcW, sess, windowLossGraph, window)
-                            # eee = time.time()
-                            # print(eee - sss)
-                            batchLossSenseIdxList.append(assign)
+                            # from e_step.inference import violentInference
+                            # from e_step.inference import dpInference
+                            # from e_step.inference import olddpInference
+                            # # sss = time.time()
+                            # assign = dpInference(stcW, sess, windowLossGraph, window)
+                            # # assign = olddpInference(stcW, sess, windowLossGraph, window)
+                            # # eee = time.time()
+                            # # print(eee - sss)
+                            # batchLossSenseIdxList.append(assign)
 ##--------------------------------- Inference By Single Sentence ----------------------------------
 
                             # end = time.time()
@@ -225,23 +225,27 @@ def main(_):
                             negativeSamplesList.append(negativeSampleList)
 
             # M-Step: Do Optimize
-                            if len(batchLossSenseIdxList) == opt.batchSize:
-                            # if len(batchStcW) == opt.batchSize:
+            #                 if len(batchLossSenseIdxList) == opt.batchSize:
+                            if len(batchStcW) == opt.batchSize:
 ##--------------------------------- Inference By Batch ----------------------------------
-                                # from e_step.inference import batchViolentInference
-                                # start = time.time()
+                                from e_step.inference import batchViolentInference
+                                from e_step.inference import batchDPInference
+                                from multiprocessing import Pool
+                                start = time.time()
                                 # batchLossSenseIdxList = batchViolentInference(batchStcW, sess, batchSentenceLossGraph, senseIdxPlaceholder, argmin, lossPlaceholder)
-                                # end = time.time()
-                                # print('Inferencing time: %.5f' % (end - start))
+                                pool = Pool()
+                                batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window, pool)
+                                end = time.time()
+                                print('Inference time: %.5f' % (end - start))
 ##--------------------------------- Inference By Batch ----------------------------------
 
-                                end = time.time()
-                                print('Inferencing time: %.5f' % (end - start))
-                                start = time.time()
+                                # end = time.time()
+                                # print('Inferencing time: %.5f' % (end - start))
+                                # start = time.time()
 
                                 # loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                 # sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
-                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                # sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
                                 end = time.time()
                                 print('Optimization time: %.5f' % (end - start))

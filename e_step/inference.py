@@ -329,67 +329,125 @@ def olddpInference(stcW, sess, windowLossGraph, window):
     return assign
 
 
-# TODO
-def batchDPInference(batchStcW, sess, windowLossGraph, window):
-    assignList = [] # Sense lists to be calculated
-    lossList = []   # Loss of sense lists
-    assign = []     # Final result of inference
-    sepList = []
+def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
+    def getAllWindows(stcW):
+        windows = []
+        firstWindowSize = 0
+        stcWLen = len(stcW)
 
-    for stcW in batchStcW:
-        tmp = []
-        for i in range(opt.windowSize * 2 + 1):
-            tmp.append(stcW[i].senseStart)
-        assignList.append(tmp[:])
-        lossList.append(0)
+        for i in range(stcWLen - opt.windowSize):
+            start = i
+            mid = i + opt.windowSize
+            end = mid + opt.windowSize + 1
+            tmp = []
 
-        while True:
-            if (len(tmp) == 0):
-                break
-            else:
-                if tmp[-1] == stcW[len(tmp) - 1].senseStart + stcW[len(tmp) - 1].senseNum - 1:
-                    tmp.pop()
+            for j in range(start, stcWLen if end > stcWLen else end):
+                tmp.append(stcW[j].senseStart)
+
+            windows.append(tmp[:])
+
+            if i == 0:
+                firstWindowSize = len(tmp)
+
+            while True:
+                if len(tmp) == 0:
+                    break
                 else:
-                    tmp[-1] += 1
+                    windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen
 
-                    for i in range(len(tmp), opt.windowSize * 2 + 1):
-                        tmp.append(stcW[i].senseStart)
+                    if tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
+                        tmp.pop()
+                    else:
+                        tmp[-1] += 1
 
-                    assignList.append(tmp[:])
-                    lossList.append(0)
+                        for k in range(len(tmp), opt.windowSize * 2 + 1):
+                            if start + k < stcWLen:
+                                tmp.append(stcW[start + k].senseStart)
+                            else:
+                                tmp.append(mid)
 
-        sepList.append(len(assignList))
+                        windows.append(tmp[:])
 
-    for i in range(opt.windowSize, len(stcW)):
-        tmpLossList = sess.run(windowLossGraph, feed_dict = {window: assignList})
+        return windows, firstWindowSize
+
+    def inferenceOneStc(stcW, lossTable, assignList):
+        lossList = [0] * len(assignList)
+        prevAssignList = [None] * len(assignList)
+        assign = []
+        map = {}
+
+        for i in range(opt.windowSize, len(stcW)):
+            minLoss = float('inf')
+            minLossIdx = 0
+            map = {}
+
+            for j in range(len(assignList)):
+                lossList[j] += lossTable[tuple(assignList[j])]
+                tmpAssign = assignList[j]
+                tmpLoss = lossList[j]
+
+                if tmpLoss < minLoss:
+                    minLoss = lossList[j]
+                    minLossIdx = j
+
+                t = tuple(tmpAssign[1:])
+                if t not in map.keys():
+                    map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
+                else:
+                    if map[t][1] > tmpLoss:
+                        map[t][0] = tmpAssign[0]
+                        map[t][1] = tmpLoss
+                        map[t][2] = prevAssignList[j]
+
+            if i > opt.windowSize:
+                assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
+
+            newWordIdx = i + opt.windowSize + 1
+            assignList = []
+            lossList = []
+            prevAssignList = []
+            for j in map:
+                if len(assign) == 0 or map[j][2] == assign[-1]:
+                    tmp = list(j)
+
+                    if newWordIdx < len(stcW):
+                        for k in range(stcW[newWordIdx].senseNum):
+                            assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
+                            lossList.append(map[j][1])
+                            prevAssignList.append(map[j][0])
+                    else:
+                        assignList.append(tmp + [tmp[opt.windowSize]])
+                        lossList.append(map[j][1])
+                        prevAssignList.append(map[j][0])
+
         minLoss = float('inf')
         minLossIdx = 0
-        l = []
-        a = []
+        for i in map:
+            if map[i][1] < minLoss:
+                minLoss = map[i][1]
+                minLossIdx = i
 
-        for j in range(len(tmpLossList)):
-            lossList[j] += tmpLossList[j]
+        assign.extend([map[minLossIdx][0]])
+        assign.extend(list(minLossIdx)[:opt.windowSize])
 
-            if lossList[j] < minLoss:
-                minLoss = lossList[j]
-                minLossIdx = j
+    assignList = []
+    assign = []
+    starts = []
+    ends = []
+    lossTable = {}
 
-        assign.append(assignList[minLossIdx][0]) # Record the inferenced sense
+    for i, j in pool.imap_unordered(getAllWindows, batchStcW):
+        assignList.extend(i)
+        starts.append(len(assignList))
+        ends.append(j)
 
-        for j in range(len(assignList)):
-            if assignList[j][0] == assign[-1]:
-                newWordIdx = i + opt.windowSize + 1
+    loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
 
-                if newWordIdx < len(stcW):
-                    for k in range(stcW[newWordIdx].senseNum):
-                        a.append((assignList[j] + [stcW[newWordIdx].senseStart + k])[1:])
-                        l.append(lossList[j])
-                else:
-                    a.append((assignList[j] + [assignList[j][opt.windowSize + 1]])[1:])
-                    l.append(lossList[j])
+    for i in range(len(loss)):
+        lossTable[tuple(assignList[i])] = loss[i]
 
-        assignList = a
-        lossList = l
+    for i in pool.imap_unordered(inferenceOneStc, [(batchStcW[j], lossTable, assignList[starts[j]: ends[j]]) for j in range(len(batchStcW))]):
+        assign.append(i)
 
     return assign
 
