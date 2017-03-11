@@ -329,107 +329,112 @@ def olddpInference(stcW, sess, windowLossGraph, window):
     return assign
 
 
-def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
-    def getAllWindows(stcW):
-        windows = []
-        firstWindowSize = 0
-        stcWLen = len(stcW)
+def getAllWindows(stcW):
+    windows = []
+    firstWindowSize = 0
+    stcWLen = len(stcW)
 
-        for i in range(stcWLen - opt.windowSize):
-            start = i
-            mid = i + opt.windowSize
-            end = mid + opt.windowSize + 1
-            tmp = []
+    for i in range(stcWLen - opt.windowSize):
+        start = i
+        mid = i + opt.windowSize
+        end = mid + opt.windowSize + 1
+        tmp = []
 
-            for j in range(start, stcWLen if end > stcWLen else end):
-                tmp.append(stcW[j].senseStart)
+        for j in range(start, stcWLen if end > stcWLen else end):
+            tmp.append(stcW[j].senseStart)
 
-            windows.append(tmp[:])
+        windows.append(tmp[:])
 
-            if i == 0:
-                firstWindowSize = len(tmp)
+        if i == 0:
+            firstWindowSize = len(tmp)
 
-            while True:
-                if len(tmp) == 0:
-                    break
+        while True:
+            if len(tmp) == 0:
+                break
+            else:
+                windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen
+
+                if tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
+                    tmp.pop()
                 else:
-                    windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen
+                    tmp[-1] += 1
 
-                    if tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
-                        tmp.pop()
-                    else:
-                        tmp[-1] += 1
+                    for k in range(len(tmp), opt.windowSize * 2 + 1):
+                        if start + k < stcWLen:
+                            tmp.append(stcW[start + k].senseStart)
+                        else:
+                            tmp.append(mid)
 
-                        for k in range(len(tmp), opt.windowSize * 2 + 1):
-                            if start + k < stcWLen:
-                                tmp.append(stcW[start + k].senseStart)
-                            else:
-                                tmp.append(mid)
+                    windows.append(tmp[:])
 
-                        windows.append(tmp[:])
+    return windows, firstWindowSize
 
-        return windows, firstWindowSize
+def inferenceOneStc(stcW, lossTable, assignList):
+    lossList = [0] * len(assignList)
+    prevAssignList = [None] * len(assignList)
+    assign = []
+    map = {}
 
-    def inferenceOneStc(stcW, lossTable, assignList):
-        lossList = [0] * len(assignList)
-        prevAssignList = [None] * len(assignList)
-        assign = []
-        map = {}
-
-        for i in range(opt.windowSize, len(stcW)):
-            minLoss = float('inf')
-            minLossIdx = 0
-            map = {}
-
-            for j in range(len(assignList)):
-                lossList[j] += lossTable[tuple(assignList[j])]
-                tmpAssign = assignList[j]
-                tmpLoss = lossList[j]
-
-                if tmpLoss < minLoss:
-                    minLoss = lossList[j]
-                    minLossIdx = j
-
-                t = tuple(tmpAssign[1:])
-                if t not in map.keys():
-                    map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
-                else:
-                    if map[t][1] > tmpLoss:
-                        map[t][0] = tmpAssign[0]
-                        map[t][1] = tmpLoss
-                        map[t][2] = prevAssignList[j]
-
-            if i > opt.windowSize:
-                assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
-
-            newWordIdx = i + opt.windowSize + 1
-            assignList = []
-            lossList = []
-            prevAssignList = []
-            for j in map:
-                if len(assign) == 0 or map[j][2] == assign[-1]:
-                    tmp = list(j)
-
-                    if newWordIdx < len(stcW):
-                        for k in range(stcW[newWordIdx].senseNum):
-                            assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
-                            lossList.append(map[j][1])
-                            prevAssignList.append(map[j][0])
-                    else:
-                        assignList.append(tmp + [tmp[opt.windowSize]])
-                        lossList.append(map[j][1])
-                        prevAssignList.append(map[j][0])
-
+    for i in range(opt.windowSize, len(stcW)):
         minLoss = float('inf')
         minLossIdx = 0
-        for i in map:
-            if map[i][1] < minLoss:
-                minLoss = map[i][1]
-                minLossIdx = i
+        map = {}
 
-        assign.extend([map[minLossIdx][0]])
-        assign.extend(list(minLossIdx)[:opt.windowSize])
+        for j in range(len(assignList)):
+            lossList[j] += lossTable[tuple(assignList[j])]
+            tmpAssign = assignList[j]
+            tmpLoss = lossList[j]
 
+            if tmpLoss < minLoss:
+                minLoss = lossList[j]
+                minLossIdx = j
+
+            t = tuple(tmpAssign[1:])
+            if t not in map.keys():
+                map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
+            else:
+                if map[t][1] > tmpLoss:
+                    map[t][0] = tmpAssign[0]
+                    map[t][1] = tmpLoss
+                    map[t][2] = prevAssignList[j]
+
+        if i > opt.windowSize:
+            assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
+
+        newWordIdx = i + opt.windowSize + 1
+        assignList = []
+        lossList = []
+        prevAssignList = []
+        for j in map:
+            if len(assign) == 0 or map[j][2] == assign[-1]:
+                tmp = list(j)
+
+                if newWordIdx < len(stcW):
+                    for k in range(stcW[newWordIdx].senseNum):
+                        assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
+                        lossList.append(map[j][1])
+                        prevAssignList.append(map[j][0])
+                else:
+                    assignList.append(tmp + [tmp[opt.windowSize]])
+                    lossList.append(map[j][1])
+                    prevAssignList.append(map[j][0])
+
+    minLoss = float('inf')
+    minLossIdx = 0
+    for i in map:
+        if map[i][1] < minLoss:
+            minLoss = map[i][1]
+            minLossIdx = i
+
+    assign.extend([map[minLossIdx][0]])
+    assign.extend(list(minLossIdx)[:opt.windowSize])
+
+
+def inferenceHelper(arg):
+    return inferenceOneStc(*arg)
+
+
+def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     assignList = []
     assign = []
     starts = []
@@ -446,7 +451,7 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
-    for i in pool.imap_unordered(inferenceOneStc, [(batchStcW[j], lossTable, assignList[starts[j]: ends[j]]) for j in range(len(batchStcW))]):
+    for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]: ends[j]]) for j in range(len(batchStcW))]):
         assign.append(i)
 
     return assign
