@@ -339,6 +339,7 @@ def getAllWindows(stcW):
         mid = i + opt.windowSize
         end = mid + opt.windowSize + 1
         tmp = []
+        midAppended = 0
 
         for j in range(start, stcWLen if end > stcWLen else end):
             tmp.append(stcW[j].senseStart)
@@ -354,8 +355,11 @@ def getAllWindows(stcW):
             else:
                 windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen - 1
 
-                if tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
+                if midAppended > 0 or tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
                     tmp.pop()
+
+                    if midAppended > 0:
+                        midAppended -= 1
                 else:
                     tmp[-1] += 1
 
@@ -364,6 +368,7 @@ def getAllWindows(stcW):
                             tmp.append(stcW[start + k].senseStart)
                         else:
                             tmp.append(mid)
+                            midAppended += 1
 
                     windows.append(tmp[:])
 
