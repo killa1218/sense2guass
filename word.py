@@ -12,46 +12,46 @@ class Word():
         self.token = word                   # String token of the word
         self.senseNum = sNum                # How many senses does this word have
         self.count = c                      # Word count
-        self.means = None                   # Means of senses
-        self.sigmas = None                  # Covariance of senses
+        # self.means = None                   # Means of senses
+        # self.sigmas = None                  # Covariance of senses
         self.index = index                  # The index in vocabulary
         self.senseStart = sStart            # Where does the senses starts
 
 
-    def __str__(self):
-        return self.token
-
-
-    def setSenseStart(self, sStart):
-        self.senseStart = sStart
-
-        return self
-
-
-    def setMeans(self, means):
-        self.means = means
-
-
-    def setSigmas(self, sigmas):
-        self.sigmas = sigmas
-
-
-    def getMean(self, mIdx):
-        return tf.nn.embedding_lookup(self.means, self.senseStart + mIdx - 1)
-
-
-    def getSigma(self, sIdx):
-        return tf.nn.embedding_lookup(self.sigmas, self.senseStart + sIdx - 1)
-
-
-    def senseFind(self, sn):
-        self.senseCount[sn] += 1
-
-
-    def refreshPossible(self):
-        for i in range(self.senseNum):
-            self.senseP[i] = float(self.senseCount[i]) / self.count
-
-
-    def getSensePossible(self, sN):
-        return self.senseP[sN]
+    # def __str__(self):
+    #     return self.token
+    #
+    #
+    # def setSenseStart(self, sStart):
+    #     self.senseStart = sStart
+    #
+    #     return self
+    #
+    #
+    # def setMeans(self, means):
+    #     self.means = means
+    #
+    #
+    # def setSigmas(self, sigmas):
+    #     self.sigmas = sigmas
+    #
+    #
+    # def getMean(self, mIdx):
+    #     return tf.nn.embedding_lookup(self.means, self.senseStart + mIdx - 1)
+    #
+    #
+    # def getSigma(self, sIdx):
+    #     return tf.nn.embedding_lookup(self.sigmas, self.senseStart + sIdx - 1)
+    #
+    #
+    # def senseFind(self, sn):
+    #     self.senseCount[sn] += 1
+    #
+    #
+    # def refreshPossible(self):
+    #     for i in range(self.senseNum):
+    #         self.senseP[i] = float(self.senseCount[i]) / self.count
+    #
+    #
+    # def getSensePossible(self, sN):
+    #     return self.senseP[sN]

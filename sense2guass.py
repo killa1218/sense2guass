@@ -170,8 +170,8 @@ def main(_):
 ##------------------------- Build Validate Graph -----------------------------
 
 ##------------------------- Build Argmin Graph -----------------------------
-        # lossPlaceholder = tf.placeholder(dtype = tf.float64, shape = [None, 1])
-        # argmin = tf.argmin(lossPlaceholder, 0)
+        lossPlaceholder = tf.placeholder(dtype = tf.float64, shape = [None, 1])
+        argmin = tf.argmin(lossPlaceholder, 0)
 ##------------------------- Build Argmin Graph -----------------------------
 
         tf.global_variables_initializer().run(session=sess)

@@ -247,7 +247,7 @@ class Vocab(object):
                         self.initAllSenses()
                     return True
         except Exception:
-            print(Exception)
+            print("VOCAB LOAD", Exception.message)
             return False
 
 
@@ -294,9 +294,9 @@ class Vocab(object):
         else:
             self.sigmas = None
 
-        for w in self._idx2word:
-            w.setMeans(self.means)
-            w.setSigmas(self.sigmas)
+        # for w in self._idx2word:
+        #     w.setMeans(self.means)
+        #     w.setSigmas(self.sigmas)
 
         print('Finished initializing senses.')
 

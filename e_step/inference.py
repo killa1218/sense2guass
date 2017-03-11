@@ -352,7 +352,7 @@ def getAllWindows(stcW):
             if len(tmp) == 0:
                 break
             else:
-                windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen
+                windowLast = start + len(tmp) - 1 if start + len(tmp) - 1 < stcWLen else stcWLen - 1
 
                 if tmp[-1] == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
                     tmp.pop()
