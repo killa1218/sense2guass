@@ -341,13 +341,14 @@ def getAllWindows(stcW):
         tmp = []
         midAppended = 0
 
-        for j in range(start, stcWLen if end > stcWLen else end):
-            tmp.append(stcW[j].senseStart)
+        for j in range(start, end):
+            if j < stcWLen:
+                tmp.append(stcW[j].senseStart)
+            else:
+                tmp.append(tmp[opt.windowSize])
+                midAppended += 1
 
         windows.append(tmp[:])
-
-        if i == 0:
-            firstWindowSize = len(tmp)
 
         while True:
             if len(tmp) == 0:
@@ -367,12 +368,16 @@ def getAllWindows(stcW):
                         if start + k < stcWLen:
                             tmp.append(stcW[start + k].senseStart)
                         else:
-                            tmp.append(mid)
+                            tmp.append(tmp[opt.windowSize])
                             midAppended += 1
 
                     windows.append(tmp[:])
 
+        if i == 0:
+            firstWindowSize = len(windows)
+
     return windows, firstWindowSize
+
 
 def inferenceOneStc(stcW, lossTable, assignList):
     lossList = [0] * len(assignList)
@@ -386,6 +391,7 @@ def inferenceOneStc(stcW, lossTable, assignList):
         map = {}
 
         for j in range(len(assignList)):
+            # print(assignList[j])
             lossList[j] += lossTable[tuple(assignList[j])]
             tmpAssign = assignList[j]
             tmpLoss = lossList[j]
@@ -420,7 +426,8 @@ def inferenceOneStc(stcW, lossTable, assignList):
                         lossList.append(map[j][1])
                         prevAssignList.append(map[j][0])
                 else:
-                    assignList.append(tmp + [tmp[opt.windowSize]])
+                    assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
+                    # assignList.append(tmp + [tmp[opt.windowSize]])
                     lossList.append(map[j][1])
                     prevAssignList.append(map[j][0])
 
@@ -447,16 +454,17 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     lossTable = {}
 
     for i, j in pool.imap_unordered(getAllWindows, batchStcW):
-        assignList.extend(i)
         starts.append(len(assignList))
-        ends.append(j)
+        ends.append(j + starts[-1])
+        assignList.extend(i)
+        # print(starts[-1], ends[-1])
 
     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
 
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
-    for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]: ends[j]]) for j in range(len(batchStcW))]):
+    for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
         assign.append(i)
 
     return assign
