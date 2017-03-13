@@ -117,13 +117,13 @@ def main(_):
                     print('Vocab save FAILED!')
 
 ##----------------- Build Sentence Loss Graph And Optimizer ------------------
-        print('Building Sentence Loss Graph And Optimizer...')
+        print('Building Sentence Loss Graph...')
         from graph import batchSentenceLossGraph as lossGraph
         batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
         minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
         avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
         reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
-        print('Finished Building Sentence Loss Graph And Optimizer.')
+        print('Finished Building Sentence Loss Graph.')
 ##----------------- Build Sentence Loss Graph And Optimizer ------------------
 
 ##----------------- Build Window Loss Graph ------------------
@@ -141,12 +141,12 @@ def main(_):
 ##----------------- Build Batch Violent Inference Graph ------------------
 
 ##----------------------- Build Negative Loss Graph --------------------------
-        print('Building Negative Loss Graph...')
-        from graph import negativeLossGraph
-        negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
-        avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
-        reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
-        print('Finished Building Negative Loss Graph.')
+        # print('Building Negative Loss Graph...')
+        # from graph import negativeLossGraph
+        # negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
+        # avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
+        # reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
+        # print('Finished Building Negative Loss Graph.')
 ##----------------------- Build Negative Loss Graph --------------------------
 
 ##---------------------------- Build NCE Loss --------------------------------
@@ -170,8 +170,8 @@ def main(_):
 ##------------------------- Build Validate Graph -----------------------------
 
 ##------------------------- Build Argmin Graph -----------------------------
-        lossPlaceholder = tf.placeholder(dtype = tf.float64, shape = [None, 1])
-        argmin = tf.argmin(lossPlaceholder, 0)
+        # lossPlaceholder = tf.placeholder(dtype = tf.float64, shape = [None, 1])
+        # argmin = tf.argmin(lossPlaceholder, 0)
 ##------------------------- Build Argmin Graph -----------------------------
 
         tf.global_variables_initializer().run(session=sess)

@@ -453,11 +453,16 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     ends = []
     lossTable = {}
 
-    for i, j in pool.imap_unordered(getAllWindows, batchStcW):
+    for i, j in pool.map(getAllWindows, batchStcW):
         starts.append(len(assignList))
         ends.append(j + starts[-1])
         assignList.extend(i)
+        # print("Length of current assignList:", len(i))
+        # print("Current assignList:", i)
         # print(starts[-1], ends[-1])
+
+    # print("Length of total assignList:", len(assignList))
+    # print("Total assignList:", assignList)
 
     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
 
