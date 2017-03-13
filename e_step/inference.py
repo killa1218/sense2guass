@@ -483,8 +483,11 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     print("Build lossTable time:", end - start)
     start = time.time()
 
-    for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
-        assign.append(i)
+    for i in range(len(batchStcW)):
+        assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[j]:ends[j]]))
+
+    # for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
+    #     assign.append(i)
 
     end = time.time()
     print("Real inference time:", end - start)
