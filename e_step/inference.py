@@ -453,6 +453,8 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     ends = []
     lossTable = {}
 
+    start = time.time()
+
     for i, j in pool.map(getAllWindows, batchStcW):
         starts.append(len(assignList))
         ends.append(j + starts[-1])
@@ -464,13 +466,28 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     # print("Length of total assignList:", len(assignList))
     # print("Total assignList:", assignList)
 
+    end = time.time()
+    print("Build assignList time:", end - start)
+    start = time.time()
+
     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
+
+    end = time.time()
+    print("Calculate time:", end - start)
+    start = time.time()
 
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
+    end = time.time()
+    print("Build lossTable time:", end - start)
+    start = time.time()
+
     for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
         assign.append(i)
+
+    end = time.time()
+    print("Real inference time:", end - start)
 
     return assign
 
