@@ -5,42 +5,7 @@ from options import Options as opt
 from libcpp.vector cimport vector
 
 
-def dpgetAllWindows(stcW):
-    stack = []
-    tmpStack = []
-
-    windowSize = 2 * opt.windowSize + 1
-    windows = []
-    firstWindowSize = 0
-
-    for i in range(stcW[0].senseNum):
-        stack.append([stcW[0].senseStart + i])
-
-    for i in range(1, len(stcW)):
-        senseStart = stcW[i].senseStart
-
-        for k in stack:
-            for j in range(stcW[i].senseNum):
-                k.append(senseStart + j)
-
-                if len(k) == windowSize:
-                    windows.append(k)
-                    tmpStack.append(k[1:])
-
-                    if i == 2 * opt.windowSize:
-                        firstWindowSize += 1
-                else:
-                    tmpStack.append(k[:])
-
-        stack = tmpStack
-        tmpStack = []
-
-    print(windows)
-
-    return windows, firstWindowSize
-
-
-cdef getAllWindows(stcW):
+cpdef getAllWindows(stcW):
     cdef:
         int i
         int j
@@ -102,7 +67,7 @@ cdef getAllWindows(stcW):
     return windows, firstWindowSize
 
 
-cdef inferenceOneStc(stcW, lossTable, assignList):
+cpdef vector[int] inferenceOneStc(stcW, lossTable, assignList):
     cdef int i
     cdef int j
     cdef int k
@@ -122,15 +87,10 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
     # prevAssignList = vector[int](len(assignList))
     map = {}
 
-    mapTime = 0
-    parseMapTime = 0
-
     for i in range(opt.windowSize, len(stcW)):
         minLoss = float('inf')
         minLossIdx = 0
         map = {}
-
-        start = time.time()
 
         for j in range(len(assignList)):
             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]
@@ -149,10 +109,6 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
                     map[t][0] = tmpAssign[0]
                     map[t][1] = tmpLoss
                     map[t][2] = prevAssignList[j]
-
-        end = time.time()
-        mapTime += (end - start)
-        start = time.time()
 
         if i > opt.windowSize:
             assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
@@ -183,13 +139,6 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
                     # lossList.push_back(map[key][1])
                     # prevAssignList.push_back(map[key][0])
 
-        end = time.time()
-        parseMapTime += (end - start)
-
-    # print("Building map time:", mapTime)
-    # print("Parsing map time:", parseMapTime)
-    start = time.time()
-
     minLoss = float('inf')
     tmpMinLossIdx = 0
     for key in map:
@@ -200,28 +149,36 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
     assign.append(map[tmpMinLossIdx][0])
     assign.extend(list(tmpMinLossIdx)[:opt.windowSize])
 
-    end = time.time()
-    # print("Tail time:", end - start)
-
     # assign.push_back(map[tmpMinLossIdx][0])
     # for i in list(tmpMinLossIdx)[:opt.windowSize]:
     #     assign.push_back(i)
 
 
-def batchDPInference(batchStcW, sess, windowLossGraph, window):
-    assignList = []
-    assign = []
-    starts = []
-    ends = []
+cpdef vector[vector[int]] batchDPInference(batchStcW, sess, windowLossGraph, window):
+    cdef:
+        vector[vector[int]] assignList
+        vector[vector[int]] assign
+        vector[vector[int]] a
+        vector[int] starts
+        vector[int] ends
+        int b
+
+    # assignList = []
+    # assign = []
+    # starts = []
+    # ends = []
     lossTable = {}
 
     start = time.time()
 
     for i in range(len(batchStcW)):
-        a, b = dpgetAllWindows(batchStcW[i])
-        starts.append(len(assignList))
-        ends.append(b + starts[-1])
-        assignList.extend(a)
+        a, b = getAllWindows(batchStcW[i])
+        starts.push_back(assignList.size())
+        ends.push_back(b + starts.back())
+        assignList.insert(assignList.end(), a.begin(), a.end())
+        # starts.append(len(assignList))
+        # ends.append(b + starts[-1])
+        # assignList.extend(a)
 
     end = time.time()
     print("Build assignList time:", end - start)
@@ -241,7 +198,8 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window):
     start = time.time()
 
     for i in range(len(batchStcW)):
-        assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
+        assign.push_back(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
+        # assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
 
     end = time.time()
     print("Real inference time:", end - start)

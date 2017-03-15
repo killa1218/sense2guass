@@ -229,12 +229,14 @@ def main(_):
                             if len(batchStcW) == opt.batchSize:
 ##--------------------------------- Inference By Batch ----------------------------------
                                 from e_step.inference import batchViolentInference
-                                from e_step.inference import batchDPInference
-                                from multiprocessing import Pool
+                                # from e_step.inference import batchDPInference
+                                from e_step.cinference import batchDPInference
+                                # from e_step.cinference import batchDPInference
+                                # from multiprocessing import Pool
                                 start = time.time()
                                 # batchLossSenseIdxList = batchViolentInference(batchStcW, sess, batchSentenceLossGraph, senseIdxPlaceholder, argmin, lossPlaceholder)
-                                pool = Pool()
-                                batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window, pool)
+                                # pool = Pool()
+                                batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
                                 end = time.time()
                                 print('Inference time: %.5f' % (end - start))
 ##--------------------------------- Inference By Batch ----------------------------------

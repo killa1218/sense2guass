@@ -6,7 +6,7 @@ from os import path
 
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
-from loss import *
+# from loss import *
 from options import Options as opt
 import tensorflow as tf
 
@@ -484,7 +484,7 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     start = time.time()
 
     for i in range(len(batchStcW)):
-        assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[j]:ends[j]]))
+        assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
 
     # for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
     #     assign.append(i)
