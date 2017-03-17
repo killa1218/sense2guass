@@ -16,6 +16,7 @@ from options import Options as opt
 from utils.common import is_number
 
 curDir = os.path.dirname(os.path.abspath(__file__))
+dataType = tf.float32
 
 class Vocab(object):
     """ Vocabulary of the train corpus, used for embedding lookup and sense number lookup. """
@@ -222,8 +223,8 @@ class Vocab(object):
                     self.totalWordCount = data['twc']
 
                     try:
-                        self.means = tf.Variable(data['means'], dtype=tf.float64)
-                        self.sigmas = tf.Variable(data['sigmas'], dtype=tf.float64)
+                        self.means = tf.Variable(data['means'], dtype=dataType)
+                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType)
                     except KeyError:
                         print('Using old style vocab file.')
 
@@ -263,9 +264,9 @@ class Vocab(object):
                 [sNum, eSize],
                 -iWidth,
                 iWidth,
-                dtype=tf.float64
+                dtype=dataType
             ),
-            dtype=tf.float64,
+            dtype=dataType,
             name="means"
         )
 
@@ -275,9 +276,9 @@ class Vocab(object):
                     [sNum, eSize, eSize],
                     0,
                     iWidth,
-                    dtype=tf.float64
+                    dtype=dataType
                 ),
-                dtype=tf.float64,
+                dtype=dataType,
                 name="sigmas"
             ), 0.01, float('inf'))
         elif opt.covarShape == 'diagnal':
@@ -286,9 +287,9 @@ class Vocab(object):
                     [sNum, eSize],
                     0,
                     iWidth,
-                    dtype=tf.float64
+                    dtype=dataType
                 ),
-                dtype=tf.float64,
+                dtype=dataType,
                 name="sigmas"
             ), 0.01, float('inf'))
         else:

@@ -775,13 +775,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
 
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
-
 /* ListAppend.proto */
 #if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
 static CYTHON_INLINE int __Pyx_PyList_Append(PyObject* list, PyObject* x) {
@@ -799,43 +792,17 @@ static CYTHON_INLINE int __Pyx_PyList_Append(PyObject* list, PyObject* x) {
 #define __Pyx_PyList_Append(L,x) PyList_Append(L,x)
 #endif
 
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
-#endif
-
-/* PyFunctionFastCall.proto */
-#if CYTHON_FAST_PYCALL
-#define __Pyx_PyFunction_FastCall(func, args, nargs)\
-    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs);
-#else
-#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
-#endif
-#endif
-
-/* PyObjectCallMethO.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
-#endif
-
-/* PyObjectCallOneArg.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
-
-/* PyObjectCallMethod1.proto */
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
-
-/* append.proto */
-static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x);
-
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
         PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
         PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
         int has_cstart, int has_cstop, int wraparound);
+
+/* PySequenceContains.proto */
+static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
+    int result = PySequence_Contains(seq, item);
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
+}
 
 /* PyIntBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -857,6 +824,39 @@ static double __Pyx__PyObject_AsDouble(PyObject* obj);
 ((likely(PyFloat_CheckExact(obj))) ?\
  PyFloat_AS_DOUBLE(obj) : __Pyx__PyObject_AsDouble(obj))
 #endif
+
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
+/* PyFunctionFastCall.proto */
+#if CYTHON_FAST_PYCALL
+#define __Pyx_PyFunction_FastCall(func, args, nargs)\
+    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs);
+#else
+#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
+#endif
+#endif
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
+/* PyObjectCallMethO.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
+#endif
+
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
 /* PyObjectCallNoArg.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -901,12 +901,6 @@ static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObje
 #else
 #define __Pyx_CallUnboundCMethod0(cfunc, self)  __Pyx__CallUnboundCMethod0(cfunc, self)
 #endif
-
-/* PySequenceContains.proto */
-static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
-    int result = PySequence_Contains(seq, item);
-    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
-}
 
 /* DictGetItem.proto */
 #if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
@@ -959,6 +953,12 @@ static CYTHON_INLINE PyObject* __Pyx_dict_iterator(PyObject* dict, int is_dict, 
                                                    Py_ssize_t* p_orig_length, int* p_is_dict);
 static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t orig_length, Py_ssize_t* ppos,
                                               PyObject** pkey, PyObject** pvalue, PyObject** pitem, int is_dict);
+
+/* PyObjectCallMethod1.proto */
+static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
+
+/* append.proto */
+static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x);
 
 /* SliceTupleAndList.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1039,13 +1039,6 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
-/* Print.proto */
-static int __Pyx_Print(PyObject*, PyObject *, int);
-#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
-static PyObject* __pyx_print = 0;
-static PyObject* __pyx_print_kwargs = 0;
-#endif
-
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
@@ -1091,9 +1084,6 @@ static void __Pyx_CppExn2PyErr() {
 }
 #endif
 
-/* PrintOne.proto */
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
-
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
@@ -1113,7 +1103,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libcpp.vector' */
 
 /* Module declarations from 'e_step.cinference' */
-static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *, PyObject *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6e_step_10cinference_dpgetAllWindows(PyObject *); /*proto*/
+static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *, PyObject *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_int(const std::vector<int>  &); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(const std::vector<std::vector<int> >  &); /*proto*/
 #define __Pyx_MODULE_NAME "e_step.cinference"
@@ -1124,14 +1115,11 @@ static PyObject *__pyx_builtin_range;
 static const char __pyx_k_a[] = "a";
 static const char __pyx_k_b[] = "b";
 static const char __pyx_k_i[] = "i";
-static const char __pyx_k_j[] = "j";
-static const char __pyx_k_k[] = "k";
-static const char __pyx_k_end[] = "end";
+static const char __pyx_k_arg[] = "arg";
 static const char __pyx_k_inf[] = "inf";
 static const char __pyx_k_opt[] = "opt";
 static const char __pyx_k_run[] = "run";
 static const char __pyx_k_ends[] = "ends";
-static const char __pyx_k_file[] = "file";
 static const char __pyx_k_keys[] = "keys";
 static const char __pyx_k_loss[] = "loss";
 static const char __pyx_k_main[] = "__main__";
@@ -1139,10 +1127,7 @@ static const char __pyx_k_sess[] = "sess";
 static const char __pyx_k_stcW[] = "stcW";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_time[] = "time";
-static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
-static const char __pyx_k_stack[] = "stack";
-static const char __pyx_k_start[] = "start";
 static const char __pyx_k_append[] = "append";
 static const char __pyx_k_assign[] = "assign";
 static const char __pyx_k_import[] = "__import__";
@@ -1150,75 +1135,58 @@ static const char __pyx_k_starts[] = "starts";
 static const char __pyx_k_window[] = "window";
 static const char __pyx_k_Options[] = "Options";
 static const char __pyx_k_options[] = "options";
-static const char __pyx_k_windows[] = "windows";
 static const char __pyx_k_senseNum[] = "senseNum";
-static const char __pyx_k_tmpStack[] = "tmpStack";
 static const char __pyx_k_batchStcW[] = "batchStcW";
 static const char __pyx_k_feed_dict[] = "feed_dict";
 static const char __pyx_k_lossTable[] = "lossTable";
 static const char __pyx_k_assignList[] = "assignList";
 static const char __pyx_k_senseStart[] = "senseStart";
 static const char __pyx_k_windowSize[] = "windowSize";
-static const char __pyx_k_Calculate_time[] = "Calculate time:";
-static const char __pyx_k_dpgetAllWindows[] = "dpgetAllWindows";
-static const char __pyx_k_firstWindowSize[] = "firstWindowSize";
+static const char __pyx_k_inferenceHelper[] = "inferenceHelper";
+static const char __pyx_k_inferenceOneStc[] = "inferenceOneStc";
 static const char __pyx_k_windowLossGraph[] = "windowLossGraph";
 static const char __pyx_k_batchDPInference[] = "batchDPInference";
 static const char __pyx_k_e_step_cinference[] = "e_step.cinference";
-static const char __pyx_k_Real_inference_time[] = "Real inference time:";
-static const char __pyx_k_Build_lossTable_time[] = "Build lossTable time:";
-static const char __pyx_k_Build_assignList_time[] = "Build assignList time:";
-static const char __pyx_k_mnt_dataset_sense2gauss_e_step[] = "/mnt/dataset/sense2gauss/e_step/cinference.pyx";
-static PyObject *__pyx_kp_s_Build_assignList_time;
-static PyObject *__pyx_kp_s_Build_lossTable_time;
-static PyObject *__pyx_kp_s_Calculate_time;
+static const char __pyx_k_NAS_Dataset_sense2gauss_e_step[] = "/NAS/Dataset/sense2gauss/e_step/cinference.pyx";
+static PyObject *__pyx_kp_s_NAS_Dataset_sense2gauss_e_step;
 static PyObject *__pyx_n_s_Options;
-static PyObject *__pyx_kp_s_Real_inference_time;
 static PyObject *__pyx_n_s_a;
 static PyObject *__pyx_n_s_append;
+static PyObject *__pyx_n_s_arg;
 static PyObject *__pyx_n_s_assign;
 static PyObject *__pyx_n_s_assignList;
 static PyObject *__pyx_n_s_b;
 static PyObject *__pyx_n_s_batchDPInference;
 static PyObject *__pyx_n_s_batchStcW;
-static PyObject *__pyx_n_s_dpgetAllWindows;
 static PyObject *__pyx_n_s_e_step_cinference;
-static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_ends;
 static PyObject *__pyx_n_s_feed_dict;
-static PyObject *__pyx_n_s_file;
-static PyObject *__pyx_n_s_firstWindowSize;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_inf;
-static PyObject *__pyx_n_s_j;
-static PyObject *__pyx_n_s_k;
+static PyObject *__pyx_n_s_inferenceHelper;
+static PyObject *__pyx_n_s_inferenceOneStc;
 static PyObject *__pyx_n_s_keys;
 static PyObject *__pyx_n_s_loss;
 static PyObject *__pyx_n_s_lossTable;
 static PyObject *__pyx_n_s_main;
-static PyObject *__pyx_kp_s_mnt_dataset_sense2gauss_e_step;
 static PyObject *__pyx_n_s_opt;
 static PyObject *__pyx_n_s_options;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_run;
 static PyObject *__pyx_n_s_senseNum;
 static PyObject *__pyx_n_s_senseStart;
 static PyObject *__pyx_n_s_sess;
-static PyObject *__pyx_n_s_stack;
-static PyObject *__pyx_n_s_start;
 static PyObject *__pyx_n_s_starts;
 static PyObject *__pyx_n_s_stcW;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_time;
-static PyObject *__pyx_n_s_tmpStack;
 static PyObject *__pyx_n_s_window;
 static PyObject *__pyx_n_s_windowLossGraph;
 static PyObject *__pyx_n_s_windowSize;
-static PyObject *__pyx_n_s_windows;
-static PyObject *__pyx_pf_6e_step_10cinference_dpgetAllWindows(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_stcW); /* proto */
+static PyObject *__pyx_pf_6e_step_10cinference_inferenceOneStc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_stcW, PyObject *__pyx_v_lossTable, PyObject *__pyx_v_assignList); /* proto */
 static PyObject *__pyx_pf_6e_step_10cinference_2batchDPInference(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_batchStcW, PyObject *__pyx_v_sess, PyObject *__pyx_v_windowLossGraph, PyObject *__pyx_v_window); /* proto */
+static PyObject *__pyx_pf_6e_step_10cinference_4inferenceHelper(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arg); /* proto */
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys = {0, &__pyx_n_s_keys, 0, 0, 0};
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
@@ -1226,522 +1194,541 @@ static PyObject *__pyx_int_2;
 static PyObject *__pyx_slice_;
 static PyObject *__pyx_slice__2;
 static PyObject *__pyx_slice__3;
-static PyObject *__pyx_tuple__4;
-static PyObject *__pyx_tuple__6;
-static PyObject *__pyx_codeobj__5;
-static PyObject *__pyx_codeobj__7;
+static PyObject *__pyx_slice__4;
+static PyObject *__pyx_slice__5;
+static PyObject *__pyx_slice__6;
+static PyObject *__pyx_slice__7;
+static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_tuple__10;
+static PyObject *__pyx_codeobj__9;
+static PyObject *__pyx_codeobj__11;
 
 /* "e_step/cinference.pyx":8
  * 
  * 
- * def dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
- *     stack = []
- *     tmpStack = []
+ * cdef dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
+ *     cdef:
+ *         int windowSize
  */
 
-/* Python wrapper */
-static PyObject *__pyx_pw_6e_step_10cinference_1dpgetAllWindows(PyObject *__pyx_self, PyObject *__pyx_v_stcW); /*proto*/
-static PyMethodDef __pyx_mdef_6e_step_10cinference_1dpgetAllWindows = {"dpgetAllWindows", (PyCFunction)__pyx_pw_6e_step_10cinference_1dpgetAllWindows, METH_O, 0};
-static PyObject *__pyx_pw_6e_step_10cinference_1dpgetAllWindows(PyObject *__pyx_self, PyObject *__pyx_v_stcW) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("dpgetAllWindows (wrapper)", 0);
-  __pyx_r = __pyx_pf_6e_step_10cinference_dpgetAllWindows(__pyx_self, ((PyObject *)__pyx_v_stcW));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_6e_step_10cinference_dpgetAllWindows(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_stcW) {
+static PyObject *__pyx_f_6e_step_10cinference_dpgetAllWindows(PyObject *__pyx_v_stcW) {
+  int __pyx_v_windowSize;
+  int __pyx_v_firstWindowSize;
+  int __pyx_v_i;
+  int __pyx_v_j;
   PyObject *__pyx_v_stack = NULL;
   PyObject *__pyx_v_tmpStack = NULL;
-  PyObject *__pyx_v_windowSize = NULL;
   PyObject *__pyx_v_windows = NULL;
-  PyObject *__pyx_v_firstWindowSize = NULL;
-  PyObject *__pyx_v_i = NULL;
-  PyObject *__pyx_v_senseStart = NULL;
+  PyObject *__pyx_v_s = NULL;
   PyObject *__pyx_v_k = NULL;
-  PyObject *__pyx_v_j = NULL;
+  PyObject *__pyx_v_senseStart = NULL;
+  PyObject *__pyx_v_tmp = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  Py_ssize_t __pyx_t_3;
-  PyObject *(*__pyx_t_4)(PyObject *);
+  int __pyx_t_3;
+  long __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
   int __pyx_t_6;
   Py_ssize_t __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
-  Py_ssize_t __pyx_t_9;
-  PyObject *(*__pyx_t_10)(PyObject *);
-  Py_ssize_t __pyx_t_11;
-  PyObject *__pyx_t_12 = NULL;
-  int __pyx_t_13;
+  Py_ssize_t __pyx_t_8;
+  int __pyx_t_9;
+  long __pyx_t_10;
+  int __pyx_t_11;
+  int __pyx_t_12;
+  PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("dpgetAllWindows", 0);
 
-  /* "e_step/cinference.pyx":9
+  /* "e_step/cinference.pyx":15
+ *         int j
  * 
- * def dpgetAllWindows(stcW):
  *     stack = []             # <<<<<<<<<<<<<<
  *     tmpStack = []
- * 
+ *     windowSize = 2 * opt.windowSize + 1
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_stack = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":10
- * def dpgetAllWindows(stcW):
+  /* "e_step/cinference.pyx":16
+ * 
  *     stack = []
  *     tmpStack = []             # <<<<<<<<<<<<<<
- * 
  *     windowSize = 2 * opt.windowSize + 1
+ *     windows = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_tmpStack = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":12
+  /* "e_step/cinference.pyx":17
+ *     stack = []
  *     tmpStack = []
- * 
  *     windowSize = 2 * opt.windowSize + 1             # <<<<<<<<<<<<<<
  *     windows = []
  *     firstWindowSize = 0
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_windowSize = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_windowSize = __pyx_t_3;
 
-  /* "e_step/cinference.pyx":13
- * 
+  /* "e_step/cinference.pyx":18
+ *     tmpStack = []
  *     windowSize = 2 * opt.windowSize + 1
  *     windows = []             # <<<<<<<<<<<<<<
  *     firstWindowSize = 0
  * 
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_windows = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "e_step/cinference.pyx":14
+  /* "e_step/cinference.pyx":19
  *     windowSize = 2 * opt.windowSize + 1
  *     windows = []
  *     firstWindowSize = 0             # <<<<<<<<<<<<<<
  * 
  *     for i in range(stcW[0].senseNum):
  */
-  __Pyx_INCREF(__pyx_int_0);
-  __pyx_v_firstWindowSize = __pyx_int_0;
+  __pyx_v_firstWindowSize = 0;
 
-  /* "e_step/cinference.pyx":16
+  /* "e_step/cinference.pyx":21
  *     firstWindowSize = 0
  * 
  *     for i in range(stcW[0].senseNum):             # <<<<<<<<<<<<<<
  *         stack.append([stcW[0].senseStart + i])
  * 
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_stcW, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_stcW, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
-    __pyx_t_4 = NULL;
-  } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 16, __pyx_L1_error)
-  }
+  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  for (;;) {
-    if (likely(!__pyx_t_4)) {
-      if (likely(PyList_CheckExact(__pyx_t_2))) {
-        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 16, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      } else {
-        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 16, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      }
-    } else {
-      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
-      if (unlikely(!__pyx_t_1)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 16, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_1);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
-    __pyx_t_1 = 0;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "e_step/cinference.pyx":17
+    /* "e_step/cinference.pyx":22
  * 
  *     for i in range(stcW[0].senseNum):
  *         stack.append([stcW[0].senseStart + i])             # <<<<<<<<<<<<<<
  * 
- *     for i in range(1, len(stcW)):
+ *     for i in range(1, len(stcW) + opt.windowSize):
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_stcW, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_stcW, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_5, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyList_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
-    __pyx_t_1 = 0;
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_t_5); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 17, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-    /* "e_step/cinference.pyx":16
- *     firstWindowSize = 0
- * 
- *     for i in range(stcW[0].senseNum):             # <<<<<<<<<<<<<<
- *         stack.append([stcW[0].senseStart + i])
- * 
- */
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "e_step/cinference.pyx":19
+  /* "e_step/cinference.pyx":24
  *         stack.append([stcW[0].senseStart + i])
  * 
- *     for i in range(1, len(stcW)):             # <<<<<<<<<<<<<<
- *         senseStart = stcW[i].senseStart
+ *     for i in range(1, len(stcW) + opt.windowSize):             # <<<<<<<<<<<<<<
+ *         s = set()
  * 
  */
-  __pyx_t_3 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_3 == -1)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_int_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
-    __pyx_t_5 = __pyx_t_2; __Pyx_INCREF(__pyx_t_5); __pyx_t_3 = 0;
-    __pyx_t_4 = NULL;
-  } else {
-    __pyx_t_3 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
-  }
+  __pyx_t_5 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  for (;;) {
-    if (likely(!__pyx_t_4)) {
-      if (likely(PyList_CheckExact(__pyx_t_5))) {
-        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_5)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
-        #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        #endif
-      } else {
-        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
-        #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        #endif
-      }
-    } else {
-      __pyx_t_2 = __pyx_t_4(__pyx_t_5);
-      if (unlikely(!__pyx_t_2)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 19, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_2);
-    __pyx_t_2 = 0;
+  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_5); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  for (__pyx_t_3 = 1; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "e_step/cinference.pyx":20
+    /* "e_step/cinference.pyx":25
  * 
- *     for i in range(1, len(stcW)):
- *         senseStart = stcW[i].senseStart             # <<<<<<<<<<<<<<
+ *     for i in range(1, len(stcW) + opt.windowSize):
+ *         s = set()             # <<<<<<<<<<<<<<
  * 
  *         for k in stack:
  */
-    __pyx_t_2 = PyObject_GetItem(__pyx_v_stcW, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_XDECREF_SET(__pyx_v_senseStart, __pyx_t_1);
-    __pyx_t_1 = 0;
+    __pyx_t_5 = PySet_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_XDECREF_SET(__pyx_v_s, ((PyObject*)__pyx_t_5));
+    __pyx_t_5 = 0;
 
-    /* "e_step/cinference.pyx":22
- *         senseStart = stcW[i].senseStart
+    /* "e_step/cinference.pyx":27
+ *         s = set()
  * 
  *         for k in stack:             # <<<<<<<<<<<<<<
- *             for j in range(stcW[i].senseNum):
- *                 k.append(senseStart + j)
+ *             if i < len(stcW):
+ *                 senseStart = stcW[i].senseStart
  */
-    __pyx_t_1 = __pyx_v_stack; __Pyx_INCREF(__pyx_t_1); __pyx_t_7 = 0;
+    __pyx_t_5 = __pyx_v_stack; __Pyx_INCREF(__pyx_t_5); __pyx_t_7 = 0;
     for (;;) {
-      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_1)) break;
+      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_5)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 22, __pyx_L1_error)
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 27, __pyx_L1_error)
       #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(__pyx_t_5, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "e_step/cinference.pyx":23
+      /* "e_step/cinference.pyx":28
  * 
  *         for k in stack:
- *             for j in range(stcW[i].senseNum):             # <<<<<<<<<<<<<<
- *                 k.append(senseStart + j)
+ *             if i < len(stcW):             # <<<<<<<<<<<<<<
+ *                 senseStart = stcW[i].senseStart
  * 
  */
-      __pyx_t_2 = PyObject_GetItem(__pyx_v_stcW, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_GIVEREF(__pyx_t_8);
-      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8);
-      __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_2, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (likely(PyList_CheckExact(__pyx_t_8)) || PyTuple_CheckExact(__pyx_t_8)) {
-        __pyx_t_2 = __pyx_t_8; __Pyx_INCREF(__pyx_t_2); __pyx_t_9 = 0;
-        __pyx_t_10 = NULL;
-      } else {
-        __pyx_t_9 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+      __pyx_t_8 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 28, __pyx_L1_error)
+      __pyx_t_9 = ((__pyx_v_i < __pyx_t_8) != 0);
+      if (__pyx_t_9) {
+
+        /* "e_step/cinference.pyx":29
+ *         for k in stack:
+ *             if i < len(stcW):
+ *                 senseStart = stcW[i].senseStart             # <<<<<<<<<<<<<<
+ * 
+ *                 for j in range(stcW[i].senseNum):
+ */
+        __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 23, __pyx_L1_error)
-      }
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      for (;;) {
-        if (likely(!__pyx_t_10)) {
-          if (likely(PyList_CheckExact(__pyx_t_2))) {
-            if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_2)) break;
-            #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_8 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 23, __pyx_L1_error)
-            #else
-            __pyx_t_8 = PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_8);
-            #endif
-          } else {
-            if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
-            #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 23, __pyx_L1_error)
-            #else
-            __pyx_t_8 = PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_8);
-            #endif
-          }
-        } else {
-          __pyx_t_8 = __pyx_t_10(__pyx_t_2);
-          if (unlikely(!__pyx_t_8)) {
-            PyObject* exc_type = PyErr_Occurred();
-            if (exc_type) {
-              if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 23, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_senseStart, __pyx_t_1);
+        __pyx_t_1 = 0;
+
+        /* "e_step/cinference.pyx":31
+ *                 senseStart = stcW[i].senseStart
+ * 
+ *                 for j in range(stcW[i].senseNum):             # <<<<<<<<<<<<<<
+ *                     tmp = k + [senseStart + j]
+ * 
+ */
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_10 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_10 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 31, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+          __pyx_v_j = __pyx_t_11;
+
+          /* "e_step/cinference.pyx":32
+ * 
+ *                 for j in range(stcW[i].senseNum):
+ *                     tmp = k + [senseStart + j]             # <<<<<<<<<<<<<<
+ * 
+ *                     if len(tmp) == windowSize:
+ */
+          __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_j); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_1 = PyNumber_Add(__pyx_v_senseStart, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_GIVEREF(__pyx_t_1);
+          PyList_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+          __pyx_t_1 = 0;
+          __pyx_t_1 = PyNumber_Add(__pyx_v_k, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_tmp, __pyx_t_1);
+          __pyx_t_1 = 0;
+
+          /* "e_step/cinference.pyx":34
+ *                     tmp = k + [senseStart + j]
+ * 
+ *                     if len(tmp) == windowSize:             # <<<<<<<<<<<<<<
+ *                         windows.append(tmp)
+ * 
+ */
+          __pyx_t_8 = PyObject_Length(__pyx_v_tmp); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 34, __pyx_L1_error)
+          __pyx_t_9 = ((__pyx_t_8 == __pyx_v_windowSize) != 0);
+          if (__pyx_t_9) {
+
+            /* "e_step/cinference.pyx":35
+ * 
+ *                     if len(tmp) == windowSize:
+ *                         windows.append(tmp)             # <<<<<<<<<<<<<<
+ * 
+ *                         if tuple(tmp[1:]) not in s:
+ */
+            __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_windows, __pyx_v_tmp); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 35, __pyx_L1_error)
+
+            /* "e_step/cinference.pyx":37
+ *                         windows.append(tmp)
+ * 
+ *                         if tuple(tmp[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                             tmpStack.append(tmp[1:])
+ *                             s.add(tuple(tmp[1:]))
+ */
+            __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_tmp, 1, 0, NULL, NULL, &__pyx_slice_, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_1);
+            __pyx_t_2 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+            __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_t_2, __pyx_v_s, Py_NE)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_12 = (__pyx_t_9 != 0);
+            if (__pyx_t_12) {
+
+              /* "e_step/cinference.pyx":38
+ * 
+ *                         if tuple(tmp[1:]) not in s:
+ *                             tmpStack.append(tmp[1:])             # <<<<<<<<<<<<<<
+ *                             s.add(tuple(tmp[1:]))
+ * 
+ */
+              __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_tmp, 1, 0, NULL, NULL, &__pyx_slice__2, 1, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_tmpStack, __pyx_t_2); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 38, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+              /* "e_step/cinference.pyx":39
+ *                         if tuple(tmp[1:]) not in s:
+ *                             tmpStack.append(tmp[1:])
+ *                             s.add(tuple(tmp[1:]))             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+              __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_tmp, 1, 0, NULL, NULL, &__pyx_slice__3, 1, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_1 = PySequence_Tuple(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_1);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_6 = PySet_Add(__pyx_v_s, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 39, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+              /* "e_step/cinference.pyx":37
+ *                         windows.append(tmp)
+ * 
+ *                         if tuple(tmp[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                             tmpStack.append(tmp[1:])
+ *                             s.add(tuple(tmp[1:]))
+ */
             }
-            break;
-          }
-          __Pyx_GOTREF(__pyx_t_8);
-        }
-        __Pyx_XDECREF_SET(__pyx_v_j, __pyx_t_8);
-        __pyx_t_8 = 0;
 
-        /* "e_step/cinference.pyx":24
+            /* "e_step/cinference.pyx":42
+ * 
+ * 
+ *                         if i == 2 * opt.windowSize:             # <<<<<<<<<<<<<<
+ *                             firstWindowSize += 1
+ *                     else:
+ */
+            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_1);
+            __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_13);
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+            __pyx_t_13 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+            if (__pyx_t_12) {
+
+              /* "e_step/cinference.pyx":43
+ * 
+ *                         if i == 2 * opt.windowSize:
+ *                             firstWindowSize += 1             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         tmpStack.append(tmp)
+ */
+              __pyx_v_firstWindowSize = (__pyx_v_firstWindowSize + 1);
+
+              /* "e_step/cinference.pyx":42
+ * 
+ * 
+ *                         if i == 2 * opt.windowSize:             # <<<<<<<<<<<<<<
+ *                             firstWindowSize += 1
+ *                     else:
+ */
+            }
+
+            /* "e_step/cinference.pyx":34
+ *                     tmp = k + [senseStart + j]
+ * 
+ *                     if len(tmp) == windowSize:             # <<<<<<<<<<<<<<
+ *                         windows.append(tmp)
+ * 
+ */
+            goto __pyx_L12;
+          }
+
+          /* "e_step/cinference.pyx":45
+ *                             firstWindowSize += 1
+ *                     else:
+ *                         tmpStack.append(tmp)             # <<<<<<<<<<<<<<
+ *             else:
+ *                 tmp = k + [k[opt.windowSize]] * (windowSize - len(k))
+ */
+          /*else*/ {
+            __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_tmpStack, __pyx_v_tmp); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 45, __pyx_L1_error)
+          }
+          __pyx_L12:;
+        }
+
+        /* "e_step/cinference.pyx":28
+ * 
  *         for k in stack:
- *             for j in range(stcW[i].senseNum):
- *                 k.append(senseStart + j)             # <<<<<<<<<<<<<<
+ *             if i < len(stcW):             # <<<<<<<<<<<<<<
+ *                 senseStart = stcW[i].senseStart
  * 
- *                 if len(k) == windowSize:
  */
-        __pyx_t_8 = PyNumber_Add(__pyx_v_senseStart, __pyx_v_j); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 24, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_6 = __Pyx_PyObject_Append(__pyx_v_k, __pyx_t_8); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 24, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        goto __pyx_L9;
+      }
 
-        /* "e_step/cinference.pyx":26
- *                 k.append(senseStart + j)
- * 
- *                 if len(k) == windowSize:             # <<<<<<<<<<<<<<
- *                     windows.append(k)
- *                     tmpStack.append(k[1:])
- */
-        __pyx_t_11 = PyObject_Length(__pyx_v_k); if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 26, __pyx_L1_error)
-        __pyx_t_8 = PyInt_FromSsize_t(__pyx_t_11); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 26, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_12 = PyObject_RichCompare(__pyx_t_8, __pyx_v_windowSize, Py_EQ); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 26, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 26, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        if (__pyx_t_13) {
-
-          /* "e_step/cinference.pyx":27
- * 
- *                 if len(k) == windowSize:
- *                     windows.append(k)             # <<<<<<<<<<<<<<
- *                     tmpStack.append(k[1:])
+      /* "e_step/cinference.pyx":47
+ *                         tmpStack.append(tmp)
+ *             else:
+ *                 tmp = k + [k[opt.windowSize]] * (windowSize - len(k))             # <<<<<<<<<<<<<<
+ *                 windows.append(tmp)
  * 
  */
-          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_windows, __pyx_v_k); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 27, __pyx_L1_error)
-
-          /* "e_step/cinference.pyx":28
- *                 if len(k) == windowSize:
- *                     windows.append(k)
- *                     tmpStack.append(k[1:])             # <<<<<<<<<<<<<<
- * 
- *                     if i == 2 * opt.windowSize:
- */
-          __pyx_t_12 = __Pyx_PyObject_GetSlice(__pyx_v_k, 1, 0, NULL, NULL, &__pyx_slice_, 1, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 28, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_tmpStack, __pyx_t_12); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 28, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-
-          /* "e_step/cinference.pyx":30
- *                     tmpStack.append(k[1:])
- * 
- *                     if i == 2 * opt.windowSize:             # <<<<<<<<<<<<<<
- *                         firstWindowSize += 1
- *                 else:
- */
-          __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 30, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 30, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_8);
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_12 = PyNumber_Multiply(__pyx_int_2, __pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 30, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_12);
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          __pyx_t_8 = PyObject_RichCompare(__pyx_v_i, __pyx_t_12, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 30, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 30, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          if (__pyx_t_13) {
-
-            /* "e_step/cinference.pyx":31
- * 
- *                     if i == 2 * opt.windowSize:
- *                         firstWindowSize += 1             # <<<<<<<<<<<<<<
- *                 else:
- *                     tmpStack.append(k[:])
- */
-            __pyx_t_8 = __Pyx_PyInt_AddObjC(__pyx_v_firstWindowSize, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 31, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_8);
-            __Pyx_DECREF_SET(__pyx_v_firstWindowSize, __pyx_t_8);
-            __pyx_t_8 = 0;
-
-            /* "e_step/cinference.pyx":30
- *                     tmpStack.append(k[1:])
- * 
- *                     if i == 2 * opt.windowSize:             # <<<<<<<<<<<<<<
- *                         firstWindowSize += 1
- *                 else:
- */
+      /*else*/ {
+        __pyx_t_13 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_t_13 = PyObject_GetItem(__pyx_v_k, __pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_8 = PyObject_Length(__pyx_v_k); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __pyx_t_2 = PyList_New(1 * (((__pyx_v_windowSize - __pyx_t_8)<0) ? 0:(__pyx_v_windowSize - __pyx_t_8))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        { Py_ssize_t __pyx_temp;
+          for (__pyx_temp=0; __pyx_temp < (__pyx_v_windowSize - __pyx_t_8); __pyx_temp++) {
+            __Pyx_INCREF(__pyx_t_13);
+            __Pyx_GIVEREF(__pyx_t_13);
+            PyList_SET_ITEM(__pyx_t_2, __pyx_temp, __pyx_t_13);
           }
-
-          /* "e_step/cinference.pyx":26
- *                 k.append(senseStart + j)
- * 
- *                 if len(k) == windowSize:             # <<<<<<<<<<<<<<
- *                     windows.append(k)
- *                     tmpStack.append(k[1:])
- */
-          goto __pyx_L11;
         }
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_t_13 = PyNumber_Add(__pyx_v_k, __pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_tmp, __pyx_t_13);
+        __pyx_t_13 = 0;
 
-        /* "e_step/cinference.pyx":33
- *                         firstWindowSize += 1
- *                 else:
- *                     tmpStack.append(k[:])             # <<<<<<<<<<<<<<
+        /* "e_step/cinference.pyx":48
+ *             else:
+ *                 tmp = k + [k[opt.windowSize]] * (windowSize - len(k))
+ *                 windows.append(tmp)             # <<<<<<<<<<<<<<
+ * 
+ *                 if tuple(k[1:]) not in s:
+ */
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_windows, __pyx_v_tmp); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 48, __pyx_L1_error)
+
+        /* "e_step/cinference.pyx":50
+ *                 windows.append(tmp)
+ * 
+ *                 if tuple(k[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                     tmpStack.append(k[1:])
+ *                     s.add(tuple(k[1:]))
+ */
+        __pyx_t_13 = __Pyx_PyObject_GetSlice(__pyx_v_k, 1, 0, NULL, NULL, &__pyx_slice__4, 1, 0, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_2 = PySequence_Tuple(__pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_t_12 = (__Pyx_PySequence_ContainsTF(__pyx_t_2, __pyx_v_s, Py_NE)); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_9 = (__pyx_t_12 != 0);
+        if (__pyx_t_9) {
+
+          /* "e_step/cinference.pyx":51
+ * 
+ *                 if tuple(k[1:]) not in s:
+ *                     tmpStack.append(k[1:])             # <<<<<<<<<<<<<<
+ *                     s.add(tuple(k[1:]))
+ * 
+ */
+          __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_k, 1, 0, NULL, NULL, &__pyx_slice__5, 1, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_tmpStack, __pyx_t_2); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+          /* "e_step/cinference.pyx":52
+ *                 if tuple(k[1:]) not in s:
+ *                     tmpStack.append(k[1:])
+ *                     s.add(tuple(k[1:]))             # <<<<<<<<<<<<<<
  * 
  *         stack = tmpStack
  */
-        /*else*/ {
-          __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_v_k, 0, 0, NULL, NULL, &__pyx_slice__2, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 33, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_tmpStack, __pyx_t_8); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        }
-        __pyx_L11:;
+          __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_k, 1, 0, NULL, NULL, &__pyx_slice__6, 1, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_13 = PySequence_Tuple(__pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 52, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_13);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_6 = PySet_Add(__pyx_v_s, __pyx_t_13); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 52, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-        /* "e_step/cinference.pyx":23
+          /* "e_step/cinference.pyx":50
+ *                 windows.append(tmp)
  * 
- *         for k in stack:
- *             for j in range(stcW[i].senseNum):             # <<<<<<<<<<<<<<
- *                 k.append(senseStart + j)
- * 
+ *                 if tuple(k[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                     tmpStack.append(k[1:])
+ *                     s.add(tuple(k[1:]))
  */
+        }
       }
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_L9:;
 
-      /* "e_step/cinference.pyx":22
- *         senseStart = stcW[i].senseStart
+      /* "e_step/cinference.pyx":27
+ *         s = set()
  * 
  *         for k in stack:             # <<<<<<<<<<<<<<
- *             for j in range(stcW[i].senseNum):
- *                 k.append(senseStart + j)
+ *             if i < len(stcW):
+ *                 senseStart = stcW[i].senseStart
  */
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "e_step/cinference.pyx":35
- *                     tmpStack.append(k[:])
+    /* "e_step/cinference.pyx":54
+ *                     s.add(tuple(k[1:]))
  * 
  *         stack = tmpStack             # <<<<<<<<<<<<<<
  *         tmpStack = []
@@ -1750,63 +1737,47 @@ static PyObject *__pyx_pf_6e_step_10cinference_dpgetAllWindows(CYTHON_UNUSED PyO
     __Pyx_INCREF(__pyx_v_tmpStack);
     __Pyx_DECREF_SET(__pyx_v_stack, __pyx_v_tmpStack);
 
-    /* "e_step/cinference.pyx":36
+    /* "e_step/cinference.pyx":55
  * 
  *         stack = tmpStack
  *         tmpStack = []             # <<<<<<<<<<<<<<
  * 
- *     print(windows)
- */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF_SET(__pyx_v_tmpStack, ((PyObject*)__pyx_t_1));
-    __pyx_t_1 = 0;
-
-    /* "e_step/cinference.pyx":19
- *         stack.append([stcW[0].senseStart + i])
- * 
- *     for i in range(1, len(stcW)):             # <<<<<<<<<<<<<<
- *         senseStart = stcW[i].senseStart
- * 
- */
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "e_step/cinference.pyx":38
- *         tmpStack = []
- * 
- *     print(windows)             # <<<<<<<<<<<<<<
- * 
  *     return windows, firstWindowSize
  */
-  if (__Pyx_PrintOne(0, __pyx_v_windows) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF_SET(__pyx_v_tmpStack, ((PyObject*)__pyx_t_5));
+    __pyx_t_5 = 0;
+  }
 
-  /* "e_step/cinference.pyx":40
- *     print(windows)
+  /* "e_step/cinference.pyx":57
+ *         tmpStack = []
  * 
  *     return windows, firstWindowSize             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_firstWindowSize); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_13);
   __Pyx_INCREF(__pyx_v_windows);
   __Pyx_GIVEREF(__pyx_v_windows);
-  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_windows);
-  __Pyx_INCREF(__pyx_v_firstWindowSize);
-  __Pyx_GIVEREF(__pyx_v_firstWindowSize);
-  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_firstWindowSize);
-  __pyx_r = __pyx_t_5;
+  PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_v_windows);
+  __Pyx_GIVEREF(__pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_5);
   __pyx_t_5 = 0;
+  __pyx_r = __pyx_t_13;
+  __pyx_t_13 = 0;
   goto __pyx_L0;
 
   /* "e_step/cinference.pyx":8
  * 
  * 
- * def dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
- *     stack = []
- *     tmpStack = []
+ * cdef dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
+ *     cdef:
+ *         int windowSize
  */
 
   /* function exit code */
@@ -1814,26 +1785,23 @@ static PyObject *__pyx_pf_6e_step_10cinference_dpgetAllWindows(CYTHON_UNUSED PyO
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_13);
   __Pyx_AddTraceback("e_step.cinference.dpgetAllWindows", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_stack);
   __Pyx_XDECREF(__pyx_v_tmpStack);
-  __Pyx_XDECREF(__pyx_v_windowSize);
   __Pyx_XDECREF(__pyx_v_windows);
-  __Pyx_XDECREF(__pyx_v_firstWindowSize);
-  __Pyx_XDECREF(__pyx_v_i);
-  __Pyx_XDECREF(__pyx_v_senseStart);
+  __Pyx_XDECREF(__pyx_v_s);
   __Pyx_XDECREF(__pyx_v_k);
-  __Pyx_XDECREF(__pyx_v_j);
+  __Pyx_XDECREF(__pyx_v_senseStart);
+  __Pyx_XDECREF(__pyx_v_tmp);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "e_step/cinference.pyx":43
+/* "e_step/cinference.pyx":60
  * 
  * 
  * cdef getAllWindows(stcW):             # <<<<<<<<<<<<<<
@@ -1872,7 +1840,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
   long __pyx_t_15;
   __Pyx_RefNannySetupContext("getAllWindows", 0);
 
-  /* "e_step/cinference.pyx":57
+  /* "e_step/cinference.pyx":74
  *     cdef vector[int] tmp
  * 
  *     firstWindowSize = 0             # <<<<<<<<<<<<<<
@@ -1881,40 +1849,40 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
   __pyx_v_firstWindowSize = 0;
 
-  /* "e_step/cinference.pyx":58
+  /* "e_step/cinference.pyx":75
  * 
  *     firstWindowSize = 0
  *     stcWLen = len(stcW)             # <<<<<<<<<<<<<<
  * 
  *     for i in range(stcWLen - opt.windowSize):
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __pyx_v_stcWLen = __pyx_t_1;
 
-  /* "e_step/cinference.pyx":60
+  /* "e_step/cinference.pyx":77
  *     stcWLen = len(stcW)
  * 
  *     for i in range(stcWLen - opt.windowSize):             # <<<<<<<<<<<<<<
  *         start = i
  *         end = 2 * opt.windowSize + 1 + i
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_stcWLen); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_stcWLen); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_long(__pyx_t_3); if (unlikely((__pyx_t_5 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_long(__pyx_t_3); if (unlikely((__pyx_t_5 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "e_step/cinference.pyx":61
+    /* "e_step/cinference.pyx":78
  * 
  *     for i in range(stcWLen - opt.windowSize):
  *         start = i             # <<<<<<<<<<<<<<
@@ -1923,35 +1891,35 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
     __pyx_v_start = __pyx_v_i;
 
-    /* "e_step/cinference.pyx":62
+    /* "e_step/cinference.pyx":79
  *     for i in range(stcWLen - opt.windowSize):
  *         start = i
  *         end = 2 * opt.windowSize + 1 + i             # <<<<<<<<<<<<<<
  *         midAppended = 0
  * 
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Multiply(__pyx_int_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_int_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_end = __pyx_t_7;
 
-    /* "e_step/cinference.pyx":63
+    /* "e_step/cinference.pyx":80
  *         start = i
  *         end = 2 * opt.windowSize + 1 + i
  *         midAppended = 0             # <<<<<<<<<<<<<<
@@ -1960,7 +1928,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
     __pyx_v_midAppended = 0;
 
-    /* "e_step/cinference.pyx":65
+    /* "e_step/cinference.pyx":82
  *         midAppended = 0
  * 
  *         for j in range(start, end):             # <<<<<<<<<<<<<<
@@ -1971,7 +1939,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
     for (__pyx_t_8 = __pyx_v_start; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_j = __pyx_t_8;
 
-      /* "e_step/cinference.pyx":66
+      /* "e_step/cinference.pyx":83
  * 
  *         for j in range(start, end):
  *             if j < stcWLen:             # <<<<<<<<<<<<<<
@@ -1981,28 +1949,28 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
       __pyx_t_9 = ((__pyx_v_j < __pyx_v_stcWLen) != 0);
       if (__pyx_t_9) {
 
-        /* "e_step/cinference.pyx":67
+        /* "e_step/cinference.pyx":84
  *         for j in range(start, end):
  *             if j < stcWLen:
  *                 tmp.push_back(stcW[j].senseStart)             # <<<<<<<<<<<<<<
  *             else:
  *                 tmp.push_back(tmp[opt.windowSize])
  */
-        __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         try {
           __pyx_v_tmp.push_back(__pyx_t_10);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 67, __pyx_L1_error)
+          __PYX_ERR(0, 84, __pyx_L1_error)
         }
 
-        /* "e_step/cinference.pyx":66
+        /* "e_step/cinference.pyx":83
  * 
  *         for j in range(start, end):
  *             if j < stcWLen:             # <<<<<<<<<<<<<<
@@ -2012,7 +1980,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
         goto __pyx_L7;
       }
 
-      /* "e_step/cinference.pyx":69
+      /* "e_step/cinference.pyx":86
  *                 tmp.push_back(stcW[j].senseStart)
  *             else:
  *                 tmp.push_back(tmp[opt.windowSize])             # <<<<<<<<<<<<<<
@@ -2020,21 +1988,21 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  * 
  */
       /*else*/ {
-        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_11 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_11 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_11 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         try {
           __pyx_v_tmp.push_back((__pyx_v_tmp[__pyx_t_11]));
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 69, __pyx_L1_error)
+          __PYX_ERR(0, 86, __pyx_L1_error)
         }
 
-        /* "e_step/cinference.pyx":70
+        /* "e_step/cinference.pyx":87
  *             else:
  *                 tmp.push_back(tmp[opt.windowSize])
  *                 midAppended += 1             # <<<<<<<<<<<<<<
@@ -2046,7 +2014,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
       __pyx_L7:;
     }
 
-    /* "e_step/cinference.pyx":72
+    /* "e_step/cinference.pyx":89
  *                 midAppended += 1
  * 
  *         windows.push_back(vector[int](tmp))             # <<<<<<<<<<<<<<
@@ -2057,16 +2025,16 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
       __pyx_t_12 = std::vector<int> (__pyx_v_tmp);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 72, __pyx_L1_error)
+      __PYX_ERR(0, 89, __pyx_L1_error)
     }
     try {
       __pyx_v_windows.push_back(__pyx_t_12);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 72, __pyx_L1_error)
+      __PYX_ERR(0, 89, __pyx_L1_error)
     }
 
-    /* "e_step/cinference.pyx":74
+    /* "e_step/cinference.pyx":91
  *         windows.push_back(vector[int](tmp))
  * 
  *         while True:             # <<<<<<<<<<<<<<
@@ -2075,7 +2043,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
     while (1) {
 
-      /* "e_step/cinference.pyx":75
+      /* "e_step/cinference.pyx":92
  * 
  *         while True:
  *             if tmp.size() == 0:             # <<<<<<<<<<<<<<
@@ -2085,7 +2053,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
       __pyx_t_9 = ((__pyx_v_tmp.size() == 0) != 0);
       if (__pyx_t_9) {
 
-        /* "e_step/cinference.pyx":76
+        /* "e_step/cinference.pyx":93
  *         while True:
  *             if tmp.size() == 0:
  *                 break             # <<<<<<<<<<<<<<
@@ -2094,7 +2062,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
         goto __pyx_L9_break;
 
-        /* "e_step/cinference.pyx":75
+        /* "e_step/cinference.pyx":92
  * 
  *         while True:
  *             if tmp.size() == 0:             # <<<<<<<<<<<<<<
@@ -2103,7 +2071,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
       }
 
-      /* "e_step/cinference.pyx":78
+      /* "e_step/cinference.pyx":95
  *                 break
  *             else:
  *                 windowLast = start + tmp.size() - 1 if start + tmp.size() - 1 < stcWLen else stcWLen - 1             # <<<<<<<<<<<<<<
@@ -2118,7 +2086,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
         }
         __pyx_v_windowLast = __pyx_t_11;
 
-        /* "e_step/cinference.pyx":80
+        /* "e_step/cinference.pyx":97
  *                 windowLast = start + tmp.size() - 1 if start + tmp.size() - 1 < stcWLen else stcWLen - 1
  * 
  *                 if midAppended > 0 or tmp.back() == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:             # <<<<<<<<<<<<<<
@@ -2131,35 +2099,35 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
           __pyx_t_9 = __pyx_t_13;
           goto __pyx_L12_bool_binop_done;
         }
-        __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_tmp.back()); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_tmp.back()); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_windowLast, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_windowLast, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_windowLast, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_windowLast, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_14 = __Pyx_PyInt_SubtractObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyInt_SubtractObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_14, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_14, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 97, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_9 = __pyx_t_13;
         __pyx_L12_bool_binop_done:;
         if (__pyx_t_9) {
 
-          /* "e_step/cinference.pyx":81
+          /* "e_step/cinference.pyx":98
  * 
  *                 if midAppended > 0 or tmp.back() == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
  *                     tmp.pop_back()             # <<<<<<<<<<<<<<
@@ -2168,7 +2136,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
           __pyx_v_tmp.pop_back();
 
-          /* "e_step/cinference.pyx":83
+          /* "e_step/cinference.pyx":100
  *                     tmp.pop_back()
  * 
  *                     if midAppended > 0:             # <<<<<<<<<<<<<<
@@ -2178,7 +2146,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
           __pyx_t_9 = ((__pyx_v_midAppended > 0) != 0);
           if (__pyx_t_9) {
 
-            /* "e_step/cinference.pyx":84
+            /* "e_step/cinference.pyx":101
  * 
  *                     if midAppended > 0:
  *                         midAppended -= 1             # <<<<<<<<<<<<<<
@@ -2187,7 +2155,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
             __pyx_v_midAppended = (__pyx_v_midAppended - 1);
 
-            /* "e_step/cinference.pyx":83
+            /* "e_step/cinference.pyx":100
  *                     tmp.pop_back()
  * 
  *                     if midAppended > 0:             # <<<<<<<<<<<<<<
@@ -2196,7 +2164,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
           }
 
-          /* "e_step/cinference.pyx":80
+          /* "e_step/cinference.pyx":97
  *                 windowLast = start + tmp.size() - 1 if start + tmp.size() - 1 < stcWLen else stcWLen - 1
  * 
  *                 if midAppended > 0 or tmp.back() == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:             # <<<<<<<<<<<<<<
@@ -2206,7 +2174,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
           goto __pyx_L11;
         }
 
-        /* "e_step/cinference.pyx":86
+        /* "e_step/cinference.pyx":103
  *                         midAppended -= 1
  *                 else:
  *                     windowLast = tmp.back() + 1 # Use windowLast for temp purpose             # <<<<<<<<<<<<<<
@@ -2216,7 +2184,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
         /*else*/ {
           __pyx_v_windowLast = (__pyx_v_tmp.back() + 1);
 
-          /* "e_step/cinference.pyx":87
+          /* "e_step/cinference.pyx":104
  *                 else:
  *                     windowLast = tmp.back() + 1 # Use windowLast for temp purpose
  *                     tmp.pop_back()             # <<<<<<<<<<<<<<
@@ -2225,7 +2193,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
           __pyx_v_tmp.pop_back();
 
-          /* "e_step/cinference.pyx":88
+          /* "e_step/cinference.pyx":105
  *                     windowLast = tmp.back() + 1 # Use windowLast for temp purpose
  *                     tmp.pop_back()
  *                     tmp.push_back(windowLast)             # <<<<<<<<<<<<<<
@@ -2236,33 +2204,33 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
             __pyx_v_tmp.push_back(__pyx_v_windowLast);
           } catch(...) {
             __Pyx_CppExn2PyErr();
-            __PYX_ERR(0, 88, __pyx_L1_error)
+            __PYX_ERR(0, 105, __pyx_L1_error)
           }
 
-          /* "e_step/cinference.pyx":90
+          /* "e_step/cinference.pyx":107
  *                     tmp.push_back(windowLast)
  * 
  *                     for k in range(tmp.size(), opt.windowSize * 2 + 1):             # <<<<<<<<<<<<<<
  *                         if start + k < stcWLen:
  *                             tmp.push_back(stcW[start + k].senseStart)
  */
-          __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = PyNumber_Multiply(__pyx_t_14, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+          __pyx_t_3 = PyNumber_Multiply(__pyx_t_14, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          __pyx_t_14 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_15 = __Pyx_PyInt_As_long(__pyx_t_14); if (unlikely((__pyx_t_15 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+          __pyx_t_15 = __Pyx_PyInt_As_long(__pyx_t_14); if (unlikely((__pyx_t_15 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           for (__pyx_t_7 = __pyx_v_tmp.size(); __pyx_t_7 < __pyx_t_15; __pyx_t_7+=1) {
             __pyx_v_k = __pyx_t_7;
 
-            /* "e_step/cinference.pyx":91
+            /* "e_step/cinference.pyx":108
  * 
  *                     for k in range(tmp.size(), opt.windowSize * 2 + 1):
  *                         if start + k < stcWLen:             # <<<<<<<<<<<<<<
@@ -2272,7 +2240,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
             __pyx_t_9 = (((__pyx_v_start + __pyx_v_k) < __pyx_v_stcWLen) != 0);
             if (__pyx_t_9) {
 
-              /* "e_step/cinference.pyx":92
+              /* "e_step/cinference.pyx":109
  *                     for k in range(tmp.size(), opt.windowSize * 2 + 1):
  *                         if start + k < stcWLen:
  *                             tmp.push_back(stcW[start + k].senseStart)             # <<<<<<<<<<<<<<
@@ -2280,21 +2248,21 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  *                             tmp.push_back(tmp[opt.windowSize])
  */
               __pyx_t_8 = (__pyx_v_start + __pyx_v_k);
-              __pyx_t_14 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_t_8, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 92, __pyx_L1_error)
+              __pyx_t_14 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_t_8, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 109, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_14);
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-              __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
+              __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 109, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               try {
                 __pyx_v_tmp.push_back(__pyx_t_8);
               } catch(...) {
                 __Pyx_CppExn2PyErr();
-                __PYX_ERR(0, 92, __pyx_L1_error)
+                __PYX_ERR(0, 109, __pyx_L1_error)
               }
 
-              /* "e_step/cinference.pyx":91
+              /* "e_step/cinference.pyx":108
  * 
  *                     for k in range(tmp.size(), opt.windowSize * 2 + 1):
  *                         if start + k < stcWLen:             # <<<<<<<<<<<<<<
@@ -2304,7 +2272,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
               goto __pyx_L17;
             }
 
-            /* "e_step/cinference.pyx":94
+            /* "e_step/cinference.pyx":111
  *                             tmp.push_back(stcW[start + k].senseStart)
  *                         else:
  *                             tmp.push_back(tmp[opt.windowSize])             # <<<<<<<<<<<<<<
@@ -2312,21 +2280,21 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  * 
  */
             /*else*/ {
-              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 94, __pyx_L1_error)
+              __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 111, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_14);
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_11 = __Pyx_PyInt_As_size_t(__pyx_t_14); if (unlikely((__pyx_t_11 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L1_error)
+              __pyx_t_11 = __Pyx_PyInt_As_size_t(__pyx_t_14); if (unlikely((__pyx_t_11 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 111, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
               try {
                 __pyx_v_tmp.push_back((__pyx_v_tmp[__pyx_t_11]));
               } catch(...) {
                 __Pyx_CppExn2PyErr();
-                __PYX_ERR(0, 94, __pyx_L1_error)
+                __PYX_ERR(0, 111, __pyx_L1_error)
               }
 
-              /* "e_step/cinference.pyx":95
+              /* "e_step/cinference.pyx":112
  *                         else:
  *                             tmp.push_back(tmp[opt.windowSize])
  *                             midAppended += 1             # <<<<<<<<<<<<<<
@@ -2338,7 +2306,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
             __pyx_L17:;
           }
 
-          /* "e_step/cinference.pyx":97
+          /* "e_step/cinference.pyx":114
  *                             midAppended += 1
  * 
  *                     windows.push_back(vector[int](tmp))             # <<<<<<<<<<<<<<
@@ -2349,13 +2317,13 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
             __pyx_t_12 = std::vector<int> (__pyx_v_tmp);
           } catch(...) {
             __Pyx_CppExn2PyErr();
-            __PYX_ERR(0, 97, __pyx_L1_error)
+            __PYX_ERR(0, 114, __pyx_L1_error)
           }
           try {
             __pyx_v_windows.push_back(__pyx_t_12);
           } catch(...) {
             __Pyx_CppExn2PyErr();
-            __PYX_ERR(0, 97, __pyx_L1_error)
+            __PYX_ERR(0, 114, __pyx_L1_error)
           }
         }
         __pyx_L11:;
@@ -2363,7 +2331,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
     }
     __pyx_L9_break:;
 
-    /* "e_step/cinference.pyx":99
+    /* "e_step/cinference.pyx":116
  *                     windows.push_back(vector[int](tmp))
  * 
  *         if i == 0:             # <<<<<<<<<<<<<<
@@ -2373,7 +2341,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
     __pyx_t_9 = ((__pyx_v_i == 0) != 0);
     if (__pyx_t_9) {
 
-      /* "e_step/cinference.pyx":100
+      /* "e_step/cinference.pyx":117
  * 
  *         if i == 0:
  *             firstWindowSize = windows.size()             # <<<<<<<<<<<<<<
@@ -2382,7 +2350,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  */
       __pyx_v_firstWindowSize = __pyx_v_windows.size();
 
-      /* "e_step/cinference.pyx":99
+      /* "e_step/cinference.pyx":116
  *                     windows.push_back(vector[int](tmp))
  * 
  *         if i == 0:             # <<<<<<<<<<<<<<
@@ -2392,7 +2360,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
     }
   }
 
-  /* "e_step/cinference.pyx":102
+  /* "e_step/cinference.pyx":119
  *             firstWindowSize = windows.size()
  * 
  *     return windows, firstWindowSize             # <<<<<<<<<<<<<<
@@ -2400,11 +2368,11 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_14 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(__pyx_v_windows); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_14 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(__pyx_v_windows); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_firstWindowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_firstWindowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_14);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_14);
@@ -2416,7 +2384,7 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "e_step/cinference.pyx":43
+  /* "e_step/cinference.pyx":60
  * 
  * 
  * cdef getAllWindows(stcW):             # <<<<<<<<<<<<<<
@@ -2438,15 +2406,16 @@ static PyObject *__pyx_f_6e_step_10cinference_getAllWindows(PyObject *__pyx_v_st
   return __pyx_r;
 }
 
-/* "e_step/cinference.pyx":105
+/* "e_step/cinference.pyx":122
  * 
  * 
- * cdef inferenceOneStc(stcW, lossTable, assignList):             # <<<<<<<<<<<<<<
+ * cpdef inferenceOneStc(stcW, lossTable, assignList):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int j
  */
 
-static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_stcW, PyObject *__pyx_v_lossTable, PyObject *__pyx_v_assignList) {
+static PyObject *__pyx_pw_6e_step_10cinference_1inferenceOneStc(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_stcW, PyObject *__pyx_v_lossTable, PyObject *__pyx_v_assignList, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_i;
   int __pyx_v_j;
   int __pyx_v_k;
@@ -2489,27 +2458,27 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __Pyx_RefNannySetupContext("inferenceOneStc", 0);
   __Pyx_INCREF(__pyx_v_assignList);
 
-  /* "e_step/cinference.pyx":117
+  /* "e_step/cinference.pyx":134
  *     # cdef vector[int] prevAssignList
  * 
  *     assign = []             # <<<<<<<<<<<<<<
  *     lossList = [0] * len(assignList)
  *     prevAssignList = [None] * len(assignList)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_assign = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":118
+  /* "e_step/cinference.pyx":135
  * 
  *     assign = []
  *     lossList = [0] * len(assignList)             # <<<<<<<<<<<<<<
  *     prevAssignList = [None] * len(assignList)
  * 
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 118, __pyx_L1_error)
-  __pyx_t_1 = PyList_New(1 * ((__pyx_t_2<0) ? 0:__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * ((__pyx_t_2<0) ? 0:__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   { Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < __pyx_t_2; __pyx_temp++) {
@@ -2521,15 +2490,15 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __pyx_v_lossList = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":119
+  /* "e_step/cinference.pyx":136
  *     assign = []
  *     lossList = [0] * len(assignList)
  *     prevAssignList = [None] * len(assignList)             # <<<<<<<<<<<<<<
  * 
  *     # lossList = vector[double](len(assignList))
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 119, __pyx_L1_error)
-  __pyx_t_1 = PyList_New(1 * ((__pyx_t_2<0) ? 0:__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * ((__pyx_t_2<0) ? 0:__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   { Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < __pyx_t_2; __pyx_temp++) {
@@ -2541,19 +2510,19 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __pyx_v_prevAssignList = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":123
+  /* "e_step/cinference.pyx":140
  *     # lossList = vector[double](len(assignList))
  *     # prevAssignList = vector[int](len(assignList))
  *     map = {}             # <<<<<<<<<<<<<<
  * 
  *     mapTime = 0
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_map = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":125
+  /* "e_step/cinference.pyx":142
  *     map = {}
  * 
  *     mapTime = 0             # <<<<<<<<<<<<<<
@@ -2563,7 +2532,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_mapTime = __pyx_int_0;
 
-  /* "e_step/cinference.pyx":126
+  /* "e_step/cinference.pyx":143
  * 
  *     mapTime = 0
  *     parseMapTime = 0             # <<<<<<<<<<<<<<
@@ -2573,35 +2542,35 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_parseMapTime = __pyx_int_0;
 
-  /* "e_step/cinference.pyx":128
+  /* "e_step/cinference.pyx":145
  *     parseMapTime = 0
  * 
  *     for i in range(opt.windowSize, len(stcW)):             # <<<<<<<<<<<<<<
  *         minLoss = float('inf')
  *         minLossIdx = 0
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 128, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_3); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_3); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   for (__pyx_t_5 = __pyx_t_4; __pyx_t_5 < __pyx_t_2; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "e_step/cinference.pyx":129
+    /* "e_step/cinference.pyx":146
  * 
  *     for i in range(opt.windowSize, len(stcW)):
  *         minLoss = float('inf')             # <<<<<<<<<<<<<<
  *         minLossIdx = 0
  *         map = {}
  */
-    __pyx_t_6 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 146, __pyx_L1_error)
     __pyx_v_minLoss = __pyx_t_6;
 
-    /* "e_step/cinference.pyx":130
+    /* "e_step/cinference.pyx":147
  *     for i in range(opt.windowSize, len(stcW)):
  *         minLoss = float('inf')
  *         minLossIdx = 0             # <<<<<<<<<<<<<<
@@ -2610,28 +2579,28 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  */
     __pyx_v_minLossIdx = 0;
 
-    /* "e_step/cinference.pyx":131
+    /* "e_step/cinference.pyx":148
  *         minLoss = float('inf')
  *         minLossIdx = 0
  *         map = {}             # <<<<<<<<<<<<<<
  * 
  *         start = time.time()
  */
-    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_map, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":133
+    /* "e_step/cinference.pyx":150
  *         map = {}
  * 
  *         start = time.time()             # <<<<<<<<<<<<<<
  * 
  *         for j in range(len(assignList)):
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -2645,77 +2614,77 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       }
     }
     if (__pyx_t_1) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
-      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF_SET(__pyx_v_start, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":135
+    /* "e_step/cinference.pyx":152
  *         start = time.time()
  * 
  *         for j in range(len(assignList)):             # <<<<<<<<<<<<<<
  *             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]
  *             tmpAssign = assignList[j]
  */
-    __pyx_t_8 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_8 = PyObject_Length(__pyx_v_assignList); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 152, __pyx_L1_error)
     for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
       __pyx_v_j = __pyx_t_9;
 
-      /* "e_step/cinference.pyx":136
+      /* "e_step/cinference.pyx":153
  * 
  *         for j in range(len(assignList)):
  *             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]             # <<<<<<<<<<<<<<
  *             tmpAssign = assignList[j]
  *             tmpLoss = lossList[j]
  */
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_assignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_assignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PySequence_Tuple(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_7 = PySequence_Tuple(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyObject_GetItem(__pyx_v_lossTable, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_3 = PyObject_GetItem(__pyx_v_lossTable, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_v_lossList, __pyx_v_j, __pyx_t_1, int, 1, __Pyx_PyInt_From_int, 1, 1, 1) < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_v_lossList, __pyx_v_j, __pyx_t_1, int, 1, __Pyx_PyInt_From_int, 1, 1, 1) < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "e_step/cinference.pyx":137
+      /* "e_step/cinference.pyx":154
  *         for j in range(len(assignList)):
  *             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]
  *             tmpAssign = assignList[j]             # <<<<<<<<<<<<<<
  *             tmpLoss = lossList[j]
  * 
  */
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_assignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_assignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_tmpAssign, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "e_step/cinference.pyx":138
+      /* "e_step/cinference.pyx":155
  *             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]
  *             tmpAssign = assignList[j]
  *             tmpLoss = lossList[j]             # <<<<<<<<<<<<<<
  * 
  *             if tmpLoss < minLoss:
  */
-      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_tmpLoss = __pyx_t_6;
 
-      /* "e_step/cinference.pyx":140
+      /* "e_step/cinference.pyx":157
  *             tmpLoss = lossList[j]
  * 
  *             if tmpLoss < minLoss:             # <<<<<<<<<<<<<<
@@ -2725,20 +2694,20 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       __pyx_t_10 = ((__pyx_v_tmpLoss < __pyx_v_minLoss) != 0);
       if (__pyx_t_10) {
 
-        /* "e_step/cinference.pyx":141
+        /* "e_step/cinference.pyx":158
  * 
  *             if tmpLoss < minLoss:
  *                 minLoss = lossList[j]             # <<<<<<<<<<<<<<
  *                 minLossIdx = j
  * 
  */
-        __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_lossList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 158, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_v_minLoss = __pyx_t_6;
 
-        /* "e_step/cinference.pyx":142
+        /* "e_step/cinference.pyx":159
  *             if tmpLoss < minLoss:
  *                 minLoss = lossList[j]
  *                 minLossIdx = j             # <<<<<<<<<<<<<<
@@ -2747,7 +2716,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  */
         __pyx_v_minLossIdx = __pyx_v_j;
 
-        /* "e_step/cinference.pyx":140
+        /* "e_step/cinference.pyx":157
  *             tmpLoss = lossList[j]
  * 
  *             if tmpLoss < minLoss:             # <<<<<<<<<<<<<<
@@ -2756,49 +2725,49 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  */
       }
 
-      /* "e_step/cinference.pyx":144
+      /* "e_step/cinference.pyx":161
  *                 minLossIdx = j
  * 
  *             t = tuple(tmpAssign[1:])             # <<<<<<<<<<<<<<
  *             if t not in map.keys():
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
  */
-      __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_tmpAssign, 1, 0, NULL, NULL, &__pyx_slice__3, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_tmpAssign, 1, 0, NULL, NULL, &__pyx_slice__7, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_7 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 161, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_t, ((PyObject*)__pyx_t_7));
       __pyx_t_7 = 0;
 
-      /* "e_step/cinference.pyx":145
+      /* "e_step/cinference.pyx":162
  * 
  *             t = tuple(tmpAssign[1:])
  *             if t not in map.keys():             # <<<<<<<<<<<<<<
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
  *             else:
  */
-      __pyx_t_7 = __Pyx_PyDict_Keys(__pyx_v_map); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyDict_Keys(__pyx_v_map); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_t, __pyx_t_7, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_t, __pyx_t_7, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_11 = (__pyx_t_10 != 0);
       if (__pyx_t_11) {
 
-        /* "e_step/cinference.pyx":146
+        /* "e_step/cinference.pyx":163
  *             t = tuple(tmpAssign[1:])
  *             if t not in map.keys():
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]             # <<<<<<<<<<<<<<
  *             else:
  *                 if map[t][1] > tmpLoss:
  */
-        __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_tmpAssign, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_tmpAssign, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_12 = PyList_New(3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_12 = PyList_New(3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
         __Pyx_GIVEREF(__pyx_t_7);
         PyList_SET_ITEM(__pyx_t_12, 0, __pyx_t_7);
@@ -2809,10 +2778,10 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
         __pyx_t_7 = 0;
         __pyx_t_1 = 0;
         __pyx_t_3 = 0;
-        if (unlikely(PyDict_SetItem(__pyx_v_map, __pyx_v_t, __pyx_t_12) < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
+        if (unlikely(PyDict_SetItem(__pyx_v_map, __pyx_v_t, __pyx_t_12) < 0)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-        /* "e_step/cinference.pyx":145
+        /* "e_step/cinference.pyx":162
  * 
  *             t = tuple(tmpAssign[1:])
  *             if t not in map.keys():             # <<<<<<<<<<<<<<
@@ -2822,7 +2791,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
         goto __pyx_L8;
       }
 
-      /* "e_step/cinference.pyx":148
+      /* "e_step/cinference.pyx":165
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
  *             else:
  *                 if map[t][1] > tmpLoss:             # <<<<<<<<<<<<<<
@@ -2830,66 +2799,66 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  *                     map[t][1] = tmpLoss
  */
       /*else*/ {
-        __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 148, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_12, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_12, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_12 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 148, __pyx_L1_error)
+        __pyx_t_12 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_12, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+        __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_12, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         if (__pyx_t_11) {
 
-          /* "e_step/cinference.pyx":149
+          /* "e_step/cinference.pyx":166
  *             else:
  *                 if map[t][1] > tmpLoss:
  *                     map[t][0] = tmpAssign[0]             # <<<<<<<<<<<<<<
  *                     map[t][1] = tmpLoss
  *                     map[t][2] = prevAssignList[j]
  */
-          __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_tmpAssign, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_tmpAssign, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 149, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
+          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "e_step/cinference.pyx":150
+          /* "e_step/cinference.pyx":167
  *                 if map[t][1] > tmpLoss:
  *                     map[t][0] = tmpAssign[0]
  *                     map[t][1] = tmpLoss             # <<<<<<<<<<<<<<
  *                     map[t][2] = prevAssignList[j]
  * 
  */
-          __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+          __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tmpLoss); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 150, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 167, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
+          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 167, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "e_step/cinference.pyx":151
+          /* "e_step/cinference.pyx":168
  *                     map[t][0] = tmpAssign[0]
  *                     map[t][1] = tmpLoss
  *                     map[t][2] = prevAssignList[j]             # <<<<<<<<<<<<<<
  * 
  *         end = time.time()
  */
-          __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 151, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_t); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 2, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
+          if (unlikely(__Pyx_SetItemInt(__pyx_t_12, 2, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "e_step/cinference.pyx":148
+          /* "e_step/cinference.pyx":165
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
  *             else:
  *                 if map[t][1] > tmpLoss:             # <<<<<<<<<<<<<<
@@ -2901,16 +2870,16 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       __pyx_L8:;
     }
 
-    /* "e_step/cinference.pyx":153
+    /* "e_step/cinference.pyx":170
  *                     map[t][2] = prevAssignList[j]
  * 
  *         end = time.time()             # <<<<<<<<<<<<<<
  *         mapTime += (end - start)
  *         start = time.time()
  */
-    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 153, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 170, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 170, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __pyx_t_12 = NULL;
@@ -2924,41 +2893,41 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       }
     }
     if (__pyx_t_12) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_end, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "e_step/cinference.pyx":154
+    /* "e_step/cinference.pyx":171
  * 
  *         end = time.time()
  *         mapTime += (end - start)             # <<<<<<<<<<<<<<
  *         start = time.time()
  * 
  */
-    __pyx_t_1 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_mapTime, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_mapTime, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_mapTime, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":155
+    /* "e_step/cinference.pyx":172
  *         end = time.time()
  *         mapTime += (end - start)
  *         start = time.time()             # <<<<<<<<<<<<<<
  * 
  *         if i > opt.windowSize:
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 172, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -2972,50 +2941,50 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       }
     }
     if (__pyx_t_1) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
-      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF_SET(__pyx_v_start, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":157
+    /* "e_step/cinference.pyx":174
  *         start = time.time()
  * 
  *         if i > opt.windowSize:             # <<<<<<<<<<<<<<
  *             assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
  *             # assign.push_back(prevAssignList[minLossIdx]) # Record the inferenced sense
  */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    __pyx_t_12 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_12 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     if (__pyx_t_11) {
 
-      /* "e_step/cinference.pyx":158
+      /* "e_step/cinference.pyx":175
  * 
  *         if i > opt.windowSize:
  *             assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense             # <<<<<<<<<<<<<<
  *             # assign.push_back(prevAssignList[minLossIdx]) # Record the inferenced sense
  * 
  */
-      __pyx_t_12 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_minLossIdx, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 158, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_GetItemInt_List(__pyx_v_prevAssignList, __pyx_v_minLossIdx, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 158, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-      /* "e_step/cinference.pyx":157
+      /* "e_step/cinference.pyx":174
  *         start = time.time()
  * 
  *         if i > opt.windowSize:             # <<<<<<<<<<<<<<
@@ -3024,68 +2993,68 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  */
     }
 
-    /* "e_step/cinference.pyx":161
+    /* "e_step/cinference.pyx":178
  *             # assign.push_back(prevAssignList[minLossIdx]) # Record the inferenced sense
  * 
  *         newWordIdx = i + opt.windowSize + 1             # <<<<<<<<<<<<<<
  *         assignList = []
  *         lossList = []
  */
-    __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_12, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_12, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_newWordIdx = __pyx_t_9;
 
-    /* "e_step/cinference.pyx":162
+    /* "e_step/cinference.pyx":179
  * 
  *         newWordIdx = i + opt.windowSize + 1
  *         assignList = []             # <<<<<<<<<<<<<<
  *         lossList = []
  *         prevAssignList = []
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_assignList, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":163
+    /* "e_step/cinference.pyx":180
  *         newWordIdx = i + opt.windowSize + 1
  *         assignList = []
  *         lossList = []             # <<<<<<<<<<<<<<
  *         prevAssignList = []
  *         # lossList.clear()
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_lossList, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":164
+    /* "e_step/cinference.pyx":181
  *         assignList = []
  *         lossList = []
  *         prevAssignList = []             # <<<<<<<<<<<<<<
  *         # lossList.clear()
  *         # prevAssignList.clear()
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_prevAssignList, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":167
+    /* "e_step/cinference.pyx":184
  *         # lossList.clear()
  *         # prevAssignList.clear()
  *         for key in map:             # <<<<<<<<<<<<<<
@@ -3093,7 +3062,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  *             # if assign.size() == 0 or map[key][2] == assign.back():
  */
     __pyx_t_8 = 0;
-    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_map, 1, ((PyObject *)NULL), (&__pyx_t_14), (&__pyx_t_9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_map, 1, ((PyObject *)NULL), (&__pyx_t_14), (&__pyx_t_9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF(__pyx_t_3);
     __pyx_t_3 = __pyx_t_1;
@@ -3101,142 +3070,142 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
     while (1) {
       __pyx_t_15 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_14, &__pyx_t_8, &__pyx_t_1, NULL, NULL, __pyx_t_9);
       if (unlikely(__pyx_t_15 == 0)) break;
-      if (unlikely(__pyx_t_15 == -1)) __PYX_ERR(0, 167, __pyx_L1_error)
+      if (unlikely(__pyx_t_15 == -1)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "e_step/cinference.pyx":168
+      /* "e_step/cinference.pyx":185
  *         # prevAssignList.clear()
  *         for key in map:
  *             if len(assign) == 0 or map[key][2] == assign[-1]:             # <<<<<<<<<<<<<<
  *             # if assign.size() == 0 or map[key][2] == assign.back():
  *                 tmp = list(key)
  */
-      __pyx_t_16 = PyList_GET_SIZE(__pyx_v_assign); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_16 = PyList_GET_SIZE(__pyx_v_assign); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 185, __pyx_L1_error)
       __pyx_t_10 = ((__pyx_t_16 == 0) != 0);
       if (!__pyx_t_10) {
       } else {
         __pyx_t_11 = __pyx_t_10;
         goto __pyx_L14_bool_binop_done;
       }
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_assign, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_assign, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = PyObject_RichCompare(__pyx_t_12, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_7 = PyObject_RichCompare(__pyx_t_12, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_11 = __pyx_t_10;
       __pyx_L14_bool_binop_done:;
       if (__pyx_t_11) {
 
-        /* "e_step/cinference.pyx":170
+        /* "e_step/cinference.pyx":187
  *             if len(assign) == 0 or map[key][2] == assign[-1]:
  *             # if assign.size() == 0 or map[key][2] == assign.back():
  *                 tmp = list(key)             # <<<<<<<<<<<<<<
  * 
  *                 if newWordIdx < len(stcW):
  */
-        __pyx_t_7 = PySequence_List(__pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_7 = PySequence_List(__pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 187, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_XDECREF_SET(__pyx_v_tmp, ((PyObject*)__pyx_t_7));
         __pyx_t_7 = 0;
 
-        /* "e_step/cinference.pyx":172
+        /* "e_step/cinference.pyx":189
  *                 tmp = list(key)
  * 
  *                 if newWordIdx < len(stcW):             # <<<<<<<<<<<<<<
  *                     for k in range(stcW[newWordIdx].senseNum):
  *                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
  */
-        __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 172, __pyx_L1_error)
+        __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 189, __pyx_L1_error)
         __pyx_t_11 = ((__pyx_v_newWordIdx < __pyx_t_16) != 0);
         if (__pyx_t_11) {
 
-          /* "e_step/cinference.pyx":173
+          /* "e_step/cinference.pyx":190
  * 
  *                 if newWordIdx < len(stcW):
  *                     for k in range(stcW[newWordIdx].senseNum):             # <<<<<<<<<<<<<<
  *                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
  *                         lossList.append(map[key][1])
  */
-          __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_newWordIdx, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 173, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_newWordIdx, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 190, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_senseNum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_17 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_17 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
+          __pyx_t_17 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_17 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 190, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_17; __pyx_t_15+=1) {
             __pyx_v_k = __pyx_t_15;
 
-            /* "e_step/cinference.pyx":174
+            /* "e_step/cinference.pyx":191
  *                 if newWordIdx < len(stcW):
  *                     for k in range(stcW[newWordIdx].senseNum):
  *                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])             # <<<<<<<<<<<<<<
  *                         lossList.append(map[key][1])
  *                         prevAssignList.append(map[key][0])
  */
-            __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_newWordIdx, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_stcW, __pyx_v_newWordIdx, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_senseStart); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_12 = PyNumber_Add(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_12 = PyNumber_Add(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_GIVEREF(__pyx_t_12);
             PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_12);
             __pyx_t_12 = 0;
-            __pyx_t_12 = PyNumber_Add(__pyx_v_tmp, __pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_12 = PyNumber_Add(__pyx_v_tmp, __pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_assignList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 174, __pyx_L1_error)
+            __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_assignList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 191, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-            /* "e_step/cinference.pyx":175
+            /* "e_step/cinference.pyx":192
  *                     for k in range(stcW[newWordIdx].senseNum):
  *                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
  *                         lossList.append(map[key][1])             # <<<<<<<<<<<<<<
  *                         prevAssignList.append(map[key][0])
  *                         # lossList.push_back(map[key][1])
  */
-            __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 175, __pyx_L1_error)
+            __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 192, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
-            __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_12, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_12, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-            __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_lossList, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 175, __pyx_L1_error)
+            __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_lossList, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 192, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "e_step/cinference.pyx":176
+            /* "e_step/cinference.pyx":193
  *                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
  *                         lossList.append(map[key][1])
  *                         prevAssignList.append(map[key][0])             # <<<<<<<<<<<<<<
  *                         # lossList.push_back(map[key][1])
  *                         # prevAssignList.push_back(map[key][0])
  */
-            __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 176, __pyx_L1_error)
+            __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 193, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_prevAssignList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 176, __pyx_L1_error)
+            __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_prevAssignList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 193, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           }
 
-          /* "e_step/cinference.pyx":172
+          /* "e_step/cinference.pyx":189
  *                 tmp = list(key)
  * 
  *                 if newWordIdx < len(stcW):             # <<<<<<<<<<<<<<
@@ -3246,7 +3215,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
           goto __pyx_L16;
         }
 
-        /* "e_step/cinference.pyx":180
+        /* "e_step/cinference.pyx":197
  *                         # prevAssignList.push_back(map[key][0])
  *                 else:
  *                     assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))             # <<<<<<<<<<<<<<
@@ -3254,41 +3223,41 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  *                     prevAssignList.append(map[key][0])
  */
         /*else*/ {
-          __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_7 = PyNumber_Subtract(__pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_7 = PyNumber_Subtract(__pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_12 = __Pyx_PyInt_SubtractObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyInt_SubtractObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 180, __pyx_L1_error)
-          __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_16); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 197, __pyx_L1_error)
+          __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_16); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_1 = PyNumber_Add(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_1 = PyNumber_Add(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_16 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_16 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_16 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_v_tmp, 0, __pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_v_tmp, 0, __pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_7 = PyObject_GetItem(__pyx_v_tmp, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetItem(__pyx_v_tmp, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 180, __pyx_L1_error)
-          __pyx_t_12 = PyList_New(1 * ((((__pyx_v_newWordIdx - __pyx_t_16) + 1)<0) ? 0:((__pyx_v_newWordIdx - __pyx_t_16) + 1))); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_16 = PyObject_Length(__pyx_v_stcW); if (unlikely(__pyx_t_16 == -1)) __PYX_ERR(0, 197, __pyx_L1_error)
+          __pyx_t_12 = PyList_New(1 * ((((__pyx_v_newWordIdx - __pyx_t_16) + 1)<0) ? 0:((__pyx_v_newWordIdx - __pyx_t_16) + 1))); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           { Py_ssize_t __pyx_temp;
             for (__pyx_temp=0; __pyx_temp < ((__pyx_v_newWordIdx - __pyx_t_16) + 1); __pyx_temp++) {
@@ -3298,46 +3267,46 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
             }
           }
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_7 = PyNumber_Add(__pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_7 = PyNumber_Add(__pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_assignList, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 180, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_assignList, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 197, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "e_step/cinference.pyx":181
+          /* "e_step/cinference.pyx":198
  *                 else:
  *                     assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
  *                     lossList.append(map[key][1])             # <<<<<<<<<<<<<<
  *                     prevAssignList.append(map[key][0])
  *                     # lossList.push_back(map[key][1])
  */
-          __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 198, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 198, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_lossList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_lossList, __pyx_t_12); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 198, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-          /* "e_step/cinference.pyx":182
+          /* "e_step/cinference.pyx":199
  *                     assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
  *                     lossList.append(map[key][1])
  *                     prevAssignList.append(map[key][0])             # <<<<<<<<<<<<<<
  *                     # lossList.push_back(map[key][1])
  *                     # prevAssignList.push_back(map[key][0])
  */
-          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 182, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 199, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_12, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 182, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_12, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_prevAssignList, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 182, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_prevAssignList, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 199, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
         __pyx_L16:;
 
-        /* "e_step/cinference.pyx":168
+        /* "e_step/cinference.pyx":185
  *         # prevAssignList.clear()
  *         for key in map:
  *             if len(assign) == 0 or map[key][2] == assign[-1]:             # <<<<<<<<<<<<<<
@@ -3348,16 +3317,16 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":186
+    /* "e_step/cinference.pyx":203
  *                     # prevAssignList.push_back(map[key][0])
  * 
  *         end = time.time()             # <<<<<<<<<<<<<<
  *         parseMapTime += (end - start)
  * 
  */
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 186, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 203, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 186, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 203, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -3371,42 +3340,42 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       }
     }
     if (__pyx_t_7) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 203, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
-      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 203, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF_SET(__pyx_v_end, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "e_step/cinference.pyx":187
+    /* "e_step/cinference.pyx":204
  * 
  *         end = time.time()
  *         parseMapTime += (end - start)             # <<<<<<<<<<<<<<
  * 
  *     # print("Building map time:", mapTime)
  */
-    __pyx_t_3 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 204, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_12 = PyNumber_InPlaceAdd(__pyx_v_parseMapTime, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __pyx_t_12 = PyNumber_InPlaceAdd(__pyx_v_parseMapTime, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 204, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_parseMapTime, __pyx_t_12);
     __pyx_t_12 = 0;
   }
 
-  /* "e_step/cinference.pyx":191
+  /* "e_step/cinference.pyx":208
  *     # print("Building map time:", mapTime)
  *     # print("Parsing map time:", parseMapTime)
  *     start = time.time()             # <<<<<<<<<<<<<<
  * 
  *     minLoss = float('inf')
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -3420,27 +3389,27 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 191, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 208, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_12 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 191, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 208, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_XDECREF_SET(__pyx_v_start, __pyx_t_12);
   __pyx_t_12 = 0;
 
-  /* "e_step/cinference.pyx":193
+  /* "e_step/cinference.pyx":210
  *     start = time.time()
  * 
  *     minLoss = float('inf')             # <<<<<<<<<<<<<<
  *     tmpMinLossIdx = 0
  *     for key in map:
  */
-  __pyx_t_6 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
   __pyx_v_minLoss = __pyx_t_6;
 
-  /* "e_step/cinference.pyx":194
+  /* "e_step/cinference.pyx":211
  * 
  *     minLoss = float('inf')
  *     tmpMinLossIdx = 0             # <<<<<<<<<<<<<<
@@ -3450,7 +3419,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_tmpMinLossIdx = __pyx_int_0;
 
-  /* "e_step/cinference.pyx":195
+  /* "e_step/cinference.pyx":212
  *     minLoss = float('inf')
  *     tmpMinLossIdx = 0
  *     for key in map:             # <<<<<<<<<<<<<<
@@ -3458,7 +3427,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
  *             minLoss = map[key][1]
  */
   __pyx_t_2 = 0;
-  __pyx_t_7 = __Pyx_dict_iterator(__pyx_v_map, 1, ((PyObject *)NULL), (&__pyx_t_14), (&__pyx_t_5)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_dict_iterator(__pyx_v_map, 1, ((PyObject *)NULL), (&__pyx_t_14), (&__pyx_t_5)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_12);
   __pyx_t_12 = __pyx_t_7;
@@ -3466,49 +3435,49 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   while (1) {
     __pyx_t_9 = __Pyx_dict_iter_next(__pyx_t_12, __pyx_t_14, &__pyx_t_2, &__pyx_t_7, NULL, NULL, __pyx_t_5);
     if (unlikely(__pyx_t_9 == 0)) break;
-    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 195, __pyx_L1_error)
+    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "e_step/cinference.pyx":196
+    /* "e_step/cinference.pyx":213
  *     tmpMinLossIdx = 0
  *     for key in map:
  *         if map[key][1] < minLoss:             # <<<<<<<<<<<<<<
  *             minLoss = map[key][1]
  *             tmpMinLossIdx = key
  */
-    __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_minLoss); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_minLoss); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_7, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_7, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_11) {
 
-      /* "e_step/cinference.pyx":197
+      /* "e_step/cinference.pyx":214
  *     for key in map:
  *         if map[key][1] < minLoss:
  *             minLoss = map[key][1]             # <<<<<<<<<<<<<<
  *             tmpMinLossIdx = key
  * 
  */
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 214, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 214, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_v_minLoss = __pyx_t_6;
 
-      /* "e_step/cinference.pyx":198
+      /* "e_step/cinference.pyx":215
  *         if map[key][1] < minLoss:
  *             minLoss = map[key][1]
  *             tmpMinLossIdx = key             # <<<<<<<<<<<<<<
@@ -3518,7 +3487,7 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
       __Pyx_INCREF(__pyx_v_key);
       __Pyx_DECREF_SET(__pyx_v_tmpMinLossIdx, __pyx_v_key);
 
-      /* "e_step/cinference.pyx":196
+      /* "e_step/cinference.pyx":213
  *     tmpMinLossIdx = 0
  *     for key in map:
  *         if map[key][1] < minLoss:             # <<<<<<<<<<<<<<
@@ -3529,53 +3498,53 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   }
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-  /* "e_step/cinference.pyx":200
+  /* "e_step/cinference.pyx":217
  *             tmpMinLossIdx = key
  * 
  *     assign.append(map[tmpMinLossIdx][0])             # <<<<<<<<<<<<<<
  *     assign.extend(list(tmpMinLossIdx)[:opt.windowSize])
  * 
  */
-  __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_tmpMinLossIdx); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyDict_GetItem(__pyx_v_map, __pyx_v_tmpMinLossIdx); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_12, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_12, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-  __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_7); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "e_step/cinference.pyx":201
+  /* "e_step/cinference.pyx":218
  * 
  *     assign.append(map[tmpMinLossIdx][0])
  *     assign.extend(list(tmpMinLossIdx)[:opt.windowSize])             # <<<<<<<<<<<<<<
  * 
  *     end = time.time()
  */
-  __pyx_t_7 = PySequence_List(__pyx_v_tmpMinLossIdx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_7 = PySequence_List(__pyx_v_tmpMinLossIdx); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_opt); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_windowSize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-  __pyx_t_14 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_14 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_14 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_t_7, 0, __pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_t_7, 0, __pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_13 = __Pyx_PyList_Extend(__pyx_v_assign, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyList_Extend(__pyx_v_assign, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":203
+  /* "e_step/cinference.pyx":220
  *     assign.extend(list(tmpMinLossIdx)[:opt.windowSize])
  * 
  *     end = time.time()             # <<<<<<<<<<<<<<
  *     # print("Tail time:", end - start)
  * 
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -3589,27 +3558,37 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
     }
   }
   if (__pyx_t_7) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __Pyx_XDECREF_SET(__pyx_v_end, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":105
+  /* "e_step/cinference.pyx":226
+ *     # for i in list(tmpMinLossIdx)[:opt.windowSize]:
+ *     #     assign.push_back(i)
+ *     return assign             # <<<<<<<<<<<<<<
  * 
  * 
- * cdef inferenceOneStc(stcW, lossTable, assignList):             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_assign);
+  __pyx_r = __pyx_v_assign;
+  goto __pyx_L0;
+
+  /* "e_step/cinference.pyx":122
+ * 
+ * 
+ * cpdef inferenceOneStc(stcW, lossTable, assignList):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int j
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_3);
@@ -3637,7 +3616,97 @@ static PyObject *__pyx_f_6e_step_10cinference_inferenceOneStc(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-/* "e_step/cinference.pyx":211
+/* Python wrapper */
+static PyObject *__pyx_pw_6e_step_10cinference_1inferenceOneStc(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6e_step_10cinference_1inferenceOneStc(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_stcW = 0;
+  PyObject *__pyx_v_lossTable = 0;
+  PyObject *__pyx_v_assignList = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("inferenceOneStc (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_stcW,&__pyx_n_s_lossTable,&__pyx_n_s_assignList,0};
+    PyObject* values[3] = {0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_stcW)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lossTable)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("inferenceOneStc", 1, 3, 3, 1); __PYX_ERR(0, 122, __pyx_L3_error)
+        }
+        case  2:
+        if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_assignList)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("inferenceOneStc", 1, 3, 3, 2); __PYX_ERR(0, 122, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "inferenceOneStc") < 0)) __PYX_ERR(0, 122, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+    }
+    __pyx_v_stcW = values[0];
+    __pyx_v_lossTable = values[1];
+    __pyx_v_assignList = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("inferenceOneStc", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 122, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("e_step.cinference.inferenceOneStc", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6e_step_10cinference_inferenceOneStc(__pyx_self, __pyx_v_stcW, __pyx_v_lossTable, __pyx_v_assignList);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6e_step_10cinference_inferenceOneStc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_stcW, PyObject *__pyx_v_lossTable, PyObject *__pyx_v_assignList) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("inferenceOneStc", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_6e_step_10cinference_inferenceOneStc(__pyx_v_stcW, __pyx_v_lossTable, __pyx_v_assignList, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("e_step.cinference.inferenceOneStc", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "e_step/cinference.pyx":229
  * 
  * 
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):             # <<<<<<<<<<<<<<
@@ -3678,21 +3747,21 @@ static PyObject *__pyx_pw_6e_step_10cinference_3batchDPInference(PyObject *__pyx
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_sess)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 1); __PYX_ERR(0, 211, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 1); __PYX_ERR(0, 229, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_windowLossGraph)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 2); __PYX_ERR(0, 211, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 2); __PYX_ERR(0, 229, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_window)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 3); __PYX_ERR(0, 211, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, 3); __PYX_ERR(0, 229, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "batchDPInference") < 0)) __PYX_ERR(0, 211, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "batchDPInference") < 0)) __PYX_ERR(0, 229, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -3709,7 +3778,7 @@ static PyObject *__pyx_pw_6e_step_10cinference_3batchDPInference(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 211, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("batchDPInference", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 229, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("e_step.cinference.batchDPInference", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3728,190 +3797,147 @@ static PyObject *__pyx_pf_6e_step_10cinference_2batchDPInference(CYTHON_UNUSED P
   PyObject *__pyx_v_starts = NULL;
   PyObject *__pyx_v_ends = NULL;
   PyObject *__pyx_v_lossTable = NULL;
-  PyObject *__pyx_v_start = NULL;
-  Py_ssize_t __pyx_v_i;
+  PyObject *__pyx_v_stcW = NULL;
   PyObject *__pyx_v_a = NULL;
   PyObject *__pyx_v_b = NULL;
-  PyObject *__pyx_v_end = NULL;
   PyObject *__pyx_v_loss = NULL;
+  Py_ssize_t __pyx_v_i;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  Py_ssize_t __pyx_t_4;
-  Py_ssize_t __pyx_t_5;
+  Py_ssize_t __pyx_t_2;
+  PyObject *(*__pyx_t_3)(PyObject *);
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
   PyObject *__pyx_t_7 = NULL;
   PyObject *(*__pyx_t_8)(PyObject *);
   Py_ssize_t __pyx_t_9;
   int __pyx_t_10;
   Py_ssize_t __pyx_t_11;
+  Py_ssize_t __pyx_t_12;
   __Pyx_RefNannySetupContext("batchDPInference", 0);
 
-  /* "e_step/cinference.pyx":212
+  /* "e_step/cinference.pyx":230
  * 
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):
  *     assignList = []             # <<<<<<<<<<<<<<
  *     assign = []
  *     starts = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_assignList = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":213
+  /* "e_step/cinference.pyx":231
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):
  *     assignList = []
  *     assign = []             # <<<<<<<<<<<<<<
  *     starts = []
  *     ends = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_assign = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":214
+  /* "e_step/cinference.pyx":232
  *     assignList = []
  *     assign = []
  *     starts = []             # <<<<<<<<<<<<<<
  *     ends = []
  *     lossTable = {}
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_starts = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":215
+  /* "e_step/cinference.pyx":233
  *     assign = []
  *     starts = []
  *     ends = []             # <<<<<<<<<<<<<<
  *     lossTable = {}
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ends = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":216
+  /* "e_step/cinference.pyx":234
  *     starts = []
  *     ends = []
  *     lossTable = {}             # <<<<<<<<<<<<<<
  * 
- *     start = time.time()
+ *     # start = time.time()
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_lossTable = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "e_step/cinference.pyx":218
- *     lossTable = {}
+  /* "e_step/cinference.pyx":239
  * 
- *     start = time.time()             # <<<<<<<<<<<<<<
- * 
- *     for i in range(len(batchStcW)):
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_start = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "e_step/cinference.pyx":220
- *     start = time.time()
- * 
- *     for i in range(len(batchStcW)):             # <<<<<<<<<<<<<<
- *         a, b = dpgetAllWindows(batchStcW[i])
+ *     # for a, b in pool.map(dpgetAllWindows, batchStcW):
+ *     for stcW in batchStcW:             # <<<<<<<<<<<<<<
+ *         a, b = dpgetAllWindows(stcW)
  *         starts.append(len(assignList))
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_batchStcW); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 220, __pyx_L1_error)
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+  if (likely(PyList_CheckExact(__pyx_v_batchStcW)) || PyTuple_CheckExact(__pyx_v_batchStcW)) {
+    __pyx_t_1 = __pyx_v_batchStcW; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
+    __pyx_t_3 = NULL;
+  } else {
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_batchStcW); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_3)) {
+      if (likely(PyList_CheckExact(__pyx_t_1))) {
+        if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        #endif
+      } else {
+        if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        #endif
+      }
+    } else {
+      __pyx_t_4 = __pyx_t_3(__pyx_t_1);
+      if (unlikely(!__pyx_t_4)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 239, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_4);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_stcW, __pyx_t_4);
+    __pyx_t_4 = 0;
 
-    /* "e_step/cinference.pyx":221
- * 
- *     for i in range(len(batchStcW)):
- *         a, b = dpgetAllWindows(batchStcW[i])             # <<<<<<<<<<<<<<
+    /* "e_step/cinference.pyx":240
+ *     # for a, b in pool.map(dpgetAllWindows, batchStcW):
+ *     for stcW in batchStcW:
+ *         a, b = dpgetAllWindows(stcW)             # <<<<<<<<<<<<<<
  *         starts.append(len(assignList))
  *         ends.append(b + starts[-1])
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_dpgetAllWindows); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 221, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_batchStcW, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_6)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
-      }
-    }
-    if (!__pyx_t_6) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
-    } else {
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_3)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_2};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_2};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      } else
-      #endif
-      {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 221, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_2);
-        __pyx_t_2 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      }
-    }
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
-      PyObject* sequence = __pyx_t_1;
+    __pyx_t_4 = __pyx_f_6e_step_10cinference_dpgetAllWindows(__pyx_v_stcW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
+      PyObject* sequence = __pyx_t_4;
       #if !CYTHON_COMPILING_IN_PYPY
       Py_ssize_t size = Py_SIZE(sequence);
       #else
@@ -3920,508 +3946,208 @@ static PyObject *__pyx_pf_6e_step_10cinference_2batchDPInference(CYTHON_UNUSED P
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 221, __pyx_L1_error)
+        __PYX_ERR(0, 240, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
-        __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-        __pyx_t_7 = PyTuple_GET_ITEM(sequence, 1); 
+        __pyx_t_5 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyTuple_GET_ITEM(sequence, 1); 
       } else {
-        __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
-        __pyx_t_7 = PyList_GET_ITEM(sequence, 1); 
+        __pyx_t_5 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyList_GET_ITEM(sequence, 1); 
       }
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_7);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 221, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 221, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
       #endif
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext;
-      index = 0; __pyx_t_3 = __pyx_t_8(__pyx_t_2); if (unlikely(!__pyx_t_3)) goto __pyx_L5_unpacking_failed;
-      __Pyx_GOTREF(__pyx_t_3);
-      index = 1; __pyx_t_7 = __pyx_t_8(__pyx_t_2); if (unlikely(!__pyx_t_7)) goto __pyx_L5_unpacking_failed;
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_2), 2) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
+      index = 0; __pyx_t_5 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_5)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_5);
+      index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_6);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 240, __pyx_L1_error)
       __pyx_t_8 = NULL;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
       __pyx_L5_unpacking_failed:;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 221, __pyx_L1_error)
+      __PYX_ERR(0, 240, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
-    __Pyx_XDECREF_SET(__pyx_v_a, __pyx_t_3);
-    __pyx_t_3 = 0;
-    __Pyx_XDECREF_SET(__pyx_v_b, __pyx_t_7);
-    __pyx_t_7 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_a, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_b, __pyx_t_6);
+    __pyx_t_6 = 0;
 
-    /* "e_step/cinference.pyx":222
- *     for i in range(len(batchStcW)):
- *         a, b = dpgetAllWindows(batchStcW[i])
+    /* "e_step/cinference.pyx":241
+ *     for stcW in batchStcW:
+ *         a, b = dpgetAllWindows(stcW)
  *         starts.append(len(assignList))             # <<<<<<<<<<<<<<
  *         ends.append(b + starts[-1])
  *         assignList.extend(a)
  */
-    __pyx_t_9 = PyList_GET_SIZE(__pyx_v_assignList); if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 222, __pyx_L1_error)
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_starts, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 222, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_9 = PyList_GET_SIZE(__pyx_v_assignList); if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 241, __pyx_L1_error)
+    __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_starts, __pyx_t_4); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 241, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "e_step/cinference.pyx":223
- *         a, b = dpgetAllWindows(batchStcW[i])
+    /* "e_step/cinference.pyx":242
+ *         a, b = dpgetAllWindows(stcW)
  *         starts.append(len(assignList))
  *         ends.append(b + starts[-1])             # <<<<<<<<<<<<<<
  *         assignList.extend(a)
  * 
  */
-    __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_starts, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = PyNumber_Add(__pyx_v_b, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 223, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_ends, __pyx_t_7); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 223, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_4 = __Pyx_GetItemInt_List(__pyx_v_starts, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_6 = PyNumber_Add(__pyx_v_b, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_ends, __pyx_t_6); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "e_step/cinference.pyx":224
+    /* "e_step/cinference.pyx":243
  *         starts.append(len(assignList))
  *         ends.append(b + starts[-1])
  *         assignList.extend(a)             # <<<<<<<<<<<<<<
  * 
- *     end = time.time()
+ *     # end = time.time()
  */
-    __pyx_t_10 = __Pyx_PyList_Extend(__pyx_v_assignList, __pyx_v_a); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 224, __pyx_L1_error)
-  }
+    __pyx_t_10 = __Pyx_PyList_Extend(__pyx_v_assignList, __pyx_v_a); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 243, __pyx_L1_error)
 
-  /* "e_step/cinference.pyx":226
- *         assignList.extend(a)
+    /* "e_step/cinference.pyx":239
  * 
- *     end = time.time()             # <<<<<<<<<<<<<<
- *     print("Build assignList time:", end - start)
- *     start = time.time()
+ *     # for a, b in pool.map(dpgetAllWindows, batchStcW):
+ *     for stcW in batchStcW:             # <<<<<<<<<<<<<<
+ *         a, b = dpgetAllWindows(stcW)
+ *         starts.append(len(assignList))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (__pyx_t_1) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 226, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  } else {
-    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 226, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_end = __pyx_t_7;
-  __pyx_t_7 = 0;
 
-  /* "e_step/cinference.pyx":227
- * 
- *     end = time.time()
- *     print("Build assignList time:", end - start)             # <<<<<<<<<<<<<<
- *     start = time.time()
- * 
- */
-  __pyx_t_7 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 227, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_INCREF(__pyx_kp_s_Build_assignList_time);
-  __Pyx_GIVEREF(__pyx_kp_s_Build_assignList_time);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_s_Build_assignList_time);
-  __Pyx_GIVEREF(__pyx_t_7);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_7);
-  __pyx_t_7 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 227, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "e_step/cinference.pyx":228
- *     end = time.time()
- *     print("Build assignList time:", end - start)
- *     start = time.time()             # <<<<<<<<<<<<<<
- * 
- *     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
- */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (__pyx_t_7) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF_SET(__pyx_v_start, __pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "e_step/cinference.pyx":230
- *     start = time.time()
+  /* "e_step/cinference.pyx":249
+ *     # start = time.time()
  * 
  *     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})             # <<<<<<<<<<<<<<
  * 
- *     end = time.time()
+ *     # end = time.time()
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sess, __pyx_n_s_run); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sess, __pyx_n_s_run); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_v_windowLossGraph);
   __Pyx_GIVEREF(__pyx_v_windowLossGraph);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_windowLossGraph);
-  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_v_window, __pyx_v_assignList) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_feed_dict, __pyx_t_2) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_windowLossGraph);
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_v_window, __pyx_v_assignList) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_feed_dict, __pyx_t_5) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_v_loss = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_loss = __pyx_t_5;
+  __pyx_t_5 = 0;
 
-  /* "e_step/cinference.pyx":232
- *     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
- * 
- *     end = time.time()             # <<<<<<<<<<<<<<
- *     print("Calculate time:", end - start)
- *     start = time.time()
- */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 232, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (__pyx_t_7) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF_SET(__pyx_v_end, __pyx_t_2);
-  __pyx_t_2 = 0;
-
-  /* "e_step/cinference.pyx":233
- * 
- *     end = time.time()
- *     print("Calculate time:", end - start)             # <<<<<<<<<<<<<<
- *     start = time.time()
- * 
- */
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_kp_s_Calculate_time);
-  __Pyx_GIVEREF(__pyx_kp_s_Calculate_time);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_s_Calculate_time);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
-  __pyx_t_2 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 233, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "e_step/cinference.pyx":234
- *     end = time.time()
- *     print("Calculate time:", end - start)
- *     start = time.time()             # <<<<<<<<<<<<<<
- * 
- *     for i in range(len(loss)):
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
-    }
-  }
-  if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_DECREF_SET(__pyx_v_start, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "e_step/cinference.pyx":236
- *     start = time.time()
+  /* "e_step/cinference.pyx":255
+ *     # start = time.time()
  * 
  *     for i in range(len(loss)):             # <<<<<<<<<<<<<<
  *         lossTable[tuple(assignList[i])] = loss[i]
  * 
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_loss); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 236, __pyx_L1_error)
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+  __pyx_t_2 = PyObject_Length(__pyx_v_loss); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 255, __pyx_L1_error)
+  for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_2; __pyx_t_9+=1) {
+    __pyx_v_i = __pyx_t_9;
 
-    /* "e_step/cinference.pyx":237
+    /* "e_step/cinference.pyx":256
  * 
  *     for i in range(len(loss)):
  *         lossTable[tuple(assignList[i])] = loss[i]             # <<<<<<<<<<<<<<
  * 
- *     end = time.time()
+ *     # end = time.time()
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_loss, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_GetItemInt_List(__pyx_v_assignList, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 237, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_2 = PySequence_Tuple(__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_lossTable, __pyx_t_2, __pyx_t_1) < 0)) __PYX_ERR(0, 237, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_loss, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = __Pyx_GetItemInt_List(__pyx_v_assignList, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_6 = PySequence_Tuple(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(PyDict_SetItem(__pyx_v_lossTable, __pyx_t_6, __pyx_t_5) < 0)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
 
-  /* "e_step/cinference.pyx":239
- *         lossTable[tuple(assignList[i])] = loss[i]
- * 
- *     end = time.time()             # <<<<<<<<<<<<<<
- *     print("Build lossTable time:", end - start)
- *     start = time.time()
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
-    }
-  }
-  if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_DECREF_SET(__pyx_v_end, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "e_step/cinference.pyx":240
- * 
- *     end = time.time()
- *     print("Build lossTable time:", end - start)             # <<<<<<<<<<<<<<
- *     start = time.time()
- * 
- */
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_INCREF(__pyx_kp_s_Build_lossTable_time);
-  __Pyx_GIVEREF(__pyx_kp_s_Build_lossTable_time);
-  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_kp_s_Build_lossTable_time);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_1);
-  __pyx_t_1 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 240, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "e_step/cinference.pyx":241
- *     end = time.time()
- *     print("Build lossTable time:", end - start)
- *     start = time.time()             # <<<<<<<<<<<<<<
- * 
- *     for i in range(len(batchStcW)):
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  if (__pyx_t_1) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 241, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  } else {
-    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 241, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF_SET(__pyx_v_start, __pyx_t_7);
-  __pyx_t_7 = 0;
-
-  /* "e_step/cinference.pyx":243
- *     start = time.time()
+  /* "e_step/cinference.pyx":262
+ *     # start = time.time()
  * 
  *     for i in range(len(batchStcW)):             # <<<<<<<<<<<<<<
  *         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
  * 
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_batchStcW); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 243, __pyx_L1_error)
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+  __pyx_t_2 = PyObject_Length(__pyx_v_batchStcW); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 262, __pyx_L1_error)
+  for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_2; __pyx_t_9+=1) {
+    __pyx_v_i = __pyx_t_9;
 
-    /* "e_step/cinference.pyx":244
+    /* "e_step/cinference.pyx":263
  * 
  *     for i in range(len(batchStcW)):
  *         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))             # <<<<<<<<<<<<<<
  * 
- *     end = time.time()
+ *     # end = time.time()
  */
-    __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_batchStcW, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_2 = __Pyx_GetItemInt_List(__pyx_v_starts, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_9 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_9 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_GetItemInt_List(__pyx_v_ends, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_11 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_11 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyList_GetSlice(__pyx_v_assignList, __pyx_t_9, __pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_f_6e_step_10cinference_inferenceOneStc(__pyx_t_7, __pyx_v_lossTable, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_batchStcW, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = __Pyx_GetItemInt_List(__pyx_v_starts, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_11 = __Pyx_PyIndex_AsSsize_t(__pyx_t_6); if (unlikely((__pyx_t_11 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_GetItemInt_List(__pyx_v_ends, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_6); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_assignList, __pyx_t_11, __pyx_t_12); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_4 = __pyx_f_6e_step_10cinference_inferenceOneStc(__pyx_t_5, __pyx_v_lossTable, __pyx_t_6, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_assign, __pyx_t_4); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "e_step/cinference.pyx":246
- *         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
- * 
- *     end = time.time()             # <<<<<<<<<<<<<<
- *     print("Real inference time:", end - start)
- * 
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 246, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
-    }
-  }
-  if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_DECREF_SET(__pyx_v_end, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "e_step/cinference.pyx":247
- * 
- *     end = time.time()
- *     print("Real inference time:", end - start)             # <<<<<<<<<<<<<<
- * 
- *     return assign
- */
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_end, __pyx_v_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_INCREF(__pyx_kp_s_Real_inference_time);
-  __Pyx_GIVEREF(__pyx_kp_s_Real_inference_time);
-  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_kp_s_Real_inference_time);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_1);
-  __pyx_t_1 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "e_step/cinference.pyx":249
- *     print("Real inference time:", end - start)
+  /* "e_step/cinference.pyx":276
+ *     # print("Multi Process Real inference time:", end - start)
  * 
  *     return assign             # <<<<<<<<<<<<<<
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_assign);
   __pyx_r = __pyx_v_assign;
   goto __pyx_L0;
 
-  /* "e_step/cinference.pyx":211
+  /* "e_step/cinference.pyx":229
  * 
  * 
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):             # <<<<<<<<<<<<<<
@@ -4432,8 +4158,8 @@ static PyObject *__pyx_pf_6e_step_10cinference_2batchDPInference(CYTHON_UNUSED P
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("e_step.cinference.batchDPInference", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -4444,11 +4170,77 @@ static PyObject *__pyx_pf_6e_step_10cinference_2batchDPInference(CYTHON_UNUSED P
   __Pyx_XDECREF(__pyx_v_starts);
   __Pyx_XDECREF(__pyx_v_ends);
   __Pyx_XDECREF(__pyx_v_lossTable);
-  __Pyx_XDECREF(__pyx_v_start);
+  __Pyx_XDECREF(__pyx_v_stcW);
   __Pyx_XDECREF(__pyx_v_a);
   __Pyx_XDECREF(__pyx_v_b);
-  __Pyx_XDECREF(__pyx_v_end);
   __Pyx_XDECREF(__pyx_v_loss);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "e_step/cinference.pyx":279
+ * 
+ * 
+ * def inferenceHelper(arg):             # <<<<<<<<<<<<<<
+ *     return inferenceOneStc(*arg)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6e_step_10cinference_5inferenceHelper(PyObject *__pyx_self, PyObject *__pyx_v_arg); /*proto*/
+static PyMethodDef __pyx_mdef_6e_step_10cinference_5inferenceHelper = {"inferenceHelper", (PyCFunction)__pyx_pw_6e_step_10cinference_5inferenceHelper, METH_O, 0};
+static PyObject *__pyx_pw_6e_step_10cinference_5inferenceHelper(PyObject *__pyx_self, PyObject *__pyx_v_arg) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("inferenceHelper (wrapper)", 0);
+  __pyx_r = __pyx_pf_6e_step_10cinference_4inferenceHelper(__pyx_self, ((PyObject *)__pyx_v_arg));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6e_step_10cinference_4inferenceHelper(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arg) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  __Pyx_RefNannySetupContext("inferenceHelper", 0);
+
+  /* "e_step/cinference.pyx":280
+ * 
+ * def inferenceHelper(arg):
+ *     return inferenceOneStc(*arg)             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_inferenceOneStc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PySequence_Tuple(__pyx_v_arg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "e_step/cinference.pyx":279
+ * 
+ * 
+ * def inferenceHelper(arg):             # <<<<<<<<<<<<<<
+ *     return inferenceOneStc(*arg)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("e_step.cinference.inferenceHelper", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -4567,6 +4359,7 @@ static PyObject *__pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(const
 }
 
 static PyMethodDef __pyx_methods[] = {
+  {"inferenceOneStc", (PyCFunction)__pyx_pw_6e_step_10cinference_1inferenceOneStc, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -4589,58 +4382,46 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_Build_assignList_time, __pyx_k_Build_assignList_time, sizeof(__pyx_k_Build_assignList_time), 0, 0, 1, 0},
-  {&__pyx_kp_s_Build_lossTable_time, __pyx_k_Build_lossTable_time, sizeof(__pyx_k_Build_lossTable_time), 0, 0, 1, 0},
-  {&__pyx_kp_s_Calculate_time, __pyx_k_Calculate_time, sizeof(__pyx_k_Calculate_time), 0, 0, 1, 0},
+  {&__pyx_kp_s_NAS_Dataset_sense2gauss_e_step, __pyx_k_NAS_Dataset_sense2gauss_e_step, sizeof(__pyx_k_NAS_Dataset_sense2gauss_e_step), 0, 0, 1, 0},
   {&__pyx_n_s_Options, __pyx_k_Options, sizeof(__pyx_k_Options), 0, 0, 1, 1},
-  {&__pyx_kp_s_Real_inference_time, __pyx_k_Real_inference_time, sizeof(__pyx_k_Real_inference_time), 0, 0, 1, 0},
   {&__pyx_n_s_a, __pyx_k_a, sizeof(__pyx_k_a), 0, 0, 1, 1},
   {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
+  {&__pyx_n_s_arg, __pyx_k_arg, sizeof(__pyx_k_arg), 0, 0, 1, 1},
   {&__pyx_n_s_assign, __pyx_k_assign, sizeof(__pyx_k_assign), 0, 0, 1, 1},
   {&__pyx_n_s_assignList, __pyx_k_assignList, sizeof(__pyx_k_assignList), 0, 0, 1, 1},
   {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
   {&__pyx_n_s_batchDPInference, __pyx_k_batchDPInference, sizeof(__pyx_k_batchDPInference), 0, 0, 1, 1},
   {&__pyx_n_s_batchStcW, __pyx_k_batchStcW, sizeof(__pyx_k_batchStcW), 0, 0, 1, 1},
-  {&__pyx_n_s_dpgetAllWindows, __pyx_k_dpgetAllWindows, sizeof(__pyx_k_dpgetAllWindows), 0, 0, 1, 1},
   {&__pyx_n_s_e_step_cinference, __pyx_k_e_step_cinference, sizeof(__pyx_k_e_step_cinference), 0, 0, 1, 1},
-  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_ends, __pyx_k_ends, sizeof(__pyx_k_ends), 0, 0, 1, 1},
   {&__pyx_n_s_feed_dict, __pyx_k_feed_dict, sizeof(__pyx_k_feed_dict), 0, 0, 1, 1},
-  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
-  {&__pyx_n_s_firstWindowSize, __pyx_k_firstWindowSize, sizeof(__pyx_k_firstWindowSize), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_inf, __pyx_k_inf, sizeof(__pyx_k_inf), 0, 0, 1, 1},
-  {&__pyx_n_s_j, __pyx_k_j, sizeof(__pyx_k_j), 0, 0, 1, 1},
-  {&__pyx_n_s_k, __pyx_k_k, sizeof(__pyx_k_k), 0, 0, 1, 1},
+  {&__pyx_n_s_inferenceHelper, __pyx_k_inferenceHelper, sizeof(__pyx_k_inferenceHelper), 0, 0, 1, 1},
+  {&__pyx_n_s_inferenceOneStc, __pyx_k_inferenceOneStc, sizeof(__pyx_k_inferenceOneStc), 0, 0, 1, 1},
   {&__pyx_n_s_keys, __pyx_k_keys, sizeof(__pyx_k_keys), 0, 0, 1, 1},
   {&__pyx_n_s_loss, __pyx_k_loss, sizeof(__pyx_k_loss), 0, 0, 1, 1},
   {&__pyx_n_s_lossTable, __pyx_k_lossTable, sizeof(__pyx_k_lossTable), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
-  {&__pyx_kp_s_mnt_dataset_sense2gauss_e_step, __pyx_k_mnt_dataset_sense2gauss_e_step, sizeof(__pyx_k_mnt_dataset_sense2gauss_e_step), 0, 0, 1, 0},
   {&__pyx_n_s_opt, __pyx_k_opt, sizeof(__pyx_k_opt), 0, 0, 1, 1},
   {&__pyx_n_s_options, __pyx_k_options, sizeof(__pyx_k_options), 0, 0, 1, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_run, __pyx_k_run, sizeof(__pyx_k_run), 0, 0, 1, 1},
   {&__pyx_n_s_senseNum, __pyx_k_senseNum, sizeof(__pyx_k_senseNum), 0, 0, 1, 1},
   {&__pyx_n_s_senseStart, __pyx_k_senseStart, sizeof(__pyx_k_senseStart), 0, 0, 1, 1},
   {&__pyx_n_s_sess, __pyx_k_sess, sizeof(__pyx_k_sess), 0, 0, 1, 1},
-  {&__pyx_n_s_stack, __pyx_k_stack, sizeof(__pyx_k_stack), 0, 0, 1, 1},
-  {&__pyx_n_s_start, __pyx_k_start, sizeof(__pyx_k_start), 0, 0, 1, 1},
   {&__pyx_n_s_starts, __pyx_k_starts, sizeof(__pyx_k_starts), 0, 0, 1, 1},
   {&__pyx_n_s_stcW, __pyx_k_stcW, sizeof(__pyx_k_stcW), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_time, __pyx_k_time, sizeof(__pyx_k_time), 0, 0, 1, 1},
-  {&__pyx_n_s_tmpStack, __pyx_k_tmpStack, sizeof(__pyx_k_tmpStack), 0, 0, 1, 1},
   {&__pyx_n_s_window, __pyx_k_window, sizeof(__pyx_k_window), 0, 0, 1, 1},
   {&__pyx_n_s_windowLossGraph, __pyx_k_windowLossGraph, sizeof(__pyx_k_windowLossGraph), 0, 0, 1, 1},
   {&__pyx_n_s_windowSize, __pyx_k_windowSize, sizeof(__pyx_k_windowSize), 0, 0, 1, 1},
-  {&__pyx_n_s_windows, __pyx_k_windows, sizeof(__pyx_k_windows), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 21, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -4650,62 +4431,105 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "e_step/cinference.pyx":28
- *                 if len(k) == windowSize:
- *                     windows.append(k)
- *                     tmpStack.append(k[1:])             # <<<<<<<<<<<<<<
+  /* "e_step/cinference.pyx":37
+ *                         windows.append(tmp)
  * 
- *                     if i == 2 * opt.windowSize:
+ *                         if tuple(tmp[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                             tmpStack.append(tmp[1:])
+ *                             s.add(tuple(tmp[1:]))
  */
-  __pyx_slice_ = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_slice_ = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
 
-  /* "e_step/cinference.pyx":33
- *                         firstWindowSize += 1
- *                 else:
- *                     tmpStack.append(k[:])             # <<<<<<<<<<<<<<
+  /* "e_step/cinference.pyx":38
  * 
- *         stack = tmpStack
+ *                         if tuple(tmp[1:]) not in s:
+ *                             tmpStack.append(tmp[1:])             # <<<<<<<<<<<<<<
+ *                             s.add(tuple(tmp[1:]))
+ * 
  */
-  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_slice__2 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__2);
   __Pyx_GIVEREF(__pyx_slice__2);
 
-  /* "e_step/cinference.pyx":144
+  /* "e_step/cinference.pyx":39
+ *                         if tuple(tmp[1:]) not in s:
+ *                             tmpStack.append(tmp[1:])
+ *                             s.add(tuple(tmp[1:]))             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_slice__3 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__3);
+  __Pyx_GIVEREF(__pyx_slice__3);
+
+  /* "e_step/cinference.pyx":50
+ *                 windows.append(tmp)
+ * 
+ *                 if tuple(k[1:]) not in s:             # <<<<<<<<<<<<<<
+ *                     tmpStack.append(k[1:])
+ *                     s.add(tuple(k[1:]))
+ */
+  __pyx_slice__4 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__4);
+  __Pyx_GIVEREF(__pyx_slice__4);
+
+  /* "e_step/cinference.pyx":51
+ * 
+ *                 if tuple(k[1:]) not in s:
+ *                     tmpStack.append(k[1:])             # <<<<<<<<<<<<<<
+ *                     s.add(tuple(k[1:]))
+ * 
+ */
+  __pyx_slice__5 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__5)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__5);
+  __Pyx_GIVEREF(__pyx_slice__5);
+
+  /* "e_step/cinference.pyx":52
+ *                 if tuple(k[1:]) not in s:
+ *                     tmpStack.append(k[1:])
+ *                     s.add(tuple(k[1:]))             # <<<<<<<<<<<<<<
+ * 
+ *         stack = tmpStack
+ */
+  __pyx_slice__6 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__6);
+  __Pyx_GIVEREF(__pyx_slice__6);
+
+  /* "e_step/cinference.pyx":161
  *                 minLossIdx = j
  * 
  *             t = tuple(tmpAssign[1:])             # <<<<<<<<<<<<<<
  *             if t not in map.keys():
  *                 map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
  */
-  __pyx_slice__3 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_slice__3);
-  __Pyx_GIVEREF(__pyx_slice__3);
+  __pyx_slice__7 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__7)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__7);
+  __Pyx_GIVEREF(__pyx_slice__7);
 
-  /* "e_step/cinference.pyx":8
- * 
- * 
- * def dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
- *     stack = []
- *     tmpStack = []
- */
-  __pyx_tuple__4 = PyTuple_Pack(10, __pyx_n_s_stcW, __pyx_n_s_stack, __pyx_n_s_tmpStack, __pyx_n_s_windowSize, __pyx_n_s_windows, __pyx_n_s_firstWindowSize, __pyx_n_s_i, __pyx_n_s_senseStart, __pyx_n_s_k, __pyx_n_s_j); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_dataset_sense2gauss_e_step, __pyx_n_s_dpgetAllWindows, 8, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 8, __pyx_L1_error)
-
-  /* "e_step/cinference.pyx":211
+  /* "e_step/cinference.pyx":229
  * 
  * 
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):             # <<<<<<<<<<<<<<
  *     assignList = []
  *     assign = []
  */
-  __pyx_tuple__6 = PyTuple_Pack(15, __pyx_n_s_batchStcW, __pyx_n_s_sess, __pyx_n_s_windowLossGraph, __pyx_n_s_window, __pyx_n_s_assignList, __pyx_n_s_assign, __pyx_n_s_starts, __pyx_n_s_ends, __pyx_n_s_lossTable, __pyx_n_s_start, __pyx_n_s_i, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_end, __pyx_n_s_loss); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(4, 0, 15, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_dataset_sense2gauss_e_step, __pyx_n_s_batchDPInference, 211, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(14, __pyx_n_s_batchStcW, __pyx_n_s_sess, __pyx_n_s_windowLossGraph, __pyx_n_s_window, __pyx_n_s_assignList, __pyx_n_s_assign, __pyx_n_s_starts, __pyx_n_s_ends, __pyx_n_s_lossTable, __pyx_n_s_stcW, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_loss, __pyx_n_s_i); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 14, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_NAS_Dataset_sense2gauss_e_step, __pyx_n_s_batchDPInference, 229, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 229, __pyx_L1_error)
+
+  /* "e_step/cinference.pyx":279
+ * 
+ * 
+ * def inferenceHelper(arg):             # <<<<<<<<<<<<<<
+ *     return inferenceOneStc(*arg)
+ */
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_arg); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_NAS_Dataset_sense2gauss_e_step, __pyx_n_s_inferenceHelper, 279, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4850,28 +4674,27 @@ PyMODINIT_FUNC PyInit_cinference(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "e_step/cinference.pyx":8
- * 
- * 
- * def dpgetAllWindows(stcW):             # <<<<<<<<<<<<<<
- *     stack = []
- *     tmpStack = []
- */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_6e_step_10cinference_1dpgetAllWindows, NULL, __pyx_n_s_e_step_cinference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dpgetAllWindows, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "e_step/cinference.pyx":211
+  /* "e_step/cinference.pyx":229
  * 
  * 
  * def batchDPInference(batchStcW, sess, windowLossGraph, window):             # <<<<<<<<<<<<<<
  *     assignList = []
  *     assign = []
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_6e_step_10cinference_3batchDPInference, NULL, __pyx_n_s_e_step_cinference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_6e_step_10cinference_3batchDPInference, NULL, __pyx_n_s_e_step_cinference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_batchDPInference, __pyx_t_2) < 0) __PYX_ERR(0, 211, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_batchDPInference, __pyx_t_2) < 0) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "e_step/cinference.pyx":279
+ * 
+ * 
+ * def inferenceHelper(arg):             # <<<<<<<<<<<<<<
+ *     return inferenceOneStc(*arg)
+ */
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_6e_step_10cinference_5inferenceHelper, NULL, __pyx_n_s_e_step_cinference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_inferenceHelper, __pyx_t_2) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "e_step/cinference.pyx":1
@@ -5162,25 +4985,258 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
 }
 
-/* PyObjectCall */
-  #if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+/* SliceObject */
+  static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
+        Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
+        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
+#if CYTHON_USE_TYPE_SLOTS
+    PyMappingMethods* mp;
+#if PY_MAJOR_VERSION < 3
+    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
+    if (likely(ms && ms->sq_slice)) {
+        if (!has_cstart) {
+            if (_py_start && (*_py_start != Py_None)) {
+                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
+                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstart = 0;
+        }
+        if (!has_cstop) {
+            if (_py_stop && (*_py_stop != Py_None)) {
+                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
+                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstop = PY_SSIZE_T_MAX;
+        }
+        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
+            Py_ssize_t l = ms->sq_length(obj);
+            if (likely(l >= 0)) {
+                if (cstop < 0) {
+                    cstop += l;
+                    if (cstop < 0) cstop = 0;
+                }
+                if (cstart < 0) {
+                    cstart += l;
+                    if (cstart < 0) cstart = 0;
+                }
+            } else {
+                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                    goto bad;
+                PyErr_Clear();
+            }
+        }
+        return ms->sq_slice(obj, cstart, cstop);
     }
-    return result;
+#endif
+    mp = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(mp && mp->mp_subscript))
+#endif
+    {
+        PyObject* result;
+        PyObject *py_slice, *py_start, *py_stop;
+        if (_py_slice) {
+            py_slice = *_py_slice;
+        } else {
+            PyObject* owned_start = NULL;
+            PyObject* owned_stop = NULL;
+            if (_py_start) {
+                py_start = *_py_start;
+            } else {
+                if (has_cstart) {
+                    owned_start = py_start = PyInt_FromSsize_t(cstart);
+                    if (unlikely(!py_start)) goto bad;
+                } else
+                    py_start = Py_None;
+            }
+            if (_py_stop) {
+                py_stop = *_py_stop;
+            } else {
+                if (has_cstop) {
+                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
+                    if (unlikely(!py_stop)) {
+                        Py_XDECREF(owned_start);
+                        goto bad;
+                    }
+                } else
+                    py_stop = Py_None;
+            }
+            py_slice = PySlice_New(py_start, py_stop, Py_None);
+            Py_XDECREF(owned_start);
+            Py_XDECREF(owned_stop);
+            if (unlikely(!py_slice)) goto bad;
+        }
+#if CYTHON_USE_TYPE_SLOTS
+        result = mp->mp_subscript(obj, py_slice);
+#else
+        result = PyObject_GetItem(obj, py_slice);
+#endif
+        if (!_py_slice) {
+            Py_DECREF(py_slice);
+        }
+        return result;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
+bad:
+    return NULL;
+}
+
+/* PyIntBinop */
+  #if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long x;
+        long a = PyInt_AS_LONG(op1);
+            x = (long)((unsigned long)a - b);
+            if (likely((x^a) >= 0 || (x^~b) >= 0))
+                return PyInt_FromLong(x);
+            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        const long b = intval;
+        long a, x;
+#ifdef HAVE_LONG_LONG
+        const PY_LONG_LONG llb = intval;
+        PY_LONG_LONG lla, llx;
+#endif
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        if (likely(__Pyx_sst_abs(size) <= 1)) {
+            a = likely(size) ? digits[0] : 0;
+            if (size == -1) a = -a;
+        } else {
+            switch (size) {
+                case -2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case -3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case -4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+            }
+        }
+                x = a - b;
+            return PyLong_FromLong(x);
+#ifdef HAVE_LONG_LONG
+        long_long:
+                llx = lla - llb;
+            return PyLong_FromLongLong(llx);
+#endif
+        
+        
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+            double result;
+            PyFPE_START_PROTECT("subtract", return NULL)
+            result = ((double)a) - (double)b;
+            PyFPE_END_PROTECT(result)
+            return PyFloat_FromDouble(result);
+    }
+    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
 }
 #endif
+
+/* pyobject_as_double */
+  static double __Pyx__PyObject_AsDouble(PyObject* obj) {
+    PyObject* float_value;
+#if !CYTHON_USE_TYPE_SLOTS
+    float_value = PyNumber_Float(obj);  if (0) goto bad;
+#else
+    PyNumberMethods *nb = Py_TYPE(obj)->tp_as_number;
+    if (likely(nb) && likely(nb->nb_float)) {
+        float_value = nb->nb_float(obj);
+        if (likely(float_value) && unlikely(!PyFloat_Check(float_value))) {
+            PyErr_Format(PyExc_TypeError,
+                "__float__ returned non-float (type %.200s)",
+                Py_TYPE(float_value)->tp_name);
+            Py_DECREF(float_value);
+            goto bad;
+        }
+    } else if (PyUnicode_CheckExact(obj) || PyBytes_CheckExact(obj)) {
+#if PY_MAJOR_VERSION >= 3
+        float_value = PyFloat_FromString(obj);
+#else
+        float_value = PyFloat_FromString(obj, 0);
+#endif
+    } else {
+        PyObject* args = PyTuple_New(1);
+        if (unlikely(!args)) goto bad;
+        PyTuple_SET_ITEM(args, 0, obj);
+        float_value = PyObject_Call((PyObject*)&PyFloat_Type, args, 0);
+        PyTuple_SET_ITEM(args, 0, 0);
+        Py_DECREF(args);
+    }
+#endif
+    if (likely(float_value)) {
+        double value = PyFloat_AS_DOUBLE(float_value);
+        Py_DECREF(float_value);
+        return value;
+    }
+bad:
+    return (double)-1;
+}
 
 /* PyCFunctionFastCall */
   #if CYTHON_FAST_PYCCALL
@@ -5320,6 +5376,26 @@ done:
 #endif  // CPython < 3.6
 #endif  // CYTHON_FAST_PYCALL
 
+/* PyObjectCall */
+  #if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
 /* PyObjectCallMethO */
   #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
@@ -5383,318 +5459,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
     return result;
 }
 #endif
-
-/* PyObjectCallMethod1 */
-    static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
-    PyObject *method, *result = NULL;
-    method = __Pyx_PyObject_GetAttrStr(obj, method_name);
-    if (unlikely(!method)) goto done;
-#if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(method))) {
-        PyObject *self = PyMethod_GET_SELF(method);
-        if (likely(self)) {
-            PyObject *args;
-            PyObject *function = PyMethod_GET_FUNCTION(method);
-            #if CYTHON_FAST_PYCALL
-            if (PyFunction_Check(function)) {
-                PyObject *args[2] = {self, arg};
-                result = __Pyx_PyFunction_FastCall(function, args, 2);
-                goto done;
-            }
-            #endif
-            #if CYTHON_FAST_PYCCALL
-            if (__Pyx_PyFastCFunction_Check(function)) {
-                PyObject *args[2] = {self, arg};
-                result = __Pyx_PyCFunction_FastCall(function, args, 2);
-                goto done;
-            }
-            #endif
-            args = PyTuple_New(2);
-            if (unlikely(!args)) goto done;
-            Py_INCREF(self);
-            PyTuple_SET_ITEM(args, 0, self);
-            Py_INCREF(arg);
-            PyTuple_SET_ITEM(args, 1, arg);
-            Py_INCREF(function);
-            Py_DECREF(method); method = NULL;
-            result = __Pyx_PyObject_Call(function, args, NULL);
-            Py_DECREF(args);
-            Py_DECREF(function);
-            return result;
-        }
-    }
-#endif
-    result = __Pyx_PyObject_CallOneArg(method, arg);
-done:
-    Py_XDECREF(method);
-    return result;
-}
-
-/* append */
-    static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {
-    if (likely(PyList_CheckExact(L))) {
-        if (unlikely(__Pyx_PyList_Append(L, x) < 0)) return -1;
-    } else {
-        PyObject* retval = __Pyx_PyObject_CallMethod1(L, __pyx_n_s_append, x);
-        if (unlikely(!retval))
-            return -1;
-        Py_DECREF(retval);
-    }
-    return 0;
-}
-
-/* SliceObject */
-    static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
-        Py_ssize_t cstart, Py_ssize_t cstop,
-        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
-        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
-#if CYTHON_USE_TYPE_SLOTS
-    PyMappingMethods* mp;
-#if PY_MAJOR_VERSION < 3
-    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
-    if (likely(ms && ms->sq_slice)) {
-        if (!has_cstart) {
-            if (_py_start && (*_py_start != Py_None)) {
-                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
-                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
-            } else
-                cstart = 0;
-        }
-        if (!has_cstop) {
-            if (_py_stop && (*_py_stop != Py_None)) {
-                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
-                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
-            } else
-                cstop = PY_SSIZE_T_MAX;
-        }
-        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
-            Py_ssize_t l = ms->sq_length(obj);
-            if (likely(l >= 0)) {
-                if (cstop < 0) {
-                    cstop += l;
-                    if (cstop < 0) cstop = 0;
-                }
-                if (cstart < 0) {
-                    cstart += l;
-                    if (cstart < 0) cstart = 0;
-                }
-            } else {
-                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
-                    goto bad;
-                PyErr_Clear();
-            }
-        }
-        return ms->sq_slice(obj, cstart, cstop);
-    }
-#endif
-    mp = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(mp && mp->mp_subscript))
-#endif
-    {
-        PyObject* result;
-        PyObject *py_slice, *py_start, *py_stop;
-        if (_py_slice) {
-            py_slice = *_py_slice;
-        } else {
-            PyObject* owned_start = NULL;
-            PyObject* owned_stop = NULL;
-            if (_py_start) {
-                py_start = *_py_start;
-            } else {
-                if (has_cstart) {
-                    owned_start = py_start = PyInt_FromSsize_t(cstart);
-                    if (unlikely(!py_start)) goto bad;
-                } else
-                    py_start = Py_None;
-            }
-            if (_py_stop) {
-                py_stop = *_py_stop;
-            } else {
-                if (has_cstop) {
-                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
-                    if (unlikely(!py_stop)) {
-                        Py_XDECREF(owned_start);
-                        goto bad;
-                    }
-                } else
-                    py_stop = Py_None;
-            }
-            py_slice = PySlice_New(py_start, py_stop, Py_None);
-            Py_XDECREF(owned_start);
-            Py_XDECREF(owned_stop);
-            if (unlikely(!py_slice)) goto bad;
-        }
-#if CYTHON_USE_TYPE_SLOTS
-        result = mp->mp_subscript(obj, py_slice);
-#else
-        result = PyObject_GetItem(obj, py_slice);
-#endif
-        if (!_py_slice) {
-            Py_DECREF(py_slice);
-        }
-        return result;
-    }
-    PyErr_Format(PyExc_TypeError,
-        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
-bad:
-    return NULL;
-}
-
-/* PyIntBinop */
-    #if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_CheckExact(op1))) {
-        const long b = intval;
-        long x;
-        long a = PyInt_AS_LONG(op1);
-            x = (long)((unsigned long)a - b);
-            if (likely((x^a) >= 0 || (x^~b) >= 0))
-                return PyInt_FromLong(x);
-            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-    }
-    #endif
-    #if CYTHON_USE_PYLONG_INTERNALS
-    if (likely(PyLong_CheckExact(op1))) {
-        const long b = intval;
-        long a, x;
-#ifdef HAVE_LONG_LONG
-        const PY_LONG_LONG llb = intval;
-        PY_LONG_LONG lla, llx;
-#endif
-        const digit* digits = ((PyLongObject*)op1)->ob_digit;
-        const Py_ssize_t size = Py_SIZE(op1);
-        if (likely(__Pyx_sst_abs(size) <= 1)) {
-            a = likely(size) ? digits[0] : 0;
-            if (size == -1) a = -a;
-        } else {
-            switch (size) {
-                case -2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case -3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case -4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-            }
-        }
-                x = a - b;
-            return PyLong_FromLong(x);
-#ifdef HAVE_LONG_LONG
-        long_long:
-                llx = lla - llb;
-            return PyLong_FromLongLong(llx);
-#endif
-        
-        
-    }
-    #endif
-    if (PyFloat_CheckExact(op1)) {
-        const long b = intval;
-        double a = PyFloat_AS_DOUBLE(op1);
-            double result;
-            PyFPE_START_PROTECT("subtract", return NULL)
-            result = ((double)a) - (double)b;
-            PyFPE_END_PROTECT(result)
-            return PyFloat_FromDouble(result);
-    }
-    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
-}
-#endif
-
-/* pyobject_as_double */
-    static double __Pyx__PyObject_AsDouble(PyObject* obj) {
-    PyObject* float_value;
-#if !CYTHON_USE_TYPE_SLOTS
-    float_value = PyNumber_Float(obj);  if (0) goto bad;
-#else
-    PyNumberMethods *nb = Py_TYPE(obj)->tp_as_number;
-    if (likely(nb) && likely(nb->nb_float)) {
-        float_value = nb->nb_float(obj);
-        if (likely(float_value) && unlikely(!PyFloat_Check(float_value))) {
-            PyErr_Format(PyExc_TypeError,
-                "__float__ returned non-float (type %.200s)",
-                Py_TYPE(float_value)->tp_name);
-            Py_DECREF(float_value);
-            goto bad;
-        }
-    } else if (PyUnicode_CheckExact(obj) || PyBytes_CheckExact(obj)) {
-#if PY_MAJOR_VERSION >= 3
-        float_value = PyFloat_FromString(obj);
-#else
-        float_value = PyFloat_FromString(obj, 0);
-#endif
-    } else {
-        PyObject* args = PyTuple_New(1);
-        if (unlikely(!args)) goto bad;
-        PyTuple_SET_ITEM(args, 0, obj);
-        float_value = PyObject_Call((PyObject*)&PyFloat_Type, args, 0);
-        PyTuple_SET_ITEM(args, 0, 0);
-        Py_DECREF(args);
-    }
-#endif
-    if (likely(float_value)) {
-        double value = PyFloat_AS_DOUBLE(float_value);
-        Py_DECREF(float_value);
-        return value;
-    }
-bad:
-    return (double)-1;
-}
 
 /* PyObjectCallNoArg */
     #if CYTHON_COMPILING_IN_CPYTHON
@@ -6051,6 +5815,65 @@ static CYTHON_INLINE int __Pyx_dict_iter_next(
         *pvalue = next_item;
     }
     return 1;
+}
+
+/* PyObjectCallMethod1 */
+        static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
+    PyObject *method, *result = NULL;
+    method = __Pyx_PyObject_GetAttrStr(obj, method_name);
+    if (unlikely(!method)) goto done;
+#if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(method))) {
+        PyObject *self = PyMethod_GET_SELF(method);
+        if (likely(self)) {
+            PyObject *args;
+            PyObject *function = PyMethod_GET_FUNCTION(method);
+            #if CYTHON_FAST_PYCALL
+            if (PyFunction_Check(function)) {
+                PyObject *args[2] = {self, arg};
+                result = __Pyx_PyFunction_FastCall(function, args, 2);
+                goto done;
+            }
+            #endif
+            #if CYTHON_FAST_PYCCALL
+            if (__Pyx_PyFastCFunction_Check(function)) {
+                PyObject *args[2] = {self, arg};
+                result = __Pyx_PyCFunction_FastCall(function, args, 2);
+                goto done;
+            }
+            #endif
+            args = PyTuple_New(2);
+            if (unlikely(!args)) goto done;
+            Py_INCREF(self);
+            PyTuple_SET_ITEM(args, 0, self);
+            Py_INCREF(arg);
+            PyTuple_SET_ITEM(args, 1, arg);
+            Py_INCREF(function);
+            Py_DECREF(method); method = NULL;
+            result = __Pyx_PyObject_Call(function, args, NULL);
+            Py_DECREF(args);
+            Py_DECREF(function);
+            return result;
+        }
+    }
+#endif
+    result = __Pyx_PyObject_CallOneArg(method, arg);
+done:
+    Py_XDECREF(method);
+    return result;
+}
+
+/* append */
+        static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {
+    if (likely(PyList_CheckExact(L))) {
+        if (unlikely(__Pyx_PyList_Append(L, x) < 0)) return -1;
+    } else {
+        PyObject* retval = __Pyx_PyObject_CallMethod1(L, __pyx_n_s_append, x);
+        if (unlikely(!retval))
+            return -1;
+        Py_DECREF(retval);
+    }
+    return 0;
 }
 
 /* SliceTupleAndList */
@@ -6503,6 +6326,28 @@ bad:
     Py_XDECREF(py_frame);
 }
 
+/* CIntFromPyVerify */
+        #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
+    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 0)
+#define __PYX_VERIFY_RETURN_INT_EXC(target_type, func_type, func_value)\
+    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 1)
+#define __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, exc)\
+    {\
+        func_type value = func_value;\
+        if (sizeof(target_type) < sizeof(func_type)) {\
+            if (unlikely(value != (func_type) (target_type) value)) {\
+                func_type zero = 0;\
+                if (exc && unlikely(value == (func_type)-1 && PyErr_Occurred()))\
+                    return (target_type) -1;\
+                if (is_unsigned && unlikely(value < zero))\
+                    goto raise_neg_overflow;\
+                else\
+                    goto raise_overflow;\
+            }\
+        }\
+        return (target_type) value;\
+    }
+
 /* CIntToPy */
         static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     const long neg_one = (long) -1, const_zero = (long) 0;
@@ -6534,112 +6379,6 @@ bad:
     }
 }
 
-/* Print */
-        #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static PyObject *__Pyx_GetStdout(void) {
-    PyObject *f = PySys_GetObject((char *)"stdout");
-    if (!f) {
-        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
-    }
-    return f;
-}
-static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
-    int i;
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
-        PyObject* v;
-        if (PyFile_SoftSpace(f, 1)) {
-            if (PyFile_WriteString(" ", f) < 0)
-                goto error;
-        }
-        v = PyTuple_GET_ITEM(arg_tuple, i);
-        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
-            goto error;
-        if (PyString_Check(v)) {
-            char *s = PyString_AsString(v);
-            Py_ssize_t len = PyString_Size(v);
-            if (len > 0) {
-                switch (s[len-1]) {
-                    case ' ': break;
-                    case '\f': case '\r': case '\n': case '\t': case '\v':
-                        PyFile_SoftSpace(f, 0);
-                        break;
-                    default:  break;
-                }
-            }
-        }
-    }
-    if (newline) {
-        if (PyFile_WriteString("\n", f) < 0)
-            goto error;
-        PyFile_SoftSpace(f, 0);
-    }
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-}
-#else
-static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
-    PyObject* kwargs = 0;
-    PyObject* result = 0;
-    PyObject* end_string;
-    if (unlikely(!__pyx_print)) {
-        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
-        if (!__pyx_print)
-            return -1;
-    }
-    if (stream) {
-        kwargs = PyDict_New();
-        if (unlikely(!kwargs))
-            return -1;
-        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
-            goto bad;
-        if (!newline) {
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                goto bad;
-            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                goto bad;
-            }
-            Py_DECREF(end_string);
-        }
-    } else if (!newline) {
-        if (unlikely(!__pyx_print_kwargs)) {
-            __pyx_print_kwargs = PyDict_New();
-            if (unlikely(!__pyx_print_kwargs))
-                return -1;
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                return -1;
-            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                return -1;
-            }
-            Py_DECREF(end_string);
-        }
-        kwargs = __pyx_print_kwargs;
-    }
-    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
-    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
-        Py_DECREF(kwargs);
-    if (!result)
-        return -1;
-    Py_DECREF(result);
-    return 0;
-bad:
-    if (kwargs != __pyx_print_kwargs)
-        Py_XDECREF(kwargs);
-    return -1;
-}
-#endif
-
 /* CIntToPy */
         static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
     const int neg_one = (int) -1, const_zero = (int) 0;
@@ -6670,65 +6409,6 @@ bad:
                                      little, !is_unsigned);
     }
 }
-
-/* CIntFromPyVerify */
-        #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
-    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 0)
-#define __PYX_VERIFY_RETURN_INT_EXC(target_type, func_type, func_value)\
-    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 1)
-#define __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, exc)\
-    {\
-        func_type value = func_value;\
-        if (sizeof(target_type) < sizeof(func_type)) {\
-            if (unlikely(value != (func_type) (target_type) value)) {\
-                func_type zero = 0;\
-                if (exc && unlikely(value == (func_type)-1 && PyErr_Occurred()))\
-                    return (target_type) -1;\
-                if (is_unsigned && unlikely(value < zero))\
-                    goto raise_neg_overflow;\
-                else\
-                    goto raise_overflow;\
-            }\
-        }\
-        return (target_type) value;\
-    }
-
-/* PrintOne */
-        #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    if (PyFile_SoftSpace(f, 0)) {
-        if (PyFile_WriteString(" ", f) < 0)
-            goto error;
-    }
-    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
-        goto error;
-    if (PyFile_WriteString("\n", f) < 0)
-        goto error;
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-    /* the line below is just to avoid C compiler
-     * warnings about unused functions */
-    return __Pyx_Print(f, NULL, 0);
-}
-#else
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
-    int res;
-    PyObject* arg_tuple = PyTuple_Pack(1, o);
-    if (unlikely(!arg_tuple))
-        return -1;
-    res = __Pyx_Print(stream, arg_tuple, 1);
-    Py_DECREF(arg_tuple);
-    return res;
-}
-#endif
 
 /* CIntFromPy */
         static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {

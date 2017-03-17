@@ -5,10 +5,15 @@ from options import Options as opt
 from libcpp.vector cimport vector
 
 
-def dpgetAllWindows(stcW):
+cdef dpgetAllWindows(stcW):
+    cdef:
+        int windowSize
+        int firstWindowSize
+        int i
+        int j
+
     stack = []
     tmpStack = []
-
     windowSize = 2 * opt.windowSize + 1
     windows = []
     firstWindowSize = 0
@@ -16,26 +21,38 @@ def dpgetAllWindows(stcW):
     for i in range(stcW[0].senseNum):
         stack.append([stcW[0].senseStart + i])
 
-    for i in range(1, len(stcW)):
-        senseStart = stcW[i].senseStart
+    for i in range(1, len(stcW) + opt.windowSize):
+        s = set()
 
         for k in stack:
-            for j in range(stcW[i].senseNum):
-                k.append(senseStart + j)
+            if i < len(stcW):
+                senseStart = stcW[i].senseStart
 
-                if len(k) == windowSize:
-                    windows.append(k)
+                for j in range(stcW[i].senseNum):
+                    tmp = k + [senseStart + j]
+
+                    if len(tmp) == windowSize:
+                        windows.append(tmp)
+
+                        if tuple(tmp[1:]) not in s:
+                            tmpStack.append(tmp[1:])
+                            s.add(tuple(tmp[1:]))
+
+
+                        if i == 2 * opt.windowSize:
+                            firstWindowSize += 1
+                    else:
+                        tmpStack.append(tmp)
+            else:
+                tmp = k + [k[opt.windowSize]] * (windowSize - len(k))
+                windows.append(tmp)
+
+                if tuple(k[1:]) not in s:
                     tmpStack.append(k[1:])
-
-                    if i == 2 * opt.windowSize:
-                        firstWindowSize += 1
-                else:
-                    tmpStack.append(k[:])
+                    s.add(tuple(k[1:]))
 
         stack = tmpStack
         tmpStack = []
-
-    print(windows)
 
     return windows, firstWindowSize
 
@@ -102,7 +119,7 @@ cdef getAllWindows(stcW):
     return windows, firstWindowSize
 
 
-cdef inferenceOneStc(stcW, lossTable, assignList):
+cpdef inferenceOneStc(stcW, lossTable, assignList):
     cdef int i
     cdef int j
     cdef int k
@@ -206,6 +223,7 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
     # assign.push_back(map[tmpMinLossIdx][0])
     # for i in list(tmpMinLossIdx)[:opt.windowSize]:
     #     assign.push_back(i)
+    return assign
 
 
 def batchDPInference(batchStcW, sess, windowLossGraph, window):
@@ -215,35 +233,50 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window):
     ends = []
     lossTable = {}
 
-    start = time.time()
+    # start = time.time()
 
-    for i in range(len(batchStcW)):
-        a, b = dpgetAllWindows(batchStcW[i])
+    # for a, b in pool.map(dpgetAllWindows, batchStcW):
+    for stcW in batchStcW:
+        a, b = dpgetAllWindows(stcW)
         starts.append(len(assignList))
         ends.append(b + starts[-1])
         assignList.extend(a)
 
-    end = time.time()
-    print("Build assignList time:", end - start)
-    start = time.time()
+    print(len(assignList))
+
+    # end = time.time()
+    # print("Build assignList time:", end - start)
+    # start = time.time()
 
     loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
 
-    end = time.time()
-    print("Calculate time:", end - start)
-    start = time.time()
+    # end = time.time()
+    # print("Calculate time:", end - start)
+    # start = time.time()
 
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
-    end = time.time()
-    print("Build lossTable time:", end - start)
-    start = time.time()
+    # end = time.time()
+    # print("Build lossTable time:", end - start)
+    # start = time.time()
 
     for i in range(len(batchStcW)):
         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
 
-    end = time.time()
-    print("Real inference time:", end - start)
+    # end = time.time()
+    # print("Real inference time:", end - start)
+    # assign = []
+    # start = time.time()
+    #
+    # for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
+    #     assign.append(i)
+    #
+    # end = time.time()
+    # print("Multi Process Real inference time:", end - start)
 
     return assign
+
+
+def inferenceHelper(arg):
+    return inferenceOneStc(*arg)

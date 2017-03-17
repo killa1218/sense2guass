@@ -329,6 +329,53 @@ def olddpInference(stcW, sess, windowLossGraph, window):
     return assign
 
 
+def dpgetAllWindows(stcW):
+    stack = []
+    tmpStack = []
+
+    windowSize = 2 * opt.windowSize + 1
+    windows = []
+    firstWindowSize = 0
+
+    for i in range(stcW[0].senseNum):
+        stack.append([stcW[0].senseStart + i])
+
+    for i in range(1, len(stcW) + opt.windowSize):
+        s = set()
+
+        for k in stack:
+            if i < len(stcW):
+                senseStart = stcW[i].senseStart
+
+                for j in range(stcW[i].senseNum):
+                    tmp = k + [senseStart + j]
+
+                    if len(tmp) == windowSize:
+                        windows.append(tmp)
+
+                        if tuple(tmp[1:]) not in s:
+                            tmpStack.append(tmp[1:])
+                            s.add(tuple(tmp[1:]))
+
+
+                        if i == 2 * opt.windowSize:
+                            firstWindowSize += 1
+                    else:
+                        tmpStack.append(tmp)
+            else:
+                tmp = k + [k[opt.windowSize]] * (windowSize - len(k))
+                windows.append(tmp)
+
+                if tuple(k[1:]) not in s:
+                    tmpStack.append(k[1:])
+                    s.add(tuple(k[1:]))
+
+        stack = tmpStack
+        tmpStack = []
+
+    return windows, firstWindowSize
+
+
 def getAllWindows(stcW):
     windows = []
     firstWindowSize = 0
@@ -455,16 +502,12 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
 
     start = time.time()
 
-    for i, j in pool.map(getAllWindows, batchStcW):
+    for i, j in pool.map(dpgetAllWindows, batchStcW):
+    # for stcW in batchStcW:
+    #     i, j = dpgetAllWindows(stcW)
         starts.append(len(assignList))
         ends.append(j + starts[-1])
         assignList.extend(i)
-        # print("Length of current assignList:", len(i))
-        # print("Current assignList:", i)
-        # print(starts[-1], ends[-1])
-
-    # print("Length of total assignList:", len(assignList))
-    # print("Total assignList:", assignList)
 
     end = time.time()
     print("Build assignList time:", end - start)
