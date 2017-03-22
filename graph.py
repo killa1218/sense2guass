@@ -26,6 +26,35 @@ def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
     return tf.add_n(l), (senseIdxPlaceholder)
 
 
+def windowLossGraph(vocabulary):
+    window = tf.placeholder(dtype = tf.int32, shape = [None, opt.windowSize * 2 + 1])
+
+    midMean = tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize])
+    midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize])
+    l = []
+
+    for i in range(opt.windowSize * 2):
+        l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i])))
+        l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1])))
+
+    return tf.add_n(l), window
+
+
+def negativeLossGraph(vocabulary):
+    mid = tf.placeholder(dtype=tf.int32, name='mid')
+    negSamples = tf.placeholder(dtype=tf.int32, name='others', shape=[None, opt.sentenceLength, opt.negative])
+
+    l = []
+    for i in range(opt.sentenceLength):
+        midMean = tf.nn.embedding_lookup(vocabulary.means, mid[:, i])
+        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i])
+        negSample = negSamples[:, i]
+
+        for j in range(opt.negative):
+            l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j])))
+
+    return tf.add_n(l), (mid, negSamples)
+
 # def batchInferenceGraph(vocabulary, sentenceLength = opt.sentenceLength):
 #     batchSenseIdxPlaceholder = tf.placeholder(dtype = tf.int32, shape = [opt.batchSize, None, sentenceLength])
 #
@@ -60,32 +89,3 @@ def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
 #
 #     return tf.add_n(l), (mid, others)
 
-
-def windowLossGraph(vocabulary):
-    window = tf.placeholder(dtype = tf.int32, shape = [None, opt.windowSize * 2 + 1])
-
-    midMean = tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize])
-    midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize])
-    l = []
-
-    for i in range(opt.windowSize * 2):
-        l.append(dist(tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i]), midMean, midSigma))
-        l.append(dist(tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1]), midMean, midSigma))
-
-    return tf.add_n(l), window
-
-
-def negativeLossGraph(vocabulary):
-    mid = tf.placeholder(dtype=tf.int32, name='mid')
-    negSamples = tf.placeholder(dtype=tf.int32, name='others', shape=[None, opt.sentenceLength, opt.negative])
-
-    l = []
-    for i in range(opt.sentenceLength):
-        midMean = tf.nn.embedding_lookup(vocabulary.means, mid[:, i])
-        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i])
-        negSample = negSamples[:, i]
-
-        for j in range(opt.negative):
-            l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.sigmas, negSample[:, j])))
-
-    return tf.add_n(l), (mid, negSamples)
