@@ -7,52 +7,26 @@ from options import Options as opt
 from math import pi
 import time
 
-dataType = tf.float32
+dataType = tf.float64
 
-def diagEL(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
+def EL(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
     m = m1 - m2
     sig = sig1 + sig2
 
-    return 1 - tf.div(
+    return tf.div(
         tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=dataType) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1), name='diagEL-Exponential'),
         tf.sqrt(tf.reduce_prod(tf.constant(2., dtype=dataType) * pi * sig, 1), name='diagEL-SquareRoot'),
         name='diagEL'
     )
 
+def diagpowEL(m1, sig1, m2, sig2, d=opt.embSize):
+    return -tf.pow(EL(m1, sig1, m2, sig2, d), 0.001)
 
-def diagELSingle(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
+def diagEL(m1, sig1, m2, sig2, d=opt.embSize):
     m = m1 - m2
     sig = sig1 + sig2
 
-    return 1 - tf.div(
-        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=dataType) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
-        tf.sqrt(tf.pow(tf.constant(2., dtype=dataType) * pi, d) * tf.reduce_prod(sig), name='diagEL-SquareRoot'),
-        name='diagEL'
-    )
-
-
-def diagKLSingle(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
-    start = time.time()
-
-    m = m2 - m1
-    # sig2Reciprocal = tf.reciprocal(sig2, name='diagKL-Reciprocal')
-
-    # res = tf.div(
-    #     tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=dataType), tf.reduce_sum(sig2Reciprocal * sig1 + tf.square(m) * sig2Reciprocal)]),
-    #     2.,
-    #     name='diagKL'
-    # )
-
-    res = tf.div(
-        tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=dataType), tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2)]),
-        2.,
-        name='diagKL'
-    )
-
-    end = time.time()
-    # print('diagKL time:', end - start)
-    return res
-
+    return tf.log(tf.reduce_prod(sig, 1)) + tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1)
 
 def diagKL(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
     m = m2 - m1
@@ -67,13 +41,7 @@ def diagKL(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaus
 def crossEntropy():
     pass
 
-def EL(m1, sig1, m2, sig2, d):                      # TODO
-    pass
-
-def KL(m1, sig1, m2, sig2, d):                      # TODO
-    pass
-
-def meanDist(m1, m2):
+def meanDist(m1, sig1, m2, sig2, d=opt.embSize):
     return tf.reduce_sum(m1 * m2)
 
 def dist(w1, s1, w2, s2):
@@ -98,4 +66,38 @@ if __name__ == '__main__':
 
     print('diagEL: ', sess.run(diagEL(m1, sig1, m2, sig2, 9)))
     print('diagKL: ', sess.run(diagKL(m1, sig1, m2, sig2, 9)))
+
+
+# def diagELSingle(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
+#     m = m1 - m2
+#     sig = sig1 + sig2
+#
+#     return 1 - tf.div(
+#         tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=dataType) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse')), name='diagEL-Exponential'),
+#         tf.sqrt(tf.pow(tf.constant(2., dtype=dataType) * pi, d) * tf.reduce_prod(sig), name='diagEL-SquareRoot'),
+#         name='diagEL'
+#     )
+
+
+# def diagKLSingle(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
+#     start = time.time()
+#
+#     m = m2 - m1
+#     # sig2Reciprocal = tf.reciprocal(sig2, name='diagKL-Reciprocal')
+#
+#     # res = tf.div(
+#     #     tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=dataType), tf.reduce_sum(sig2Reciprocal * sig1 + tf.square(m) * sig2Reciprocal)]),
+#     #     2.,
+#     #     name='diagKL'
+#     # )
+#
+#     res = tf.div(
+#         tf.add_n([tf.log(tf.reduce_prod(sig2 / sig1)), tf.constant(-d, dtype=dataType), tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2)]),
+#         2.,
+#         name='diagKL'
+#     )
+#
+#     end = time.time()
+#     # print('diagKL time:', end - start)
+#     return res
 
