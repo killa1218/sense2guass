@@ -29,7 +29,7 @@ def main():
     finally:
         if v:
             with tf.Session() as sess:
-                v.saveVocabWithEmbeddings(target, sess)
+                v.saveVocab(target)
             print('Vocab saved.')
 
 if __name__ == '__main__':
