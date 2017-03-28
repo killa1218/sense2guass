@@ -16,7 +16,7 @@ from options import Options as opt
 from utils.common import is_number
 
 curDir = os.path.dirname(os.path.abspath(__file__))
-dataType = tf.float32
+dataType = opt.dType
 
 class Vocab(object):
     """ Vocabulary of the train corpus, used for embedding lookup and sense number lookup. """
@@ -32,7 +32,7 @@ class Vocab(object):
         self.sigmas = None
 
         try:
-            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pk'), 'rb') as f:
+            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pkl'), 'rb') as f:
                 self._senseNum = pk.load(f)
         except Exception:
             with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pk3'), 'rb') as f:
@@ -270,12 +270,23 @@ class Vocab(object):
             name="means"
         )
 
+        self.outputMeans = tf.Variable(
+            tf.random_uniform(
+                [sNum, eSize],
+                -iWidth,
+                iWidth,
+                dtype=dataType
+            ),
+            dtype=dataType,
+            name="means"
+        )
+
         if opt.covarShape == 'normal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize, eSize],
                     0,
-                    iWidth,
+                    5 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
@@ -286,7 +297,18 @@ class Vocab(object):
                 tf.random_uniform(
                     [sNum, eSize],
                     0,
-                    iWidth,
+                    5 * iWidth,
+                    dtype=dataType
+                ),
+                dtype=dataType,
+                name="sigmas"
+            ), 0.01, float('inf'))
+
+            self.outputSigmas = tf.clip_by_value(tf.Variable(
+                tf.random_uniform(
+                    [sNum, eSize],
+                    0,
+                    5 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,

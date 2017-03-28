@@ -7,7 +7,7 @@ from options import Options as opt
 from math import pi
 import time
 
-dataType = tf.float64
+dataType = opt.dType
 
 def EL(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
     m = m1 - m2

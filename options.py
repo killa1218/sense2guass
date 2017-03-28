@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 import re
+import tensorflow as tf
 
 class Options(object):
     """ Global options of training. """
@@ -23,3 +24,4 @@ class Options(object):
     minCount = 10                       # Words who exist under minCount times will be omitted
     negative = 0                        # Negative samples for each sense
     EL = False                          # Whether use EL or KL
+    dType = tf.float64                  # Data type
