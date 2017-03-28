@@ -88,6 +88,8 @@ opt.EL = FLAGS.EL
 opt.savePath = FLAGS.output
 
 vocabulary = None
+e_step = True
+m_step = True
 
 def main(_):
     """ Train a sense2guass model. """
@@ -119,15 +121,6 @@ def main(_):
                 else:
                     print('Vocab save FAILED!')
 
-##----------------- Build Sentence Loss Graph And Optimizer ------------------
-        print('Building Sentence Loss Graph...')
-        from graph import batchSentenceLossGraph as lossGraph
-        batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
-        minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
-        avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
-        reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
-        print('Finished Building Sentence Loss Graph.')
-##----------------- Build Sentence Loss Graph And Optimizer ------------------
 
 ##----------------- Build Window Loss Graph ------------------
         print('Building Window Loss Graph...')
@@ -143,24 +136,35 @@ def main(_):
         # print('Finished Building Batch Violent Inference Graph.')
 ##----------------- Build Batch Violent Inference Graph ------------------
 
-##----------------------- Build Negative Loss Graph --------------------------
-        print('Building Negative Loss Graph...')
-        from graph import negativeLossGraph
-        negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
-        avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
-        reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
-        print('Finished Building Negative Loss Graph.')
-##----------------------- Build Negative Loss Graph --------------------------
+        if m_step:
+        ##----------------- Build Sentence Loss Graph And Optimizer ------------------
+            print('Building Sentence Loss Graph...')
+            from graph import batchSentenceLossGraph as lossGraph
+            batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
+            minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
+            avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
+            reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
+            print('Finished Building Sentence Loss Graph.')
+        ##----------------- Build Sentence Loss Graph And Optimizer ------------------
 
-##---------------------------- Build NCE Loss --------------------------------
-        print('Building NCE Loss...')
-        nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
-        reduceNCELoss = tf.reduce_sum(nceLossGraph)
-        avgNCELoss = reduceNCELoss / opt.batchSize
-        op = optimizer(reduceNCELoss)
-        # op = optimizer(avgBatchStcLoss)
-        print('Finished Building NCE Loss.')
-##---------------------------- Build NCE Loss --------------------------------
+        ##----------------------- Build Negative Loss Graph --------------------------
+            print('Building Negative Loss Graph...')
+            from graph import negativeLossGraph
+            negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
+            avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
+            reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
+            print('Finished Building Negative Loss Graph.')
+        ##----------------------- Build Negative Loss Graph --------------------------
+
+        ##---------------------------- Build NCE Loss --------------------------------
+            print('Building NCE Loss...')
+            nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
+            reduceNCELoss = tf.reduce_sum(nceLossGraph)
+            avgNCELoss = reduceNCELoss / opt.batchSize
+            op = optimizer(reduceNCELoss)
+            # op = optimizer(avgBatchStcLoss)
+            print('Finished Building NCE Loss.')
+        ##---------------------------- Build NCE Loss --------------------------------
 
 ##------------------------- Build Validate Graph -----------------------------
         # print('Building Validate Graph...')
@@ -181,7 +185,6 @@ def main(_):
         # Train iteration
         print('Start training...\n')
 
-        from multiprocessing import Pool
         from e_step.cinference import batchDPInference
 
         for i in range(opt.iter):
@@ -237,10 +240,11 @@ def main(_):
                                 # print('Inferencing time: %.5f' % (end - start))
                                 # start = time.time()
 
-                                # loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                loss = 0.
-                                sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
-                                sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                if m_step:
+                                    loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                    # loss = 0.
+                                    sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                    sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
                                 # end = time.time()
                                 # print('Optimization time: %.5f' % (end - start))
