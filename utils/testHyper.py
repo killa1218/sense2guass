@@ -21,9 +21,9 @@ random = []
 with open('../data/BLESS/bless.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/vec.0222.txt')
+    vocab.load('/mnt/dataset/sense2gauss/data/gauss.KL.0407_w3_b50_m1000.withoutput.pkl3')
 
-with tf.Session() as sess, open('../data/BLESS/result.mero.txt', 'w') as mf, open('../data/BLESS/result.hyper.txt', 'w') as hf, open('../data/BLESS/result.random.txt', 'w') as rf:
+with tf.Session() as sess, open('../data/BLESS/result.mero_0407.withoutput.txt', 'w') as mf, open('../data/BLESS/result.hyper_0407.eithoutput.txt', 'w') as hf, open('../data/BLESS/result.random_0407.withoutput.txt', 'w') as rf:
     # lossGraph, placeholder = batchSentenceLossGraph(vocab)
     # minLossIdxGraph = tf.argmin(lossGraph, 0)
 

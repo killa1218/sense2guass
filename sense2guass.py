@@ -91,6 +91,9 @@ vocabulary = None
 e_step = True
 m_step = True
 
+gradMin = -0.5
+gradMax = 0.5
+
 def main(_):
     """ Train a sense2guass model. """
     global vocabulary
@@ -103,9 +106,9 @@ def main(_):
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
-        optimizer = tf.train.AdamOptimizer(opt.alpha).minimize
-        # merged_summary_op = tf.merge_all_summaries()
-        # summary_writer = tf.train.SummaryWriter('data/output', sess.graph)
+        optimizer = tf.train.AdagradOptimizer(opt.alpha)
+        # optimizer = tf.train.AdamOptimizer(opt.alpha)
+        # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
         if opt.vocab != None:
@@ -121,7 +124,6 @@ def main(_):
                 else:
                     print('Vocab save FAILED!')
 
-
 ##----------------- Build Window Loss Graph ------------------
         print('Building Window Loss Graph...')
         from graph import windowLossGraph
@@ -129,19 +131,19 @@ def main(_):
         print('Finished Building Window Loss Graph.')
 ##----------------- Build Window Loss Graph ------------------
 
-##----------------- Build Batch Violent Inference Graph ------------------
-        # print('Building Batch Violent Inference Graph...')
-        # from graph import batchInferenceGraph
-        # batchInferenceGraph, batchSenseIdxPlaceholder = batchInferenceGraph(vocabulary)
-        # print('Finished Building Batch Violent Inference Graph.')
-##----------------- Build Batch Violent Inference Graph ------------------
-
         if m_step:
+            writer = tf.summary.FileWriter('summary/', sess.graph)
+
         ##----------------- Build Sentence Loss Graph And Optimizer ------------------
             print('Building Sentence Loss Graph...')
             from graph import batchSentenceLossGraph as lossGraph
-            batchSentenceLossGraph, (senseIdxPlaceholder) = lossGraph(vocabulary)
-            minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
+
+            with tf.name_scope('pos_loss'):
+                batchSentenceLossGraph, (senseIdxPlaceholder), l = lossGraph(vocabulary)
+
+            # tf.summary.tensor_summary("pos_loss", batchSentenceLossGraph)
+            # merged = tf.summary.merge_all()
+            # minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
             avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
             reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
             print('Finished Building Sentence Loss Graph.')
@@ -158,13 +160,19 @@ def main(_):
 
         ##---------------------------- Build NCE Loss --------------------------------
             print('Building NCE Loss...')
-            nceLossGraph = tf.nn.relu(opt.margin - avgBatchStcLoss + avgNegLoss)
+            nceLossGraph = tf.nn.relu(opt.margin - avgNegLoss + avgBatchStcLoss)
             reduceNCELoss = tf.reduce_sum(nceLossGraph)
             avgNCELoss = reduceNCELoss / opt.batchSize
-            op = optimizer(reduceNCELoss)
+            grad = optimizer.compute_gradients(avgNCELoss + avgBatchStcLoss)
+            # # grad = optimizer.compute_gradients(batchSentenceLossGraph)
+            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            op = optimizer.apply_gradients(clipedGrad)
+            # op = optimizer.minimize(reduceAvgLoss)
             # op = optimizer(avgBatchStcLoss)
             print('Finished Building NCE Loss.')
         ##---------------------------- Build NCE Loss --------------------------------
+
+            # grad = tf.gradients(batchSentenceLossGraph, vocabulary.outputMeans) #, vocabulary.outputMeans[vocabulary.getWord('is').senseStart], vocabulary.outputSigmas[vocabulary.getWord('is').senseStart]])
 
 ##------------------------- Build Validate Graph -----------------------------
         # print('Building Validate Graph...')
@@ -185,6 +193,12 @@ def main(_):
         # Train iteration
         print('Start training...\n')
 
+        # print(vocabulary.means[vocabulary.getWord('is').senseStart].eval())
+        # print(vocabulary.sigmas[vocabulary.getWord('is').senseStart].eval())
+        # orgMeans = vocabulary.means.eval()
+        # orgSigmas = vocabulary.sigmas.eval()
+        # fi = open('grads', 'w')
+
         from e_step.cinference import batchDPInference
 
         for i in range(opt.iter):
@@ -194,25 +208,12 @@ def main(_):
                     negativeSamplesList = []
                     batchStcW = []
 
-                    # start = time.time()
                     for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
 ##----------------------------- Train Batch ------------------------------
                         if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
                             batchStcW.append(stcW)
-            # E-Step: Do Inference
-            #                 print('Inferencing sentence:', ' '.join(x.token for x in stcW))
-            #                 start = time.time()
-
-                            # end = time.time()
-                            # sys.stdout.write('\rINFERENCE TIME: %.6f' % (end - start))
-                            # sys.stdout.flush()
-                            # print('INFERENCE TIME:', end - start)
-                            # print('Inference of sentence:', assign)
-
-                            # Build loss
-
                             negativeSampleList = []
-                            # for a in assign:
+
                             for a in range(len(stcW)):
                                 sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
                                 while a in sampleTmp:
@@ -221,33 +222,73 @@ def main(_):
                                 negativeSampleList.append(sampleTmp)
                             negativeSamplesList.append(negativeSampleList)
 
-            # M-Step: Do Optimize
-            #                 if len(batchLossSenseIdxList) == opt.batchSize:
                             if len(batchStcW) == opt.batchSize:
 ##--------------------------------- Inference By Batch ----------------------------------
-                                # from e_step.inference import batchViolentInference
-                                # start = time.time()
-                                # batchLossSenseIdxList = batchViolentInference(batchStcW, sess, batchSentenceLossGraph, senseIdxPlaceholder, argmin, lossPlaceholder)
-                                # pool = Pool()
                                 batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
-                                # from e_step.inference import batchDPInference
-                                # batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window, pool)
-                                # end = time.time()
-                                # print('Inference time: %.5f' % (end - start))
 ##--------------------------------- Inference By Batch ----------------------------------
 
-                                # end = time.time()
-                                # print('Inferencing time: %.5f' % (end - start))
-                                # start = time.time()
-
                                 if m_step:
-                                    loss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                    # loss = 0.
-                                    sys.stdout.write('\rIter: %d/%d, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, loss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                    # summ, posloss = sess.run([merged, reduceAvgLoss], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                    # writer.add_summary(summ, i)
+
+                                    posloss = sess.run(reduceAvgLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                    negloss = sess.run(reduceAvgNegLoss, feed_dict={mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                    nceloss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                    sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+
+                                    # if posloss < 0:
+                                    #     print(sess.run(l, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+
+                                    # if posloss > 1000:
+                                    #     print('')
+                                    #     print("ASSIGN:", batchLossSenseIdxList)
+                                    #     energys = sess.run(l, feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                    #     print("ENERGYS:", energys)
+                                    #     print("VARLS:", sess.run(varl, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                    #
+                                    #     for ind in range(len(energys)):
+                                    #         if energys[ind] > 1000:
+                                    #             pair = sess.run(varl[i], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                    #
+                                    #             mm = tf.nn.embedding_lookup(vocabulary.means, pair[0])
+                                    #             sigm = tf.nn.embedding_lookup(vocabulary.sigmas, pair[0])
+                                    #             moth = tf.nn.embedding_lookup(vocabulary.outputMeans, pair[1])
+                                    #             sigoth = tf.nn.embedding_lookup(vocabulary.outputSigmas, pair[1])
+                                    #
+                                    #             m = mm - moth
+                                    #             sig = sigm + sigoth
+                                    #
+                                    #             from utils.distance import diagEL
+                                    #
+                                    #             print("ENERGY:", energys[ind])
+                                    #             print("ENERGY REAL:", sess.run(diagEL(mm, sigm, moth, sigoth)))
+                                    #             print("TRACE VALUE:", sess.run(tf.log(tf.reduce_prod(sig, 1))))
+                                    #             print("SQUARE VALUE:", sess.run(tf.reduce_sum(tf.square(m) * tf.reciprocal(sig), 1)))
+                                    #             print("SQUARE SUM:", sess.run(tf.reduce_sum(tf.square(m), 1)))
+                                    #             print("SIGMA:", sess.run(sig))
+                                    #             print("MEAN:", sess.run(m))
+
                                     sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
 
-                                # end = time.time()
-                                # print('Optimization time: %.5f' % (end - start))
+                                    # print(batchStcW)
+                                    # print("Input Embedding", vocabulary.means[vocabulary.getWord('without').senseStart].eval())
+                                    # print("Input Embedding", vocabulary.sigmas[vocabulary.getWord('without').senseStart].eval())
+                                    # print("Output Embedding", vocabulary.outputMeans[vocabulary.getWord('without').senseStart].eval())
+                                    # print("Output Embedding", vocabulary.outputSigmas[vocabulary.getWord('without').senseStart].eval())
+                                    # print("Gradient:", vocabulary.getWord('without').senseStart in sess.run(tf.gradients(avgBatchStcLoss, vocabulary.means), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})[0].indices)
+                                    # gr = sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                    # print(gr)
+                                    # gr[67320]
+                                    # fi.write(str(batchStcW))
+                                    # fi.write('\n')
+                                    # fi.write(str(batchLossSenseIdxList))
+                                    # fi.write('\n')
+                                    # fi.write(str(list(gr[0][0].values)).replace('\n', ''))
+                                    # fi.write('\n')
+                                    # fi.write(str(list(gr[0][0].indices)))
+                                    # fi.write('\n')
+                                    # fi.write('\n')
+                                    # print('OK')
 
                                 del(batchLossSenseIdxList)
                                 del(negativeSamplesList)
@@ -255,17 +296,22 @@ def main(_):
                                 batchStcW = []
                                 negativeSamplesList = []
                                 batchLossSenseIdxList = []
-
-                                # start = time.time()
-
 ##----------------------------- Train Batch ------------------------------
 
-                # Save training result
-                # from threadpool import *
-                # tp = ThreadPool(1)
-                # requests = makeRequests(vocabulary.saveEmbeddings, [opt.saveVocab])
-                # for req in requests:
-                #     tp.putRequest(req)
+                # print('is', vocabulary.getWord('is').senseCount, vocabulary.getWord('is').senseNum)
+                # print('english', vocabulary.getWord('english').senseCount, vocabulary.getWord('english').senseNum)
+                # print('latin', vocabulary.getWord('latin').senseCount, vocabulary.getWord('latin').senseNum)
+                # print('victoria', vocabulary.getWord('victoria').senseCount, vocabulary.getWord('victoria').senseNum)
+                # print('a', vocabulary.getWord('a').senseCount, vocabulary.getWord('a').senseNum)
+                #
+
+                # aftMeans = vocabulary.means.eval()
+                # aftSigmas = vocabulary.sigmas.eval()
+                #
+                # import pickle as pk
+                #
+                # with open('iter' + str(i) + '.pkl', 'w') as f:
+                #     pk.dump({'orgMeans': orgMeans, 'orgSigmas': orgSigmas, 'aftMeans': aftMeans, 'aftSigmas': aftSigmas}, f)
 
                 vocabulary.saveVocabWithEmbeddings(opt.savePath, sess)
             else:

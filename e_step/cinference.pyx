@@ -2,7 +2,6 @@
 
 import time
 from options import Options as opt
-from libcpp.vector cimport vector
 
 
 cdef dpgetAllWindows(stcW):
@@ -57,68 +56,6 @@ cdef dpgetAllWindows(stcW):
     return windows, firstWindowSize
 
 
-cdef getAllWindows(stcW):
-    cdef:
-        int i
-        int j
-        int k
-        int stcWLen
-        int firstWindowSize
-        int start
-        int end
-        int midAppended
-        int windowLast
-    cdef vector[vector[int]] windows
-    cdef vector[int] tmp
-
-    firstWindowSize = 0
-    stcWLen = len(stcW)
-
-    for i in range(stcWLen - opt.windowSize):
-        start = i
-        end = 2 * opt.windowSize + 1 + i
-        midAppended = 0
-
-        for j in range(start, end):
-            if j < stcWLen:
-                tmp.push_back(stcW[j].senseStart)
-            else:
-                tmp.push_back(tmp[opt.windowSize])
-                midAppended += 1
-
-        windows.push_back(vector[int](tmp))
-
-        while True:
-            if tmp.size() == 0:
-                break
-            else:
-                windowLast = start + tmp.size() - 1 if start + tmp.size() - 1 < stcWLen else stcWLen - 1
-
-                if midAppended > 0 or tmp.back() == stcW[windowLast].senseStart + stcW[windowLast].senseNum - 1:
-                    tmp.pop_back()
-
-                    if midAppended > 0:
-                        midAppended -= 1
-                else:
-                    windowLast = tmp.back() + 1 # Use windowLast for temp purpose
-                    tmp.pop_back()
-                    tmp.push_back(windowLast)
-
-                    for k in range(tmp.size(), opt.windowSize * 2 + 1):
-                        if start + k < stcWLen:
-                            tmp.push_back(stcW[start + k].senseStart)
-                        else:
-                            tmp.push_back(tmp[opt.windowSize])
-                            midAppended += 1
-
-                    windows.push_back(vector[int](tmp))
-
-        if i == 0:
-            firstWindowSize = windows.size()
-
-    return windows, firstWindowSize
-
-
 cpdef inferenceOneStc(stcW, lossTable, assignList):
     cdef int i
     cdef int j
@@ -127,35 +64,30 @@ cpdef inferenceOneStc(stcW, lossTable, assignList):
     cdef int minLossIdx
     cdef double minLoss
     cdef double tmpLoss
-    # cdef vector[int] assign
-    # cdef vector[double] lossList
-    # cdef vector[int] prevAssignList
 
     assign = []
     lossList = [0] * len(assignList)
     prevAssignList = [None] * len(assignList)
 
-    # lossList = vector[double](len(assignList))
-    # prevAssignList = vector[int](len(assignList))
     map = {}
 
     mapTime = 0
     parseMapTime = 0
 
-    for i in range(opt.windowSize, len(stcW)):
+    for i in range(opt.windowSize, len(stcW)): # Each iteration check a window
         minLoss = float('inf')
         minLossIdx = 0
         map = {}
 
         start = time.time()
 
-        for j in range(len(assignList)):
+        for j in range(len(assignList)): #
             lossList[j] = lossTable[tuple(assignList[j])] + lossList[j]
             tmpAssign = assignList[j]
             tmpLoss = lossList[j]
 
             if tmpLoss < minLoss:
-                minLoss = lossList[j]
+                minLoss = tmpLoss
                 minLossIdx = j
 
             t = tuple(tmpAssign[1:])
@@ -172,18 +104,17 @@ cpdef inferenceOneStc(stcW, lossTable, assignList):
         start = time.time()
 
         if i > opt.windowSize:
+            w = stcW[len(assign)]
+            w.senseCount[prevAssignList[minLossIdx] - w.senseStart] += 1
             assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
-            # assign.push_back(prevAssignList[minLossIdx]) # Record the inferenced sense
 
         newWordIdx = i + opt.windowSize + 1
         assignList = []
         lossList = []
         prevAssignList = []
-        # lossList.clear()
-        # prevAssignList.clear()
+
         for key in map:
             if len(assign) == 0 or map[key][2] == assign[-1]:
-            # if assign.size() == 0 or map[key][2] == assign.back():
                 tmp = list(key)
 
                 if newWordIdx < len(stcW):
@@ -191,21 +122,13 @@ cpdef inferenceOneStc(stcW, lossTable, assignList):
                         assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
                         lossList.append(map[key][1])
                         prevAssignList.append(map[key][0])
-                        # lossList.push_back(map[key][1])
-                        # prevAssignList.push_back(map[key][0])
                 else:
                     assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
                     lossList.append(map[key][1])
                     prevAssignList.append(map[key][0])
-                    # lossList.push_back(map[key][1])
-                    # prevAssignList.push_back(map[key][0])
 
         end = time.time()
         parseMapTime += (end - start)
-
-    # print("Building map time:", mapTime)
-    # print("Parsing map time:", parseMapTime)
-    start = time.time()
 
     minLoss = float('inf')
     tmpMinLossIdx = 0
@@ -217,12 +140,6 @@ cpdef inferenceOneStc(stcW, lossTable, assignList):
     assign.append(map[tmpMinLossIdx][0])
     assign.extend(list(tmpMinLossIdx)[:opt.windowSize])
 
-    end = time.time()
-    # print("Tail time:", end - start)
-
-    # assign.push_back(map[tmpMinLossIdx][0])
-    # for i in list(tmpMinLossIdx)[:opt.windowSize]:
-    #     assign.push_back(i)
     return assign
 
 
@@ -233,50 +150,22 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window):
     ends = []
     lossTable = {}
 
-    # start = time.time()
-
-    # for a, b in pool.map(dpgetAllWindows, batchStcW):
     for stcW in batchStcW:
         a, b = dpgetAllWindows(stcW)
         starts.append(len(assignList))
         ends.append(b + starts[-1])
         assignList.extend(a)
 
-    print(len(assignList))
-
-    # end = time.time()
-    # print("Build assignList time:", end - start)
-    # start = time.time()
-
-    loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
-
-    # end = time.time()
-    # print("Calculate time:", end - start)
-    # start = time.time()
+    loss = []
+    step = 100000
+    for i in range(0, len(assignList), step):
+        subAssignList = assignList[i:i + step]
+        loss.extend(list(sess.run(windowLossGraph, feed_dict = {window: subAssignList})))
 
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
-    # end = time.time()
-    # print("Build lossTable time:", end - start)
-    # start = time.time()
-
     for i in range(len(batchStcW)):
         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
 
-    # end = time.time()
-    # print("Real inference time:", end - start)
-    # assign = []
-    # start = time.time()
-    #
-    # for i in pool.imap_unordered(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]):
-    #     assign.append(i)
-    #
-    # end = time.time()
-    # print("Multi Process Real inference time:", end - start)
-
     return assign
-
-
-def inferenceHelper(arg):
-    return inferenceOneStc(*arg)

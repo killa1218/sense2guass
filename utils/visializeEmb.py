@@ -6,6 +6,7 @@ import os.path as path
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
 import random
+import numpy as np
 import pickle as pk
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,13 +18,21 @@ import tensorflow as tf
 
 def main():
     vocabPath = sys.argv[1]
-    vocab = Vocab('../data/text8')
+    vocab = Vocab()
+    vocab.load(vocabPath)
 
     with tf.Session() as sess:
         tf.global_variables_initializer().run()
         means = sess.run(vocab.means)
+        sigmas = sess.run(vocab.sigmas)
 
-    # vocab.load(vocabPath)
+    sigmas = random.sample(list(sigmas), 1000)
+
+    sum = np.sum(sigmas)
+    print(sum)
+    print(sum / 50 / 1000)
+
+
     colorMap = ['c','g','r','m','k']
 
     with open(vocabPath, 'rb') as f:

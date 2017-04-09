@@ -10,20 +10,40 @@ else:
 
 
 def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
-    senseIdxPlaceholder = tf.placeholder(dtype=tf.int32, shape=[None, opt.sentenceLength])
+    senseIdxPlaceholder = tf.placeholder(dtype=tf.int32, shape=[None, opt.sentenceLength], name="Observation")
 
     l = []
     for i in range(sentenceLength):
-        midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i])
-        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i])
+        midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i], name="midMean")
+        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i], name="midSigma")
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
-                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset])))
+                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset))))
             if i + offset < sentenceLength:
-                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset])))
+                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset))))
 
-    return tf.add_n(l), (senseIdxPlaceholder)
+    return tf.add_n(l, name = "ADD_ALL"), (senseIdxPlaceholder), l
+
+# No output Embedding
+# def batchSentenceLossGraphNO(vocabulary, sentenceLength=opt.sentenceLength):
+#     senseIdxPlaceholder = tf.placeholder(dtype=tf.int32, shape=[None, opt.sentenceLength])
+#
+#     l = []
+#     varl = []
+#     for i in range(sentenceLength):
+#         midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i])
+#         midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i])
+#
+#         for offset in range(1, opt.windowSize + 1):
+#             if i - offset > -1:
+#                 l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i - offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i - offset])))
+#                 varl.append((senseIdxPlaceholder[:, i], senseIdxPlaceholder[:, i - offset]))
+#             if i + offset < sentenceLength:
+#                 l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i + offset]), tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i + offset])))
+#                 varl.append((senseIdxPlaceholder[:, i], senseIdxPlaceholder[:, i + offset]))
+#
+#     return tf.add_n(l), (senseIdxPlaceholder), l, varl
 
 
 def windowLossGraph(vocabulary):
@@ -48,7 +68,7 @@ def negativeLossGraph(vocabulary):
     for i in range(opt.sentenceLength):
         midMean = tf.nn.embedding_lookup(vocabulary.means, mid[:, i])
         midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i])
-        negSample = negSamples[:, i]
+        negSample = negSamples[:, i, :]
 
         for j in range(opt.negative):
             l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.outputSigmas, negSample[:, j])))

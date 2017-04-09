@@ -35,7 +35,7 @@ class Vocab(object):
             with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pkl'), 'rb') as f:
                 self._senseNum = pk.load(f)
         except Exception:
-            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pk3'), 'rb') as f:
+            with open(os.path.join(curDir, 'data/coarse-grained-all-words/senseNumberDict.pkl3'), 'rb') as f:
                 self._senseNum = pk.load(f)
 
         if file is not None:
@@ -169,7 +169,7 @@ class Vocab(object):
 
 
     def getWordFreq(self, word):
-        return float(self.getWordCount()) / self.totalWordCount
+        return float(self.getWordCount(word)) / self.totalWordCount
 
 
     def saveVocabWithEmbeddings(self, file, sess):
@@ -278,42 +278,42 @@ class Vocab(object):
                 dtype=dataType
             ),
             dtype=dataType,
-            name="means"
+            name="outputMeans"
         )
 
         if opt.covarShape == 'normal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize, eSize],
-                    0,
-                    5 * iWidth,
+                    0.01,
+                    1 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
                 name="sigmas"
-            ), 0.01, float('inf'))
+            ), 1e-10, float('inf'))
         elif opt.covarShape == 'diagnal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize],
-                    0,
-                    5 * iWidth,
+                    0.01,
+                    1 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
                 name="sigmas"
-            ), 0.01, float('inf'))
+            ), 1e-10, float('inf'))
 
             self.outputSigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize],
-                    0,
-                    5 * iWidth,
+                    0.01,
+                    1 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
-                name="sigmas"
-            ), 0.01, float('inf'))
+                name="outputSigmas"
+            ), 1e-10, float('inf'))
         else:
             self.sigmas = None
 

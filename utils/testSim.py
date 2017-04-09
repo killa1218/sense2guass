@@ -7,11 +7,11 @@ from os import path
 
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
-from graph import batchSentenceLossGraph
-from e_step.inference import violentInference
+from graph import windowLossGraph
+from e_step.cinference import batchDPInference
 from vocab import Vocab
-from utils.distance import diagKL as dist
-# from utils.distance import diagEL as dist
+# from utils.distance import diagKL as dist
+from utils.distance import diagEL as dist
 from options import Options as opt
 
 
@@ -25,11 +25,10 @@ scoreList = None
 with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/vec.0222.txt')
+    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0407_w3_b50_m100.pkl3')
 
 with tf.Session() as sess:
-    lossGraph, placeholder = batchSentenceLossGraph(vocab)
-    minLossIdxGraph = tf.argmin(lossGraph, 0)
+    windowLossGraph, window = windowLossGraph(vocab)
 
     sensePlaceholder = tf.placeholder(dtype=tf.int32)
     distance = dist(tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 1]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 1]))
@@ -39,7 +38,6 @@ with tf.Session() as sess:
     tf.global_variables_initializer().run()
     wordPairList = []
     scoreList = []
-    # inferenceList = []
 
     for i in data:
         stcW = []
@@ -64,7 +62,7 @@ with tf.Session() as sess:
                     w1sIdx = k
                     break
 
-            assign1 = violentInference(stcW, sess, minLossIdxGraph, placeholder)
+            assign1 = batchDPInference([stcW], sess, windowLossGraph, window)
 
             stcW = []
             word2 = i['w2']
@@ -75,7 +73,7 @@ with tf.Session() as sess:
 
                 while len(stcW) < opt.sentenceLength:
                     if len(stcW) < opt.sentenceLength and w2sIdx - j >= 0 and vocab.getWord(i['c2'][w2sIdx - j]):
-                        stcW.append(vocab.getWord(i['c2'][w2sIdx - j]))
+                        stcW.insert(0, vocab.getWord(i['c2'][w2sIdx - j]))
                     if len(stcW) < opt.sentenceLength and w2sIdx + j < len(i['c2']) and vocab.getWord(i['c2'][w2sIdx + j]):
                         stcW.append(vocab.getWord(i['c2'][w2sIdx + j]))
                     j += 1
@@ -85,19 +83,17 @@ with tf.Session() as sess:
                         w2sIdx = k
                         break
 
-                assign2 = violentInference(stcW, sess, minLossIdxGraph, placeholder)
+                assign2 = batchDPInference([stcW], sess, windowLossGraph, window)
 
-                wordPairList.append([assign1[w1sIdx], assign2[w2sIdx]])
+                wordPairList.append([assign1[0][w1sIdx], assign2[0][w2sIdx]])
                 scoreList.append(i['r'])
 
     result = sess.run(distance, feed_dict={sensePlaceholder: wordPairList})
     idx = sess.run(tf.argmin(distance, 0), feed_dict={sensePlaceholder: wordPairList})
 
     print('Data size:', len(data), 'Data covered:', len(wordPairList), 'Recall:', float(len(wordPairList)) / len(data))
-    print(idx)
-    print(data[idx]['r'])
 
-with open('../data/SCWS/KLResult.txt', 'w') as f:
+with open('../data/SCWS/ELResult_0407.txt', 'w') as f:
     for i in range(len(wordPairList)):
         f.write(vocab.getWordBySenseId(wordPairList[i][0]).token)
         f.write('  ')

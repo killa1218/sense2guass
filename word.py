@@ -12,15 +12,17 @@ class Word():
         self.token = word                   # String token of the word
         self.senseNum = sNum                # How many senses does this word have
         self.count = c                      # Word count
-        # self.means = None                   # Means of senses
-        # self.sigmas = None                  # Covariance of senses
         self.index = index                  # The index in vocabulary
         self.senseStart = sStart            # Where does the senses starts
+        self.senseCount = [0] * sNum        # Count the time appear of one sense
 
+    def __repr__(self):
+        # return str(self.senseStart)
+        return str((self.token, self.senseStart, self.senseNum))
 
-    # def __str__(self):
-    #     return self.token
-    #
+    def __str__(self):
+        return self.token
+
     #
     # def setSenseStart(self, sStart):
     #     self.senseStart = sStart
