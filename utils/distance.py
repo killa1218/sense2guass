@@ -23,8 +23,6 @@ def diagpowEL(m1, sig1, m2, sig2, d=opt.embSize):
     return -tf.pow(EL(m1, sig1, m2, sig2, d), 0.001)
 
 def diagEL(m1, sig1, m2, sig2, d=opt.embSize):
-    # print('m1:', m1.get_shape(), 'm2:', m2.get_shape(), 'sig1:', sig1.get_shape(), 'sig2:', sig2.get_shape())
-
     m = m1 - m2
     sig = sig1 + sig2
 
@@ -41,8 +39,8 @@ def diagKL(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaus
 
     return res
 
-def crossEntropy():
-    pass
+def diagCE(m1, sig1, m2, sig2, d=opt.embSize):
+    return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2
 
 def meanDist(m1, sig1, m2, sig2, d=opt.embSize):
     return tf.reduce_sum(m1 * m2)
