@@ -16,10 +16,10 @@ class Options(object):
     sensePrior = True                   # Whether use sense statistical information as prior probability when doing reference
     sentenceLength = 20                 # Length of a sentence
     maxSensePerWord = 5                 # Maximum number of senses of one word
-    batchSize = 1                       # How many sentences trained in a batch
+    batchSize = 50                      # How many sentences trained in a batch
     threads = 3                         # How many threads are used to train
     wordSeparator = re.compile('\s*,\s*|\s*\.\s*|\s+')  # Separator pattern of words in corpus
     minCount = 10                       # Words who exist under minCount times will be omitted
-    negative = 0                        # Negative samples for each sense
+    negative = 1                        # Negative samples for each sense
     EL = False                          # Whether use EL or KL
     dType = tf.float64                  # Data type
