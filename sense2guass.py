@@ -29,17 +29,17 @@ flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
 # flags.DEFINE_string("covariance", "diagnal", "Shape of covariance matrix, default is diagnal. Possible value is 'diagnal' or ")
 flags.DEFINE_integer("size", 50, "The embedding dimension size. Default is 100.")
-flags.DEFINE_integer("window", 5, "The number of words to predict to the left and right of the target word.")
-flags.DEFINE_integer("negative", 4, "Negative samples per sense. Default is 4.")
+flags.DEFINE_integer("window", 3, "The number of words to predict to the left and right of the target word.")
+flags.DEFINE_integer("negative", 1, "Negative samples per sense. Default is 4.")
 flags.DEFINE_integer("threads", 3, "How many threads are used to train. Default 12.")
-flags.DEFINE_integer("iter", 15, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
+flags.DEFINE_integer("iter", 10, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
 flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
 flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
-flags.DEFINE_integer("sentence_length", 15, "The length of one sentence.")
+flags.DEFINE_integer("sentence_length", 20, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
-flags.DEFINE_integer("batch_size", 20, "Number of training examples processed per step (size of a minibatch).")
-flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
+flags.DEFINE_integer("batch_size", 50, "Number of training examples processed per step (size of a minibatch).")
+flags.DEFINE_float("alpha", 0.005, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_float("margin", 100, "Margin between positive and negative training pairs. Default is 100.")
 flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_boolean("EL", False, "Use EL as energy function or KL, default is KL.")
@@ -106,8 +106,8 @@ def main(_):
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
-        optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        # optimizer = tf.train.AdamOptimizer(opt.alpha)
+        # optimizer = tf.train.AdagradOptimizer(opt.alpha)
+        optimizer = tf.train.AdamOptimizer(opt.alpha)
         # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
@@ -208,95 +208,107 @@ def main(_):
                     negativeSamplesList = []
                     batchStcW = []
 
-                    for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
-##----------------------------- Train Batch ------------------------------
-                        if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
-                            batchStcW.append(stcW)
-                            negativeSampleList = []
+                    try:
+                        for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
+    ##----------------------------- Train Batch ------------------------------
+                            if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
+                                batchStcW.append(stcW)
+                                negativeSampleList = []
 
-                            for a in range(len(stcW)):
-                                sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
-                                while a in sampleTmp:
+                                for a in range(len(stcW)):
                                     sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
+                                    while a in sampleTmp:
+                                        sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
 
-                                negativeSampleList.append(sampleTmp)
-                            negativeSamplesList.append(negativeSampleList)
+                                    negativeSampleList.append(sampleTmp)
+                                negativeSamplesList.append(negativeSampleList)
 
-                            if len(batchStcW) == opt.batchSize:
-##--------------------------------- Inference By Batch ----------------------------------
-                                batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
-##--------------------------------- Inference By Batch ----------------------------------
+                                if len(batchStcW) == opt.batchSize:
+    ##--------------------------------- Inference By Batch ----------------------------------
+                                    # start = time.time()
+                                    batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
+                                    # print("Inference Time:", time.time() - start)
+    ##--------------------------------- Inference By Batch ----------------------------------
 
-                                if m_step:
-                                    # summ, posloss = sess.run([merged, reduceAvgLoss], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                    # writer.add_summary(summ, i)
+                                    if m_step:
+                                        # summ, posloss = sess.run([merged, reduceAvgLoss], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        # writer.add_summary(summ, i)
+                                        # start = time.time()
+                                        posloss = sess.run(reduceAvgLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        negloss = sess.run(reduceAvgNegLoss, feed_dict={mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        nceloss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                        # print("Cal Loss Time:", time.time() - start)
 
-                                    posloss = sess.run(reduceAvgLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                    negloss = sess.run(reduceAvgNegLoss, feed_dict={mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                    nceloss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                    sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                        # if posloss < 0:
+                                        #     print(sess.run(l, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
 
-                                    # if posloss < 0:
-                                    #     print(sess.run(l, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                        # if posloss > 1000:
+                                        #     print('')
+                                        #     print("ASSIGN:", batchLossSenseIdxList)
+                                        #     energys = sess.run(l, feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        #     print("ENERGYS:", energys)
+                                        #     print("VARLS:", sess.run(varl, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                        #
+                                        #     for ind in range(len(energys)):
+                                        #         if energys[ind] > 1000:
+                                        #             pair = sess.run(varl[i], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        #
+                                        #             mm = tf.nn.embedding_lookup(vocabulary.means, pair[0])
+                                        #             sigm = tf.nn.embedding_lookup(vocabulary.sigmas, pair[0])
+                                        #             moth = tf.nn.embedding_lookup(vocabulary.outputMeans, pair[1])
+                                        #             sigoth = tf.nn.embedding_lookup(vocabulary.outputSigmas, pair[1])
+                                        #
+                                        #             m = mm - moth
+                                        #             sig = sigm + sigoth
+                                        #
+                                        #             from utils.distance import diagEL
+                                        #
+                                        #             print("ENERGY:", energys[ind])
+                                        #             print("ENERGY REAL:", sess.run(diagEL(mm, sigm, moth, sigoth)))
+                                        #             print("TRACE VALUE:", sess.run(tf.log(tf.reduce_prod(sig, 1))))
+                                        #             print("SQUARE VALUE:", sess.run(tf.reduce_sum(tf.square(m) * tf.reciprocal(sig), 1)))
+                                        #             print("SQUARE SUM:", sess.run(tf.reduce_sum(tf.square(m), 1)))
+                                        #             print("SIGMA:", sess.run(sig))
+                                        #             print("MEAN:", sess.run(m))
 
-                                    # if posloss > 1000:
-                                    #     print('')
-                                    #     print("ASSIGN:", batchLossSenseIdxList)
-                                    #     energys = sess.run(l, feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                    #     print("ENERGYS:", energys)
-                                    #     print("VARLS:", sess.run(varl, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                    #
-                                    #     for ind in range(len(energys)):
-                                    #         if energys[ind] > 1000:
-                                    #             pair = sess.run(varl[i], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                    #
-                                    #             mm = tf.nn.embedding_lookup(vocabulary.means, pair[0])
-                                    #             sigm = tf.nn.embedding_lookup(vocabulary.sigmas, pair[0])
-                                    #             moth = tf.nn.embedding_lookup(vocabulary.outputMeans, pair[1])
-                                    #             sigoth = tf.nn.embedding_lookup(vocabulary.outputSigmas, pair[1])
-                                    #
-                                    #             m = mm - moth
-                                    #             sig = sigm + sigoth
-                                    #
-                                    #             from utils.distance import diagEL
-                                    #
-                                    #             print("ENERGY:", energys[ind])
-                                    #             print("ENERGY REAL:", sess.run(diagEL(mm, sigm, moth, sigoth)))
-                                    #             print("TRACE VALUE:", sess.run(tf.log(tf.reduce_prod(sig, 1))))
-                                    #             print("SQUARE VALUE:", sess.run(tf.reduce_sum(tf.square(m) * tf.reciprocal(sig), 1)))
-                                    #             print("SQUARE SUM:", sess.run(tf.reduce_sum(tf.square(m), 1)))
-                                    #             print("SIGMA:", sess.run(sig))
-                                    #             print("MEAN:", sess.run(m))
+                                        # start = time.time()
+                                        sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        # print('OP Time:', time.time() - start)
 
-                                    sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, mid: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        # print(batchStcW)
+                                        # print("Input Embedding", vocabulary.means[vocabulary.getWord('without').senseStart].eval())
+                                        # print("Input Embedding", vocabulary.sigmas[vocabulary.getWord('without').senseStart].eval())
+                                        # print("Output Embedding", vocabulary.outputMeans[vocabulary.getWord('without').senseStart].eval())
+                                        # print("Output Embedding", vocabulary.outputSigmas[vocabulary.getWord('without').senseStart].eval())
+                                        # print("Gradient:", vocabulary.getWord('without').senseStart in sess.run(tf.gradients(avgBatchStcLoss, vocabulary.means), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})[0].indices)
+                                        # gr = sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        # print(gr)
+                                        # gr[67320]
+                                        # fi.write(str(batchStcW))
+                                        # fi.write('\n')
+                                        # fi.write(str(batchLossSenseIdxList))
+                                        # fi.write('\n')
+                                        # fi.write(str(list(gr[0][0].values)).replace('\n', ''))
+                                        # fi.write('\n')
+                                        # fi.write(str(list(gr[0][0].indices)))
+                                        # fi.write('\n')
+                                        # fi.write('\n')
+                                        # print('OK')
 
-                                    # print(batchStcW)
-                                    # print("Input Embedding", vocabulary.means[vocabulary.getWord('without').senseStart].eval())
-                                    # print("Input Embedding", vocabulary.sigmas[vocabulary.getWord('without').senseStart].eval())
-                                    # print("Output Embedding", vocabulary.outputMeans[vocabulary.getWord('without').senseStart].eval())
-                                    # print("Output Embedding", vocabulary.outputSigmas[vocabulary.getWord('without').senseStart].eval())
-                                    # print("Gradient:", vocabulary.getWord('without').senseStart in sess.run(tf.gradients(avgBatchStcLoss, vocabulary.means), feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})[0].indices)
-                                    # gr = sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                    # print(gr)
-                                    # gr[67320]
-                                    # fi.write(str(batchStcW))
-                                    # fi.write('\n')
-                                    # fi.write(str(batchLossSenseIdxList))
-                                    # fi.write('\n')
-                                    # fi.write(str(list(gr[0][0].values)).replace('\n', ''))
-                                    # fi.write('\n')
-                                    # fi.write(str(list(gr[0][0].indices)))
-                                    # fi.write('\n')
-                                    # fi.write('\n')
-                                    # print('OK')
-
-                                del(batchLossSenseIdxList)
-                                del(negativeSamplesList)
-                                del(batchStcW)
-                                batchStcW = []
-                                negativeSamplesList = []
-                                batchLossSenseIdxList = []
-##----------------------------- Train Batch ------------------------------
+                                    del(batchLossSenseIdxList)
+                                    del(negativeSamplesList)
+                                    del(batchStcW)
+                                    batchStcW = []
+                                    negativeSamplesList = []
+                                    batchLossSenseIdxList = []
+    ##----------------------------- Train Batch ------------------------------
+                    except KeyboardInterrupt:
+                        print("Canceled by user, save data?(y/N)")
+                        ans = input()
+                        if ans == 'y':
+                            vocabulary.saveVocabWithEmbeddings(opt.savePath, sess)
+                        return
 
                 # print('is', vocabulary.getWord('is').senseCount, vocabulary.getWord('is').senseNum)
                 # print('english', vocabulary.getWord('english').senseCount, vocabulary.getWord('english').senseNum)

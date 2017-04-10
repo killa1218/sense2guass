@@ -21,17 +21,22 @@ vocab = None
 result = None
 scoreList = None
 
+date = '0407'
+condition = ''
+
 # with open('../data/SCWS/testData.pk3', 'rb') as f:
 with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0407_w3_b50_m100.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.' + date + '_w3_b50_m100' + condition + '.pkl3')
 
 with tf.Session() as sess:
     windowLossGraph, window = windowLossGraph(vocab)
 
     sensePlaceholder = tf.placeholder(dtype=tf.int32)
     distance = dist(tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 0]), tf.nn.embedding_lookup(vocab.means, sensePlaceholder[:, 1]), tf.nn.embedding_lookup(vocab.sigmas, sensePlaceholder[:, 1]))
+    minValue = tf.argmin(distance, 0)
+    maxValue = tf.argmax(distance, 0)
     labelPlaceholder = tf.placeholder(dtype=tf.float64)
     difference = 10 - labelPlaceholder - distance
 
@@ -89,11 +94,15 @@ with tf.Session() as sess:
                 scoreList.append(i['r'])
 
     result = sess.run(distance, feed_dict={sensePlaceholder: wordPairList})
+    min = result[sess.run(minValue, feed_dict={sensePlaceholder: wordPairList})]
+    max = result[sess.run(maxValue, feed_dict={sensePlaceholder: wordPairList})]
     idx = sess.run(tf.argmin(distance, 0), feed_dict={sensePlaceholder: wordPairList})
 
     print('Data size:', len(data), 'Data covered:', len(wordPairList), 'Recall:', float(len(wordPairList)) / len(data))
+    print('minValue:', min)
+    print('maxValue:', max)
 
-with open('../data/SCWS/ELResult_0407.txt', 'w') as f:
+with open('../data/SCWS/ELResult_' + date + condition + '.txt', 'w') as f:
     for i in range(len(wordPairList)):
         f.write(vocab.getWordBySenseId(wordPairList[i][0]).token)
         f.write('  ')

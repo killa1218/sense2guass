@@ -127,7 +127,7 @@ class Vocab(object):
                     self._idx2word.append(self._vocab[i])
 
                     if self.size % 100 == 0:
-                        sys.stdout.write('\r%d words found, %d words encountered using %i processes.' % (len(d), self.size, multiprocessing.cpu_count()))
+                        sys.stdout.write('\r%d words found, %d words and %d senses encountered using %i processes.' % (len(d), self.size, self.totalSenseCount, multiprocessing.cpu_count()))
                         sys.stdout.flush()
         print('')
         self.initAllSenses()
@@ -302,7 +302,7 @@ class Vocab(object):
                 ),
                 dtype=dataType,
                 name="sigmas"
-            ), 1e-10, float('inf'))
+            ), 0.01, float('inf'))
 
             self.outputSigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
@@ -313,7 +313,7 @@ class Vocab(object):
                 ),
                 dtype=dataType,
                 name="outputSigmas"
-            ), 1e-10, float('inf'))
+            ), 0.01, float('inf'))
         else:
             self.sigmas = None
 
