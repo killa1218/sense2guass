@@ -3,8 +3,10 @@
 import tensorflow as tf
 from options import Options as opt
 
-if opt.EL:
+if opt.EL == 1:
     from utils.distance import diagEL as dist
+elif opt.EL == 2:
+    from utils.distance import diagCE as dist
 else:
     from utils.distance import diagKL as dist
 
