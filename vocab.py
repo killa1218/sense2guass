@@ -92,6 +92,7 @@ class Vocab(object):
         chunkSize = math.ceil(fileSize / chunkNum)
         task = []
         d = {}
+        tokenNum = 0
 
         for i in range(chunkNum):
             start = i * chunkSize
@@ -109,6 +110,8 @@ class Vocab(object):
                         d[j] = i[j]
 
         for i in d:
+            tokenNum += d[i]
+
             if d[i] > opt.minCount:
                 if i in self._vocab.keys():
                     self._vocab[i].count += d[i]
@@ -127,8 +130,10 @@ class Vocab(object):
                     self._idx2word.append(self._vocab[i])
 
                     if self.size % 100 == 0:
-                        sys.stdout.write('\r%d words found, %d words and %d senses encountered using %i processes.' % (len(d), self.size, self.totalSenseCount, multiprocessing.cpu_count()))
+                        sys.stdout.write('\rCorpus contains %d tokens, %d words found, %d words and %d senses encountered using %i processes.' % (tokenNum, len(d), self.size, self.totalSenseCount, multiprocessing.cpu_count()))
                         sys.stdout.flush()
+
+        self.totalWordCount = len(d)
         print('')
         self.initAllSenses()
 
