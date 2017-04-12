@@ -3,7 +3,6 @@
 import time
 from options import Options as opt
 
-
 cdef dpgetAllWindows(stcW):
     cdef:
         int windowSize
@@ -144,28 +143,35 @@ cpdef inferenceOneStc(stcW, lossTable, assignList):
 
 
 def batchDPInference(batchStcW, sess, windowLossGraph, window):
+    cdef int i
     assignList = []
     assign = []
     starts = []
     ends = []
     lossTable = {}
 
+    # start = time.time()
     for stcW in batchStcW:
         a, b = dpgetAllWindows(stcW)
         starts.append(len(assignList))
         ends.append(b + starts[-1])
         assignList.extend(a)
+    # print("Get Windows Time:", time.time() - start)
 
     loss = []
     step = 100000
+    # start = time.time()
     for i in range(0, len(assignList), step):
         subAssignList = assignList[i:i + step]
         loss.extend(list(sess.run(windowLossGraph, feed_dict = {window: subAssignList})))
+    # print("Calculate Time:", time.time() - start)
 
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
 
+    # start = time.time()
     for i in range(len(batchStcW)):
         assign.append(inferenceOneStc(batchStcW[i], lossTable, assignList[starts[i]:ends[i]]))
+    # print("Inference Time:", time.time() - start)
 
     return assign
