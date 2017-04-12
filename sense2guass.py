@@ -106,8 +106,8 @@ def main(_):
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
-        # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(opt.alpha)
+        optimizer = tf.train.AdagradOptimizer(opt.alpha)
+        # optimizer = tf.train.AdamOptimizer(opt.alpha)
         # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
@@ -163,7 +163,7 @@ def main(_):
             nceLossGraph = tf.nn.relu(opt.margin - avgNegLoss + avgBatchStcLoss)
             reduceNCELoss = tf.reduce_sum(nceLossGraph)
             avgNCELoss = reduceNCELoss / opt.batchSize
-            grad = optimizer.compute_gradients(avgNCELoss + avgBatchStcLoss)
+            grad = optimizer.compute_gradients(avgNCELoss + reduceAvgLoss)
             # # grad = optimizer.compute_gradients(batchSentenceLossGraph)
             clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             op = optimizer.apply_gradients(clipedGrad)
