@@ -55,6 +55,7 @@ def processSCWS():
     with open('../data/SCWS/ratings.txt') as f:
         for line in f.readlines():
             d = {}
+            meet = False
             wordFilter = re.compile('^[a-zA-Z]+(-[a-zA-Z]+)*$')
             puncFilter = re.compile('[,\.?:;\'\"!`]|(-{2})|(\.{3})|\(|\)|\[|\]|\{|\}')
             arr = line.split('\t')
@@ -67,14 +68,16 @@ def processSCWS():
             c1 = nltk.pos_tag(nltk.word_tokenize(arr[5]))
             c1List = []
 
-            meet = False
             for w in c1:
                 if w[0] == '|||':
                     d['w1sIdx'] = len(c1List) # Find the index of target word.
                     meet = True
                 else:
                     if wordFilter.match(w[0]):
-                        if len(w[1]) > 0:
+                        if meet:
+                            c1List.append(d['w1']) # Not lemmatize the main word in context
+                            meet = False
+                        elif len(w[1]) > 0:
                             if w[1][0] == 'N':
                                 c1List.append(le.lemmatize(w[0], 'n').lower())
                             elif w[1][0] == 'J':
@@ -85,13 +88,14 @@ def processSCWS():
                                 c1List.append(le.lemmatize(w[0], 'r').lower())
                             else:
                                 c1List.append(le.lemmatize(w[0], 'v').lower())
-                        elif meet:
-                            c1List.append(w[0].lower()) # Not lemmatize the main word in context
                         else:
                             c1List.append(le.lemmatize(w[0], 'v').lower())
                     else:
                         pass
                         # print(w[0], 'Ignored')
+            if c1List[d['w1sIdx']] != d['w1']:
+                print(c1List[d['w1sIdx']], d['w1'])
+            assert(c1List[d['w1sIdx']] == d['w1'])
 
             arr[6] = puncFilter.sub('', arr[6])
             arr[6] = arr[6].replace('<b>', '|||')
@@ -99,14 +103,16 @@ def processSCWS():
             c2 = nltk.pos_tag(nltk.word_tokenize(arr[6]))
             c2List = []
 
-            meet = False
             for w in c2:
                 if w[0] == '|||':
                     d['w2sIdx'] = len(c2List) # Find the index of target word.
                     meet = True
                 else:
                     if wordFilter.match(w[0]):
-                        if len(w[1]) > 0:
+                        if meet:
+                            c2List.append(d['w2']) # Not lemmatize the main word in context
+                            meet = False
+                        elif len(w[1]) > 0:
                             if w[1][0] == 'N':
                                 c2List.append(le.lemmatize(w[0], 'n').lower())
                             elif w[1][0] == 'J':
@@ -117,13 +123,15 @@ def processSCWS():
                                 c2List.append(le.lemmatize(w[0], 'r').lower())
                             else:
                                 c2List.append(le.lemmatize(w[0], 'v').lower())
-                        elif meet:
-                            c2List.append(w[0]) # Not lemmatize the main word in context
                         else:
                             c2List.append(le.lemmatize(w[0], 'v').lower())
                     else:
                         pass
                         # print(w[0], 'Ignored')
+            if c2List[d['w2sIdx']] != d['w2']:
+                print(c2List[d['w2sIdx']], d['w2'])
+            assert(c2List[d['w2sIdx']] == d['w2'])
+
 
             d['c1'] = c1List
             d['c2'] = c2List
