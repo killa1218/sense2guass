@@ -1,11 +1,42 @@
 # coding=utf8
 
-from nltk.stem import WordNetLemmatizer
+from nltk import WordNetLemmatizer
+import nltk
 import re
 import pickle as pk
 
 
 le = WordNetLemmatizer()
+
+def processText8():
+    '''
+        Do lemmatizing
+    '''
+    with open('../data/text8') as f, open('../data/text8lem', 'w') as wf:
+        for line in f.readlines():
+            arr = nltk.word_tokenize(line)
+            print(len(arr))
+            print(arr[:10000])
+            tagged = nltk.pos_tag(arr)
+            print(tagged[:10000])
+
+            for w in tagged:
+                if len(w[1]) > 0:
+                    if w[1][0] == 'N':
+                        wf.write(le.lemmatize(w[0], 'n'))
+                    elif w[1][0] == 'J':
+                        wf.write(le.lemmatize(w[0], 'a'))
+                    elif w[1][0] == 'V' or w[1][0] == 'I':
+                        wf.write(le.lemmatize(w[0], 'v'))
+                    elif w[1][0] == 'R':
+                        wf.write(le.lemmatize(w[0], 'r'))
+                    else:
+                        wf.write(le.lemmatize(w[0]))
+                else:
+                    wf.write(le.lemmatize(w[0]))
+
+                wf.write(' ')
+
 
 def processSCWS():
     '''
@@ -24,30 +55,57 @@ def processSCWS():
     with open('../data/SCWS/ratings.txt') as f:
         for line in f.readlines():
             d = {}
+            wordFilter = re.compile('^[a-zA-Z]+(-[a-zA-Z]+)*$')
             arr = line.split('\t')
             d['w1'] = le.lemmatize(arr[1].lower(), pos=arr[2])
             d['w2'] = le.lemmatize(arr[3].lower(), pos=arr[4])
 
-            c1 = re.sub(' (\W|<b>|</b>)+ ', ' ', arr[5])
-            c1 = re.sub(' \(|\) |\( |\) ', ' ', c1)
+            arr[5] = arr[5].replace('<b>', '')
+            arr[5] = arr[5].replace('</b>', '')
+            c1 = nltk.pos_tag(nltk.word_tokenize(arr[5]))
             c1List = []
 
 
-            for w in c1.split(' '):
-                if w.lower() == arr[1].lower():
-                    c1List.append(le.lemmatize(w.lower(), pos=arr[2]))
+            for w in c1:
+                if wordFilter.match(w[0]):
+                    if len(w[1]) > 0:
+                        if w[1][0] == 'N':
+                            c1List.append(le.lemmatize(w[0], 'n').lower())
+                        elif w[1][0] == 'J':
+                            c1List.append(le.lemmatize(w[0], 'a').lower())
+                        elif w[1][0] == 'V':
+                            c1List.append(le.lemmatize(w[0], 'v').lower())
+                        elif w[1][0] == 'R':
+                            c1List.append(le.lemmatize(w[0], 'r').lower())
+                        else:
+                            c1List.append(le.lemmatize(w[0]).lower())
+                    else:
+                        c1List.append(le.lemmatize(w[0]).lower())
                 else:
-                    c1List.append(le.lemmatize(w.lower()))
+                    print(w[0], 'Ignored')
 
-            c2 = re.sub(' (\W|<b>|</b>)+ ', ' ', arr[6])
-            c2 = re.sub(' \(|\) |\( |\) ', ' ', c2)
+            arr[5] = arr[5].replace('<b>', '')
+            arr[5] = arr[5].replace('</b>', '')
+            c2 = nltk.pos_tag(nltk.word_tokenize(arr[5]))
             c2List = []
 
-            for w in c2.split(' '):
-                if w.lower() == arr[3].lower():
-                    c2List.append(le.lemmatize(w.lower(), pos=arr[4]))
+            for w in c2:
+                if wordFilter.match(w[0]):
+                    if len(w[1]) > 0:
+                        if w[1][0] == 'N':
+                            c2List.append(le.lemmatize(w[0], 'n').lower())
+                        elif w[1][0] == 'J':
+                            c2List.append(le.lemmatize(w[0], 'a').lower())
+                        elif w[1][0] == 'V':
+                            c2List.append(le.lemmatize(w[0], 'v').lower())
+                        elif w[1][0] == 'R':
+                            c2List.append(le.lemmatize(w[0], 'r').lower())
+                        else:
+                            c2List.append(le.lemmatize(w[0]).lower())
+                    else:
+                        c2List.append(le.lemmatize(w[0]).lower())
                 else:
-                    c2List.append(le.lemmatize(w.lower()))
+                    print(w[0], 'Ignored')
 
             d['c1'] = c1List
             d['c2'] = c2List
@@ -135,3 +193,4 @@ def processBLESS():
 if __name__ == '__main__':
     # processBLESS()
     processSCWS()
+    # processText8()
