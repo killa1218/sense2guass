@@ -56,56 +56,74 @@ def processSCWS():
         for line in f.readlines():
             d = {}
             wordFilter = re.compile('^[a-zA-Z]+(-[a-zA-Z]+)*$')
+            puncFilter = re.compile('[,\.?:;\'\"!`]|(-{2})|(\.{3})|\(|\)|\[|\]|\{|\}')
             arr = line.split('\t')
             d['w1'] = le.lemmatize(arr[1].lower(), pos=arr[2])
             d['w2'] = le.lemmatize(arr[3].lower(), pos=arr[4])
 
-            arr[5] = arr[5].replace('<b>', '')
+            arr[5] = puncFilter.sub('', arr[5])
+            arr[5] = arr[5].replace('<b>', '|||')
             arr[5] = arr[5].replace('</b>', '')
             c1 = nltk.pos_tag(nltk.word_tokenize(arr[5]))
             c1List = []
 
-
+            meet = False
             for w in c1:
-                if wordFilter.match(w[0]):
-                    if len(w[1]) > 0:
-                        if w[1][0] == 'N':
-                            c1List.append(le.lemmatize(w[0], 'n').lower())
-                        elif w[1][0] == 'J':
-                            c1List.append(le.lemmatize(w[0], 'a').lower())
-                        elif w[1][0] == 'V':
-                            c1List.append(le.lemmatize(w[0], 'v').lower())
-                        elif w[1][0] == 'R':
-                            c1List.append(le.lemmatize(w[0], 'r').lower())
-                        else:
-                            c1List.append(le.lemmatize(w[0]).lower())
-                    else:
-                        c1List.append(le.lemmatize(w[0]).lower())
+                if w[0] == '|||':
+                    d['w1sIdx'] = len(c1List) # Find the index of target word.
+                    meet = True
                 else:
-                    print(w[0], 'Ignored')
+                    if wordFilter.match(w[0]):
+                        if len(w[1]) > 0:
+                            if w[1][0] == 'N':
+                                c1List.append(le.lemmatize(w[0], 'n').lower())
+                            elif w[1][0] == 'J':
+                                c1List.append(le.lemmatize(w[0], 'a').lower())
+                            elif w[1][0] == 'V':
+                                c1List.append(le.lemmatize(w[0], 'v').lower())
+                            elif w[1][0] == 'R':
+                                c1List.append(le.lemmatize(w[0], 'r').lower())
+                            else:
+                                c1List.append(le.lemmatize(w[0], 'v').lower())
+                        elif meet:
+                            c1List.append(w[0].lower()) # Not lemmatize the main word in context
+                        else:
+                            c1List.append(le.lemmatize(w[0], 'v').lower())
+                    else:
+                        pass
+                        # print(w[0], 'Ignored')
 
-            arr[5] = arr[5].replace('<b>', '')
-            arr[5] = arr[5].replace('</b>', '')
-            c2 = nltk.pos_tag(nltk.word_tokenize(arr[5]))
+            arr[6] = puncFilter.sub('', arr[6])
+            arr[6] = arr[6].replace('<b>', '|||')
+            arr[6] = arr[6].replace('</b>', '')
+            c2 = nltk.pos_tag(nltk.word_tokenize(arr[6]))
             c2List = []
 
+            meet = False
             for w in c2:
-                if wordFilter.match(w[0]):
-                    if len(w[1]) > 0:
-                        if w[1][0] == 'N':
-                            c2List.append(le.lemmatize(w[0], 'n').lower())
-                        elif w[1][0] == 'J':
-                            c2List.append(le.lemmatize(w[0], 'a').lower())
-                        elif w[1][0] == 'V':
-                            c2List.append(le.lemmatize(w[0], 'v').lower())
-                        elif w[1][0] == 'R':
-                            c2List.append(le.lemmatize(w[0], 'r').lower())
-                        else:
-                            c2List.append(le.lemmatize(w[0]).lower())
-                    else:
-                        c2List.append(le.lemmatize(w[0]).lower())
+                if w[0] == '|||':
+                    d['w2sIdx'] = len(c2List) # Find the index of target word.
+                    meet = True
                 else:
-                    print(w[0], 'Ignored')
+                    if wordFilter.match(w[0]):
+                        if len(w[1]) > 0:
+                            if w[1][0] == 'N':
+                                c2List.append(le.lemmatize(w[0], 'n').lower())
+                            elif w[1][0] == 'J':
+                                c2List.append(le.lemmatize(w[0], 'a').lower())
+                            elif w[1][0] == 'V':
+                                c2List.append(le.lemmatize(w[0], 'v').lower())
+                            elif w[1][0] == 'R':
+                                c2List.append(le.lemmatize(w[0], 'r').lower())
+                            else:
+                                c2List.append(le.lemmatize(w[0], 'v').lower())
+                        elif meet:
+                            c2List.append(w[0]) # Not lemmatize the main word in context
+                        else:
+                            c2List.append(le.lemmatize(w[0], 'v').lower())
+                    else:
+                        pass
+                        # print(w[0], 'Ignored')
 
             d['c1'] = c1List
             d['c2'] = c2List
