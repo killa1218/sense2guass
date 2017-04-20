@@ -195,12 +195,12 @@ class Vocab(object):
             for i in self._idx2word:
                 l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
             with open(file, 'wb') as f:
-                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas)}, f)
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas) if self.sigmas != None else None}, f)
                 return True
         except Exception:
             tf.global_variables_initializer().run(session=sess)
             with open(file, 'wb') as f:
-                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas)}, f)
+                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas) if self.sigmas != None else None}, f)
                 return True
 
 
@@ -229,7 +229,7 @@ class Vocab(object):
 
                     try:
                         self.means = tf.Variable(data['means'], dtype=dataType)
-                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType)
+                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType) if data['sigmas'] != None else None
                     except KeyError:
                         print('Using old style vocab file.')
 
@@ -247,9 +247,9 @@ class Vocab(object):
                         self._vocab[i[0]] = self._idx2word[-1]
 
                     self.size = len(data['words'])
-                    print('Vocab load finished. %d words and %d senses are encountered' % (self.totalWordCount, self.totalSenseCount))
+                    print('Vocab load finished. %d words and %d senses are encountered' % (self.size, self.totalSenseCount))
 
-                    if not self.means or not self.sigmas:
+                    if not self.means and not self.sigmas:
                         self.initAllSenses()
                     return True
         except Exception:
@@ -264,45 +264,76 @@ class Vocab(object):
         eSize = opt.embSize
         iWidth = opt.initWidth
 
-        self.means = tf.Variable(
-            tf.random_uniform(
-                [sNum, eSize],
-                -iWidth,
-                iWidth,
-                dtype=dataType
-            ),
-            dtype=dataType,
-            name="means"
-        )
+        if opt.energy == 'IP': # When use inner product, clip the length of means
+            self.means = tf.Variable(
+                tf.clip_by_norm(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    iWidth,
+                    axes=1
+                ),
+                dtype=dataType,
+                name="means"
+            )
 
-        self.outputMeans = tf.Variable(
-            tf.random_uniform(
-                [sNum, eSize],
-                -iWidth,
-                iWidth,
-                dtype=dataType
-            ),
-            dtype=dataType,
-            name="outputMeans"
-        )
+            self.outputMeans = tf.Variable(
+                tf.clip_by_norm(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    iWidth,
+                    axes=1
+                ),
+                dtype=dataType,
+                name="outputMeans"
+            )
+        else:
+            self.means = tf.Variable(
+                tf.random_uniform(
+                    [sNum, eSize],
+                    -iWidth,
+                    iWidth,
+                    dtype=dataType
+                ),
+                dtype=dataType,
+                name="means"
+            )
+
+            self.outputMeans = tf.Variable(
+                tf.random_uniform(
+                    [sNum, eSize],
+                    -iWidth,
+                    iWidth,
+                    dtype=dataType
+                ),
+                dtype=dataType,
+                name="outputMeans"
+            )
 
         if opt.covarShape == 'normal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize, eSize],
-                    0.01,
-                    1 * iWidth,
+                    0.1,
+                    2 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
                 name="sigmas"
-            ), 1e-10, float('inf'))
+            ), 0.01, float('inf'))
         elif opt.covarShape == 'diagnal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize],
-                    0.01,
-                    1 * iWidth,
+                    0.1,
+                    2 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
@@ -312,8 +343,8 @@ class Vocab(object):
             self.outputSigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize],
-                    0.01,
-                    1 * iWidth,
+                    0.1,
+                    2 * iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
@@ -321,10 +352,6 @@ class Vocab(object):
             ), 0.01, float('inf'))
         else:
             self.sigmas = None
-
-        # for w in self._idx2word:
-        #     w.setMeans(self.means)
-        #     w.setSigmas(self.sigmas)
 
         print('Finished initializing senses.')
 
