@@ -9,19 +9,6 @@ import time
 
 dataType = opt.dType
 
-def EL(m1, sig1, m2, sig2, d=opt.embSize):                  # EL energy of two diagnal gaussian distributions
-    m = m1 - m2
-    sig = sig1 + sig2
-
-    return tf.log(tf.div(
-        tf.exp(tf.reduce_sum(tf.constant(-0.5, dtype=dataType) * tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1), name='diagEL-Exponential'),
-        tf.sqrt(tf.reduce_prod(tf.constant(2., dtype=dataType) * pi * sig, 1), name='diagEL-SquareRoot'),
-        name='diagEL'
-    ))
-
-def diagpowEL(m1, sig1, m2, sig2, d=opt.embSize):
-    return -tf.pow(EL(m1, sig1, m2, sig2, d), 0.001)
-
 def diagEL(m1, sig1, m2, sig2, d=opt.embSize):
     m = m1 - m2
     sig = sig1 + sig2
@@ -43,17 +30,7 @@ def diagCE(m1, sig1, m2, sig2, d=opt.embSize):
     return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2
 
 def meanDist(m1, sig1, m2, sig2, d=opt.embSize):
-    return tf.reduce_sum(m1 * m2)
-
-def dist(w1, s1, w2, s2):
-    start = time.time()
-
-    res = diagKL(w1.getMean(s1), w1.getSigma(s1), w2.getMean(s2), w2.getSigma(s2), opt.embSize)
-
-    end = time.time()
-    # print('dist time:', end - start)
-    return res
-
+    return tf.clip_by_value(tf.reduce_sum(m1 * m2, 1), 0, opt.initWidth * opt.embSize)
 
 if __name__ == '__main__':
     with tf.Session() as sess:

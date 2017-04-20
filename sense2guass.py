@@ -27,65 +27,39 @@ flags.DEFINE_string("output", None, "Directory to write the model and training s
 flags.DEFINE_string("train", None, "Training text file. E.g., unzipped file http://mattmahoney.net/dc/text8.zip.")
 flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
-# flags.DEFINE_string("covariance", "diagnal", "Shape of covariance matrix, default is diagnal. Possible value is 'diagnal' or ")
+flags.DEFINE_string("covariance", "diagnal", "Shape of covariance matrix, default is diagnal. Possible value is 'diagnal' or ")
 flags.DEFINE_integer("size", 50, "The embedding dimension size. Default is 100.")
 flags.DEFINE_integer("window", 3, "The number of words to predict to the left and right of the target word.")
 flags.DEFINE_integer("negative", 1, "Negative samples per sense. Default is 4.")
-flags.DEFINE_integer("threads", 3, "How many threads are used to train. Default 12.")
 flags.DEFINE_integer("iter", 10, "Number of iterations to train. Each iteration processes the training data once completely. Default is 15.")
 flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for it to be included in the vocabulary. Default is 5.")
-flags.DEFINE_integer("max_sentence_length", 20, "The maximum length of one sentence.")
-flags.DEFINE_integer("min_sentence_length", 5, "The minimum length of one sentence.")
 flags.DEFINE_integer("sentence_length", 20, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
 flags.DEFINE_integer("batch_size", 50, "Number of training examples processed per step (size of a minibatch).")
 flags.DEFINE_float("alpha", 0.005, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_float("margin", 100, "Margin between positive and negative training pairs. Default is 100.")
-flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
-flags.DEFINE_boolean("EL", False, "Use EL as energy function or KL, default is KL.")
+# flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
+flags.DEFINE_string("energy", "EL", "What energy function is used, default is EL.")
 
 FLAGS = flags.FLAGS
 
-# Embedding dimension.
-opt.embSize = FLAGS.size
-# Training options. The training text file.
-opt.train = FLAGS.train
-# Number of negative samples per example.
-opt.negative = FLAGS.negative
-# The initial learning rate.
-opt.alpha = FLAGS.alpha
-# Margin between positive and negative pairs.
-opt.margin = FLAGS.margin
-# Number of epochs to train.
-opt.iter = FLAGS.iter
-# Concurrent training steps.
-# opt.threads = FLAGS.threads
-# Number of examples for one training step.
-opt.batchSize = FLAGS.batch_size
-# The number of words to predict to the left and right of the target word.
-opt.windowSize = FLAGS.window
-# The minimum number of word occurrences for it to be included in the vocabulary.
-opt.minCount = FLAGS.min_count
-# The maximum length of one sentence in training.
-opt.maxSentenceLength = FLAGS.max_sentence_length
-# The minimum length of one sentence in training.
-opt.minSentenceLength = FLAGS.min_sentence_length
-# The length of one sentence in training.
-opt.sentenceLength = FLAGS.sentence_length
-# The maximum sense number of one word in training.
-opt.maxSensePerWord = FLAGS.max_sense_per_word
-# Subsampling threshold for word occurrence.
-# opt.sample = FLAGS.sample
-# Load vocabulary from file.
-opt.vocab = FLAGS.vocab
-# Save the vocab to a file.
-opt.saveVocab = FLAGS.save_vocab
-# Use GPU or CPU. True for GPU, otherwise CPU
-opt.gpu = FLAGS.gpu
-# Use EL or KL, True for EL, otherwise KL
-opt.EL = FLAGS.EL
-# Where to write out summaries.
 opt.savePath = FLAGS.output
+opt.train = FLAGS.train
+opt.vocab = FLAGS.vocab
+opt.saveVocab = FLAGS.save_vocab
+opt.covarShape = FLAGS.covariance
+opt.embSize = FLAGS.size
+opt.windowSize = FLAGS.window
+opt.negative = FLAGS.negative
+opt.iter = FLAGS.iter
+opt.minCount = FLAGS.min_count
+opt.sentenceLength = FLAGS.sentence_length
+opt.maxSensePerWord = FLAGS.max_sense_per_word
+opt.batchSize = FLAGS.batch_size
+opt.alpha = FLAGS.alpha
+opt.margin = FLAGS.margin
+# opt.gpu = FLAGS.gpu
+opt.energy = FLAGS.energy
 
 vocabulary = None
 e_step = True
@@ -102,7 +76,7 @@ def main(_):
         print("--train and --output must be specified.")
         sys.exit(1)
 
-    config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)
+    config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)  # Config to make tensorflow not take up all the GPU memory
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
@@ -132,14 +106,14 @@ def main(_):
 ##----------------- Build Window Loss Graph ------------------
 
         if m_step:
-            writer = tf.summary.FileWriter('summary/', sess.graph)
+            # writer = tf.summary.FileWriter('summary/', sess.graph)
 
         ##----------------- Build Sentence Loss Graph And Optimizer ------------------
             print('Building Sentence Loss Graph...')
             from graph import batchSentenceLossGraph as lossGraph
 
             with tf.name_scope('pos_loss'):
-                batchSentenceLossGraph, (senseIdxPlaceholder), l = lossGraph(vocabulary)
+                batchSentenceLossGraph, senseIdxPlaceholder, l = lossGraph(vocabulary)
 
             # tf.summary.tensor_summary("pos_loss", batchSentenceLossGraph)
             # merged = tf.summary.merge_all()
@@ -163,7 +137,8 @@ def main(_):
             nceLossGraph = tf.nn.relu(opt.margin - avgNegLoss + avgBatchStcLoss)
             reduceNCELoss = tf.reduce_sum(nceLossGraph)
             avgNCELoss = reduceNCELoss / opt.batchSize
-            grad = optimizer.compute_gradients(avgNCELoss + reduceAvgLoss)
+            regular = -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
+            grad = optimizer.compute_gradients(avgNCELoss + reduceAvgLoss + regular)
             # # grad = optimizer.compute_gradients(batchSentenceLossGraph)
             clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             op = optimizer.apply_gradients(clipedGrad)
@@ -226,7 +201,16 @@ def main(_):
                                 if len(batchStcW) == opt.batchSize:
     ##--------------------------------- Inference By Batch ----------------------------------
                                     # start = time.time()
-                                    batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
+                                    if opt.maxSensePerWord == 1:
+                                        for p in batchStcW:
+                                            tmpList = []
+
+                                            for q in p:
+                                                tmpList.append(q.senseStart)
+
+                                            batchLossSenseIdxList.append(tmpList)
+                                    else:
+                                        batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
                                     # print("Inference Time:", time.time() - start)
     ##--------------------------------- Inference By Batch ----------------------------------
 

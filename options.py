@@ -9,7 +9,7 @@ class Options(object):
     """ Global options of training. """
     embSize = 50                        # Size of embeddings
     initWidth = 1                       # Range of initialization for embeddings
-    covarShape = 'diagnal'              # Shape of covariance matrix, possible values: 'diagnal', 'spherical', 'normal'
+    covarShape = 'diagnal'              # Shape of covariance matrix, possible values: 'diagnal', 'spherical', 'normal', 'none'
     windowSize = 3                      # Window size of the energy function
     fixWindowSize = True                # Whether fix the window size or choose a size randomly
     margin = 100                        # The margin between positive and negative pair energy
@@ -21,5 +21,5 @@ class Options(object):
     wordSeparator = re.compile('\s*,\s*|\s*\.\s*|\s+')  # Separator pattern of words in corpus
     minCount = 10                       # Words who exist under minCount times will be omitted
     negative = 1                        # Negative samples for each sense
-    EL = False                          # Whether use EL or KL
+    energy = 'EL'                       # What energy to use, possible valuse: CE EL KL IP(Inner Product)
     dType = tf.float64                  # Data type

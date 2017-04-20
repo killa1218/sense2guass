@@ -3,12 +3,18 @@
 import tensorflow as tf
 from options import Options as opt
 
-if opt.EL == 1:
-    from utils.distance import diagEL as dist
-elif opt.EL == 2:
-    from utils.distance import diagCE as dist
-else:
+if opt.energy == 'KL':
+    print("Using KL Energy")
     from utils.distance import diagKL as dist
+elif opt.energy == 'CE':
+    print("Using CE Energy")
+    from utils.distance import diagCE as dist
+elif opt.energy == 'IP':
+    print("Using IP Energy")
+    from utils.distance import meanDist as dist
+else:
+    print("Using EL Energy")
+    from utils.distance import diagEL as dist
 
 
 def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
@@ -17,15 +23,23 @@ def batchSentenceLossGraph(vocabulary, sentenceLength=opt.sentenceLength):
     l = []
     for i in range(sentenceLength):
         midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i], name="midMean")
-        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i], name="midSigma")
+        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i], name="midSigma") if opt.covarShape != 'none' else None
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
-                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset))))
+                l.append(
+                    dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset)))
+                    if opt.covarShape != 'none' else
+                    dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), None)
+                )
             if i + offset < sentenceLength:
-                l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset))))
+                l.append(
+                    dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset)))
+                    if opt.covarShape != 'none' else
+                    dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
+                )
 
-    return tf.add_n(l, name = "ADD_ALL"), (senseIdxPlaceholder), l
+    return tf.add_n(l, name = "ADD_ALL"), senseIdxPlaceholder, l
 
 # No output Embedding
 # def batchSentenceLossGraphNO(vocabulary, sentenceLength=opt.sentenceLength):
@@ -52,12 +66,20 @@ def windowLossGraph(vocabulary):
     window = tf.placeholder(dtype = tf.int32, shape = [None, opt.windowSize * 2 + 1])
 
     midMean = tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize])
-    midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize])
+    midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize]) if opt.covarShape != 'none' else None
     l = []
 
     for i in range(opt.windowSize * 2):
-        l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i])))
-        l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1])))
+        l.append(
+            dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i]))
+            if opt.covarShape != 'none' else
+            dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), None)
+        )
+        l.append(
+            dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1]))
+            if opt.covarShape != 'none' else
+            dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), None)
+        )
 
     return tf.add_n(l), window
 
@@ -69,11 +91,16 @@ def negativeLossGraph(vocabulary):
     l = []
     for i in range(opt.sentenceLength):
         midMean = tf.nn.embedding_lookup(vocabulary.means, mid[:, i])
-        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i])
+        midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, mid[:, i]) if opt.covarShape != 'none' else None
+
         negSample = negSamples[:, i, :]
 
         for j in range(opt.negative):
-            l.append(dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.outputSigmas, negSample[:, j])))
+            l.append(
+                dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, negSample[:, j]), tf.nn.embedding_lookup(vocabulary.outputSigmas, negSample[:, j]))
+                if opt.covarShape != 'none' else
+                dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, negSample[:, j]), None)
+            )
 
     return tf.add_n(l), (mid, negSamples)
 
