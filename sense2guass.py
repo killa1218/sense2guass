@@ -64,6 +64,7 @@ opt.energy = FLAGS.energy
 vocabulary = None
 e_step = True
 m_step = True
+opt.verboseTime = False
 
 gradMin = -0.5
 gradMax = 0.5
@@ -181,15 +182,24 @@ def main(_):
         # fi = open('grads', 'w')
 
         from e_step.cinference import batchDPInference
+        # from e_step.inference import batchDPInference as pyinference
+        # from multiprocessing import Pool
+        # pool = Pool()
 
         for i in range(opt.iter):
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
-                    batchLossSenseIdxList = []
                     negativeSamplesList = []
                     batchStcW = []
 
                     try:
+                        if opt.verboseTime:
+                            wT = 0
+                            iT = 0
+                            cT = 0
+                            tIT = 0
+                            count = 0
+
                         for stcW in fetchSentencesAsWords(f, vocabulary, 20000, opt.sentenceLength, verbose=False):
     ##----------------------------- Train Batch ------------------------------
                             if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
@@ -206,7 +216,7 @@ def main(_):
 
                                 if len(batchStcW) == opt.batchSize:
     ##--------------------------------- Inference By Batch ----------------------------------
-                                    # start = time.time()
+                                    start = time.time()
                                     if opt.maxSensePerWord == 1:
                                         for p in batchStcW:
                                             tmpList = []
@@ -216,14 +226,25 @@ def main(_):
 
                                             batchLossSenseIdxList.append(tmpList)
                                     else:
-                                        batchLossSenseIdxList = batchDPInference(batchStcW, sess, windowLossGraph, window)
-                                    # print("Inference Time:", time.time() - start)
+                                        batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
+                                        # print("Total Inference Time:", time.time() - start)
+                                        if opt.verboseTime:
+                                            tIT += time.time() - start
+                                            wT += twT
+                                            cT += tcT
+                                            iT += tiT
+                                            count += 1
+                                            print("\n\nTotal Inference Time:", tIT / count, '\n')
+                                            print("Get Windows Time Takes: %.2f%%" % (wT * 100 / tIT))
+                                            print("Calculate Time Takes: %.2f%%" % (cT * 100 / tIT))
+                                            print("DP Time Takes: %.2f%%" % (iT * 100 / tIT))
+                                            print("Data Transfer Time Takes: %.2f%%" % ((tIT - iT - cT - wT) * 100 / tIT))
     ##--------------------------------- Inference By Batch ----------------------------------
 
                                     if m_step:
                                         # summ, posloss = sess.run([merged, reduceAvgLoss], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                         # writer.add_summary(summ, i)
-                                        # start = time.time()
+                                        start = time.time()
                                         posloss = sess.run(avgPosLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                         negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         nceloss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
@@ -264,7 +285,8 @@ def main(_):
 
                                         # start = time.time()
                                         sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                        # print('OP Time:', time.time() - start)
+                                        if opt.verboseTime:
+                                            print('OP Time:', time.time() - start)
 
                                         # print(batchStcW)
                                         # print("Input Embedding", vocabulary.means[vocabulary.getWord('without').senseStart].eval())
@@ -291,7 +313,6 @@ def main(_):
                                     del(batchStcW)
                                     batchStcW = []
                                     negativeSamplesList = []
-                                    batchLossSenseIdxList = []
     ##----------------------------- Train Batch ------------------------------
                     except KeyboardInterrupt:
                         print("Canceled by user, save data?(y/N)")

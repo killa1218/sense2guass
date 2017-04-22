@@ -23,3 +23,4 @@ class Options(object):
     negative = 1                        # Negative samples for each sense
     energy = 'EL'                       # What energy to use, possible valuse: CE EL KL IP(Inner Product)
     dType = tf.float64                  # Data type
+    verboseTime = False                 # Display running time

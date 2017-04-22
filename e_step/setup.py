@@ -19,5 +19,8 @@ setup(
 try:
     os.rename("cinference.cpython-35m-x86_64-linux-gnu.so", "cinference.so")
 except Exception:
-    os.rename("cinference.cpython-34m.so", "cinference.so")
+    try:
+        os.rename("cinference.cpython-34m.so", "cinference.so")
+    except Exception:
+        os.rename("cinference.cpython-35m-darwin.so", "cinference.so")
 

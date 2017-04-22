@@ -55,7 +55,6 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
 
         for offset in range(1, opt.windowSize + 1):
             if i - offset > -1:
-                tmpNegList = []
                 posList.append(
                     dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset)))
                     if opt.covarShape != 'none' else
@@ -63,7 +62,7 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                 )
 
                 for j in range(opt.negative):
-                    tmpNegList.append(
+                    negList.append(
                         dist(negMeans[:, j], negSigmas[:, j],
                              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset],
                                                     name = "outputMean-" + str(i) + "_" + str(i - offset)),
@@ -75,9 +74,7 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                                                     name = "outputMean-" + str(i) + "_" + str(i - offset)), None)
                     )
 
-                negList.append(tf.add_n(tmpNegList) / opt.negative)
             if i + offset < sentenceLength:
-                tmpNegList = []
                 posList.append(
                     dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset)))
                     if opt.covarShape != 'none' else
@@ -85,7 +82,7 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                 )
 
                 for j in range(opt.negative):
-                    tmpNegList.append(
+                    negList.append(
                         dist(negMeans[:, j], negSigmas[:, j],
                              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset],
                                                     name = "outputMean-" + str(i) + "_" + str(i + offset)),
@@ -97,10 +94,8 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                                                     name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
                     )
 
-                negList.append(tf.add_n(tmpNegList) / opt.negative)
-
     posLoss = tf.add_n(posList, name="Positive_Loss")
-    negLoss = tf.add_n(negList, name="Negative_Loss")
+    negLoss = tf.div(tf.add_n(negList), opt.negative, name="Negative_Loss")
     return posLoss - negLoss, posLoss, negLoss, senseIdxPlaceholder, negSamples
 
 def windowLossGraph(vocabulary):
