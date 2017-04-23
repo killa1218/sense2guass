@@ -8,7 +8,9 @@ import os
 extension = Extension(
     name = "cinference",
     sources = ["cinference.pyx"],
-    language="c++"
+    language="c++",
+    extra_compile_args=["-std=c++11"],
+    extra_link_args=["-std=c++11"]
 )
 
 setup(
