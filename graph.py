@@ -2,6 +2,7 @@
 
 import tensorflow as tf
 from options import Options as opt
+from tqdm import tqdm
 
 if opt.energy == 'KL':
     print("Using KL Energy")
@@ -47,7 +48,7 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
 
     posList = []
     negList = []
-    for i in range(sentenceLength):
+    for i in tqdm(range(sentenceLength)):
         midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i], name="midMean")
         midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i], name="midSigma") if opt.covarShape != 'none' else None
         negMeans = tf.nn.embedding_lookup(vocabulary.means, negSamples[:, i, :], name="negMeans")

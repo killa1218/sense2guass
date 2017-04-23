@@ -103,7 +103,7 @@ def main(_):
         print('Building Window Loss Graph...')
         from graph import windowLossGraph
         windowLossGraph, window = windowLossGraph(vocabulary)
-        print('Finished Building Window Loss Graph.')
+        print('Finished.')
 ##----------------- Build Window Loss Graph ------------------
 
         if m_step:
@@ -142,16 +142,19 @@ def main(_):
             avgNegLoss = tf.reduce_sum(negLoss) / opt.batchSize
             avgNCELoss = avgNegLoss - avgPosLoss
             loss = tf.nn.relu(opt.margin - avgNCELoss)
+            print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
+
+            print('Building Optimizer...')
             grad = optimizer.compute_gradients(loss + regular)
             # grad = optimizer.compute_gradients(batchSentenceLossGraph)
             clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             op = optimizer.apply_gradients(clipedGrad)
             # # op = optimizer.minimize(reduceAvgLoss)
             # # op = optimizer(avgBatchStcLoss)
-            print('Finished Building NCE Loss.')
+            print('Finished.')
         ##---------------------------- Build NCE Loss --------------------------------
 
             # grad = tf.gradients(batchSentenceLossGraph, vocabulary.outputMeans) #, vocabulary.outputMeans[vocabulary.getWord('is').senseStart], vocabulary.outputSigmas[vocabulary.getWord('is').senseStart]])
@@ -215,6 +218,7 @@ def main(_):
                                 negativeSamplesList.append(negativeSampleList)
 
                                 if len(batchStcW) == opt.batchSize:
+                                    batchLossSenseIdxList = []
     ##--------------------------------- Inference By Batch ----------------------------------
                                     start = time.time()
                                     if opt.maxSensePerWord == 1:
@@ -308,9 +312,6 @@ def main(_):
                                         # fi.write('\n')
                                         # print('OK')
 
-                                    del(batchLossSenseIdxList)
-                                    del(negativeSamplesList)
-                                    del(batchStcW)
                                     batchStcW = []
                                     negativeSamplesList = []
     ##----------------------------- Train Batch ------------------------------
