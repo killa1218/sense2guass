@@ -58,66 +58,53 @@ def dpgetAllWindows(stcW):
 
 
 def inferenceOneStc(stcW, lossTable, assignList):
-    lossList = [0] * len(assignList)
-    prevAssignList = [None] * len(assignList)
-    assign = []
-    map = {}
+    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize - 1)  # 用于记录每个window后几位为key最大的值对应的第一位是啥
+    map = None
 
-    for i in range(opt.windowSize, len(stcW)):
-        minLoss = float('inf')
-        minLossIdx = 0
-        map = {}
+    for i in range(opt.windowSize, len(stcW) - opt.windowSize - 1):  # Each iteration check a window
+        tmpMap = {}
 
-        for j in range(len(assignList)):
-            # print(assignList[j])
-            lossList[j] += lossTable[tuple(assignList[j])]
-            tmpAssign = assignList[j]
-            tmpLoss = lossList[j]
+        if i == opt.windowSize:  # 记录并筛选第一个window
+            for j in range(len(assignList)):
+                curWloss = lossTable[tuple(assignList[j])]
+                tmpAssign = assignList[j]
 
-            if tmpLoss < minLoss:
-                minLoss = lossList[j]
-                minLossIdx = j
+                t = tuple(tmpAssign[1:])
+                if t not in tmpMap.keys() or tmpMap[t] > curWloss:
+                    tmpMap[t] = curWloss
+                    assignRec[i - opt.windowSize][t] = tmpAssign[0]
+        else:  # 分析除第一个window之外的window
+            newWordIdx = i + opt.windowSize
+            newWord = stcW[newWordIdx]
 
-            t = tuple(tmpAssign[1:])
-            if t not in map.keys():
-                map[t] = [tmpAssign[0], tmpLoss, prevAssignList[j]]
-            else:
-                if map[t][1] > tmpLoss:
-                    map[t][0] = tmpAssign[0]
-                    map[t][1] = tmpLoss
-                    map[t][2] = prevAssignList[j]
+            for k in range(newWord.senseNum):
+                newSense = newWord.senseStart + k
 
-        if i > opt.windowSize:
-            assign.append(prevAssignList[minLossIdx]) # Record the inferenced sense
+                for key, val in map.items():
+                    tmp = list(key) + [newSense]  # 将当前新进入单词的所有sense与map中所有key拼接成window
+                    curWloss = lossTable[tuple(tmp)] + val
+                    t = tuple(tmp[1:])  # 截取窗口除第一个之外的所有sense作为key
 
-        newWordIdx = i + opt.windowSize + 1
-        assignList = []
-        lossList = []
-        prevAssignList = []
-        for j in map:
-            if len(assign) == 0 or map[j][2] == assign[-1]:
-                tmp = list(j)
+                    if t not in tmpMap.keys() or tmpMap[t] > curWloss:
+                        tmpMap[t] = curWloss
+                        assignRec[i - opt.windowSize][t] = tmp[0]
 
-                if newWordIdx < len(stcW):
-                    for k in range(stcW[newWordIdx].senseNum):
-                        assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
-                        lossList.append(map[j][1])
-                        prevAssignList.append(map[j][0])
-                else:
-                    assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
-                    # assignList.append(tmp + [tmp[opt.windowSize]])
-                    lossList.append(map[j][1])
-                    prevAssignList.append(map[j][0])
+        if i != len(stcW) - opt.windowSize - 2:
+            map = tmpMap
 
     minLoss = float('inf')
-    minLossIdx = 0
-    for i in map:
-        if map[i][1] < minLoss:
-            minLoss = map[i][1]
-            minLossIdx = i
+    tmpMinLossIdx = None
+    for key, val in map.items():
+        if val < minLoss:
+            minLoss = val
+            tmpMinLossIdx = key
 
-    assign.extend([map[minLossIdx][0]])
-    assign.extend(list(minLossIdx)[:opt.windowSize])
+    assign = list(tmpMinLossIdx)
+    for i in range(-len(assignRec), -1, -1):
+        se = assignRec[i][tuple(assign[:])]
+        assign.insert(0, se)
+
+    return assign
 
 
 def inferenceHelper(arg):

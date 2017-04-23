@@ -1,14 +1,15 @@
 # coding=utf8
 
 import time
-cimport numpy as np
+import itertools
+# cimport numpy as np
 from options import Options as opt
 from cython.parallel import parallel, prange
 from libcpp.vector cimport vector
 from libcpp.unordered_map cimport unordered_map
 from multiprocessing.dummy import Pool
 
-cdef np.ndarray dpgetAllWindows(stcW):
+cdef dpgetAllWindows(stcW):
     cdef:
         int windowSize
         int firstWindowSize
@@ -57,34 +58,26 @@ cdef np.ndarray dpgetAllWindows(stcW):
         stack = tmpStack
         tmpStack = []
 
+    # print(windows)
+
     return windows, firstWindowSize
 
 
 cdef inferenceOneStc(stcW, lossTable, assignList):
-    cdef int i
-    cdef int j
-    cdef int k
-    cdef int newWordIdx
-    cdef int minLossIdx
-    cdef double minLoss
-    cdef double tmpLoss
+    cdef:
+        int i
+        int j
+        int k
+        int newWordIdx
+        int minLossIdx
+        int newSense
+        double minLoss
 
-    assign = []
-    assignRec = [{}] * len(stcW) # 用于记录每个window后几位为key最大的值对应的第一位是啥
-    lossList = [0] * len(assignList)
-    prevAssignList = [None] * len(assignList)
+    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize - 1) # 用于记录每个window后几位为key最大的值对应的第一位是啥
+    map = None
 
-    map = {}
-
-    mapTime = 0
-    parseMapTime = 0
-
-    for i in range(opt.windowSize, len(stcW)): # Each iteration check a window
-        minLoss = float('inf')
-        minLossIdx = 0
-        map = {}
-
-        start = time.time()
+    for i in range(opt.windowSize, len(stcW) - opt.windowSize - 1): # Each iteration check a window
+        tmpMap = {}
 
         if i == opt.windowSize: # 记录并筛选第一个window
             for j in range(len(assignList)):
@@ -92,42 +85,39 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
                 tmpAssign = assignList[j]
 
                 t = tuple(tmpAssign[1:])
-                if t not in map.keys() or map[t] > curWloss:
-                    map[t] = curWloss
+                if t not in tmpMap.keys() or tmpMap[t] > curWloss:
+                    tmpMap[t] = curWloss
                     assignRec[i - opt.windowSize][t] = tmpAssign[0]
-        else:
+        else: # 分析除第一个window之外的window
+            newWordIdx = i + opt.windowSize
+            newWord = stcW[newWordIdx]
 
-            newWordIdx = i + opt.windowSize + 1
-            assignList = []
-            lossList = []
-            prevAssignList = []
+            for k in range(newWord.senseNum):
+                newSense = newWord.senseStart + k
 
-            for key in map:
-                if len(assign) == 0 or map[key][2] == assign[-1]:
-                    tmp = list(key)
+                for key, val in map.iteritems():
+                    tmp = list(key) + [newSense] # 将当前新进入单词的所有sense与map中所有key拼接成window
+                    curWloss = lossTable[tuple(tmp)] + val
+                    t = tuple(tmp[1:]) # 截取窗口除第一个之外的所有sense作为key
 
-                    if newWordIdx < len(stcW):
-                        for k in range(stcW[newWordIdx].senseNum):
-                            assignList.append(tmp + [stcW[newWordIdx].senseStart + k])
-                            lossList.append(map[key][1])
-                            prevAssignList.append(map[key][0])
-                    else:
-                        assignList.append(tmp[:opt.windowSize - i - 1 + len(stcW)] + [tmp[opt.windowSize]] * (newWordIdx - len(stcW) + 1))
-                        lossList.append(map[key][1])
-                        prevAssignList.append(map[key][0])
+                    if t not in tmpMap.keys() or tmpMap[t] > curWloss:
+                        tmpMap[t] = curWloss
+                        assignRec[i - opt.windowSize][t] = tmp[0]
 
-            end = time.time()
-            parseMapTime += (end - start)
+        if i != len(stcW) - opt.windowSize - 2:
+            map = tmpMap
 
     minLoss = float('inf')
-    tmpMinLossIdx = 0
-    for key in map:
-        if map[key][1] < minLoss:
-            minLoss = map[key][1]
+    tmpMinLossIdx = None
+    for key, val in map.iteritems():
+        if val < minLoss:
+            minLoss = val
             tmpMinLossIdx = key
 
-    assign.append(map[tmpMinLossIdx][0])
-    assign.extend(list(tmpMinLossIdx)[:opt.windowSize])
+    assign = list(tmpMinLossIdx)
+    for i in range(-len(assignRec), -1, -1):
+        se = assignRec[i][tuple(assign[:])]
+        assign.insert(0, se)
 
     return assign
 
@@ -144,8 +134,8 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window):
 
     # cdef int** arr = new int[100][100]
 
-    for i in prange(length, nogil=True):
-        print(i)
+    # for i in prange(length, nogil=True):
+    #     print(i)
 
     start = time.time()
     # for a, b in pool.map(dpgetAllWindows, batchStcW):
