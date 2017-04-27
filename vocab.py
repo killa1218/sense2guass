@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf8
 
 from __future__ import print_function
@@ -265,33 +264,33 @@ class Vocab(object):
         iWidth = opt.initWidth
 
         if opt.energy == 'IP': # When use inner product, clip the length of means
-            self.means = tf.Variable(
-                tf.clip_by_norm(
+            self.means = tf.clip_by_norm(
+                tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
                         iWidth,
                         dtype=dataType
                     ),
-                    iWidth,
-                    axes=1
+                    dtype=dataType,
                 ),
-                dtype=dataType,
+                iWidth,
+                axes=1,
                 name="means"
             )
 
-            self.outputMeans = tf.Variable(
-                tf.clip_by_norm(
+            self.outputMeans = tf.clip_by_norm(
+                tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
                         iWidth,
                         dtype=dataType
                     ),
-                    iWidth,
-                    axes=1
+                    dtype=dataType,
                 ),
-                dtype=dataType,
+                iWidth,
+                axes=1,
                 name="outputMeans"
             )
         else:

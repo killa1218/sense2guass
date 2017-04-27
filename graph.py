@@ -95,8 +95,8 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                                                     name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
                     )
 
-    posLoss = tf.add_n(posList, name="Positive_Loss")
-    negLoss = tf.div(tf.add_n(negList), opt.negative, name="Negative_Loss")
+    posLoss = tf.div(tf.add_n(posList), len(posList), name="Positive_Loss")
+    negLoss = tf.div(tf.add_n(negList), len(negList), name="Negative_Loss")
     return posLoss - negLoss, posLoss, negLoss, senseIdxPlaceholder, negSamples
 
 def windowLossGraph(vocabulary):

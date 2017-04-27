@@ -18,6 +18,7 @@ from vocab import Vocab as V
 from options import Options as opt
 from utils.fileIO import fetchSentencesAsWords
 import tensorflow as tf
+import numpy as np
 
 random.seed(time.time())
 
@@ -81,9 +82,10 @@ def main(_):
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
-        optimizer = tf.train.AdagradOptimizer(opt.alpha)
+        # optimizer = tf.train.AdagradOptimizer(opt.alpha)
         # optimizer = tf.train.AdamOptimizer(opt.alpha)
         # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
+        optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
         if opt.vocab != None:
@@ -148,11 +150,10 @@ def main(_):
             regular = -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
 
             print('Building Optimizer...')
-            grad = optimizer.compute_gradients(loss + regular)
-            # grad = optimizer.compute_gradients(batchSentenceLossGraph)
-            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-            op = optimizer.apply_gradients(clipedGrad)
-            # # op = optimizer.minimize(reduceAvgLoss)
+            # grad = optimizer.compute_gradients(loss + regular)
+            # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            # op = optimizer.apply_gradients(clipedGrad)
+            op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
             print('Finished.')
         ##---------------------------- Build NCE Loss --------------------------------
@@ -192,7 +193,7 @@ def main(_):
         for i in range(opt.iter):
             if os.path.isfile(opt.train):
                 with open(opt.train) as f:
-                    negativeSamplesList = []
+                    # negativeSamplesList = []
                     batchStcW = []
 
                     try:
@@ -207,18 +208,20 @@ def main(_):
     ##----------------------------- Train Batch ------------------------------
                             if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
                                 batchStcW.append(stcW)
-                                negativeSampleList = []
+                                # negativeSampleList = []
+                                #
+                                # for a in range(opt.sentenceLength):
+                                #     sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative) # TODO 这里可以优化
+                                #     # while a in sampleTmp:
+                                #     #     sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
+                                #
+                                #     negativeSampleList.append(sampleTmp)
+                                # negativeSamplesList.append(negativeSampleList)
 
-                                for a in range(len(stcW)):
-                                    sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
-                                    while a in sampleTmp:
-                                        sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
-
-                                    negativeSampleList.append(sampleTmp)
-                                negativeSamplesList.append(negativeSampleList)
 
                                 if len(batchStcW) == opt.batchSize:
                                     batchLossSenseIdxList = []
+                                    negativeSamplesList = np.random.randint(vocabulary.totalSenseCount, size=(opt.batchSize, opt.sentenceLength, opt.negative))
     ##--------------------------------- Inference By Batch ----------------------------------
                                     start = time.time()
                                     if opt.maxSensePerWord == 1:
@@ -231,7 +234,7 @@ def main(_):
                                             batchLossSenseIdxList.append(tmpList)
                                     else:
                                         batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
-                                        # print("Total Inference Time:", time.time() - start)
+
                                         if opt.verboseTime:
                                             tIT += time.time() - start
                                             wT += twT
@@ -251,8 +254,10 @@ def main(_):
                                         start = time.time()
                                         posloss = sess.run(avgPosLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                         negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                        nceloss = sess.run(avgNCELoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
                                         sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                        sys.stdout.flush()
                                         # print("Cal Loss Time:", time.time() - start)
 
                                         # if posloss < 0:
@@ -313,7 +318,7 @@ def main(_):
                                         # print('OK')
 
                                     batchStcW = []
-                                    negativeSamplesList = []
+                                    # negativeSamplesList = []
     ##----------------------------- Train Batch ------------------------------
                     except KeyboardInterrupt:
                         print("Canceled by user, save data?(y/N)")

@@ -9,8 +9,8 @@ extension = Extension(
     name = "cinference",
     sources = ["cinference.pyx"],
     language="c++",
-    extra_compile_args=["-std=c++11"],
-    extra_link_args=["-std=c++11"]
+    extra_compile_args=["-std=c++11"],# "-O3", "-ffast-math", "-march=native", "-fopenmp"],
+    extra_link_args=["-std=c++11"]#, "-fopenmp"]
 )
 
 setup(

@@ -4,8 +4,6 @@ from __future__ import print_function
 
 import tensorflow as tf
 from options import Options as opt
-from math import pi
-import time
 
 dataType = opt.dType
 
@@ -30,7 +28,7 @@ def diagCE(m1, sig1, m2, sig2, d=opt.embSize):
     return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2
 
 def meanDist(m1, sig1, m2, sig2, d=opt.embSize):
-    return tf.clip_by_value(tf.reduce_sum(m1 * m2, 1), 0, opt.initWidth * opt.embSize)
+    return -tf.reduce_sum(m1 * m2, 1)
 
 if __name__ == '__main__':
     with tf.Session() as sess:
