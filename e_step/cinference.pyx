@@ -1,14 +1,15 @@
+#cython: language_level=3
 #coding=utf8
 
 import time
-import itertools
+# import itertools
 # cimport numpy as np
 from options import Options as opt
-from cython.parallel import parallel, prange
-from libc.stdio cimport printf
-from libcpp.vector cimport vector
-from libcpp.unordered_map cimport unordered_map
-from array import array
+# from cython.parallel import parallel, prange
+# from libc.stdio cimport printf
+# from libcpp.vector cimport vector
+# from libcpp.unordered_map cimport unordered_map
+# from array import array
 from word import Word
 
 cdef dpgetAllWindows(stcW):
@@ -75,12 +76,11 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
         int newSense
         double minLoss
 
-    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize - 1) # 用于记录每个window后几位为key最大的值对应的第一位是啥
+    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize) # 用于记录每个window后几位为key最大的值对应的第一位是啥
     map = None
 
-    for i in range(opt.windowSize, len(stcW) - opt.windowSize - 1): # Each iteration check a window
+    for i in range(opt.windowSize, len(stcW) - opt.windowSize): # Each iteration check a window
         tmpMap = {}
-        print(i)
 
         if i == opt.windowSize: # 记录并筛选第一个window
             for j in range(len(assignList)):
@@ -98,7 +98,7 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
             for k in range(newWord.senseNum):
                 newSense = newWord.senseStart + k
 
-                for key, val in map.iteritems():
+                for key, val in map.items():
                     tmp = list(key) + [newSense] # 将当前新进入单词的所有sense与map中所有key拼接成window
                     curWloss = lossTable[tuple(tmp)] + val
                     t = tuple(tmp[1:]) # 截取窗口除第一个之外的所有sense作为key
@@ -107,13 +107,12 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
                         tmpMap[t] = curWloss
                         assignRec[i - opt.windowSize][t] = tmp[0]
 
-        if i != len(stcW) - opt.windowSize - 2:
-            map = tmpMap
-            print(map)
+        map = tmpMap
+        print(map)
 
     minLoss = float('inf')
     tmpMinLossIdx = None
-    for key, val in map.iteritems():
+    for key, val in map.items():
         if val < minLoss:
             minLoss = val
             tmpMinLossIdx = key
@@ -121,7 +120,7 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
 
     assign = list(tmpMinLossIdx)
     for i in range(len(assignRec) - 1, -1, -1):
-        se = assignRec[i][tuple(assign[:])]
+        se = assignRec[i][tuple(assign[:2 * opt.windowSize])]
         assign.insert(0, se)
 
     return assign
