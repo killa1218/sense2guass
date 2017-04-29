@@ -108,7 +108,6 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
                         assignRec[i - opt.windowSize][t] = tmp[0]
 
         map = tmpMap
-        print(map)
 
     minLoss = float('inf')
     tmpMinLossIdx = None
