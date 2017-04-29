@@ -2,25 +2,22 @@
 
 import time
 import itertools
-# cimport numpy as np
+cimport numpy as np
 from options import Options as opt
 from cython.parallel import parallel, prange
 from libc.stdio cimport printf
 from libcpp.vector cimport vector
 from libcpp.unordered_map cimport unordered_map
-from array import array
-from word import Word
+from multiprocessing.dummy import Pool
 
-cdef dpgetAllWindows(stcW):
+cdef dpgetAllWindows(int[:] senseStarts, int[:] senseNums, int windowSize) nogil:
     cdef:
-        int windowSize
         int firstWindowSize
         int i
         int j
 
     stack = []
     tmpStack = []
-    windowSize = 2 * opt.windowSize + 1
     windows = []
     firstWindowSize = 0
 
@@ -80,7 +77,6 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
 
     for i in range(opt.windowSize, len(stcW) - opt.windowSize - 1): # Each iteration check a window
         tmpMap = {}
-        print(i)
 
         if i == opt.windowSize: # 记录并筛选第一个window
             for j in range(len(assignList)):
@@ -109,7 +105,6 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
 
         if i != len(stcW) - opt.windowSize - 2:
             map = tmpMap
-            print(map)
 
     minLoss = float('inf')
     tmpMinLossIdx = None
@@ -118,16 +113,15 @@ cdef inferenceOneStc(stcW, lossTable, assignList):
             minLoss = val
             tmpMinLossIdx = key
 
-
     assign = list(tmpMinLossIdx)
-    for i in range(len(assignRec) - 1, -1, -1):
+    for i in range(-len(assignRec), -1, -1):
         se = assignRec[i][tuple(assign[:])]
         assign.insert(0, se)
 
     return assign
 
 
-cpdef batchDPInference(batchStcW, sess, windowLossGraph, window):
+cpdef batchDPInference(int[:, :] batchSStarts, int[:, :] batchSNums, sess, windowLossGraph, window):
     cdef int i
     cdef int length
     assignList = []
@@ -173,14 +167,3 @@ cpdef batchDPInference(batchStcW, sess, windowLossGraph, window):
     # delete[] arr
 
     return assign, getWTime, calTime, infTime
-
-def test():
-    opt.sentenceLength = 7
-    opt.windowSize = 2
-    stcW = [Word('w1', sStart = 10, sNum = 3), Word('w2', sStart = 20, sNum = 1), Word('w3', sStart = 30, sNum = 2), Word('w4', sStart = 40, sNum = 1), Word('w5', sStart = 50, sNum = 1), Word('w6', sStart = 60, sNum = 5), Word('w7', sStart = 70, sNum = 1)]
-
-    table = {(10, 20, 30, 40, 50): 0.9,(10, 20, 31, 40, 50): 0.93,(11, 20, 30, 40, 50): 0.5,(11, 20, 31, 40, 50): 0.87,(12, 20, 30, 40, 50): 0.87,(12, 20, 31, 40, 50): 0.87,(20, 30, 40, 50, 60): 0.87,(20, 30, 40, 50, 61): 0.87,(20, 30, 40, 50, 62): 0.87,(20, 30, 40, 50, 63): 0.3,(20, 30, 40, 50, 64): 0.87,(20, 31, 40, 50, 60): 0.87,(20, 31, 40, 50, 61): 0.87,(20, 31, 40, 50, 62): 0.87,(20, 31, 40, 50, 63): 0.87,(20, 31, 40, 50, 64): 0.87,(30, 40, 50, 60, 70): 0.87,(30, 40, 50, 61, 70): 0.87,(30, 40, 50, 62, 70): 0.87,(30, 40, 50, 63, 70): 0.6,(30, 40, 50, 64, 70): 0.87,(31, 40, 50, 60, 70): 0.87,(31, 40, 50, 61, 70): 0.87,(31, 40, 50, 62, 70): 0.87,(31, 40, 50, 63, 70): 0.87,(31, 40, 50, 64, 70): 0.87,(40, 50, 60, 70, 60): 0.87,(40, 50, 61, 70, 61): 0.87,(40, 50, 62, 70, 62): 0.87,(40, 50, 63, 70, 63): 0.87,(40, 50, 64, 70, 64): 0.87,(50, 60, 70, 70, 70): 0.87,(50, 61, 70, 70, 70): 0.87,(50, 62, 70, 70, 70): 0.87,(50, 63, 70, 70, 70): 0.87,(50, 64, 70, 70, 70): 0.95}
-
-    w, s = dpgetAllWindows(stcW)
-
-    print(inferenceOneStc(stcW, table, w[0:s]))

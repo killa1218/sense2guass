@@ -26,3 +26,5 @@ except Exception:
     except Exception:
         os.rename("cinference.cpython-35m-darwin.so", "cinference.so")
 
+from e_step.cinference import test
+test()
