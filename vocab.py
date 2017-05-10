@@ -261,11 +261,11 @@ class Vocab(object):
 
         sNum = self.totalSenseCount
         eSize = opt.embSize
-        iWidth = opt.initWidth
+        iWidth = opt.initWidth / opt.embSize
 
         if opt.energy == 'IP': # When use inner product, clip the length of means
-            self.means = tf.clip_by_norm(
-                tf.Variable(
+            with tf.name_scope("Word2Vec_Vector"):
+                self.means = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
@@ -273,14 +273,10 @@ class Vocab(object):
                         dtype=dataType
                     ),
                     dtype=dataType,
-                ),
-                iWidth,
-                axes=1,
-                name="means"
-            )
+                    name="means"
+                )
 
-            self.outputMeans = tf.clip_by_norm(
-                tf.Variable(
+                self.outputMeans = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
@@ -288,67 +284,96 @@ class Vocab(object):
                         dtype=dataType
                     ),
                     dtype=dataType,
-                ),
-                iWidth,
-                axes=1,
-                name="outputMeans"
-            )
+                    name="outputMeans"
+                )
+
+                # self.means = tf.clip_by_norm(
+                #     tf.Variable(
+                #         tf.random_uniform(
+                #             [sNum, eSize],
+                #             -iWidth,
+                #             iWidth,
+                #             dtype=dataType
+                #         ),
+                #         dtype=dataType,
+                #     ),
+                #     1,
+                #     axes=1,
+                #     name="means"
+                # )
+                #
+                # self.outputMeans = tf.clip_by_norm(
+                #     tf.Variable(
+                #         tf.random_uniform(
+                #             [sNum, eSize],
+                #             -iWidth,
+                #             iWidth,
+                #             dtype=dataType
+                #         ),
+                #         dtype=dataType,
+                #     ),
+                #     1,
+                #     axes=1,
+                #     name="outputMeans"
+                # )
         else:
-            self.means = tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize],
-                    -iWidth,
-                    iWidth,
-                    dtype=dataType
-                ),
-                dtype=dataType,
-                name="means"
-            )
+            with tf.name_scope("Means"):
+                self.means = tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="means"
+                )
 
-            self.outputMeans = tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize],
-                    -iWidth,
-                    iWidth,
-                    dtype=dataType
-                ),
-                dtype=dataType,
-                name="outputMeans"
-            )
+                self.outputMeans = tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="outputMeans"
+                )
 
         if opt.covarShape == 'normal':
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize, eSize],
                     0.1,
-                    2 * iWidth,
+                    iWidth,
                     dtype=dataType
                 ),
                 dtype=dataType,
                 name="sigmas"
             ), 0.01, float('inf'))
         elif opt.covarShape == 'diagnal':
-            self.sigmas = tf.clip_by_value(tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize],
-                    0.1,
-                    2 * iWidth,
-                    dtype=dataType
-                ),
-                dtype=dataType,
-                name="sigmas"
-            ), 0.01, float('inf'))
+            with tf.name_scope("Diagnal_Cov"):
+                self.sigmas = tf.clip_by_value(tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        0.1,
+                        2 * iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="sigmas"
+                ), 0.01, float('inf'))
 
-            self.outputSigmas = tf.clip_by_value(tf.Variable(
-                tf.random_uniform(
-                    [sNum, eSize],
-                    0.1,
-                    2 * iWidth,
-                    dtype=dataType
-                ),
-                dtype=dataType,
-                name="outputSigmas"
-            ), 0.01, float('inf'))
+                self.outputSigmas = tf.clip_by_value(tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        0.1,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="outputSigmas"
+                ), 0.01, float('inf'))
         else:
             self.sigmas = None
 

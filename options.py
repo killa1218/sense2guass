@@ -8,7 +8,7 @@ import tensorflow as tf
 class Options(object):
     """ Global options of training. """
     embSize = 50                        # Size of embeddings
-    initWidth = 1                       # Range of initialization for embeddings
+    initWidth = 0.5                     # Range of initialization for embeddings
     covarShape = 'diagnal'              # Shape of covariance matrix, possible values: 'diagnal', 'spherical', 'normal', 'none'
     windowSize = 3                      # Window size of the energy function
     fixWindowSize = True                # Whether fix the window size or choose a size randomly

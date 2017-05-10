@@ -37,7 +37,7 @@ flags.DEFINE_integer("min_count", 5, "The minimum number of word occurrences for
 flags.DEFINE_integer("sentence_length", 20, "The length of one sentence.")
 flags.DEFINE_integer("max_sense_per_word", 5, "The maximum number of one word.")
 flags.DEFINE_integer("batch_size", 50, "Number of training examples processed per step (size of a minibatch).")
-flags.DEFINE_float("alpha", 0.005, "Initial learning rate. Default is 0.001.")
+flags.DEFINE_float("alpha", 0.001, "Initial learning rate. Default is 0.001.")
 flags.DEFINE_float("margin", 100, "Margin between positive and negative training pairs. Default is 100.")
 # flags.DEFINE_boolean("gpu", False, "If true, use GPU instead of CPU.")
 flags.DEFINE_string("energy", "EL", "What energy function is used, default is EL.")
@@ -83,9 +83,9 @@ def main(_):
 
     with tf.Session(config=config) as sess:
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        # optimizer = tf.train.AdamOptimizer(opt.alpha)
+        optimizer = tf.train.AdamOptimizer(opt.alpha)
         # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
-        optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
+        # optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
         if opt.vocab != None:
@@ -139,15 +139,34 @@ def main(_):
             print('Building NCE Loss...')
             from graph import batchNCELossGraph
 
-            nceLoss, posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
-            avgPosLoss = tf.reduce_sum(posLoss) / opt.batchSize
-            avgNegLoss = tf.reduce_sum(negLoss) / opt.batchSize
+            posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
+            posNum = len(posLoss)
+            negNum = len(negLoss)
+            avgPosLoss = tf.reduce_sum(posLoss) / posNum / opt.batchSize
+            avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
             avgNCELoss = avgNegLoss - avgPosLoss
             loss = tf.nn.relu(opt.margin - avgNCELoss)
+
+            # true_xent = tf.nn.sigmoid_cross_entropy_with_logits(
+            #     labels = tf.ones_like(posLoss), logits = posLoss)
+            # sampled_xent = tf.nn.sigmoid_cross_entropy_with_logits(
+            #     labels = tf.zeros_like(negLoss), logits = negLoss)
+            # avgPosLoss = tf.reduce_sum(true_xent) / posNum / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(sampled_xent) / negNum / opt.batchSize
+            # loss = avgPosLoss + avgNegLoss
+
+            with tf.name_scope("Summary"):
+                tf.summary.scalar("Positive Loss", avgPosLoss)
+                tf.summary.scalar("Negative Loss", avgNegLoss)
+                tf.summary.scalar("NCE Loss", loss)
+                tf.summary.scalar("Average Mean Norm", tf.reduce_sum(tf.norm(vocabulary.means, axis = 1)) / vocabulary.totalSenseCount)
+                tf.summary.scalar("Average Sigma Norm", tf.reduce_sum(tf.norm(vocabulary.sigmas, axis = 1)) / vocabulary.totalSenseCount)
+                summary_op = tf.summary.merge_all()
+                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d", time.localtime()), graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
-            regular = -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
+            regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
 
             print('Building Optimizer...')
             # grad = optimizer.compute_gradients(loss + regular)
@@ -189,6 +208,8 @@ def main(_):
         # from e_step.inference import batchDPInference as pyinference
         # from multiprocessing import Pool
         # pool = Pool()
+
+        step = 0
 
         for i in range(opt.iter):
             if os.path.isfile(opt.train):
@@ -258,6 +279,8 @@ def main(_):
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
                                         sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()
+                                        summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), step)
+                                        step += 10
                                         # print("Cal Loss Time:", time.time() - start)
 
                                         # if posloss < 0:
@@ -293,7 +316,8 @@ def main(_):
                                         #             print("MEAN:", sess.run(m))
 
                                         # start = time.time()
-                                        sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        for _ in range(1):
+                                            sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         if opt.verboseTime:
                                             print('OP Time:', time.time() - start)
 
