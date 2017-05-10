@@ -97,5 +97,8 @@ ENV/
 # Data
 data
 
+# Log
+log*
+
 # Python cache
 *.pyc
