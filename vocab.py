@@ -261,9 +261,9 @@ class Vocab(object):
 
         sNum = self.totalSenseCount
         eSize = opt.embSize
-        iWidth = opt.initWidth / opt.embSize
 
         if opt.energy == 'IP': # When use inner product, clip the length of means
+            iWidth = opt.initWidth / opt.embSize
             with tf.name_scope("Word2Vec_Vector"):
                 self.means = tf.Variable(
                     tf.random_uniform(
@@ -317,6 +317,7 @@ class Vocab(object):
                 #     name="outputMeans"
                 # )
         else:
+            iWidth = opt.initWidth
             with tf.name_scope("Means"):
                 self.means = tf.Variable(
                     tf.random_uniform(
@@ -344,36 +345,36 @@ class Vocab(object):
             self.sigmas = tf.clip_by_value(tf.Variable(
                 tf.random_uniform(
                     [sNum, eSize, eSize],
-                    0.1,
-                    iWidth,
+                    0.4,
+                    0.6,
                     dtype=dataType
                 ),
                 dtype=dataType,
                 name="sigmas"
-            ), 0.01, float('inf'))
+            ), 0.00001, float('inf'))
         elif opt.covarShape == 'diagnal':
             with tf.name_scope("Diagnal_Cov"):
                 self.sigmas = tf.clip_by_value(tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
-                        0.1,
-                        2 * iWidth,
+                        0.4,
+                        0.6,
                         dtype=dataType
                     ),
                     dtype=dataType,
                     name="sigmas"
-                ), 0.01, float('inf'))
+                ), 0.00001, float('inf'))
 
                 self.outputSigmas = tf.clip_by_value(tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
-                        0.1,
-                        iWidth,
+                        0.4,
+                        0.6,
                         dtype=dataType
                     ),
                     dtype=dataType,
                     name="outputSigmas"
-                ), 0.01, float('inf'))
+                ), 0.00001, float('inf'))
         else:
             self.sigmas = None
 
