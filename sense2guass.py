@@ -82,8 +82,12 @@ def main(_):
     config.gpu_options.allow_growth=True
 
     with tf.Session(config=config) as sess:
+        global_step = tf.Variable(0, trainable = False)
+        learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
+                                                   1000, 0.96, staircase = True)
+        # Passing global_step to minimize() will increment it at each step.
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(opt.alpha)
+        optimizer = tf.train.AdamOptimizer(learning_rate)
         # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
         # optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
 
@@ -142,6 +146,7 @@ def main(_):
             posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
             posNum = len(posLoss)
             negNum = len(negLoss)
+
             avgPosLoss = tf.reduce_sum(posLoss) / posNum / opt.batchSize
             avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
             avgNCELoss = avgNegLoss - avgPosLoss
@@ -162,17 +167,17 @@ def main(_):
                 tf.summary.scalar("Average Mean Norm", tf.reduce_sum(tf.norm(vocabulary.means, axis = 1)) / vocabulary.totalSenseCount)
                 tf.summary.scalar("Average Sigma Norm", tf.reduce_sum(tf.norm(vocabulary.sigmas, axis = 1)) / vocabulary.totalSenseCount)
                 summary_op = tf.summary.merge_all()
-                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d", time.localtime()), graph = sess.graph)
+                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d-%H:%M", time.localtime()) + '_mloss_adam_noreg_nogclip_decaylr', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
 
             print('Building Optimizer...')
-            # grad = optimizer.compute_gradients(loss + regular)
-            # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-            # op = optimizer.apply_gradients(clipedGrad)
-            op = optimizer.minimize(loss + regular)
+            grad = optimizer.compute_gradients(loss + regular)
+            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
+            # op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
             print('Finished.')
         ##---------------------------- Build NCE Loss --------------------------------
@@ -208,8 +213,6 @@ def main(_):
         # from e_step.inference import batchDPInference as pyinference
         # from multiprocessing import Pool
         # pool = Pool()
-
-        step = 0
 
         for i in range(opt.iter):
             if os.path.isfile(opt.train):
@@ -279,8 +282,10 @@ def main(_):
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
                                         sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()
-                                        summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), step)
-                                        step += 10
+
+                                        print(sess.run(grad, feed_dict ={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+
+                                        summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), global_step.eval())
                                         # print("Cal Loss Time:", time.time() - start)
 
                                         # if posloss < 0:
