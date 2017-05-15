@@ -8,27 +8,28 @@ from os import path
 sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), path.pardir)))
 
 from graph import windowLossGraph
-from e_step.cinference import batchDPInference
+from e_step.inference import batchDPInference
 from vocab import Vocab
 # from utils.distance import diagKL as dist
 from utils.distance import diagEL as dist
 from options import Options as opt
+from multiprocessing import Pool
 
-
+pool = Pool()
 data = None
 vocab = None
 
 result = None
 scoreList = None
 
-date = '0407'
+date = '0410'
 condition = ''
 
 # with open('../data/SCWS/testData.pk3', 'rb') as f:
 with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.' + date + '_w3_b50_m100' + condition + '.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/old/gauss.EL.' + date + '_w3_b50_m100' + condition + '.pkl3')
 
 with tf.Session() as sess:
     windowLossGraph, window = windowLossGraph(vocab)
@@ -43,6 +44,10 @@ with tf.Session() as sess:
     tf.global_variables_initializer().run()
     wordPairList = []
     scoreList = []
+
+    wTime = 0
+    cTime = 0
+    iTime = 0
 
     for i in data:
         stcW = []
@@ -67,7 +72,7 @@ with tf.Session() as sess:
                     w1sIdx = k
                     break
 
-            assign1 = batchDPInference([stcW], sess, windowLossGraph, window)
+            assign1 = batchDPInference([stcW], sess, windowLossGraph, window, pool)
 
             stcW = []
             word2 = i['w2']
@@ -88,10 +93,16 @@ with tf.Session() as sess:
                         w2sIdx = k
                         break
 
-                assign2 = batchDPInference([stcW], sess, windowLossGraph, window)
+                assign2 = batchDPInference([stcW], sess, windowLossGraph, window, pool)
 
-                wordPairList.append([assign1[0][w1sIdx], assign2[0][w2sIdx]])
+                wTime += assign1[1] + assign2[1]
+                cTime += assign1[2] + assign2[2]
+                iTime += assign1[3] + assign2[3]
+
+                wordPairList.append([assign1[0][0][w1sIdx], assign2[0][0][w2sIdx]])
                 scoreList.append(i['r'])
+
+    print(wTime / len(wordPairList) / 2, cTime / len(wordPairList) / 2, iTime / len(wordPairList) / 2)
 
     result = sess.run(distance, feed_dict={sensePlaceholder: wordPairList})
     min = result[sess.run(minValue, feed_dict={sensePlaceholder: wordPairList})]
@@ -102,6 +113,8 @@ with tf.Session() as sess:
     print('minValue:', min)
     print('maxValue:', max)
 
+dataSortList = []
+resSortList = []
 with open('../data/SCWS/ELResult_' + date + condition + '.txt', 'w') as f:
     for i in range(len(wordPairList)):
         f.write(vocab.getWordBySenseId(wordPairList[i][0]).token)
@@ -112,3 +125,43 @@ with open('../data/SCWS/ELResult_' + date + condition + '.txt', 'w') as f:
         f.write('\t')
         f.write(str(scoreList[i]))
         f.write('\n')
+
+        dataSortList.append((float(scoreList[i]), (vocab.getWordBySenseId(wordPairList[i][0]).token, vocab.getWordBySenseId(wordPairList[i][1]).token)))
+        resSortList.append((float(result[i]), (vocab.getWordBySenseId(wordPairList[i][0]).token, vocab.getWordBySenseId(wordPairList[i][1]).token)))
+
+dataSortList.sort(key = lambda x: x[0])
+resSortList.sort(key = lambda x: x[0], reverse = True)
+
+# print(dataSortList, resSortList)
+
+dic = {} # Spearman's rank correlation
+ddic = {} # square error
+for r, i in enumerate(dataSortList):
+    if i[1] in dic:
+        dic[i[1]][0] = r + 1
+        ddic[i[1]][0] = i[0]
+    else:
+        dic[i[1]] = [r + 1, 0]
+        ddic[i[1]] = [i[0], 0]
+
+for r, i in enumerate(resSortList):
+    if i[1] in dic:
+        dic[i[1]][1] = r + 1
+        ddic[i[1]][1] = i[0] / 5
+    else:
+        raise Exception(i[1], ' not in!')
+
+print(dic)
+
+sum = 0
+n = len(dataSortList)
+for k, v in dic.items():
+    sum += (v[0] - v[1])**2
+
+print('Spearman\'s rank correlation:', 1 - (6 * sum / n / (n**2 - 1)))
+
+sum = 0
+for k,v in ddic.items():
+    sum += (v[0] - v[1])**2
+
+print('Mean square error:', sum / n)
