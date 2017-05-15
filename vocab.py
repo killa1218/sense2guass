@@ -228,7 +228,7 @@ class Vocab(object):
 
                     try:
                         self.means = tf.Variable(data['means'], dtype=dataType)
-                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType) if data['sigmas'] != None else None
+                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType) if data['sigmas'] is not None else None
                     except KeyError:
                         print('Using old style vocab file.')
 

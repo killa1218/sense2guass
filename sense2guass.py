@@ -88,7 +88,7 @@ def main(_):
         # Passing global_step to minimize() will increment it at each step.
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
         optimizer = tf.train.AdamOptimizer(learning_rate)
-        # optimizer = tf.train.GradientDescentOptimizer(opt.alpha)
+        # optimizer = tf.train.GradientDescentOptimizer(learning_rate)
         # optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
@@ -167,7 +167,7 @@ def main(_):
                 tf.summary.scalar("Average Mean Norm", tf.reduce_sum(tf.norm(vocabulary.means, axis = 1)) / vocabulary.totalSenseCount)
                 tf.summary.scalar("Average Sigma Norm", tf.reduce_sum(tf.norm(vocabulary.sigmas, axis = 1)) / vocabulary.totalSenseCount)
                 summary_op = tf.summary.merge_all()
-                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d-%H:%M", time.localtime()) + '_mloss_adam_noreg_nogclip_decaylr', graph = sess.graph)
+                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d-%H:%M", time.localtime()) + '_mloss_sgd_noreg_nogclip_decaylr', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
@@ -283,7 +283,7 @@ def main(_):
                                         sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()
 
-                                        print(sess.run(grad, feed_dict ={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+                                        # print(sess.run(grad, feed_dict ={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})[0])
 
                                         summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), global_step.eval())
                                         # print("Cal Loss Time:", time.time() - start)

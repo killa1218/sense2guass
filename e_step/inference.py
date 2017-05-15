@@ -8,7 +8,7 @@ sys.path.append(path.abspath(path.join(path.dirname(path.realpath(__file__)), pa
 
 # from loss import *
 from options import Options as opt
-
+from multiprocessing import Pool, Manager
 
 def dpgetAllWindows(stcW):
     stack = []
@@ -58,13 +58,13 @@ def dpgetAllWindows(stcW):
 
 
 def inferenceOneStc(stcW, lossTable, assignList):
-    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize - 1)  # 用于记录每个window后几位为key最大的值对应的第一位是啥
+    assignRec = [{}] * (len(stcW) - 2 * opt.windowSize) # 用于记录每个window后几位为key最大的值对应的第一位是啥
     map = None
 
-    for i in range(opt.windowSize, len(stcW) - opt.windowSize - 1):  # Each iteration check a window
+    for i in range(opt.windowSize, len(stcW) - opt.windowSize): # Each iteration check a window
         tmpMap = {}
 
-        if i == opt.windowSize:  # 记录并筛选第一个window
+        if i == opt.windowSize: # 记录并筛选第一个window
             for j in range(len(assignList)):
                 curWloss = lossTable[tuple(assignList[j])]
                 tmpAssign = assignList[j]
@@ -73,7 +73,7 @@ def inferenceOneStc(stcW, lossTable, assignList):
                 if t not in tmpMap.keys() or tmpMap[t] > curWloss:
                     tmpMap[t] = curWloss
                     assignRec[i - opt.windowSize][t] = tmpAssign[0]
-        else:  # 分析除第一个window之外的window
+        else: # 分析除第一个window之外的window
             newWordIdx = i + opt.windowSize
             newWord = stcW[newWordIdx]
 
@@ -81,16 +81,15 @@ def inferenceOneStc(stcW, lossTable, assignList):
                 newSense = newWord.senseStart + k
 
                 for key, val in map.items():
-                    tmp = list(key) + [newSense]  # 将当前新进入单词的所有sense与map中所有key拼接成window
+                    tmp = list(key) + [newSense] # 将当前新进入单词的所有sense与map中所有key拼接成window
                     curWloss = lossTable[tuple(tmp)] + val
-                    t = tuple(tmp[1:])  # 截取窗口除第一个之外的所有sense作为key
+                    t = tuple(tmp[1:]) # 截取窗口除第一个之外的所有sense作为key
 
                     if t not in tmpMap.keys() or tmpMap[t] > curWloss:
                         tmpMap[t] = curWloss
                         assignRec[i - opt.windowSize][t] = tmp[0]
 
-        if i != len(stcW) - opt.windowSize - 2:
-            map = tmpMap
+        map = tmpMap
 
     minLoss = float('inf')
     tmpMinLossIdx = None
@@ -100,8 +99,8 @@ def inferenceOneStc(stcW, lossTable, assignList):
             tmpMinLossIdx = key
 
     assign = list(tmpMinLossIdx)
-    for i in range(-len(assignRec), -1, -1):
-        se = assignRec[i][tuple(assign[:])]
+    for i in range(len(assignRec) - 1, -1, -1):
+        se = assignRec[i][tuple(assign[:2 * opt.windowSize])]
         assign.insert(0, se)
 
     return assign
@@ -126,12 +125,19 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
         ends.append(j + starts[-1])
         assignList.extend(i)
     # print("Build assignList time:", time.time() - start)
+    getWTime = time.time() - start
 
     start = time.time()
-    loss = sess.run(windowLossGraph, feed_dict = {window: assignList})
+    loss = []
+    step = 100000
+    for i in range(0, len(assignList), step):
+        subAssignList = assignList[i:i + step]
+        loss.extend(list(sess.run(windowLossGraph, feed_dict = {window: subAssignList})))
     # print("Calculate time:", time.time() - start)
+    calTime = time.time() - start
 
-    start = time.time()
+    # with Manager() as manager:
+    #     lossTable = manager.dict()
     for i in range(len(loss)):
         lossTable[tuple(assignList[i])] = loss[i]
     # print("Build lossTable time:", time.time() - start)
@@ -142,5 +148,6 @@ def batchDPInference(batchStcW, sess, windowLossGraph, window, pool):
     # for i in pool.map(inferenceHelper, [(batchStcW[j], lossTable, assignList[starts[j]:ends[j]]) for j in range(len(batchStcW))]): # 2+s
     #     assign.append(i)
     # print("Real inference time:", time.time() - start)
+    infTime = time.time() - start
 
-    return assign
+    return assign, getWTime, calTime, infTime

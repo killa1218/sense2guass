@@ -2,14 +2,14 @@
 #coding=utf8
 
 import time
-# import itertools
+import itertools
 # cimport numpy as np
 from options import Options as opt
-# from cython.parallel import parallel, prange
-# from libc.stdio cimport printf
-# from libcpp.vector cimport vector
-# from libcpp.unordered_map cimport unordered_map
-# from array import array
+from cython.parallel import parallel, prange
+from libc.stdio cimport printf
+from libcpp.vector cimport vector
+from libcpp.unordered_map cimport unordered_map
+from array import array
 from word import Word
 
 cdef dpgetAllWindows(stcW):
@@ -133,7 +133,6 @@ cpdef batchDPInference(batchStcW, sess, windowLossGraph, window):
     starts = []
     ends = []
     lossTable = {}
-    # pool = Pool()
 
     # cdef int** arr = new int[100][100]
 
