@@ -81,13 +81,17 @@ def main(_):
     config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)  # Config to make tensorflow not take up all the GPU memory
     config.gpu_options.allow_growth=True
 
-    with tf.Session(config=config) as sess:
+    with tf.Session(config=config) as sess, tf.device('CPU:0'):
         global_step = tf.Variable(0, trainable = False)
         learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
-                                                   1000, 0.96, staircase = True)
+                                                   200, 0.96, staircase = True)
+        # learning_rate = opt.alpha
         # Passing global_step to minimize() will increment it at each step.
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(learning_rate)
+        optimizer = tf.train.AdamOptimizer(learning_rate, beta1 = 0., beta2 = 0.)
+        # optimizer = tf.train.RMSPropOptimizer(learning_rate)
+        # optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
+        # optimizer = tf.train.FtrlOptimizer(learning_rate)
         # optimizer = tf.train.GradientDescentOptimizer(learning_rate)
         # optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
 
@@ -164,10 +168,15 @@ def main(_):
                 tf.summary.scalar("Positive Loss", avgPosLoss)
                 tf.summary.scalar("Negative Loss", avgNegLoss)
                 tf.summary.scalar("NCE Loss", loss)
-                tf.summary.scalar("Average Mean Norm", tf.reduce_sum(tf.norm(vocabulary.means, axis = 1)) / vocabulary.totalSenseCount)
-                tf.summary.scalar("Average Sigma Norm", tf.reduce_sum(tf.norm(vocabulary.sigmas, axis = 1)) / vocabulary.totalSenseCount)
+                avg_mean_norm, mean_var = tf.nn.moments(tf.norm(vocabulary.means, axis = 1), axes = [0])
+                avg_cov_norm, cov_var = tf.nn.moments(tf.norm(vocabulary.sigmas, axis = 1), axes = [0])
+                tf.summary.scalar("Average Mean Norm", avg_mean_norm)
+                tf.summary.scalar("Mean Norm Variance", mean_var)
+                tf.summary.scalar("Average Sigma Norm", avg_cov_norm)
+                tf.summary.scalar("Sigma Norm Variance", cov_var)
                 summary_op = tf.summary.merge_all()
-                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d-%H:%M", time.localtime()) + '_mloss_sgd_noreg_nogclip_decaylr', graph = sess.graph)
+                summary_writer = tf.summary.FileWriter('logEL/waste/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
+                                                       '_m120_lrdecay200beta0_adam_w2g', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
@@ -177,6 +186,7 @@ def main(_):
             grad = optimizer.compute_gradients(loss + regular)
             clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
+            tf.nn.sigmoid_cross_entropy_with_logits()
             # op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
             print('Finished.')
@@ -280,6 +290,10 @@ def main(_):
                                         negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+                                        if isinstance(learning_rate, float):
+                                            print(global_step.eval(), learning_rate)
+                                        else:
+                                            print(global_step.eval(), learning_rate.eval())
                                         sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()
 
