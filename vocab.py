@@ -24,6 +24,7 @@ class Vocab(object):
         self._wordSeparator = opt.wordSeparator
         self._vocab = {}
         self._idx2word = []
+        self._idx2count = []
         self.size = 0
         self.totalWordCount = 0
         self.totalSenseCount = 0
@@ -98,7 +99,7 @@ class Vocab(object):
             end = start + chunkSize if start + chunkSize < fileSize else fileSize
             task.append((file, start, end, buffer))
 
-        for i in pool.imap_unordered(self._helper, task):
+        for i in pool.map(self._helper, task):
             sys.stdout.write('\rMerging results from processes...')
             sys.stdout.flush()
             for j in i:
@@ -127,6 +128,7 @@ class Vocab(object):
                     self.size += 1
                     self._vocab[i].index = len(self._idx2word)
                     self._idx2word.append(self._vocab[i])
+                    self._idx2count.append(self._vocab[i].count)
 
                     if self.size % 100 == 0:
                         sys.stdout.write('\rCorpus contains %d tokens, %d words found, %d words and %d senses encountered using %i processes.' % (tokenNum, len(d), self.size, self.totalSenseCount, multiprocessing.cpu_count()))
@@ -243,6 +245,7 @@ class Vocab(object):
                         w = Word(i[0], i[3], i[1] if i[1] < opt.maxSensePerWord else opt.maxSensePerWord, i[2], senseStart)
                         curSenseCount += i[1]
                         self._idx2word.append(w)
+                        self._idx2word.append(w.count)
                         self._vocab[i[0]] = self._idx2word[-1]
 
                     self.size = len(data['words'])
