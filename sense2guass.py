@@ -147,16 +147,28 @@ def main(_):
             print('Building NCE Loss...')
             from graph import batchNCELossGraph
 
-            posLoss, negLoss = batchNCELossGraph(vocabulary)
+            posLoss, negLosses = batchNCELossGraph(vocabulary)
             senseIdxPlaceholder = tf.get_collection('POS_PHDR')[0]
             # posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
             posNum = len(posLoss)
-            negNum = len(negLoss)
+            negNum = len(negLosses)
 
             avgPosLoss = tf.reduce_sum(posLoss) / posNum / opt.batchSize
+
+            negLoss = tf.concat(negLosses, 0)
+            lossDiff = negLoss - avgPosLoss
+
             avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
-            avgNCELoss = avgNegLoss - avgPosLoss
-            loss = tf.nn.relu(opt.margin - avgNCELoss)
+
+            losses = tf.nn.relu(opt.margin - lossDiff)
+            nonzeroNum = tf.count_nonzero(losses)
+
+            loss = tf.reduce_sum(losses) / nonzeroNum
+
+
+            # avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
+            # avgNCELoss = avgNegLoss - avgPosLoss
+            # loss = tf.nn.relu(opt.margin - avgNCELoss)
 
             # true_xent = tf.nn.sigmoid_cross_entropy_with_logits(
             #     labels = tf.ones_like(posLoss), logits = posLoss)
@@ -169,6 +181,7 @@ def main(_):
             with tf.name_scope("Summary"):
                 tf.summary.scalar("Positive Loss", avgPosLoss)
                 tf.summary.scalar("Negative Loss", avgNegLoss)
+                tf.summary.scalar("Num of Nonzero Loss", nonzeroNum)
                 tf.summary.scalar("NCE Loss", loss)
                 avg_mean_norm, mean_var = tf.nn.moments(tf.norm(vocabulary.means, axis = 1), axes = [0])
                 avg_cov_norm, cov_var = tf.nn.moments(tf.norm(vocabulary.sigmas, axis = 1), axes = [0])
@@ -190,11 +203,15 @@ def main(_):
             obj = loss + regular
 
             print('Building Optimizer...')
-            # posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'))
-            # negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'))
-            grad = optimizer.compute_gradients(obj)
-            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-            op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
+            posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'), gate_gradients = optimizer.GATE_NONE)
+            negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'), gate_gradients = optimizer.GATE_NONE)
+
+            posGrad.append((tf.multiply(g, nonzeroNum), var) for g, var in negGrad)
+            op = optimizer.apply_gradients(posGrad, global_step = global_step)
+
+            # grad = optimizer.compute_gradients(obj)
+            # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            # op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
             # tf.nn.sigmoid_cross_entropy_with_logits()
             # op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
