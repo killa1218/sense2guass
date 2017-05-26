@@ -83,12 +83,12 @@ def main(_):
 
     with tf.Session(config=config) as sess, tf.device('CPU:0'):
         global_step = tf.Variable(0, trainable = False)
-        learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
-                                                   500, 0.96, staircase = True)
-        # learning_rate = opt.alpha
+        # learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
+        #                                            500, 0.96, staircase = True)
+        learning_rate = opt.alpha
         # Passing global_step to minimize() will increment it at each step.
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(learning_rate, beta1 = 0.5, beta2 = 0.5)
+        optimizer = tf.train.AdamOptimizer(learning_rate)
         # optimizer = tf.train.RMSPropOptimizer(learning_rate)
         # optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
         # optimizer = tf.train.FtrlOptimizer(learning_rate)
@@ -161,7 +161,7 @@ def main(_):
             avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
 
             losses = tf.nn.relu(opt.margin - lossDiff)
-            nonzeroNum = tf.count_nonzero(losses)
+            nonzeroNum = tf.to_double(tf.count_nonzero(losses))
 
             loss = tf.reduce_sum(losses) / nonzeroNum
 
@@ -194,8 +194,8 @@ def main(_):
                 tf.summary.scalar("Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_FIRST'))) / 100 / leng)
                 tf.summary.scalar("Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_SECOND'))) / 100 / secleng)
                 summary_op = tf.summary.merge_all()
-                summary_writer = tf.summary.FileWriter('logEL/waste/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_b50_m2_lrdecay500beta0.5_adam_w2g', graph = sess.graph)
+                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
+                                                       '_b50_m2_lrdecayNone_adam_w2g', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
