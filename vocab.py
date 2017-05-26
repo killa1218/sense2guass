@@ -239,15 +239,10 @@ class Vocab(object):
                         print('Using old style vocab file.')
 
                     for i in tqdm(data['words']):
-                        senseStart = None
+                        senseStart = curSenseCount
 
-                        try:
-                            senseStart = i[4]
-                        except IndexError:
-                            senseStart = curSenseCount
-
-                        w = Word(i[0], i[3], i[1] if i[1] < opt.maxSensePerWord else opt.maxSensePerWord, i[2], senseStart)
-                        curSenseCount += i[1]
+                        w = Word(word = i[0], index  = i[3], sNum = i[1] if i[1] < opt.maxSensePerWord else opt.maxSensePerWord, c = i[2], sStart = senseStart)
+                        curSenseCount += w.senseNum
                         self._idx2word.append(w)
                         self._vocab[i[0]] = self._idx2word[-1]
 
@@ -256,6 +251,7 @@ class Vocab(object):
                             self._sidx2count.append(int(wordCount / w.senseNum))
 
                     self.size = len(data['words'])
+                    self.totalSenseCount = curSenseCount
                     print('Vocab load finished. %d words and %d senses are encountered' % (self.size, self.totalSenseCount))
 
                     if not self.means and not self.sigmas:

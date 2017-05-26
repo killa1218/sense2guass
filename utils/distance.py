@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 import tensorflow as tf
+import math
 from options import Options as opt
 
 dataType = opt.dType
@@ -10,9 +11,17 @@ dataType = opt.dType
 def diagEL(m1, sig1, m2, sig2, d=opt.embSize):
     m = m1 - m2
     sig = sig1 + sig2
+    fac = math.sqrt((2 * math.pi)**opt.embSize)
+
+    firstTerm = tf.log(tf.reduce_prod(sig, 1))
+    secondTerm = tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1)
+
+    tf.add_to_collection('LOG_EL_FIRST', firstTerm)
+    tf.add_to_collection('LOG_EL_SECOND', secondTerm)
 
     # return tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1) # Only l2 norm
-    return (tf.log(tf.reduce_prod(sig, 1)) + tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1) + d * 1.83787706641) / 2
+    return (firstTerm + secondTerm + d * 1.83787706641) / 2 # log
+    # return -tf.exp(-tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1) / 2) / tf.sqrt(tf.reduce_prod(sig, 1)) # nolog
 
 def diagKL(m1, sig1, m2, sig2, d=opt.embSize):   # KL energy of two diagnal gaussian distributions
     m = m2 - m1

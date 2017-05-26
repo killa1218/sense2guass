@@ -84,11 +84,11 @@ def main(_):
     with tf.Session(config=config) as sess, tf.device('CPU:0'):
         global_step = tf.Variable(0, trainable = False)
         learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
-                                                   200, 0.96, staircase = True)
+                                                   500, 0.96, staircase = True)
         # learning_rate = opt.alpha
         # Passing global_step to minimize() will increment it at each step.
         # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(learning_rate, beta1 = 0., beta2 = 0.)
+        optimizer = tf.train.AdamOptimizer(learning_rate, beta1 = 0.5, beta2 = 0.5)
         # optimizer = tf.train.RMSPropOptimizer(learning_rate)
         # optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
         # optimizer = tf.train.FtrlOptimizer(learning_rate)
@@ -112,7 +112,7 @@ def main(_):
 ##----------------- Build Window Loss Graph ------------------
         print('Building Window Loss Graph...')
         from graph import windowLossGraph
-        windowLossGraph, window = windowLossGraph(vocabulary)
+        # windowLossGraph, window = windowLossGraph(vocabulary)
         print('Finished.')
 ##----------------- Build Window Loss Graph ------------------
 
@@ -147,7 +147,9 @@ def main(_):
             print('Building NCE Loss...')
             from graph import batchNCELossGraph
 
-            posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
+            posLoss, negLoss = batchNCELossGraph(vocabulary)
+            senseIdxPlaceholder = tf.get_collection('POS_PHDR')[0]
+            # posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
             posNum = len(posLoss)
             negNum = len(negLoss)
 
@@ -174,19 +176,26 @@ def main(_):
                 tf.summary.scalar("Mean Norm Variance", mean_var)
                 tf.summary.scalar("Average Sigma Norm", avg_cov_norm)
                 tf.summary.scalar("Sigma Norm Variance", cov_var)
+                leng = len(tf.get_collection('LOG_EL_FIRST'))
+                secleng = len(tf.get_collection('LOG_EL_SECOND'))
+                tf.summary.scalar("Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_FIRST'))) / 100 / leng)
+                tf.summary.scalar("Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_SECOND'))) / 100 / secleng)
                 summary_op = tf.summary.merge_all()
                 summary_writer = tf.summary.FileWriter('logEL/waste/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_m120_lrdecay200beta0_adam_w2g', graph = sess.graph)
+                                                       '_b50_m2_lrdecay500beta0.5_adam_w2g', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
+            obj = loss + regular
 
             print('Building Optimizer...')
-            grad = optimizer.compute_gradients(loss + regular)
+            # posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'))
+            # negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'))
+            grad = optimizer.compute_gradients(obj)
             clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
-            tf.nn.sigmoid_cross_entropy_with_logits()
+            # tf.nn.sigmoid_cross_entropy_with_logits()
             # op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
             print('Finished.')
@@ -242,20 +251,10 @@ def main(_):
     ##----------------------------- Train Batch ------------------------------
                             if len(stcW) > opt.windowSize and len(stcW) == opt.sentenceLength:
                                 batchStcW.append(stcW)
-                                # negativeSampleList = []
-                                #
-                                # for a in range(opt.sentenceLength):
-                                #     sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative) # TODO 这里可以优化
-                                #     # while a in sampleTmp:
-                                #     #     sampleTmp = random.sample(range(vocabulary.totalSenseCount), opt.negative)
-                                #
-                                #     negativeSampleList.append(sampleTmp)
-                                # negativeSamplesList.append(negativeSampleList)
-
 
                                 if len(batchStcW) == opt.batchSize:
                                     batchLossSenseIdxList = []
-                                    negativeSamplesList = np.random.randint(vocabulary.totalSenseCount, size=(opt.batchSize, opt.sentenceLength, opt.negative))
+                                    # negativeSamplesList = np.random.randint(vocabulary.totalSenseCount, size=(opt.batchSize, opt.sentenceLength, opt.negative))
     ##--------------------------------- Inference By Batch ----------------------------------
                                     start = time.time()
                                     if opt.maxSensePerWord == 1:
@@ -267,19 +266,20 @@ def main(_):
 
                                             batchLossSenseIdxList.append(tmpList)
                                     else:
-                                        batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
+                                        # batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
 
-                                        if opt.verboseTime:
-                                            tIT += time.time() - start
-                                            wT += twT
-                                            cT += tcT
-                                            iT += tiT
-                                            count += 1
-                                            print("\n\nTotal Inference Time:", tIT / count, '\n')
-                                            print("Get Windows Time Takes: %.2f%%" % (wT * 100 / tIT))
-                                            print("Calculate Time Takes: %.2f%%" % (cT * 100 / tIT))
-                                            print("DP Time Takes: %.2f%%" % (iT * 100 / tIT))
-                                            print("Data Transfer Time Takes: %.2f%%" % ((tIT - iT - cT - wT) * 100 / tIT))
+                                        # if opt.verboseTime:
+                                            # tIT += time.time() - start
+                                            # wT += twT
+                                            # cT += tcT
+                                            # iT += tiT
+                                            # count += 1
+                                            # print("\n\nTotal Inference Time:", tIT / count, '\n')
+                                            # print("Get Windows Time Takes: %.2f%%" % (wT * 100 / tIT))
+                                            # print("Calculate Time Takes: %.2f%%" % (cT * 100 / tIT))
+                                            # print("DP Time Takes: %.2f%%" % (iT * 100 / tIT))
+                                            # print("Data Transfer Time Takes: %.2f%%" % ((tIT - iT - cT - wT) * 100 / tIT))
+                                        pass
     ##--------------------------------- Inference By Batch ----------------------------------
 
                                     if m_step:
@@ -287,8 +287,10 @@ def main(_):
                                         # writer.add_summary(summ, i)
                                         start = time.time()
                                         posloss = sess.run(avgPosLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                        negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
-                                        nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        # negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                        # nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
                                         if isinstance(learning_rate, float):
                                             print(global_step.eval(), learning_rate)
@@ -299,7 +301,8 @@ def main(_):
 
                                         # print(sess.run(grad, feed_dict ={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})[0])
 
-                                        summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), global_step.eval())
+                                        summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}), global_step.eval())
+                                        # summary_writer.add_summary(summary_op.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}), global_step.eval())
                                         # print("Cal Loss Time:", time.time() - start)
 
                                         # if posloss < 0:
@@ -336,7 +339,8 @@ def main(_):
 
                                         # start = time.time()
                                         for _ in range(1):
-                                            sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
+                                            sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                            # sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         if opt.verboseTime:
                                             print('OP Time:', time.time() - start)
 
