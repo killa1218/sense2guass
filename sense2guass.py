@@ -155,13 +155,17 @@ def main(_):
 
             avgPosLoss = tf.reduce_sum(posLoss) / posNum / opt.batchSize
 
-            negLoss = tf.concat(negLosses, 0)
-            lossDiff = negLoss - avgPosLoss
+            lossList = []
+            for l in negLosses:
+                lossList.append(tf.nn.relu(opt.margin - l + avgPosLoss))
 
-            avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
+            # negLoss = tf.concat(negLosses, 0)
+            # lossDiff = negLoss - avgPosLoss
 
-            losses = tf.nn.relu(opt.margin - lossDiff)
-            nonzeroNum = tf.to_double(tf.count_nonzero(losses))
+            avgNegLoss = tf.reduce_sum(tf.add_n(negLosses)) / negNum / opt.batchSize
+
+            losses = tf.concat(lossList, 0)
+            nonzeroNum = tf.to_double(tf.count_nonzero(lossList))
 
             loss = tf.reduce_sum(losses) / nonzeroNum
 
@@ -200,18 +204,21 @@ def main(_):
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
-            obj = loss + regular
+            # obj = loss + regular
 
             print('Building Optimizer...')
-            posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'), gate_gradients = optimizer.GATE_NONE)
-            negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'), gate_gradients = optimizer.GATE_NONE)
+            # posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'), gate_gradients = optimizer.GATE_NONE)
+            # negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'), gate_gradients = optimizer.GATE_NONE)
 
-            posGrad.append((tf.multiply(g, nonzeroNum), var) for g, var in negGrad)
-            op = optimizer.apply_gradients(posGrad, global_step = global_step)
+            # posGrad.append((tf.multiply(g, nonzeroNum), var) for g, var in negGrad)
+            # op = optimizer.apply_gradients(posGrad, global_step = global_step)
+
+            grad = optimizer.compute_gradients(losses)
+            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
 
             # grad = optimizer.compute_gradients(obj)
             # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-            # op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
+            op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
             # tf.nn.sigmoid_cross_entropy_with_logits()
             # op = optimizer.minimize(loss + regular)
             # # op = optimizer(avgBatchStcLoss)
