@@ -22,14 +22,14 @@ vocab = None
 result = None
 scoreList = None
 
-date = '0410'
-condition = ''
+date = '0515'
+condition = '.adam.multisense'
 
 # with open('../data/SCWS/testData.pk3', 'rb') as f:
 with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/old/gauss.EL.' + date + '_w3_b50_m100' + condition + '.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0520_w3_b50_m200.adam.pkl3')
 
 with tf.Session() as sess:
     windowLossGraph, window = windowLossGraph(vocab)

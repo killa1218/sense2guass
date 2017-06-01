@@ -292,36 +292,6 @@ class Vocab(object):
                     dtype=dataType,
                     name="outputMeans"
                 )
-
-                # self.means = tf.clip_by_norm(
-                #     tf.Variable(
-                #         tf.random_uniform(
-                #             [sNum, eSize],
-                #             -iWidth,
-                #             iWidth,
-                #             dtype=dataType
-                #         ),
-                #         dtype=dataType,
-                #     ),
-                #     1,
-                #     axes=1,
-                #     name="means"
-                # )
-                #
-                # self.outputMeans = tf.clip_by_norm(
-                #     tf.Variable(
-                #         tf.random_uniform(
-                #             [sNum, eSize],
-                #             -iWidth,
-                #             iWidth,
-                #             dtype=dataType
-                #         ),
-                #         dtype=dataType,
-                #     ),
-                #     1,
-                #     axes=1,
-                #     name="outputMeans"
-                # )
         else:
             iWidth = opt.initWidth
             with tf.name_scope("Means"):
@@ -360,7 +330,7 @@ class Vocab(object):
             ), 0.00001, float('inf'))
         elif opt.covarShape == 'diagnal':
             with tf.name_scope("Diagnal_Cov"):
-                self.sigmas = tf.clip_by_value(tf.Variable(
+                self.trainableSigmas = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         0.4,
@@ -369,9 +339,10 @@ class Vocab(object):
                     ),
                     dtype=dataType,
                     name="sigmas"
-                ), 0.00001, float('inf'))
+                )
+                self.sigmas = tf.clip_by_value(self.trainableSigmas, opt.covMin, opt.covMax)
 
-                self.outputSigmas = tf.clip_by_value(tf.Variable(
+                self.trainableOutputSigmas = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         0.4,
@@ -380,7 +351,8 @@ class Vocab(object):
                     ),
                     dtype=dataType,
                     name="outputSigmas"
-                ), 0.00001, float('inf'))
+                )
+                self.outputSigmas = tf.clip_by_value(self.trainableOutputSigmas, opt.covMin, opt.covMax)
         else:
             self.sigmas = None
 

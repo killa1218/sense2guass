@@ -54,7 +54,7 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
         senseIdxPlaceholder = tf.placeholder(dtype=tf.int64, shape=[opt.batchSize, opt.sentenceLength], name="Observation")
         tf.add_to_collection('POS_PHDR', senseIdxPlaceholder)
 
-        inputMeans = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder)
+        inputMeans = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder) # [opt.batchSize, opt.sentenceLength, opt.embSize]
         inputSigmas = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder)
         outputMeans = tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder)
         outputSigmas = tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder)
@@ -74,76 +74,60 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
                                                            unigrams = vocabulary._sidx2count,
                                                            seed = time.time()
                                                            )[0], shape = [opt.batchSize, opt.sentenceLength, opt.negative], name = "Negative_Samples")
-        negMeans = tf.nn.embedding_lookup(vocabulary.means, negSamples)
-        negSigmas = tf.nn.embedding_lookup(vocabulary.sigmas, negSamples)
+        negMeans = tf.nn.embedding_lookup(vocabulary.outputMeans, negSamples) # [opt.batchSize, opt.sentenceLength, opt.negative, opt.embSize]
+        negSigmas = tf.nn.embedding_lookup(vocabulary.outputSigmas, negSamples)
 
         tf.add_to_collection('NEG_VAR', negMeans)
         tf.add_to_collection('NEG_VAR', negSigmas)
 
-        posList = []
-        negList = []
+        negLoss = dist(tf.expand_dims(inputMeans, 2), tf.expand_dims(inputSigmas, 2), negMeans, negSigmas, pos = False, dim = 3) # [opt.batchSize, opt.sentenceLength, opt.negative]
+        tf.add_to_collection('NEG_LOSS', negLoss)
+
+        # posList = []
+        # negList = []
+        lossList = []
         for i in tqdm(range(sentenceLength)):
             # midMean = tf.nn.embedding_lookup(vocabulary.means, senseIdxPlaceholder[:, i], name="midMean")
             # midSigma = tf.nn.embedding_lookup(vocabulary.sigmas, senseIdxPlaceholder[:, i], name="midSigma") if opt.covarShape != 'none' else None
             # wordNegMeans = tf.nn.embedding_lookup(vocabulary.means, negSamples[:, i, :], name="negMeans")
             # wordNegSigmas = tf.nn.embedding_lookup(vocabulary.sigmas, negSamples[:, i, :], name="negSigmas") if opt.covarShape != 'none' else None
 
-            midMean = inputMeans[:, i]
-            midSigma = inputSigmas[:, i] if opt.covarShape != 'none' else None
-            wordNegMeans = negMeans[:, i, :]
-            wordNegSigmas = negSigmas[:, i, :] if opt.covarShape != 'none' else None
+            midMean = inputMeans[:, i] # [opt.batchSize, opt.embSize]
+            midSigma = inputSigmas[:, i]
+
+            neg = negLoss[:, i]
 
             for offset in range(1, opt.windowSize + 1):
                 if i - offset > -1:
-                    posList.append(
-                        # dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset)))
-                        dist(midMean, midSigma, outputMeans[:, i - offset], outputSigmas[:, i - offset])
-                        if opt.covarShape != 'none' else
-                        # dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), None)
-                        dist(midMean, None, outputMeans[:, i - offset], None)
-                    )
-
-                    # for j in range(opt.negative):
-                    #     negList.append(
-                    #         dist(negMeans[:, j], negSigmas[:, j],
-                    #              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset],
-                    #                                     name = "outputMean-" + str(i) + "_" + str(i - offset)),
-                    #              tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset],
-                    #                                     name = "outputSigma-" + str(i) + "_" + str(i - offset)))
-                    #         if opt.covarShape != 'none' else
-                    #         dist(negMeans[:, j], None,
-                    #              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset],
-                    #                                     name = "outputMean-" + str(i) + "_" + str(i - offset)), None)
-                    #     )
+                    pos = tf.expand_dims(dist(midMean, midSigma, outputMeans[:, i - offset], outputSigmas[:, i - offset], pos = True), 1)
+                    tf.add_to_collection('POS_LOSS', pos)
+                    lossList.append(tf.nn.relu(opt.margin - neg + pos))
+                    # posList.append(
+                    #     # dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i - offset], name="outputSigma-" + str(i) + "_" + str(i - offset)))
+                    #     tf.expand_dims(dist(midMean, midSigma, outputMeans[:, i - offset], outputSigmas[:, i - offset], pos = True), 1)
+                    #     # if opt.covarShape != 'none' else
+                    #     # dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i - offset], name = "outputMean-" + str(i) + "_" + str(i - offset)), None)
+                    #     # dist(midMean, None, outputMeans[:, i - offset], None, pos = True)
+                    # )
 
                 if i + offset < sentenceLength:
-                    posList.append(
-                        # dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset)))
-                        dist(midMean, midSigma, outputMeans[:, i + offset], outputSigmas[:, i + offset])
-                        if opt.covarShape != 'none' else
-                        dist(midMean, None, outputMeans[:, i + offset], None)
-                        # dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
-                    )
+                    pos = tf.expand_dims(dist(midMean, midSigma, outputMeans[:, i + offset], outputSigmas[:, i + offset], pos = True), 1)
+                    tf.add_to_collection('POS_LOSS', pos)
+                    lossList.append(tf.nn.relu(opt.margin - neg + pos))
+                    # posList.append(
+                    #     # dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],  name = "outputSigma-" + str(i) + "_" + str(i + offset)))
+                    #     tf.expand_dims(dist(midMean, midSigma, outputMeans[:, i + offset], outputSigmas[:, i + offset], pos = True), 1)
+                    #     # if opt.covarShape != 'none' else
+                    #     # dist(midMean, None, outputMeans[:, i + offset], None, pos = True)
+                    #     # dist(midMean, None, tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset], name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
+                    # )
 
-                    # for j in range(opt.negative):
-                    #     negList.append(
-                    #         dist(negMeans[:, j], negSigmas[:, j],
-                    #              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset],
-                    #                                     name = "outputMean-" + str(i) + "_" + str(i + offset)),
-                    #              tf.nn.embedding_lookup(vocabulary.outputSigmas, senseIdxPlaceholder[:, i + offset],
-                    #                                     name = "outputSigma-" + str(i) + "_" + str(i + offset)))
-                    #         if opt.covarShape != 'none' else
-                    #         dist(negMeans[:, j], None,
-                    #              tf.nn.embedding_lookup(vocabulary.outputMeans, senseIdxPlaceholder[:, i + offset],
-                    #                                     name = "outputMean-" + str(i) + "_" + str(i + offset)), None)
-                    #     )
-
-            for j in range(opt.negative):
-                negList.append(
-                    dist(midMean, midSigma, wordNegMeans[:, j], wordNegSigmas[:, j])
-                    if opt.covarShape != 'none' else
-                    dist(midMean, None, wordNegMeans[:, j], None)
-                )
+            # for j in range(opt.negative):
+            #     negList.append(
+            #         dist(midMean, midSigma, wordNegMeans[:, j], wordNegSigmas[:, j], pos = False)
+            #         # if opt.covarShape != 'none' else
+            #         # dist(midMean, None, wordNegMeans[:, j], None, pos = False)
+            #     )
 
         # with tf.name_scope("Positive_Loss_Graph"):
         #     posLoss = tf.div(tf.add_n(posList), len(posList), name="Positive_Loss")
@@ -151,12 +135,12 @@ def batchNCELossGraph(vocabulary, sentenceLength=opt.sentenceLength):
         #     negLoss = tf.div(tf.add_n(negList), len(negList), name="Negative_Loss")
         # return posLoss - negLoss, posLoss, negLoss, senseIdxPlaceholder, negSamples
 
-        with tf.name_scope("Positive_Loss_Graph"):
-            posLoss = posList
-        with tf.name_scope("Negative_Loss_Graph"):
-            negLoss = negList
+        # with tf.name_scope("Positive_Loss_Graph"):
+        #     posLoss = posList
+        # with tf.name_scope("Negative_Loss_Graph"):
+        #     negLoss = negList
         # return posLoss, negLoss, senseIdxPlaceholder, negSamples
-        return posLoss, negLoss
+        return lossList
 
 def windowLossGraph(vocabulary):
     with tf.name_scope("Window_Graph"):

@@ -24,3 +24,6 @@ class Options(object):
     energy = 'EL'                       # What energy to use, possible valuse: CE EL KL IP(Inner Product)
     dType = tf.float64                  # Data type
     verboseTime = False                 # Display running time
+    gradConstraint = 0.000001
+    covMin = 0.4
+    covMax = 0.6

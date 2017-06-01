@@ -24,7 +24,7 @@ scoreList = None
 with open('/mnt/dataset/sense2gauss/data/wordsim353/wordsim353.pkl', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0525_w3_b50_m2.adambeta0.nonegavg.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0531_w3_b20_m2_lr0.01_neg1.pkl3')
 
 with tf.Session() as sess:
     sensePlaceholder = tf.placeholder(dtype=tf.int32)
@@ -76,7 +76,7 @@ with open('../data/SCWS/ELResult_.txt', 'w') as f:
         resSortList.append((float(result[i]), (vocab.getWordBySenseId(wordPairList[i][0]).token, vocab.getWordBySenseId(wordPairList[i][1]).token)))
 
 dataSortList.sort(key = lambda x: x[0])
-resSortList.sort(key = lambda x: x[0], reverse = True)
+resSortList.sort(key = lambda x: x[0])
 
 print(dataSortList, '\n', resSortList)
 

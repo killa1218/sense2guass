@@ -67,8 +67,8 @@ e_step = True
 m_step = True
 opt.verboseTime = False
 
-gradMin = -0.5
-gradMax = 0.5
+gradMin = -5
+gradMax = 5
 
 def main(_):
     """ Train a sense2guass model. """
@@ -83,17 +83,17 @@ def main(_):
 
     with tf.Session(config=config) as sess, tf.device('CPU:0'):
         global_step = tf.Variable(0, trainable = False)
-        # learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
-        #                                            500, 0.96, staircase = True)
-        learning_rate = opt.alpha
+        learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
+                                                   3000, 0.96, staircase = True)
+        # learning_rate = opt.alpha
         # Passing global_step to minimize() will increment it at each step.
-        # optimizer = tf.train.AdagradOptimizer(opt.alpha)
-        optimizer = tf.train.AdamOptimizer(learning_rate)
+        optimizer = tf.train.AdagradOptimizer(learning_rate)
+        # meanOpt = tf.train.AdamOptimizer()
         # optimizer = tf.train.RMSPropOptimizer(learning_rate)
         # optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
         # optimizer = tf.train.FtrlOptimizer(learning_rate)
         # optimizer = tf.train.GradientDescentOptimizer(learning_rate)
-        # optimizer = tf.train.AdadeltaOptimizer(opt.alpha)
+        # sigmaOpt = tf.train.AdadeltaOptimizer(opt.alpha)
 
         # Build vocabulary or load vocabulary from file
         if opt.vocab != None:
@@ -147,32 +147,37 @@ def main(_):
             print('Building NCE Loss...')
             from graph import batchNCELossGraph
 
-            posLoss, negLosses = batchNCELossGraph(vocabulary)
+            # posLoss, negLosses = batchNCELossGraph(vocabulary)
+            lossList = batchNCELossGraph(vocabulary)
             senseIdxPlaceholder = tf.get_collection('POS_PHDR')[0]
             # posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
-            posNum = len(posLoss)
-            negNum = len(negLosses)
+            # posNum = len(posLoss)
+            # negNum = len(negLosses)
 
-            avgPosLoss = tf.reduce_sum(posLoss) / posNum / opt.batchSize
+            posLosses = tf.get_collection('POS_LOSS')
+            avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
+            avgNegLoss = tf.reduce_sum(tf.get_collection('NEG_LOSS')) / opt.sentenceLength / opt.negative / opt.batchSize
 
-            lossList = []
-            for l in negLosses:
-                lossList.append(tf.nn.relu(opt.margin - l + avgPosLoss))
+            # lossList = []
+            # for l in negLosses:
+            #     lossList.append(tf.nn.relu(opt.margin - l + avgPosLoss))
+            #
+            # # negLoss = tf.concat(negLosses, 0)
+            # # lossDiff = negLoss - avgPosLoss
+            #
+            # avgNegLoss = tf.reduce_sum(tf.add_n(negLosses)) / negNum / opt.batchSize
+            #
+            # losses = tf.concat(lossList, 0)
+            # nonzeroNum = tf.to_double(tf.count_nonzero(lossList))
+            #
+            # loss = tf.reduce_sum(losses) / nonzeroNum
 
-            # negLoss = tf.concat(negLosses, 0)
-            # lossDiff = negLoss - avgPosLoss
 
-            avgNegLoss = tf.reduce_sum(tf.add_n(negLosses)) / negNum / opt.batchSize
-
-            losses = tf.concat(lossList, 0)
-            nonzeroNum = tf.to_double(tf.count_nonzero(lossList))
-
-            loss = tf.reduce_sum(losses) / nonzeroNum
-
-
-            # avgNegLoss = tf.reduce_sum(negLoss) / negNum / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(negLosses) / negNum / opt.batchSize
             # avgNCELoss = avgNegLoss - avgPosLoss
-            # loss = tf.nn.relu(opt.margin - avgNCELoss)
+            loss = tf.reduce_sum(lossList)
+            avgLoss = loss / opt.batchSize / opt.negative / len(lossList)
+            # loss = avgPosLoss
 
             # true_xent = tf.nn.sigmoid_cross_entropy_with_logits(
             #     labels = tf.ones_like(posLoss), logits = posLoss)
@@ -185,26 +190,31 @@ def main(_):
             with tf.name_scope("Summary"):
                 tf.summary.scalar("Positive Loss", avgPosLoss)
                 tf.summary.scalar("Negative Loss", avgNegLoss)
-                tf.summary.scalar("Num of Nonzero Loss", nonzeroNum)
-                tf.summary.scalar("NCE Loss", loss)
+                # tf.summary.scalar("Num of Nonzero Loss", nonzeroNum)
+                tf.summary.scalar("NCE Loss", avgLoss)
                 avg_mean_norm, mean_var = tf.nn.moments(tf.norm(vocabulary.means, axis = 1), axes = [0])
                 avg_cov_norm, cov_var = tf.nn.moments(tf.norm(vocabulary.sigmas, axis = 1), axes = [0])
-                tf.summary.scalar("Average Mean Norm", avg_mean_norm)
-                tf.summary.scalar("Mean Norm Variance", mean_var)
-                tf.summary.scalar("Average Sigma Norm", avg_cov_norm)
-                tf.summary.scalar("Sigma Norm Variance", cov_var)
-                leng = len(tf.get_collection('LOG_EL_FIRST'))
-                secleng = len(tf.get_collection('LOG_EL_SECOND'))
-                tf.summary.scalar("Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_FIRST'))) / 100 / leng)
-                tf.summary.scalar("Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('LOG_EL_SECOND'))) / 100 / secleng)
+                if opt.energy == 'EL':
+                    tf.summary.scalar("Average Mean Norm", avg_mean_norm)
+                    tf.summary.scalar("Mean Norm Variance", mean_var)
+                    tf.summary.scalar("Average Sigma Norm", avg_cov_norm)
+                    tf.summary.scalar("Sigma Norm Variance", cov_var)
+                    posleng = len(tf.get_collection('POS_LOG_EL_FIRST'))
+                    possecleng = len(tf.get_collection('POS_LOG_EL_SECOND'))
+                    negleng = len(tf.get_collection('NEG_LOG_EL_FIRST'))
+                    negsecleng = len(tf.get_collection('NEG_LOG_EL_SECOND'))
+                    tf.summary.scalar("POS Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_FIRST'))) / 100 / posleng)
+                    tf.summary.scalar("POS Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_SECOND'))) / 100 / possecleng)
+                    tf.summary.scalar("NEG Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_FIRST'))) / 100 / negleng)
+                    tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / 100 / negsecleng)
                 summary_op = tf.summary.merge_all()
                 summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_b50_m2_lrdecayNone_adam_w2g', graph = sess.graph)
+                                                       '_b20_m2_lrd3000lr0.01_neg3_adagrad_w2g', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
-            # obj = loss + regular
+            obj = loss
 
             print('Building Optimizer...')
             # posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'), gate_gradients = optimizer.GATE_NONE)
@@ -213,11 +223,27 @@ def main(_):
             # posGrad.append((tf.multiply(g, nonzeroNum), var) for g, var in negGrad)
             # op = optimizer.apply_gradients(posGrad, global_step = global_step)
 
-            grad = optimizer.compute_gradients(losses)
-            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-
-            # grad = optimizer.compute_gradients(obj)
+            # grad = optimizer.compute_gradients(losses, gate_gradients = optimizer.GATE_NONE)
             # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+
+            # User Two optimizers
+            # meanGrad = meanOpt.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = meanOpt.GATE_NONE)
+            # clipedMeanGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in meanGrad]
+            # sigmaGrad = sigmaOpt.compute_gradients(obj, var_list = [vocabulary.trainableSigmas, vocabulary.trainableOutputSigmas], gate_gradients = sigmaOpt.GATE_NONE)
+            # clipedSigmaGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in sigmaGrad]
+            #
+            # mop = meanOpt.apply_gradients(clipedMeanGrad)
+            # sop = sigmaOpt.apply_gradients(clipedSigmaGrad)
+
+            if opt.energy == 'IP':
+                grad = optimizer.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = optimizer.GATE_NONE)
+            else:
+                grad = optimizer.compute_gradients(obj, gate_gradients = optimizer.GATE_NONE)
+            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            # # clipedGrad = [
+            # #     (tf.multiply(g, opt.gradConstraint, name = 'Scaled_Cov_Grad'), var) if 'igmas' in var.name else
+            # #     (tf.clip_by_value(g, gradMin, gradMax, name = 'Cliped_Mean_Grad'), var) for g, var in grad] # Limit covariance gradients
+            #
             op = optimizer.apply_gradients(clipedGrad, global_step = global_step)
             # tf.nn.sigmoid_cross_entropy_with_logits()
             # op = optimizer.minimize(loss + regular)
@@ -312,7 +338,7 @@ def main(_):
                                         start = time.time()
                                         posloss = sess.run(avgPosLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                         negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                        nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                        nceloss = sess.run(avgLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                         # negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
@@ -364,6 +390,7 @@ def main(_):
                                         # start = time.time()
                                         for _ in range(1):
                                             sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                            # sess.run([mop, sop], feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
                                             # sess.run(op, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         if opt.verboseTime:
                                             print('OP Time:', time.time() - start)
