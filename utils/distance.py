@@ -29,7 +29,7 @@ def diagEL(m1, sig1, m2, sig2, d=opt.embSize, pos = True, dim = 1):
     return (firstTerm + secondTerm) / 2 + b # log
     # return -tf.exp(-tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1) / 2) / tf.sqrt(tf.reduce_prod(sig, 1)) # nolog
 
-def diagKL(m1, sig1, m2, sig2, d=opt.embSize, pos = True):   # KL energy of two diagnal gaussian distributions
+def diagKL(m1, sig1, m2, sig2, d = opt.embSize, pos = True):   # KL energy of two diagnal gaussian distributions
     m = m2 - m1
     sum = tf.log(tf.reduce_prod(sig2 / sig1, 1))
     sum += -d
@@ -39,12 +39,15 @@ def diagKL(m1, sig1, m2, sig2, d=opt.embSize, pos = True):   # KL energy of two 
 
     return res
 
+def mse(m1, sig, m2, sig2, d = opt.embSize, pos = True):
+
+
 def diagCE(m1, sig1, m2, sig2, d=opt.embSize, pos = True):
     return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2
 
 def meanDist(m1, sig1, m2, sig2, d=opt.embSize, pos = True, dim = 1):
     with tf.name_scope("Inner_Product"):
-        return tf.sigmoid(tf.reduce_sum(m1 * m2, dim))
+        return tf.reduce_sum(m1 * m2, dim)
 
 if __name__ == '__main__':
     with tf.Session() as sess:

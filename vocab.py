@@ -6,6 +6,7 @@ import os
 import pickle as pk
 import sys
 import time
+import math
 import multiprocessing
 import tensorflow as tf
 
@@ -207,6 +208,8 @@ class Vocab(object):
             with open(file, 'wb') as f:
                 pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas) if self.sigmas != None else None}, f)
                 return True
+        finally:
+            print('Saved at:', opt.savePath)
 
 
     def saveVocab(self, file):
@@ -293,7 +296,8 @@ class Vocab(object):
                     name="outputMeans"
                 )
         else:
-            iWidth = opt.initWidth
+            iWidth = math.sqrt(2) / 20
+            # iWidth = opt.initWidth
             with tf.name_scope("Means"):
                 self.means = tf.Variable(
                     tf.random_uniform(

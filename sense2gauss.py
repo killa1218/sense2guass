@@ -24,7 +24,7 @@ random.seed(time.time())
 
 flags = tf.app.flags
 
-flags.DEFINE_string("output", None, "Directory to write the model and training summaries.")
+flags.DEFINE_string("output", '.pkl', "Directory to write the model and training summaries.")
 flags.DEFINE_string("train", None, "Training text file. E.g., unzipped file http://mattmahoney.net/dc/text8.zip.")
 flags.DEFINE_string("vocab", None, "The vocabulary file path.")
 flags.DEFINE_string("save_vocab", None, "If not None, save the vocabulary to this path.")
@@ -44,7 +44,6 @@ flags.DEFINE_string("energy", "EL", "What energy function is used, default is EL
 
 FLAGS = flags.FLAGS
 
-opt.savePath = FLAGS.output
 opt.train = FLAGS.train
 opt.vocab = FLAGS.vocab
 opt.saveVocab = FLAGS.save_vocab
@@ -61,6 +60,8 @@ opt.alpha = FLAGS.alpha
 opt.margin = FLAGS.margin
 # opt.gpu = FLAGS.gpu
 opt.energy = FLAGS.energy
+opt.savePath = './data/' + opt.energy + '.' + time.strftime("%m%d%H%M", time.localtime()) + 'w' + str(opt.windowSize) +\
+               'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + 'm' + str(opt.margin) + 'n' + str(opt.negative) + FLAGS.output + '.pkl'
 
 vocabulary = None
 e_step = True
@@ -74,20 +75,21 @@ def main(_):
     """ Train a sense2guass model. """
     global vocabulary
 
-    if not FLAGS.train or not FLAGS.output:  # Whether the train corpus and output path is set
-        print("--train and --output must be specified.")
+    if not FLAGS.train: # or not FLAGS.output:  # Whether the train corpus and output path is set
+        print("--train must be specified.")
         sys.exit(1)
 
     config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)  # Config to make tensorflow not take up all the GPU memory
     config.gpu_options.allow_growth=True
 
-    with tf.Session(config=config) as sess, tf.device('CPU:0'):
+    with tf.Session(config=config) as sess, tf.device('CPU:0'), open('console_output.small.txt', 'w') as of:
         global_step = tf.Variable(0, trainable = False)
         learning_rate = tf.train.exponential_decay(opt.alpha, global_step,
                                                    3000, 0.96, staircase = True)
         # learning_rate = opt.alpha
         # Passing global_step to minimize() will increment it at each step.
-        optimizer = tf.train.AdagradOptimizer(learning_rate)
+        # optimizer = tf.train.AdagradOptimizer(learning_rate)
+        optimizer = tf.train.AdamOptimizer(learning_rate)
         # meanOpt = tf.train.AdamOptimizer()
         # optimizer = tf.train.RMSPropOptimizer(learning_rate)
         # optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
@@ -155,8 +157,7 @@ def main(_):
             # negNum = len(negLosses)
 
             posLosses = tf.get_collection('POS_LOSS')
-            avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
-            avgNegLoss = tf.reduce_sum(tf.get_collection('NEG_LOSS')) / opt.sentenceLength / opt.negative / opt.batchSize
+            negLosses = tf.get_collection('NEG_LOSS')
 
             # lossList = []
             # for l in negLosses:
@@ -175,9 +176,20 @@ def main(_):
 
             # avgNegLoss = tf.reduce_sum(negLosses) / negNum / opt.batchSize
             # avgNCELoss = avgNegLoss - avgPosLoss
-            loss = tf.reduce_sum(lossList)
-            avgLoss = loss / opt.batchSize / opt.negative / len(lossList)
-            # loss = avgPosLoss
+
+            # Margin Loss
+            # loss = tf.reduce_sum(lossList)
+            # avgLoss = loss / opt.batchSize / opt.negative / len(lossList)
+            # avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
+
+            # Cross Entropy Loss
+            posLen = len(posLosses)
+            posLosses = tf.concat(posLosses, 0)
+            avgPosLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.ones_like(posLosses), logits = posLosses)) / posLen / opt.batchSize
+            avgNegLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.zeros_like(negLosses), logits = negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
+            loss = avgPosLoss + avgNegLoss
+            avgLoss = loss / 2
 
             # true_xent = tf.nn.sigmoid_cross_entropy_with_logits(
             #     labels = tf.ones_like(posLoss), logits = posLoss)
@@ -186,6 +198,8 @@ def main(_):
             # avgPosLoss = tf.reduce_sum(true_xent) / posNum / opt.batchSize
             # avgNegLoss = tf.reduce_sum(sampled_xent) / negNum / opt.batchSize
             # loss = avgPosLoss + avgNegLoss
+
+
 
             with tf.name_scope("Summary"):
                 tf.summary.scalar("Positive Loss", avgPosLoss)
@@ -208,8 +222,9 @@ def main(_):
                     tf.summary.scalar("NEG Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_FIRST'))) / 100 / negleng)
                     tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / 100 / negsecleng)
                 summary_op = tf.summary.merge_all()
-                summary_writer = tf.summary.FileWriter('logEL/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_b20_m2_lrd3000lr0.01_neg3_adagrad_w2g', graph = sess.graph)
+                summary_writer = tf.summary.FileWriter('log' + opt.energy + '/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
+                                                       '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + 'm' + str(opt.margin) +\
+                                                       'n' + str(opt.negative) + 'sgd', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
@@ -239,7 +254,8 @@ def main(_):
                 grad = optimizer.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = optimizer.GATE_NONE)
             else:
                 grad = optimizer.compute_gradients(obj, gate_gradients = optimizer.GATE_NONE)
-            clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
+            clipedGrad = grad
+            # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
             # # clipedGrad = [
             # #     (tf.multiply(g, opt.gradConstraint, name = 'Scaled_Cov_Grad'), var) if 'igmas' in var.name else
             # #     (tf.clip_by_value(g, gradMin, gradMax, name = 'Cliped_Mean_Grad'), var) for g, var in grad] # Limit covariance gradients
@@ -342,11 +358,49 @@ def main(_):
                                         # negloss = sess.run(avgNegLoss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # nceloss = sess.run(loss, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})
                                         # print(sess.run(grad, feed_dict={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList}))
+
                                         if isinstance(learning_rate, float):
-                                            print(global_step.eval(), learning_rate)
+                                            lr = learning_rate
+                                            #print(global_step.eval(), learning_rate)
                                         else:
-                                            print(global_step.eval(), learning_rate.eval())
-                                        sys.stdout.write('\rIter: %d/%d, POSLoss: %.8f, NEGLoss: %.8f, neg - pos: %.8f, NCELoss: %.8f, Progress: %.2f%%.' % (i + 1, opt.iter, posloss, negloss, negloss - posloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                            lr = learning_rate.eval()
+                                            #print(global_step.eval(), learning_rate.eval())
+
+                                        if global_step.eval() % 3000 == 1:
+                                            of.write('Iter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.\n' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+
+                                            for g, var in grad:
+                                                if isinstance(g, tf.Tensor):
+                                                    l = []
+                                                    il = []
+                                                    covg = g.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                                    for idx, tmpi in enumerate(covg):
+                                                        if np.sum(tmpi) != 0:
+                                                            l.append(tmpi)
+                                                            il.append(idx)
+                                                    of.write('Gradients ')
+                                                    of.write(repr(l))
+                                                    of.write('\n')
+                                                    of.write(var.name)
+                                                    of.write(' ')
+                                                    of.write(repr(tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})))
+                                                    of.write('\n')
+                                                    # print('Gradients', l)
+                                                    # print(var.name, tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print('Gradients', tf.count_nonzero(g).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                else:
+                                                    of.write('Index: ' + repr(g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\nGradients: ' + repr(g.values.eval(feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\n' + var.name + ' ' + repr(tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\n'
+                                                    )
+
+                                                    # print('\nIndex:', g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print('Gradients:', g.values.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # # print('Unknown:', g.dense_shape.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print(var.name, tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+
+                                        sys.stdout.write('\rIter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()
 
                                         # print(sess.run(grad, feed_dict ={senseIdxPlaceholder: batchLossSenseIdxList, negSamples: negativeSamplesList})[0])
