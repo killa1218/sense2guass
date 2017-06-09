@@ -40,7 +40,7 @@ def diagKL(m1, sig1, m2, sig2, d = opt.embSize, pos = True):   # KL energy of tw
     return res
 
 def mse(m1, sig, m2, sig2, d = opt.embSize, pos = True):
-
+    return tf.reduce_sum(tf.square(m2 - m1), 1)
 
 def diagCE(m1, sig1, m2, sig2, d=opt.embSize, pos = True):
     return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2

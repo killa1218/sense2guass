@@ -223,8 +223,8 @@ def main(_):
                     tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / 100 / negsecleng)
                 summary_op = tf.summary.merge_all()
                 summary_writer = tf.summary.FileWriter('log' + opt.energy + '/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + 'm' + str(opt.margin) +\
-                                                       'n' + str(opt.negative) + 'sgd', graph = sess.graph)
+                                                       '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + 'se' + str(opt.margin) +\
+                                                       'n' + str(opt.negative) + 'adam', graph = sess.graph)
             print('Finished.')
             # reduceNCELoss = tf.reduce_sum(nceLossGraph)
             # avgNCELoss = reduceNCELoss / opt.batchSize
