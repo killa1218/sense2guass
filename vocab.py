@@ -201,7 +201,15 @@ class Vocab(object):
             for i in self._idx2word:
                 l.append((i.token, i.senseNum, i.count, i.index, i.senseStart))
             with open(file, 'wb') as f:
-                pk.dump({'words': l, 'twc': self.totalWordCount, 'tsc': self.totalSenseCount, 'means': sess.run(self.means), 'sigmas': sess.run(self.sigmas) if self.sigmas != None else None}, f)
+                pk.dump({
+                    'words': l,
+                    'twc': self.totalWordCount,
+                    'tsc': self.totalSenseCount,
+                    'means': sess.run(self.means),
+                    'sigmas': sess.run(self.sigmas) if self.sigmas != None else None,
+                    'outputMeans': sess.run(self.outputMeans),
+                    'outputSigmas': sess.run(self.outputSigmas) if self.outputSigmas != None else None
+                }, f)
                 return True
         except Exception:
             tf.global_variables_initializer().run(session=sess)
@@ -237,7 +245,11 @@ class Vocab(object):
 
                     try:
                         self.means = tf.Variable(data['means'], dtype=dataType)
-                        self.sigmas = tf.Variable(data['sigmas'], dtype=dataType) if data['sigmas'] is not None else None
+                        self.outputMeans = tf.Variable(data['outputMeans'], dtype=dataType)
+                        self.trainableSigmas = tf.Variable(data['sigmas'], dtype=dataType) if data['sigmas'] is not None else None
+                        self.trainableOutputSigmas = tf.Variable(data['outputSigmas'], dtype=dataType) if data['outputSigmas'] is not None else None
+                        self.sigmas = tf.clip_by_value(self.trainableSigmas, opt.covMin, opt.covMax)
+                        self.outputSigmas = tf.clip_by_value(self.trainableOutputSigmas, opt.covMin, opt.covMax)
                     except KeyError:
                         print('Using old style vocab file.')
 
@@ -272,9 +284,11 @@ class Vocab(object):
         eSize = opt.embSize
 
         if opt.energy == 'IP': # When use inner product, clip the length of means
+            # iWidth = opt.initWidth
             iWidth = opt.initWidth / opt.embSize
             with tf.name_scope("Word2Vec_Vector"):
                 self.means = tf.Variable(
+                # self.trainableMeans = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
@@ -286,6 +300,7 @@ class Vocab(object):
                 )
 
                 self.outputMeans = tf.Variable(
+                # self.trainableOutputMeans = tf.Variable(
                     tf.random_uniform(
                         [sNum, eSize],
                         -iWidth,
@@ -295,6 +310,9 @@ class Vocab(object):
                     dtype=dataType,
                     name="outputMeans"
                 )
+                #
+                # self.means = tf.clip_by_value(self.trainableMeans, -10*opt.initWidth, 10*opt.initWidth)
+                # self.outputMeans = tf.clip_by_value(self.trainableOutputMeans, -10*opt.initWidth, 10*opt.initWidth)
         else:
             iWidth = math.sqrt(2) / 20
             # iWidth = opt.initWidth

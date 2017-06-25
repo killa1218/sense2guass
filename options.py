@@ -25,5 +25,5 @@ class Options(object):
     dType = tf.float64                  # Data type
     verboseTime = False                 # Display running time
     gradConstraint = 0.000001
-    covMin = 0.4
-    covMax = 0.6
+    covMin = 0.1
+    covMax = 1

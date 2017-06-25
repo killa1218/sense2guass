@@ -8,6 +8,7 @@ from graph import windowLossGraph
 from e_step.inference import batchDPInference
 from vocab import Vocab
 # from utils.distance import diagKL as dist
+from utils.distance import meanDist as dist
 from utils.distance import diagEL as dist
 from options import Options as opt
 from multiprocessing import Pool
@@ -24,7 +25,7 @@ scoreList = None
 with open('/mnt/dataset/sense2gauss/data/wordsim353/wordsim353.pkl', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0531_w3_b20_m2_lr0.01_neg1.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/EL.06231058w3b20lr0.01m4.0n3adam.pkl')
 
 with tf.Session() as sess:
     sensePlaceholder = tf.placeholder(dtype=tf.int32)
@@ -76,7 +77,7 @@ with open('../data/SCWS/ELResult_.txt', 'w') as f:
         resSortList.append((float(result[i]), (vocab.getWordBySenseId(wordPairList[i][0]).token, vocab.getWordBySenseId(wordPairList[i][1]).token)))
 
 dataSortList.sort(key = lambda x: x[0])
-resSortList.sort(key = lambda x: x[0])
+resSortList.sort(key = lambda x: x[0], reverse = True)
 
 print(dataSortList, '\n', resSortList)
 

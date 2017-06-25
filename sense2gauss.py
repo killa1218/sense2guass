@@ -119,87 +119,36 @@ def main(_):
 ##----------------- Build Window Loss Graph ------------------
 
         if m_step:
-            # writer = tf.summary.FileWriter('summary/', sess.graph)
-
-        ##----------------- Build Sentence Loss Graph And Optimizer ------------------
-            # print('Building Sentence Loss Graph...')
-            # from graph import batchSentenceLossGraph as lossGraph
-            #
-            # with tf.name_scope('pos_loss'):
-            #     batchSentenceLossGraph, senseIdxPlaceholder, l = lossGraph(vocabulary)
-            #
-            # # tf.summary.tensor_summary("pos_loss", batchSentenceLossGraph)
-            # # merged = tf.summary.merge_all()
-            # # minLossIdxGraph = tf.argmin(batchSentenceLossGraph, 0)
-            # avgBatchStcLoss = batchSentenceLossGraph / (opt.sentenceLength * opt.windowSize * 2 - (opt.windowSize + 1) * opt.windowSize)
-            # reduceAvgLoss = tf.reduce_sum(avgBatchStcLoss) / opt.batchSize
-            # print('Finished Building Sentence Loss Graph.')
-        ##----------------- Build Sentence Loss Graph And Optimizer ------------------
-
-        ##----------------------- Build Negative Loss Graph --------------------------
-            # print('Building Negative Loss Graph...')
-            # from graph import negativeLossGraph
-            # negativeLossGraph, (mid, negSamples) = negativeLossGraph(vocabulary)
-            # avgNegLoss = negativeLossGraph / opt.negative / opt.sentenceLength
-            # reduceAvgNegLoss = tf.reduce_sum(avgNegLoss) / opt.batchSize
-            # print('Finished Building Negative Loss Graph.')
-        ##----------------------- Build Negative Loss Graph --------------------------
-
         ##---------------------------- Build NCE Loss --------------------------------
             print('Building NCE Loss...')
             from graph import batchNCELossGraph
 
-            # posLoss, negLosses = batchNCELossGraph(vocabulary)
             lossList = batchNCELossGraph(vocabulary)
             senseIdxPlaceholder = tf.get_collection('POS_PHDR')[0]
-            # posLoss, negLoss, senseIdxPlaceholder, negSamples= batchNCELossGraph(vocabulary)
-            # posNum = len(posLoss)
-            # negNum = len(negLosses)
 
             posLosses = tf.get_collection('POS_LOSS')
             negLosses = tf.get_collection('NEG_LOSS')
 
-            # lossList = []
-            # for l in negLosses:
-            #     lossList.append(tf.nn.relu(opt.margin - l + avgPosLoss))
-            #
-            # # negLoss = tf.concat(negLosses, 0)
-            # # lossDiff = negLoss - avgPosLoss
-            #
-            # avgNegLoss = tf.reduce_sum(tf.add_n(negLosses)) / negNum / opt.batchSize
-            #
-            # losses = tf.concat(lossList, 0)
-            # nonzeroNum = tf.to_double(tf.count_nonzero(lossList))
-            #
-            # loss = tf.reduce_sum(losses) / nonzeroNum
-
-
-            # avgNegLoss = tf.reduce_sum(negLosses) / negNum / opt.batchSize
-            # avgNCELoss = avgNegLoss - avgPosLoss
-
             # Margin Loss
-            # loss = tf.reduce_sum(lossList)
-            # avgLoss = loss / opt.batchSize / opt.negative / len(lossList)
-            # avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
-            # avgNegLoss = tf.reduce_sum(negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
+            loss = tf.reduce_sum(lossList)
+            avgLoss = loss / opt.batchSize / opt.negative / len(lossList)
+            avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
+            avgNegLoss = tf.reduce_sum(negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
 
             # Cross Entropy Loss
-            posLen = len(posLosses)
-            posLosses = tf.concat(posLosses, 0)
-            avgPosLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.ones_like(posLosses), logits = posLosses)) / posLen / opt.batchSize
-            avgNegLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.zeros_like(negLosses), logits = negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
-            loss = avgPosLoss + avgNegLoss
-            avgLoss = loss / 2
+            # posLen = len(posLosses)
+            # posLosses = tf.concat(posLosses, 0)
+            #mse
+            # negLosses = tf.concat(negLosses, 0)
+            # avgPosLoss = tf.reduce_sum(-tf.log(1 - posLosses)) / posLen / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(-tf.log(negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
 
-            # true_xent = tf.nn.sigmoid_cross_entropy_with_logits(
-            #     labels = tf.ones_like(posLoss), logits = posLoss)
-            # sampled_xent = tf.nn.sigmoid_cross_entropy_with_logits(
-            #     labels = tf.zeros_like(negLoss), logits = negLoss)
-            # avgPosLoss = tf.reduce_sum(true_xent) / posNum / opt.batchSize
-            # avgNegLoss = tf.reduce_sum(sampled_xent) / negNum / opt.batchSize
+            # avgPosLoss = tf.reduce_sum(posLosses) / posLen / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(1 - negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
+            # avgPosLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.ones_like(posLosses), logits = posLosses)) / posLen / opt.batchSize
+            # avgNegLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.zeros_like(negLosses), logits = negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
             # loss = avgPosLoss + avgNegLoss
-
-
+            # avgLoss = loss / 2
 
             with tf.name_scope("Summary"):
                 tf.summary.scalar("Positive Loss", avgPosLoss)
@@ -223,11 +172,9 @@ def main(_):
                     tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / 100 / negsecleng)
                 summary_op = tf.summary.merge_all()
                 summary_writer = tf.summary.FileWriter('log' + opt.energy + '/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
-                                                       '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + 'se' + str(opt.margin) +\
+                                                       '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + '' + str(opt.margin) +\
                                                        'n' + str(opt.negative) + 'adam', graph = sess.graph)
             print('Finished.')
-            # reduceNCELoss = tf.reduce_sum(nceLossGraph)
-            # avgNCELoss = reduceNCELoss / opt.batchSize
             regular = 0 # -tf.norm(vocabulary.sigmas, ord = 'euclidean') if opt.covarShape != 'none' else 0
             obj = loss
 
@@ -252,6 +199,8 @@ def main(_):
 
             if opt.energy == 'IP':
                 grad = optimizer.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = optimizer.GATE_NONE)
+            elif opt.energy == 'EL':
+                grad = optimizer.compute_gradients(obj, var_list = [vocabulary.trainableSigmas, vocabulary.trainableOutputSigmas], gate_gradients = optimizer.GATE_NONE)
             else:
                 grad = optimizer.compute_gradients(obj, gate_gradients = optimizer.GATE_NONE)
             clipedGrad = grad
@@ -267,32 +216,9 @@ def main(_):
             print('Finished.')
         ##---------------------------- Build NCE Loss --------------------------------
 
-            # grad = tf.gradients(batchSentenceLossGraph, vocabulary.outputMeans) #, vocabulary.outputMeans[vocabulary.getWord('is').senseStart], vocabulary.outputSigmas[vocabulary.getWord('is').senseStart]])
-
-##------------------------- Build Validate Graph -----------------------------
-        # print('Building Validate Graph...')
-        # from utils.distance import diagKL
-        # w1Plchdr = tf.placeholder(dtype=tf.int32)
-        # w2Plchdr = tf.placeholder(dtype=tf.int32)
-        #
-        # dist = diagKL(tf.nn.embedding_lookup(vocabulary.means, w1Plchdr), tf.nn.embedding_lookup(vocabulary.sigmas, w1Plchdr), tf.nn.embedding_lookup(vocabulary.means, w2Plchdr), tf.nn.embedding_lookup(vocabulary.sigmas, w2Plchdr))
-        # print('Finished Building Validate Graph.')
-##------------------------- Build Validate Graph -----------------------------
-
-##------------------------- Build Argmin Graph -----------------------------
-        # lossPlaceholder = tf.placeholder(dtype = tf.float64, shape = [None, 1])
-        # argmin = tf.argmin(lossPlaceholder, 0)
-##------------------------- Build Argmin Graph -----------------------------
-
         tf.global_variables_initializer().run(session=sess)
         # Train iteration
         print('Start training...\n')
-
-        # print(vocabulary.means[vocabulary.getWord('is').senseStart].eval())
-        # print(vocabulary.sigmas[vocabulary.getWord('is').senseStart].eval())
-        # orgMeans = vocabulary.means.eval()
-        # orgSigmas = vocabulary.sigmas.eval()
-        # fi = open('grads', 'w')
 
         from e_step.cinference import batchDPInference
         # from e_step.inference import batchDPInference as pyinference
@@ -366,39 +292,39 @@ def main(_):
                                             lr = learning_rate.eval()
                                             #print(global_step.eval(), learning_rate.eval())
 
-                                        if global_step.eval() % 3000 == 1:
-                                            of.write('Iter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.\n' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
-
-                                            for g, var in grad:
-                                                if isinstance(g, tf.Tensor):
-                                                    l = []
-                                                    il = []
-                                                    covg = g.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                                    for idx, tmpi in enumerate(covg):
-                                                        if np.sum(tmpi) != 0:
-                                                            l.append(tmpi)
-                                                            il.append(idx)
-                                                    of.write('Gradients ')
-                                                    of.write(repr(l))
-                                                    of.write('\n')
-                                                    of.write(var.name)
-                                                    of.write(' ')
-                                                    of.write(repr(tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})))
-                                                    of.write('\n')
-                                                    # print('Gradients', l)
-                                                    # print(var.name, tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                                    # print('Gradients', tf.count_nonzero(g).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                                else:
-                                                    of.write('Index: ' + repr(g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                                             '\nGradients: ' + repr(g.values.eval(feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                                             '\n' + var.name + ' ' + repr(tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                                             '\n'
-                                                    )
-
-                                                    # print('\nIndex:', g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                                    # print('Gradients:', g.values.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                                    # # print('Unknown:', g.dense_shape.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                                    # print(var.name, tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                        # if global_step.eval() % 3000 == 1:
+                                            # of.write('Iter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.\n' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+                                            #
+                                            # for g, var in grad:
+                                            #     if isinstance(g, tf.Tensor):
+                                            #         l = []
+                                            #         il = []
+                                            #         covg = g.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                            #         for idx, tmpi in enumerate(covg):
+                                            #             if np.sum(tmpi) != 0:
+                                            #                 l.append(tmpi)
+                                            #                 il.append(idx)
+                                            #         of.write('Gradients ')
+                                            #         of.write(repr(l))
+                                            #         of.write('\n')
+                                            #         of.write(var.name)
+                                            #         of.write(' ')
+                                            #         of.write(repr(tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})))
+                                            #         of.write('\n')
+                                            #         # print('Gradients', l)
+                                            #         # print(var.name, tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                            #         # print('Gradients', tf.count_nonzero(g).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                            #     else:
+                                            #         of.write('Index: ' + repr(g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                            #                  '\nGradients: ' + repr(g.values.eval(feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                            #                  '\n' + var.name + ' ' + repr(tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                            #                  '\n'
+                                            #         )
+                                            #
+                                            #         # print('\nIndex:', g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                            #         # print('Gradients:', g.values.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                            #         # # print('Unknown:', g.dense_shape.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                            #         # print(var.name, tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
 
                                         sys.stdout.write('\rIter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()

@@ -29,18 +29,18 @@ def diagEL(m1, sig1, m2, sig2, d=opt.embSize, pos = True, dim = 1):
     return (firstTerm + secondTerm) / 2 + b # log
     # return -tf.exp(-tf.reduce_sum(tf.square(m) * tf.reciprocal(sig, name='diagEL-Exponential-Inverse'), 1) / 2) / tf.sqrt(tf.reduce_prod(sig, 1)) # nolog
 
-def diagKL(m1, sig1, m2, sig2, d = opt.embSize, pos = True):   # KL energy of two diagnal gaussian distributions
+def diagKL(m1, sig1, m2, sig2, d = opt.embSize, pos = True, dim = 1):   # KL energy of two diagnal gaussian distributions
     m = m2 - m1
-    sum = tf.log(tf.reduce_prod(sig2 / sig1, 1))
+    sum = tf.log(tf.reduce_prod(sig2 / sig1, dim))
     sum += -d
-    sum += tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2, 1)
+    sum += tf.reduce_sum(sig1 / sig2 + tf.square(m) / sig2, dim)
 
     res = tf.div(sum, 2., name='diagKL')
 
     return res
 
-def mse(m1, sig, m2, sig2, d = opt.embSize, pos = True):
-    return tf.reduce_sum(tf.square(m2 - m1), 1)
+def mse(m1, sig, m2, sig2, d = opt.embSize, pos = True, dim = 1):
+    return tf.reduce_sum(tf.square(m2 - m1), dim) / opt.embSize
 
 def diagCE(m1, sig1, m2, sig2, d=opt.embSize, pos = True):
     return diagKL(m1, sig1, m2, sig2, d) + (tf.log(tf.reduce_prod(sig1, 1)) + 2.83787706641 * d) / 2
