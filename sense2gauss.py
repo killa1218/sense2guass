@@ -179,28 +179,13 @@ def main(_):
             obj = loss
 
             print('Building Optimizer...')
-            # posGrad = optimizer.compute_gradients(obj, tf.get_collection('POS_VAR'), gate_gradients = optimizer.GATE_NONE)
-            # negGrad = optimizer.compute_gradients(obj, tf.get_collection('NEG_VAR'), gate_gradients = optimizer.GATE_NONE)
-
-            # posGrad.append((tf.multiply(g, nonzeroNum), var) for g, var in negGrad)
-            # op = optimizer.apply_gradients(posGrad, global_step = global_step)
-
-            # grad = optimizer.compute_gradients(losses, gate_gradients = optimizer.GATE_NONE)
-            # clipedGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in grad]
-
-            # User Two optimizers
-            # meanGrad = meanOpt.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = meanOpt.GATE_NONE)
-            # clipedMeanGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in meanGrad]
-            # sigmaGrad = sigmaOpt.compute_gradients(obj, var_list = [vocabulary.trainableSigmas, vocabulary.trainableOutputSigmas], gate_gradients = sigmaOpt.GATE_NONE)
-            # clipedSigmaGrad = [(tf.clip_by_value(g, gradMin, gradMax), var) for g, var in sigmaGrad]
-            #
-            # mop = meanOpt.apply_gradients(clipedMeanGrad)
-            # sop = sigmaOpt.apply_gradients(clipedSigmaGrad)
 
             if opt.energy == 'IP':
                 grad = optimizer.compute_gradients(obj, var_list = [vocabulary.means, vocabulary.outputMeans], gate_gradients = optimizer.GATE_NONE)
             elif opt.energy == 'EL':
                 grad = optimizer.compute_gradients(obj, var_list = [vocabulary.trainableSigmas, vocabulary.trainableOutputSigmas], gate_gradients = optimizer.GATE_NONE)
+            elif opt.energy == 'MSE':
+                grad = optimizer.compute_gradients(obj, var_list = [vocabulary.trainableMeans, vocabulary.trainableOutputMeans], gate_gradients = optimizer.GATE_NONE)
             else:
                 grad = optimizer.compute_gradients(obj, gate_gradients = optimizer.GATE_NONE)
             clipedGrad = grad

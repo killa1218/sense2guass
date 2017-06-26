@@ -27,3 +27,4 @@ class Options(object):
     gradConstraint = 0.000001
     covMin = 0.1
     covMax = 1
+    meanNorm = 3.

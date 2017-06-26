@@ -313,6 +313,33 @@ class Vocab(object):
                 #
                 # self.means = tf.clip_by_value(self.trainableMeans, -10*opt.initWidth, 10*opt.initWidth)
                 # self.outputMeans = tf.clip_by_value(self.trainableOutputMeans, -10*opt.initWidth, 10*opt.initWidth)
+        if opt.energy == 'MSE': # When use MSE, clip the norm of means
+            iWidth = opt.initWidth
+            with tf.name_scope("Word2Vec_Vector_MSE"):
+                self.trainableMeans = tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="means"
+                )
+
+                self.trainableOutputMeans = tf.Variable(
+                    tf.random_uniform(
+                        [sNum, eSize],
+                        -iWidth,
+                        iWidth,
+                        dtype=dataType
+                    ),
+                    dtype=dataType,
+                    name="outputMeans"
+                )
+
+                self.means = tf.clip_by_norm(self.trainableMeans, opt.meanNorm, 1)
+                self.outputMeans = tf.clip_by_norm(self.trainableOutputMeans, opt.meanNorm, 1)
         else:
             iWidth = math.sqrt(2) / 20
             # iWidth = opt.initWidth

@@ -14,7 +14,9 @@ elif opt.energy == 'CE':
 elif opt.energy == 'IP':
     print("Using IP Energy")
     from utils.distance import meanDist as dist
-    # from utils.distance import mse as dist
+elif opt.energy == 'MSE':
+    print("Using MSE Energy")
+    from utils.distance import mse as dist
 else:
     print("Using EL Energy")
     from utils.distance import diagEL as dist
