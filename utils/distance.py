@@ -18,10 +18,10 @@ def diagEL(m1, sig1, m2, sig2, d=opt.embSize, pos = True, dim = 1):
     firstTerm = tf.log(tf.reduce_prod(sig, dim))
     secondTerm = tf.reduce_sum(tf.square(m) / sig, dim)
 
-    if pos:
+    if pos == True:
         tf.add_to_collection('POS_LOG_EL_FIRST', firstTerm)
         tf.add_to_collection('POS_LOG_EL_SECOND', secondTerm)
-    else:
+    elif pos == False:
         tf.add_to_collection('NEG_LOG_EL_FIRST', firstTerm)
         tf.add_to_collection('NEG_LOG_EL_SECOND', secondTerm)
 

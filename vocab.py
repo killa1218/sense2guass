@@ -338,8 +338,10 @@ class Vocab(object):
                     name="outputMeans"
                 )
 
-                self.means = tf.clip_by_norm(self.trainableMeans, opt.meanNorm, 1)
-                self.outputMeans = tf.clip_by_norm(self.trainableOutputMeans, opt.meanNorm, 1)
+                # self.means = tf.clip_by_norm(self.trainableMeans, opt.meanNorm, 1)
+                # self.outputMeans = tf.clip_by_norm(self.trainableOutputMeans, opt.meanNorm, 1)
+                self.means = opt.meanNorm * self.trainableMeans / tf.expand_dims(tf.norm(self.trainableMeans, axis = 1), 1)
+                self.outputMeans = opt.meanNorm * self.trainableOutputMeans / tf.expand_dims(tf.norm(self.trainableOutputMeans, axis = 1), 1)
         else:
             iWidth = math.sqrt(2) / 20
             # iWidth = opt.initWidth

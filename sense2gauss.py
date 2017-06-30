@@ -114,7 +114,7 @@ def main(_):
 ##----------------- Build Window Loss Graph ------------------
         print('Building Window Loss Graph...')
         from graph import windowLossGraph
-        # windowLossGraph, window = windowLossGraph(vocabulary)
+        windowLossGraph, window = windowLossGraph(vocabulary)
         print('Finished.')
 ##----------------- Build Window Loss Graph ------------------
 
@@ -135,41 +135,41 @@ def main(_):
             avgPosLoss = tf.reduce_sum(posLosses) / len(posLosses) / opt.batchSize
             avgNegLoss = tf.reduce_sum(negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
 
+            posgrad = optimizer.compute_gradients(avgPosLoss, var_list = [vocabulary.trainableMeans, vocabulary.trainableOutputMeans], gate_gradients = optimizer.GATE_NONE)[0][0]
+            neggrad = optimizer.compute_gradients(avgNegLoss, var_list = [vocabulary.trainableMeans, vocabulary.trainableOutputMeans], gate_gradients = optimizer.GATE_NONE)[0][0]
+
             # Cross Entropy Loss
             # posLen = len(posLosses)
             # posLosses = tf.concat(posLosses, 0)
-            #mse
-            # negLosses = tf.concat(negLosses, 0)
-            # avgPosLoss = tf.reduce_sum(-tf.log(1 - posLosses)) / posLen / opt.batchSize
-            # avgNegLoss = tf.reduce_sum(-tf.log(negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
-
-            # avgPosLoss = tf.reduce_sum(posLosses) / posLen / opt.batchSize
-            # avgNegLoss = tf.reduce_sum(1 - negLosses) / opt.sentenceLength / opt.negative / opt.batchSize
             # avgPosLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.ones_like(posLosses), logits = posLosses)) / posLen / opt.batchSize
             # avgNegLoss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels = tf.zeros_like(negLosses), logits = negLosses)) / opt.sentenceLength / opt.negative / opt.batchSize
             # loss = avgPosLoss + avgNegLoss
             # avgLoss = loss / 2
 
             with tf.name_scope("Summary"):
+                tf.summary.scalar("Mean Positive Grad", tf.reduce_sum(posgrad))
+                tf.summary.scalar("Mean Negative Grad", tf.reduce_sum(neggrad))
+
                 tf.summary.scalar("Positive Loss", avgPosLoss)
                 tf.summary.scalar("Negative Loss", avgNegLoss)
                 # tf.summary.scalar("Num of Nonzero Loss", nonzeroNum)
                 tf.summary.scalar("NCE Loss", avgLoss)
                 avg_mean_norm, mean_var = tf.nn.moments(tf.norm(vocabulary.means, axis = 1), axes = [0])
                 avg_cov_norm, cov_var = tf.nn.moments(tf.norm(vocabulary.sigmas, axis = 1), axes = [0])
+                tf.summary.scalar("Average Mean Norm", avg_mean_norm)
+                tf.summary.scalar("Mean Norm Variance", mean_var)
+
                 if opt.energy == 'EL':
-                    tf.summary.scalar("Average Mean Norm", avg_mean_norm)
-                    tf.summary.scalar("Mean Norm Variance", mean_var)
                     tf.summary.scalar("Average Sigma Norm", avg_cov_norm)
                     tf.summary.scalar("Sigma Norm Variance", cov_var)
                     posleng = len(tf.get_collection('POS_LOG_EL_FIRST'))
                     possecleng = len(tf.get_collection('POS_LOG_EL_SECOND'))
                     negleng = len(tf.get_collection('NEG_LOG_EL_FIRST'))
                     negsecleng = len(tf.get_collection('NEG_LOG_EL_SECOND'))
-                    tf.summary.scalar("POS Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_FIRST'))) / 100 / posleng)
-                    tf.summary.scalar("POS Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_SECOND'))) / 100 / possecleng)
-                    tf.summary.scalar("NEG Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_FIRST'))) / 100 / negleng)
-                    tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / 100 / negsecleng)
+                    tf.summary.scalar("POS Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_FIRST'))) / opt.batchSize / posleng)
+                    tf.summary.scalar("POS Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('POS_LOG_EL_SECOND'))) / opt.batchSize / possecleng)
+                    tf.summary.scalar("NEG Log EL First", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_FIRST'))) / opt.batchSize / opt.sentenceLength / opt.negative / negleng)
+                    tf.summary.scalar("NEG Log EL Second", tf.reduce_sum(tf.add_n(tf.get_collection('NEG_LOG_EL_SECOND'))) / opt.batchSize / opt.sentenceLength / opt.negative / negsecleng)
                 summary_op = tf.summary.merge_all()
                 summary_writer = tf.summary.FileWriter('log' + opt.energy + '/' + time.strftime("%m%d", time.localtime()) + '/' + time.strftime("%H:%M", time.localtime()) +
                                                        '_w' + str(opt.windowSize) + 'b' + str(opt.batchSize) + 'lr' + str(opt.alpha) + '' + str(opt.margin) +\
@@ -243,7 +243,7 @@ def main(_):
 
                                             batchLossSenseIdxList.append(tmpList)
                                     else:
-                                        # batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
+                                        batchLossSenseIdxList, twT, tcT, tiT = batchDPInference(batchStcW, sess, windowLossGraph, window)
 
                                         # if opt.verboseTime:
                                             # tIT += time.time() - start
@@ -277,39 +277,40 @@ def main(_):
                                             lr = learning_rate.eval()
                                             #print(global_step.eval(), learning_rate.eval())
 
-                                        # if global_step.eval() % 3000 == 1:
-                                            # of.write('Iter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.\n' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
-                                            #
-                                            # for g, var in grad:
-                                            #     if isinstance(g, tf.Tensor):
-                                            #         l = []
-                                            #         il = []
-                                            #         covg = g.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
-                                            #         for idx, tmpi in enumerate(covg):
-                                            #             if np.sum(tmpi) != 0:
-                                            #                 l.append(tmpi)
-                                            #                 il.append(idx)
-                                            #         of.write('Gradients ')
-                                            #         of.write(repr(l))
-                                            #         of.write('\n')
-                                            #         of.write(var.name)
-                                            #         of.write(' ')
-                                            #         of.write(repr(tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})))
-                                            #         of.write('\n')
-                                            #         # print('Gradients', l)
-                                            #         # print(var.name, tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                            #         # print('Gradients', tf.count_nonzero(g).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                            #     else:
-                                            #         of.write('Index: ' + repr(g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                            #                  '\nGradients: ' + repr(g.values.eval(feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                            #                  '\n' + var.name + ' ' + repr(tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
-                                            #                  '\n'
-                                            #         )
-                                            #
-                                            #         # print('\nIndex:', g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                            #         # print('Gradients:', g.values.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                            #         # # print('Unknown:', g.dense_shape.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
-                                            #         # print(var.name, tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                        if global_step.eval() % 10 == 1:
+                                            of.write('Iter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.\n' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
+
+                                            print(grad)
+                                            for g, var in grad:
+                                                if isinstance(g, tf.Tensor):
+                                                    l = []
+                                                    il = []
+                                                    covg = g.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})
+                                                    for idx, tmpi in enumerate(covg):
+                                                        if np.sum(tmpi) != 0:
+                                                            l.append(tmpi)
+                                                            il.append(idx)
+                                                    of.write('Gradients ')
+                                                    of.write(repr(l))
+                                                    of.write('\n')
+                                                    of.write(var.name)
+                                                    of.write(' ')
+                                                    of.write(repr(tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})))
+                                                    of.write('\n')
+                                                    # print('Gradients', l)
+                                                    # print(var.name, tf.gather(var, il).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print('Gradients', tf.count_nonzero(g).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                else:
+                                                    of.write('Index: ' + repr(g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\nGradients: ' + repr(g.values.eval(feed_dict = {senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\n' + var.name + ' ' + repr(tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList})) +
+                                                             '\n'
+                                                    )
+
+                                                    # print('\nIndex:', g.indices.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print('Gradients:', g.values.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # # print('Unknown:', g.dense_shape.eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
+                                                    # print(var.name, tf.gather(var, g.indices).eval(feed_dict={senseIdxPlaceholder: batchLossSenseIdxList}))
 
                                         sys.stdout.write('\rIter:%d/%d, Step:%d, Lr:%.5f POSLoss:%.5f, NEGLoss:%.5f, NCELoss:%.5f, Progress:%.2f%%.' % (i + 1, opt.iter, global_step.eval(), lr, posloss, negloss, nceloss, (float(f.tell()) * 100 / os.path.getsize(opt.train))))
                                         sys.stdout.flush()

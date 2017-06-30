@@ -1,5 +1,7 @@
 # coding=utf8
 
+from options import Options as opt
+opt.energy = 'IP'
 import sys
 import pickle as pk
 import tensorflow as tf
@@ -11,8 +13,8 @@ from graph import windowLossGraph
 from e_step.inference import batchDPInference
 from vocab import Vocab
 # from utils.distance import diagKL as dist
-from utils.distance import diagEL as dist
-from options import Options as opt
+# from utils.distance import diagEL as dist
+from utils.distance import meanDist as dist
 from multiprocessing import Pool
 
 pool = Pool()
@@ -29,7 +31,7 @@ condition = '.adam.multisense'
 with open('/mnt/dataset/sense2gauss/data/SCWS/testData.pk3', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/gauss.EL.0520_w3_b50_m200.adam.pkl3')
+    vocab.load('/mnt/dataset/sense2gauss/data/IP.06262002w3b20lr0.02m1.0n6adam.pkl')
 
 with tf.Session() as sess:
     windowLossGraph, window = windowLossGraph(vocab)

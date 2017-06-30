@@ -9,7 +9,8 @@ from e_step.inference import batchDPInference
 from vocab import Vocab
 # from utils.distance import diagKL as dist
 from utils.distance import meanDist as dist
-from utils.distance import diagEL as dist
+# from utils.distance import mse as dist
+# from utils.distance import diagEL as dist
 from options import Options as opt
 from multiprocessing import Pool
 
@@ -25,7 +26,7 @@ scoreList = None
 with open('/mnt/dataset/sense2gauss/data/wordsim353/wordsim353.pkl', 'rb') as f:
     data = pk.load(f)
     vocab = Vocab()
-    vocab.load('/mnt/dataset/sense2gauss/data/EL.06231058w3b20lr0.01m4.0n3adam.pkl')
+    vocab.load('/mnt/dataset/sense2gauss/data/MSE.06291043w3b20lr0.02m3.0n1adam.pkl')
 
 with tf.Session() as sess:
     sensePlaceholder = tf.placeholder(dtype=tf.int32)
@@ -79,7 +80,7 @@ with open('../data/SCWS/ELResult_.txt', 'w') as f:
 dataSortList.sort(key = lambda x: x[0])
 resSortList.sort(key = lambda x: x[0], reverse = True)
 
-print(dataSortList, '\n', resSortList)
+print(dataSortList, '\n\n\n\n', resSortList)
 
 dic = {} # Spearman's rank correlation
 ddic = {} # square error

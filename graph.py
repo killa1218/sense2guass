@@ -156,14 +156,14 @@ def windowLossGraph(vocabulary):
 
         for i in range(opt.windowSize * 2):
             l.append(
-                dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i]))
+                dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, i]), pos = None)
                 if opt.covarShape != 'none' else
-                dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), None)
+                dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, i]), None, pos = None)
             )
             l.append(
-                dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1]))
+                dist(midMean, midSigma, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), tf.nn.embedding_lookup(vocabulary.sigmas, window[:, opt.windowSize * 2 - i - 1]), pos = None)
                 if opt.covarShape != 'none' else
-                dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), None)
+                dist(midMean, None, tf.nn.embedding_lookup(vocabulary.means, window[:, opt.windowSize * 2 - i - 1]), None, pos = None)
             )
 
         return tf.add_n(l), window
